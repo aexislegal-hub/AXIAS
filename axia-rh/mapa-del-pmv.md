@@ -301,7 +301,7 @@ Contradicciones entre conversaciones, con la propuesta de Cerebro. Responder «a
 
 **Pendiente:** 15 (el usuario lo revisará).
 
-**Nueva (15/11/2026) — 19. Situaciones protegidas en la baja.** El módulo 4 v1.4 (decisión del usuario del 10 y 12/11) eliminó el bloqueo por situaciones protegidas y su mensaje. El módulo de permisos (decisión 6 del usuario, 12/11) envía SITUACION_PROTEGIDA para bloquear la baja (incapacidad en curso, maternidad, lactancia, Declaración Especial de Ausencia y licencia por hijo con cáncer) y pide doble confirmación con comisión permanente vigente (BAJA_CONFIRMACION_B4). **Propuesta de Cerebro:** respetar la decisión del módulo 4 (sin bloqueo) y convertir SITUACION_PROTEGIDA en una alerta crítica que exige doble confirmación con registro de quién confirma, igual que B4. Así no se impide operar, pero queda constancia de que la Empresa conocía la situación y decidió continuar.
+**Resuelta el 15/11/2026 — 19 (aprobada como se propone).** Situaciones protegidas en la baja. El módulo 4 v1.4 (decisión del usuario del 10 y 12/11) eliminó el bloqueo por situaciones protegidas y su mensaje. El módulo de permisos (decisión 6 del usuario, 12/11) envía SITUACION_PROTEGIDA para bloquear la baja (incapacidad en curso, maternidad, lactancia, Declaración Especial de Ausencia y licencia por hijo con cáncer) y pide doble confirmación con comisión permanente vigente (BAJA_CONFIRMACION_B4). **Propuesta de Cerebro:** respetar la decisión del módulo 4 (sin bloqueo) y convertir SITUACION_PROTEGIDA en una alerta crítica que exige doble confirmación con registro de quién confirma, igual que B4. Así no se impide operar, pero queda constancia de que la Empresa conocía la situación y decidió continuar.
 
 | # | Contradicción | Propuesta de Cerebro |
 |---|---|---|
@@ -375,14 +375,14 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 **Kit de PTU:** sin encargos pendientes (el de voto secreto quedó cumplido el 12/11).
 
 **Módulo 4 (terminación)**
-1. (15/11) Pendiente de la decisión 19: situaciones protegidas y doble confirmación con B4.
+1. (15/11, decisión 19) Recibir SITUACION_PROTEGIDA del módulo de permisos como alerta crítica, sin bloqueo, con doble confirmación y registro de usuario, fecha y hora (BAJA_CONFIRMACION_PROTEGIDA, nueva, evento de baja); B4 con la misma mecánica (BAJA_CONFIRMACION_B4). Nunca se imprime.
 2. (15/11) Adoptar la sección 11 de la especificación de vacaciones (saldos, proporcionales y prescritos solo informativos) y no duplicar el aguinaldo ya pagado en el año.
 3. (15/11) Sección 7.7, regla 2 del acta de devolución: actualizarla al art. 46 vigente del RIT (investigación por los arts. 80 y 81; descuento con reconocimiento en FD-5 o determinación en FD-3, conforme al art. 27).
 4. (15/11) Referencias al «Anexo A» del RIT como catálogo de conductas: decir «catálogo de conductas del RIT», sin letra.
 5. (12/11) SUS-2 vencido (art. 47, fr. XIV Bis) es antecedente del aviso de rescisión, que es servicio aparte.
 
 **Módulo 10 (permisos y licencias)**
-1. (15/11) Pendiente de la decisión 19 (SITUACION_PROTEGIDA).
+1. (15/11, decisión 19) SITUACION_PROTEGIDA ya no bloquea la baja: el módulo 4 la muestra como alerta crítica con doble confirmación. Ajustar la sección 11 de la especificación.
 2. (15/11) AGUINALDO_COMPUTA: B3 ya está decidido (no computa, decisión del usuario en el módulo de vacaciones); quitar «pendiente de decisión».
 3. (15/11) Confirmar la lectura de SUSP_VACACIONES_GENERA que propone la especificación de vacaciones (3.1, paso 4).
 4. (15/11) La conducta 60 es del catálogo de conductas del RIT (ya no «Anexo A»).
@@ -435,7 +435,6 @@ Pegar en cada conversación después de que el usuario resuelva las decisiones a
 
 - **Resuelto (12/11/2026) — Firma electrónica:** ver registro 4.11 y la especificación v1.2. Texto anterior: definir el tipo de firma y cómo se conserva la prueba de integridad y fecha (por ejemplo, constancia de conservación conforme a la NOM-151). Hoy se cotiza aparte. (12/11/2026) Ya existe «Corte - Firma electrónica» y el módulo 10 ya lo usa (registros SP-1 y SUS-3 y acuse de LIC-2): bitácora, hoja de evidencias, SHA-256, copia al correo personal, NOM-151 opcional y firma autógrafa si falla la Plataforma.
 - **A — Tabla de conservación de documentos:** unificar plazos; el RIT ya fija variables para expedientes disciplinarios y clínicos y la comisión de capacitación tiene la suya.
-- **A — Situaciones protegidas en la baja:** decisión 19.
 - **B — Parámetros legales globales** (UMA, ISR, subsidio, salarios mínimos, cuotas, exenciones, duraciones legales): una sola tabla versionada con monitor y aprobación (módulo 4, 5.3), compartida por PTU, vacaciones y aguinaldo, permisos y jornada.
 - **B — Registro electrónico de jornada:** el contrato obliga a usar el sistema que designe la Empresa, pero la app del colaborador es fase 2.
 - **B — Diccionario de variables único** al terminar los modelos; hay variables duplicadas con distinto nombre (SINDICATO en capacitación y PTU, CENTROS y TURNOS, N_REP y NUM_REP_TRAB, TIPO_PATRON y EMPRESA_TIPO_PERSONA). (12/11/2026) Además: PERSONA_JEFATURA es la jefatura inmediata y DIRECTOR_AREA (nueva) la dirección del área, ambas por puesto; JEFE_INMEDIATO se elimina; FIRMANTES_EMPRESA va en la configuración de la empresa; CENTRO_TRABAJO equivale a PERSONA_CENTRO del RIT; DIAS_EN_CASA_EMPRESA y DIAS_EN_CASA_ACTIVO son distintas.

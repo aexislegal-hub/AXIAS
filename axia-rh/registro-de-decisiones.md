@@ -401,7 +401,7 @@ Documento de referencia: «AXIARH - Modulo 4 - Especificacion para programacion�
 
 **Motivos de baja**
 - (10/11/2026) Una sola lista de motivos legales, sin «¿quién decide?» y sin «despido injustificado»; solo son obligatorios motivo, fecha de baja y forma de pago.
-- (10 y 12/11/2026, decisión del usuario) Se elimina el bloqueo por situaciones protegidas y, en la v1.3, también su mensaje fijo. **Contradicción abierta con el módulo de permisos (12/11):** ese módulo envía SITUACION_PROTEGIDA (incapacidad en curso, maternidad, lactancia, Declaración Especial de Ausencia, B3) para bloquear la baja y pide doble confirmación con B4 (BAJA_CONFIRMACION_B4); la v1.4 del módulo 4 no los recibe. Pendiente de decisión del usuario (mapa).
+- (10 y 12/11/2026, decisión del usuario) Se elimina el bloqueo por situaciones protegidas y, en la v1.3, también su mensaje fijo. - (15/11/2026, aprobada por el usuario; resuelve la contradicción con el módulo de permisos) **Situaciones protegidas sin bloqueo.** SITUACION_PROTEGIDA (incapacidad C1 o C2 en curso, maternidad C3, lactancia B1, Declaración Especial de Ausencia D5 y licencia por hijo con cáncer B3) ya no bloquea la baja: genera una alerta crítica en la pantalla «Retirar colaborador» y exige doble confirmación, con registro de usuario, fecha y hora (BAJA_CONFIRMACION_PROTEGIDA). La comisión permanente vigente (B4) sigue la misma mecánica con BAJA_CONFIRMACION_B4. El dato nunca se imprime. Así queda constancia de que la Empresa conocía la situación y decidió continuar.
 - (12/11/2026, provisional; del módulo de permisos) Suspensión por falta de documentos (D4) vencida: actualiza la causa del art. 47, fr. XIV Bis; consultoría decide y prepara el aviso (servicio aparte). El sistema no termina la relación.
 - (26/10/2026) Temporada: el fin de temporada suspende la relación (arts. 39-F y 42, fr. VIII); no se ofrece el motivo de vencimiento.
 
@@ -580,7 +580,7 @@ Datos que faltan en el alta para la baja: TRAB_NSS (necesario para la baja, no b
 
 ## 7. Pendientes
 
-- [ ] (15/11/2026) **Decisión del usuario:** situaciones protegidas en la baja (contradicción entre el módulo 4 v1.4 y el módulo de permisos; ver 4.8 y el mapa).
+- [x] (15/11/2026) Cerrado: situaciones protegidas en la baja, alerta crítica con doble confirmación, sin bloqueo (4.8).
 - [ ] (15/11/2026) Decidir si el cuadro general de antigüedades (art. 158) entra al PMV.
 - [ ] (15/11/2026) Redactar el documento del Comité de Integridad y Disciplina (Axia Compliance).
 - [ ] (15/11/2026) Vacaciones: verificar el Convenio 52 OIT (texto oficial y ámbito), las tesis citadas, el fraccionamiento del bloque continuo (art. 78), las prestaciones extralegales en el salario ordinario y la continuidad en reingresos.
