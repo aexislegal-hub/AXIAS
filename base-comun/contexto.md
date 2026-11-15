@@ -10,8 +10,10 @@ Los datos vienen de tres niveles y cada uno se captura una sola vez: (1) configu
 
 - **Axia RH:** cumplimiento laboral (contratación, RIT, PTU, terminación, modificaciones, permisos y licencias, vacaciones y aguinaldo, capacitación en lo que toca a SIRCE y la comisión mixta, Fonacot y análisis de jornada).
 - **Axia NOMs:** normas oficiales mexicanas de seguridad y salud en el trabajo (NOM-035, NOM-019, NOM-030 y demás). Usa los niveles 1 a 3 de Axia RH.
-- **Axia Capacitación, Axia Compliance y Axia Corporativa:** líneas posteriores.
+- **Axia CYA:** capacitación y adiestramiento (DNC, planes y programas, cursos y DC-3). Axia RH conserva la Comisión Mixta, el SIRCE y el DC-1.
+- **Axia Compliance:** anticorrupción, ética, Comité de Integridad y Disciplina, políticas legales (trabajo híbrido y teletrabajo, prevención de la violencia y el acoso) y políticas organizacionales a las que remite el RIT.
+- **Axia Corporativa:** línea posterior.
 
 ## Especificaciones transversales
 
-La especificación de firma electrónica («AXIARH - Firma electrónica - Especificación para programación», v1.2) rige la firma de todos los documentos de la familia. Hoy vive en el proyecto de Axia RH.
+La especificación de firma electrónica («AXIARH - Firma electrónica - Especificación para programación», v1.2; decisiones en el registro de Axia RH, 4.11) rige la firma de todos los documentos de la familia. Hoy vive en el proyecto de Axia RH.

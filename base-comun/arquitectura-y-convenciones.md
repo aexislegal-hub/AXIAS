@@ -1,6 +1,6 @@
 # Base común de la familia Axia
 
-Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 13 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
+Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 15 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
 
 Contiene la arquitectura del sistema (niveles de captura y atributos de puesto) y las convenciones de redacción que comparten todos los productos Axia. Un proyecto distinto de Axia RH que necesite una variable nueva de empresa, organigrama o alta la pide como encargo a Cerebro.
 
@@ -69,5 +69,8 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 - El texto no fija cifras que cambian por reforma (jornada máxima); remite a la ley y el sistema valida.
 - Lo operativo (reglas del registro de jornada, aclaraciones, tiempo extra) va en el RIT, no en el contrato.
 - La versión en texto plano para programación se genera solo cuando el modelo maestro esté terminado.
+- (13/11/2026, decisión del usuario) **Arial en todos los documentos de todos los módulos** (12 puntos en el cuerpo; títulos en negrita del mismo tamaño o uno mayor; papel carta). Única excepción: el ajuste del recibo de finiquito para que quepa en una hoja.
+- (13/11/2026, decisión del usuario) El PDF se genera en el servidor, sin encabezado ni pie del navegador, en todos los módulos.
+- (12/11/2026) Las cifras legales que cambian (UMA, tarifas del ISR, subsidio, salarios mínimos, cuotas del IMSS, exenciones, duraciones de permisos y vacaciones) viven en tablas globales con fecha de vigencia que administra AEXIS; se activan solo con aprobación humana y un monitor de fuentes oficiales alerta al administrador (módulo 4, 5.3). Ningún texto ni código las fija.
 
 ---
