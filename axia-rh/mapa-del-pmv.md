@@ -20,7 +20,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | 4 | Terminación y finiquito | Generar el convenio, el recibo y los documentos de respaldo, y el precálculo neto estimado del finiquito |
 | 5 | Modificación de condiciones | Documentar cada cambio de condiciones de trabajo |
 | 6 | Validación de pago de PTU y aguinaldo | Alertar plazos y guardar la evidencia del pago |
-| 7 | Capacitación: comisión mixta y SIRCE | Integrar la comisión, emitir su opinión sobre los periodos, documentar la capacitación y exportar lo que se registra en el SIRCE |
+| 7 | ~~Capacitación: comisión mixta y SIRCE~~ | (15/11/2026) Sale del PMV de Axia RH y pasa al proyecto de Axia CYA |
 | 8 | Fonacot | Documentar la afiliación del centro de trabajo y controlar retenciones y bajas |
 | 9 | Análisis de jornada | Validar jornadas, descansos y tiempo extra contra la ley y lo pactado |
 | 10 | Permisos y licencias (pantalla de eventos) | Registrar permisos, licencias, incapacidades y suspensiones como fuente única de ausencias para nómina, IMSS, PTU, vacaciones, finiquito y análisis de jornada; alertar faltas y patrón de ausentismo |
@@ -30,17 +30,17 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 
 | Módulo | Documentos redactados | Faltan | Situación |
 |---|---|---|---|
-| 1. Kit de contratación | Paquete completo (contrato A-D, módulos, kit integrado) | Constancia de recibo del RIT (módulo 2); 12 variables por dar de alta en el software | **Cerrado (26/10/2026)**; versión para programación generada |
-| 2. RIT y su comisión | RIT (rev. 1375), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador), acta de la CMRIT (rev. 36); especificación v1.4 | Tercer corrido en el software; confirmar las propuestas 11.1; revisión de los formatos | **RIT cerrado para programación**; en corrido en el software |
+| 1. Kit de contratación | Paquete completo (contrato A-D, módulos, kit integrado) | Pasada única con el corte del 13/11 (cláusula 22, Arial, carátula, FR-1); adenda de confidencialidad y asignación de correo; 12 variables | Versión para programación en corrido en el software (15/11/2026); **no cerrado** |
+| 2. RIT y su comisión | RIT (rev. 1375), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador), acta de la CMRIT (rev. 36); especificación v1.4 | Tercer corrido en el software; confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
-| 7. Capacitación | Juego de la comisión y formatos F-1 a F-5 | Corte pendiente desde el 26/10; exportación SIRCE. DNC, plan y programa y DC-3: Axia CYA | Avanzado; en revisión |
-| 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; contradicción de situaciones protegidas | **Terminado y cargado en el software (12/11/2026)** |
+| 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
+| 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; encargos de la decisión 19 y de vacaciones | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
 | 5. Modificación | — | Todo | **Sin conversación** |
 | 6. Validación de pagos | — | Todo (reglas del sistema) | **Sin conversación** |
 | 8. Fonacot | — | Todo | **Sin conversación** |
 | 9. Análisis de jornada | — | Todo | **Sin conversación** |
-| 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.6 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | **Terminado (12/11/2026)**; especificación para programación lista |
-| 11. Vacaciones y aguinaldo | VAC-1, VAC-2 y VAC-3; cálculo de aguinaldo; especificación v1.0 con textos aprobados | Verificaciones legales; decidir el cuadro general de antigüedades | **Terminado (15/11/2026)** |
+| 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.6 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | Diseño terminado (12/11/2026); especificación lista; **no cerrado** |
+| 11. Vacaciones y aguinaldo | VAC-1, VAC-2 y VAC-3; cálculo de aguinaldo; especificación v1.0 con textos aprobados | Verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (15/11/2026); **no cerrado** |
 
 ---
 
@@ -367,10 +367,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 3. (15/11) Aplicar a la cláusula 22 las instrucciones del apartado 9 del «Corte - Firma electrónica».
 4. (15/11) Aplicar en una sola pasada las decisiones del corte del 13/11 (Arial, carátula de 1 a 2 páginas, FR-1 en el paquete y RIT_ENTREGA condicionada) y regenerar la versión para programación solo cuando el usuario lo pida.
 
-**Comisión de capacitación**
-1. (02/11) Aplicar el criterio común (registro 4.5).
-2. Corte pendiente desde el 26/10. Guardar «Corte - Comisión de capacitación».
-3. (15/11) Límite con Axia CYA: la comisión, el SIRCE y el DC-1 se quedan en Axia RH; DNC, plan y programa, cursos y DC-3 van a Axia CYA.
+**Comisión de capacitación:** (15/11/2026) sale de Axia RH y pasa al proyecto de Axia CYA, que hereda los encargos pendientes (criterio común de comisiones, corte pendiente desde el 26/10, SIRCE). Axia RH solo necesita que Axia CYA mantenga las variables F2_* que lee el módulo 4.
 
 **Kit de PTU:** sin encargos pendientes (el de voto secreto quedó cumplido el 12/11).
 
@@ -451,13 +448,13 @@ Tomadas también el 26/10/2026:
 
 Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entran a Axia RH, porque el candado de la terminación las exige y el SIRCE las reporta.
 
-## Orden sugerido de trabajo
+## Orden sugerido de trabajo (15/11/2026)
 
-1. Resolver las 18 decisiones de este mapa (desbloquean a las cinco conversaciones).
-2. Cerrar el contrato con sus variantes de temporalidad y el kit.
-3. Cerrar el RIT y los formatos disciplinarios (desbloquean la rescisión).
-4. Cerrar la comisión de capacitación (desbloquea la terminación al vencer el periodo).
-5. Abrir la conversación de terminación y finiquito (módulo 4).
-6. Abrir modificación de condiciones (módulo 5).
-7. Cerrar la PTU y abrir validación de pagos (módulos 3 y 6).
-8. Fonacot, SIRCE y análisis de jornada (módulos 7, 8 y 9).
+1. Módulo 5, modificación de condiciones (conversación nueva).
+2. Paquete de contratación: corrido en el software y pasada única con el corte del 13/11.
+3. Módulos 6 (validación de pagos) y 8 (Fonacot) en una sola conversación.
+4. Módulo 9, análisis de jornada, con diseño provisional mientras la STPS publica las disposiciones del registro electrónico (vigencia 1/01/2027).
+5. Cerebro: diccionario único de variables y tabla única de parámetros legales.
+6. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).
+
+Historial: el orden del 26/10 se cumplió en sus pasos 1 a 5 y 7.

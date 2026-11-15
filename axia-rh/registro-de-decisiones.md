@@ -558,7 +558,7 @@ Datos que faltan en el alta para la baja: TRAB_NSS (necesario para la baja, no b
 
 ## 6. Alcance del PMV de Axia RH (26/10/2026)
 
-- Módulos: kit de contratación; RIT y su comisión mixta; PTU y su procedimiento; terminación y precálculo de finiquito; modificación de condiciones de trabajo; validación de pago de PTU y aguinaldo; comisión mixta de capacitación y SIRCE; Fonacot; análisis de jornada.
+- (Actualizado 15/11/2026: la comisión mixta de capacitación pasó a Axia CYA) Módulos: kit de contratación; RIT y su comisión mixta; PTU y su procedimiento; terminación y precálculo de finiquito; modificación de condiciones de trabajo; validación de pago de PTU y aguinaldo; comisión mixta de capacitación y SIRCE; Fonacot; análisis de jornada.
 - La Comisión Mixta de Capacitación, Adiestramiento y Productividad entra al PMV.
 - El PMV genera todo tipo de contratos laborales, no solo por tiempo indeterminado.
 - La PTU se calcula importando la nómina o capturando datos por persona (días trabajados y salario devengado).
@@ -573,7 +573,8 @@ Datos que faltan en el alta para la baja: TRAB_NSS (necesario para la baja, no b
 - (12 y 15/11/2026) Entran al PMV las pantallas de eventos «Permisos y licencias» y «Vacaciones y aguinaldo», con conversación y especificación propias.
 - (15/11/2026, decisión del usuario) **Líneas de la familia y repositorio.** Repositorio GitHub `aexislegal-hub/axias` con carpetas por línea: Axia RH, Axia NOMs, Axia CYA (capacitación y adiestramiento) y Axia Compliance. Las variables de empresa, organigrama y alta se deciden solo en Axia RH.
 - (15/11/2026, decisión del usuario) **Axia Compliance** desarrolla: anticorrupción, ética, el documento del Comité de Integridad y Disciplina, las políticas legales (teletrabajo y trabajo híbrido, prevención de la violencia y del hostigamiento) y las políticas organizacionales a las que remite el RIT (vestimenta, TIC, vehículos, regalos y conflictos de interés, exámenes médicos y pruebas, fatiga, ergonomía, viáticos y traslados, registro de políticas). Axia RH conserva las remisiones del RIT, el registro de acuses y la alerta del transitorio quinto.
-- (15/11/2026) **Axia CYA** desarrolla DNC, plan y programa, cursos y constancias DC-3; Axia RH conserva la Comisión Mixta de Capacitación, el SIRCE y el DC-1 (decisión del 26/10).
+- (15/11/2026, decisión del usuario; sustituye la del 26/10) **La Comisión Mixta de Capacitación, Adiestramiento y Productividad sale de Axia RH y pasa a Axia CYA**, con sus formatos F-1 a F-5, junto con DNC, plan y programa, cursos y DC-3. Por omisión se van también el SIRCE y el DC-1, salvo que el usuario indique otra cosa. Axia RH conserva: la cláusula de prueba o capacitación inicial del contrato, la remisión del art. 41 del RIT, el comunicado de respaldo del módulo 4 (que lee F2_EMITIDA, F2_FECHA, F2_SENTIDO y F2_SOLICITUD_FECHA de Axia CYA) y la exigencia de evidencia de la capacitación impartida para terminar la capacitación inicial.
+- (15/11/2026) Estado real de cierre: el único módulo cerrado por el usuario es el 4 (terminación). Los demás están en diseño terminado o en corrido en el software; sus aprobaciones siguen provisionales.
 - El detalle de faltantes, dependencias y contradicciones está en «Axia RH - Mapa del PMV».
 
 ---
