@@ -1,0 +1,438 @@
+# Axia RH — Mapa del PMV
+
+Actualizado: 12 de noviembre de 2026, después del corte del RIT del 12/11 y del alta del módulo de permisos y licencias · Coordinación: «Cerebro»
+
+Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
+
+**Cómo se coordina:** cada conversación trabaja un documento y, al cerrar decisiones, hace un corte de estado. El corte se trae a Cerebro, que lo integra al registro, revisa que no choque con otros documentos y actualiza este mapa. Cerebro no ve las otras conversaciones: solo sabe lo que está en el registro, en este mapa y lo que se le trae.
+
+Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspección · **B** = necesario para el PMV · **C** = puede esperar a la siguiente versión.
+
+---
+
+## Alcance del PMV
+
+| # | Módulo | Qué debe lograr |
+|---|---|---|
+| 1 | Kit de contratación | Generar el contrato de cualquier tipo y todos los documentos de ingreso |
+| 2 | RIT y su comisión mixta | Generar el reglamento, integrar la comisión, documentar su difusión y depósito, y operar el procedimiento disciplinario |
+| 3 | PTU y su procedimiento | Generar la comisión mixta de PTU, el proyecto de reparto y la evidencia de pago |
+| 4 | Terminación y finiquito | Generar los documentos de cada forma de terminación y el precálculo bruto del finiquito |
+| 5 | Modificación de condiciones | Documentar cada cambio de condiciones de trabajo |
+| 6 | Validación de pago de PTU y aguinaldo | Alertar plazos y guardar la evidencia del pago |
+| 7 | Capacitación: comisión mixta y SIRCE | Integrar la comisión, emitir su opinión sobre los periodos, documentar la capacitación y exportar lo que se registra en el SIRCE |
+| 8 | Fonacot | Documentar la afiliación del centro de trabajo y controlar retenciones y bajas |
+| 9 | Análisis de jornada | Validar jornadas, descansos y tiempo extra contra la ley y lo pactado |
+| 10 | Permisos y licencias (pantalla de eventos) | Registrar permisos, licencias, incapacidades y suspensiones como fuente única de ausencias para nómina, IMSS, PTU, vacaciones, finiquito y análisis de jornada; alertar faltas y patrón de ausentismo |
+
+### Avance por módulo
+
+| Módulo | Documentos redactados | Faltan | Situación |
+|---|---|---|---|
+| 1. Kit de contratación | Paquete completo (contrato A-D, módulos, kit integrado) | Constancia de recibo del RIT (módulo 2); 12 variables por dar de alta en el software | **Cerrado (26/10/2026)**; versión para programación generada |
+| 2. RIT y su comisión | RIT (rev. 1340), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador), acta de la CMRIT; especificación v1.1 | Retroalimentación de la especificación; criterio común en el acta de la CMRIT; revisión de los formatos | **RIT cerrado para programación (12/11/2026)**; acta en revisión |
+| 3. PTU | Kit de 13 documentos | Recibo individual, control de PTU no cobrada, layout de nómina | Borrador completo |
+| 7. Capacitación | Juego de la comisión y formatos F-1 a F-5 | Plan y programa, exportación SIRCE | Avanzado; en revisión |
+| 4. Terminación | Convenio con módulos A-E-bis, recibo, aviso de rescisión, terminación del periodo, vencimiento, pago a beneficiarios; especificación v1.0 | Suspensión por temporada, incapacidad, hoja interna de negociación; unificar variables con el contrato | Avanzado; especificación para programación lista |
+| 5. Modificación | — | Todo | **Sin conversación** |
+| 6. Validación de pagos | — | Todo (reglas del sistema) | **Sin conversación** |
+| 8. Fonacot | — | Todo | **Sin conversación** |
+| 9. Análisis de jornada | — | Todo | **Sin conversación** |
+| 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.4 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | **Terminado (12/11/2026)**; especificación para programación lista |
+
+---
+
+## Módulo 1. Kit de contratación
+
+**Actualización 31/10/2026:** el paquete de contratación está cerrado por el usuario (contrato rev. 473, biblioteca rev. 80, visor integrado v8) y tiene versión para programación. La tabla siguiente queda como historial; la fuente vigente es el registro de decisiones.
+
+| Documento | Estado | Prioridad |
+|---|---|---|
+| Contrato por tiempo indeterminado con carátula (v. 312) y biblioteca de módulos R, C, T y H (v. 33) | En revisión por el usuario | A |
+| Variantes de temporalidad B (obra determinada), C (tiempo determinado) y D (temporada) | Notas de diseño en el contrato; **por incorporar** | A |
+| Capacitación inicial como contrato autónomo | **Por decidir** | B |
+| Perfil de puesto y lineamientos para generarlo con IA | Borrador | A |
+| Aviso de privacidad para personas trabajadoras | Borrador | A |
+| Aviso de privacidad para candidatos | Borrador | B |
+| Convenio de confidencialidad + Anexo A | Borrador | B |
+| Carta responsiva de herramientas físicas y digitales + inventario | Borrador (visor del kit v6) | A |
+| Designación de beneficiarios | Borrador | A |
+| Acuerdo de descuento | Borrador (otra conversación) | C |
+| Constancia de recibo del RIT | **Falta** | A |
+| Asignación de correo institucional | **Falta**; necesaria siempre que INTRANET = Sí | B |
+| Designación del sistema de registro de jornada | Existe como sección B del Anexo 3; falta unificar con el kit | B |
+| Oficio de asignación REPSE | Modelo propuesto | B |
+| Adenda de confidencialidad | **Falta** | B |
+
+**Faltantes**
+- **A — Variantes de temporalidad.** El formulario debe exigir la causa de la temporalidad; sin ella, la relación se presume por tiempo indeterminado. El sistema necesita alertas de vencimiento y control de renovaciones sucesivas. Periodo de prueba solo en relaciones por tiempo indeterminado o por tiempo determinado de más de 180 días. Las labores discontinuas o de temporada son por tiempo indeterminado (art. 39-F, ya verificado por la conversación del contrato).
+- **A — Unificar el Anexo 3 del contrato con el kit:** acuse de políticas, aceptación del registro de asistencia (sección B) y bloque de ubicación.
+- **B — Integración pendiente de cláusulas del layout:** notificaciones, lugar de trabajo, prestaciones y perfil de puesto. Jornada, teletrabajo, híbrido y REPSE ya están integrados.
+
+---
+
+## Módulo 2. RIT y su comisión mixta
+
+| Documento | Estado | Prioridad |
+|---|---|---|
+| Reglamento Interior de Trabajo (89 artículos, Anexo A de 60 conductas y escala, Anexo B de horarios, Anexos C y D opcionales) | **Cerrado para programación (12/11/2026)**; especificación v1.1 | A |
+| Acta de integración de la CMRIT | Modelo maestro redactado; en revisión | A |
+| Constancia de recibo del RIT por persona trabajadora (FR-1) | Borrador; en la especificación | A |
+| Constancia de difusión (FR-2) | Borrador; en la especificación | A |
+| Depósito ante el CFCRL | Autoridad verificada; falta el formato de solicitud o el registro de la constancia en el sistema | A |
+| Formatos disciplinarios FD-1 a FD-5 (declaraciones manuscritas) | Borrador; en la especificación | A |
+
+**Resuelto (12/11/2026):** formatos disciplinarios en borrador; el Anexo B se deposita de nuevo cuando cambia (art. 88); días en casa y horarios flexibles pasan a la política de trabajo híbrido (art. 22); traslado entre clientes REPSE en el art. 9.
+
+**Dependencia del módulo 10 (permisos y licencias):** la conducta 60 (ausentismo reiterado) solo se puede seleccionar con la alerta de patrón del módulo de permisos, y la regla de evidencia no entregada del art. 31 (permisos de la tabla II) la ejecuta ese módulo con la casilla EVIDENCIA_DESCUENTO. COMISION_GOCE (fila fija de comisiones de la tabla I) se captura en el evento.
+
+**Faltantes**
+- **A — Acta de la CMRIT:** aplicar el criterio común del 02/11/2026.
+- **B — Retroalimentación de la especificación v1.1** y confirmación de sus cinco propuestas de programación (11.1).
+
+---
+
+## Módulo 3. PTU y su procedimiento
+
+| Documento | Estado | Prioridad |
+|---|---|---|
+| Kit D-01 a D-13 (integración, declaración, proyecto, observaciones, pago y contingencias; dictamen A, B o C) | Borrador completo, pendiente de revisión | A |
+| Constancia de entrega de la declaración (D-05) | Borrador | A |
+| Proyecto de reparto y constancia de exhibición (D-08, D-09) | Borrador | A |
+| Acta de resolución de objeciones (D-10) | Borrador | B |
+| Aviso sin cantidad repartible o con excepción legal (módulos A y C del dictamen) | Borrador | B |
+| Constancia de pago (D-11) | Borrador; cubre parcialmente | A |
+| Recibo individual de PTU | **Falta** | A |
+| Control de PTU no cobrada | **Falta** como regla del sistema | B |
+| Layout de importación de nómina | **Falta** | A |
+
+**Regla del sistema que falta definir — A:** en la vía de captura, el reparto individual y el tope individual exigen días trabajados y salario devengado **por persona**. Con totales globales no se puede generar el Anexo 1 del dictamen. Propuesta en el punto 9 de las decisiones.
+
+---
+
+## Módulo 4. Terminación y precálculo de finiquito
+
+**Actualización 31/10/2026:** el módulo tiene conversación propia y especificación para programación v1.0 («AXIARH - Modulo 4 - Especificacion para programacion»). Sus decisiones están en el registro, apartados 4.8 y 5.5. No se genera renuncia: toda salida voluntaria va por convenio, módulo B. La tabla siguiente queda como historial.
+
+| Documento | Estado | Prioridad |
+|---|---|---|
+| Terminación al vencer el periodo de prueba o de capacitación | **Falta**; su candado exige el formato F-2 de la comisión | A |
+| Terminación por vencimiento del plazo u obra (contratos determinados) | **Falta** | A |
+| Renuncia voluntaria | **Falta** | A |
+| Convenio de terminación por mutuo consentimiento | **Falta** | A |
+| Aviso de rescisión | **Falta** | A |
+| Acta administrativa de hechos | No se crea: la cubren FD-1, FD-2 y FD-5 del RIT (31/10/2026) | — |
+| Recibo de finiquito | **Falta** | A |
+| Constancia de salida | Borrador (otra conversación) | B |
+| Acta de devolución y entrega de herramientas y cierre de accesos | **Falta**; documento formal propio (decisión 13) | B |
+| Pago a beneficiarios por fallecimiento | **Falta**; debe seguir las reglas de reparto proporcional, abstención ante controversia y pago a menores del registro (4.3) | C |
+
+**Conceptos del precálculo (bruto)**
+
+| Concepto | Procede en |
+|---|---|
+| Salarios devengados | Siempre |
+| Aguinaldo proporcional | Siempre |
+| Vacaciones no disfrutadas y prima vacacional (con el porcentaje del RIT, PRIMA_VACACIONAL_PCT) | Siempre |
+| PTU pendiente | Si hay reparto pendiente; ligado a D-08 B y D-11 |
+| Prima de antigüedad | Despido o rescisión, con o sin causa; renuncia solo con 15 años o más |
+| Indemnización constitucional y 20 días por año | Solo como escenario de negociación o de despido injustificado |
+
+El precálculo dice «antes de impuestos y deducciones»; el recibo remite al CFDI de nómina. Cualquier descuento por daño a herramientas sigue la regla única del art. 46 del RIT (decisión 12). La devolución de herramientas se documenta con el acta, pero **no condiciona el pago del finiquito**: retenerlo por falta de devolución sería un riesgo.
+
+**Faltantes**
+- **A — Convenios y renuncias:** definir si el sistema prepara la ratificación ante el Centro de Conciliación.
+- **A — Aviso de rescisión:** control del plazo y de la forma de entrega, con alerta de 5 días hábiles.
+- **B — Alertas de baja ante el IMSS y ante Fonacot** (persona con crédito vigente).
+
+---
+
+## Módulo 5. Modificación de condiciones de trabajo
+
+| Documento | Estado | Prioridad |
+|---|---|---|
+| Convenio modificatorio (salario, puesto, jornada, modalidad) | **Falta** | A |
+| Comunicado de cambio de centro de trabajo | Propuesto | B |
+| Comunicado de aumento de salario | **Falta** | B |
+| Convenio de cambio a teletrabajo o de regreso a modalidad presencial (y de paso a o desde híbrido) | **Falta** | B |
+| Comunicado de modificación de días en casa del híbrido | **Falta**; con TELE_AVISO_DIAS | B |
+| Constancia de entrega del perfil de puesto actualizado | **Falta**; con PERFIL_AVISO_DIAS (cláusula 1.4) | B |
+| Oficio de asignación REPSE (cada rotación) | Modelo propuesto | B |
+| Actualización anual de datos y de beneficiarios (coincide con la revisión anual de perfiles) | **Falta** | B |
+| Aviso de sustitución patronal | **Falta** | C |
+
+**Matriz de cambios (ajustada con el contrato el 26/10/2026)**
+
+| Cambio | Cómo se documenta |
+|---|---|
+| Aumento de salario | Comunicado |
+| Cambio de centro dentro del ámbito geográfico | Comunicado |
+| Actualización del perfil sin cambiar la naturaleza del puesto | Aviso con PERFIL_AVISO_DIAS y constancia (cláusula 1.4) |
+| Rotación REPSE con lugar de trabajo del cliente | Oficio de asignación |
+| Modificar o revocar días en casa del **híbrido** | Comunicado con TELE_AVISO_DIAS (M-H.8: la base es presencial y los días son revocables) |
+| Cambio a **teletrabajo** (más de 40%) o regreso a presencial desde teletrabajo | Convenio firmado |
+| Cambio de puesto, funciones de distinta naturaleza o categoría superior | Convenio firmado (cláusula 1.4); sin nuevo periodo de prueba ni de capacitación |
+| Cambio de jornada u horario fuera de lo pactado | Convenio firmado |
+| Cualquier reducción | Convenio firmado |
+
+---
+
+## Módulo 6. Validación de pago de PTU y aguinaldo
+
+- Calendario de alertas: aguinaldo antes del 20 de diciembre (mínimo 15 días de salario, proporcional); PTU con las fechas calculadas del kit de PTU.
+- **A — Definir «validar»:** el cliente marca «pagado» y sube el CFDI de nómina o la dispersión bancaria, por persona o por lote. D-11 de PTU debe usar la misma evidencia.
+- Personal que ya salió: el aguinaldo va en el finiquito; la PTU del ejercicio se le debe aunque ya no trabaje (EX_TRABAJADORES del kit de PTU).
+- Conservación de los comprobantes como evidencia para inspección.
+
+---
+
+## Módulo 7. Capacitación: comisión mixta y SIRCE
+
+| Documento | Estado | Prioridad |
+|---|---|---|
+| Juego de cuatro instrumentos (convocatoria u oficio al sindicato, constancia de publicación, acta de la jornada de elección, acta de integración e instalación con Bases) | En revisión por el usuario | A |
+| F-2 Opinión sobre el periodo de prueba o de capacitación | Redactado | A |
+| F-1, F-3, F-4, F-5 (sesión, firma digitalizada, sustitución, informe anual) | Redactados | B |
+| DC-3 (constancia de competencias) | Formato oficial; flujo de autentificación definido | A |
+| Plan y programa de capacitación (DC-2) | Fuera del PMV: Axia Capacitación | — |
+| Exportación para el SIRCE | **Falta**; plazos ya identificados (DC-3 en 20 días hábiles, SIRCE en 60) | B |
+
+**Límite decidido (26/10/2026):** Axia RH cubre el SIRCE, la comisión mixta y el DC-1; DNC, plan y programa y gestión de cursos quedan en Axia Capacitación. Pendiente: confirmar si las constancias DC-3 de la capacitación inicial entran, porque las exige el candado de terminación.
+
+---
+
+## Módulo 8. Fonacot
+
+| Documento o función | Estado | Prioridad |
+|---|---|---|
+| Constancia de afiliación del centro de trabajo | **Falta** | A |
+| Alerta para la afiliación de empresas nuevas | **Falta** | A |
+| Control de retenciones y entero | **Falta** | B |
+| Aviso de baja de personas con crédito vigente | **Falta**; se conecta con el módulo 4 | B |
+
+Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenciones. Verificar en las reglas vigentes del Instituto Fonacot los plazos antes de fijar las alertas.
+
+---
+
+## Módulo 9. Análisis de jornada
+
+- Validar la jornada pactada y la real contra el máximo por tipo de jornada y año, el descanso semanal y en jornada continua, el tiempo extra, la prima dominical, los descansos y festivos trabajados, y el tiempo de comida que cuenta como jornada.
+- Reglas ya fijadas por el RIT: horas extra solo con orden previa (el tiempo sin orden se paga); tolerancia TOLERANCIA_MIN. (12/11/2026) El usuario retiró la regla del efecto del retardo.
+- (12/11/2026) Las ausencias sin evento del checador alimentan las alertas de faltas y de patrón de ausentismo del módulo 10; la lactancia reduce la jornada esperada.
+- **Verificar** si la reforma de 2026 cambió los límites del tiempo extra y esperar las disposiciones de la STPS del registro electrónico (vigencia: 1 de enero de 2027).
+- **Decidido (26/10/2026):** los datos salen del archivo del reloj checador del cliente. **A — Falta** definir el layout de importación (persona, fecha, entradas y salidas) y qué formatos de checador se aceptan.
+
+---
+
+## Módulo 10. Permisos y licencias
+
+**Alta en el mapa (12/11/2026).** Es la pantalla de eventos que el registro ya reconocía (26/10/2026). Conversación propia, separada del RIT. Diseño: «AXIARH — Módulo de permisos y licencias (diseño)» (https://claude.ai/artifact/CzspqdB6hqBzpXk5r9UgKB). Especificación para programación: «AXIARH - Módulo de permisos y licencias - Especificación para programación», v1.4 del 12/11/2026, con lógica y textos, armonizada con el registro, el mapa y el RIT v1.1. Cadena de autorización y firma de la Empresa por RH designado: registro 4.9. Estado y decisiones: «Corte - Módulo de permisos y licencias».
+
+| Documento o función | Estado | Prioridad |
+|---|---|---|
+| Catálogo de 18 eventos: A permisos, B licencias, C incapacidades del IMSS, D suspensiones del art. 42 | Terminado | A |
+| Registros digitales SP-1 (permiso) y SUS-3 (reincorporación); notificación LIC-2 con acuse | Terminado | A |
+| Documentos LIC-1 (lactancia), LIC-3 (licencia sin goce), INC-1 (aviso de accidente), INC-2 (transferencia de semanas prenatales), SUS-1 y SUS-2 (suspensiones) | Terminado | A |
+| Alertas de faltas (ventana de 30 días) y de patrón de ausentismo | Terminado | A |
+
+**Regla central:** el evento es la única fuente de ausencias para nómina, IMSS, PTU, vacaciones, finiquito y análisis de jornada.
+
+**Lo que depende de este módulo**
+- **RIT:** la conducta 60 del Anexo A y la regla de evidencia no entregada del art. 31.
+- **PTU:** días computables (registro 4.7), en lugar de los «eventos de incidencias» que el kit de PTU dejó como dependencia.
+- **Módulo 4:** situaciones protegidas (agrega B3), doble confirmación de la baja con B4 vigente y aviso de rescisión por SUS-2 vencido (fr. XIV Bis).
+- **Módulo 9:** ausencias sin evento del checador y jornada reducida por lactancia.
+- **Firma electrónica:** SP-1, SUS-3 y el acuse de LIC-2 se apoyan en el «Corte - Firma electrónica». Falta que su especificación admita como firmante a la persona de RH designada (FIRMANTES_EMPRESA).
+- **RIT:** la cadena de autorización incluye los permisos legales, sin opción de negarlos; el art. 30, el art. 16 y la tabla II deben armonizarse.
+
+**Pendientes:** solo verificaciones legales (sección 7 del corte), que afectan parámetros y no la estructura.
+
+---
+
+## Hilos que deben ir en el mismo sentido en todas las conversaciones
+
+| Hilo | Documentos que toca | Regla común |
+|---|---|---|
+| Perfil de puesto | Contrato, lineamientos, periodo de prueba, terminación, modificación, RIT, comisión de capacitación | Versionado; generado por IA con validación humana; el firmado no cambia; es la base de la evaluación y de la detección de necesidades de capacitación |
+| Comisión Mixta de Capacitación | Contrato (Cláusula Tercera, 3.3 a 3.6), formato F-2, terminación, DC-3, SIRCE | Su opinión (o la constancia de que se solicitó) es requisito de la terminación al vencer el periodo; el contrato no regula la opinión |
+| Comisiones mixtas (RIT, capacitación, PTU) | Las tres actas de integración | Misma estructura de instalación más bases; mismo criterio de designación y número de representantes (decisión 3) |
+| Temporalidad | Contratos de todo tipo, alertas, terminación, PTU (eventuales) | La causa de la temporalidad se captura siempre; las renovaciones se controlan |
+| Procedimiento disciplinario | RIT, Anexo A, formatos disciplinarios, aviso de rescisión, carta responsiva, módulo de permisos | Mismos formatos para sanción, para determinación de responsabilidad por daño y para la propuesta de rescisión; la conducta 60 nace de la alerta de patrón del módulo de permisos |
+| Beneficiarios | Kit, cláusula 19, actualización anual, fallecimiento, finiquito | Una sola designación vigente; suma 100%; reparto proporcional si fallece una persona designada |
+| Confidencialidad | Contrato (cláusula 14), RIT (conductas 36, 39, 56 y 58), convenio, adenda, terminación | Cláusula base para todos; convenio solo para acceso calificado; misma definición de reproducción y extracción |
+| Jornada | Contrato, RIT (Anexo B), registro electrónico, análisis de jornada, finiquito | El contrato fija lo pactado; las reglas operativas van en el RIT; los horarios salen de un solo catálogo (decisión 5) |
+| Datos personales | Aviso de privacidad, Anexo 3, RIT, comisiones, PTU | Un solo aviso que cubre salud, pruebas, biométricos, ubicación, nómina para PTU y firmas de conformidad (decisión 7) |
+| Firma y evidencia | Todos | FIRMA_MODALIDAD y la misma cláusula de firma electrónica en todos los documentos |
+| Notificaciones | Todos | Correo personal de la carátula; lo legalmente formal (rescisión) sigue su propia forma |
+
+---
+
+## Decisiones que necesita el usuario
+
+Contradicciones entre conversaciones, con la propuesta de Cerebro. Responder «aprobado» por número, o indicar otra solución.
+
+**Resueltas el 26/10/2026:**
+- Aprobadas como se proponen: 1, 2, 3, 7, 9, 10, 11, 12, 16, 17 y 18.
+- 5: el software ya tiene catálogo de horarios; el Anexo B y la cláusula de jornada salen de él.
+- 6: la periodicidad de pago viene del perfil de puestos, no del alta.
+- 8: sin alerta automática ni variable de días; el F-2 se imprime junto con los documentos de terminación.
+- 13: **cambia la propuesta**: habrá un acta formal de devolución y entrega como documento propio del módulo 4.
+- 14: el sistema exige 100%, pero el documento conserva la regla de partes iguales con fines informativos.
+- 18: el logo del cliente se ofrece en otro nivel de servicio.
+
+- 4: resuelta; el software ya maneja los eventos en pantallas propias (baja, permisos y licencias, contratos, PTU, vacaciones y aguinaldo).
+
+**Pendiente:** 15 (el usuario lo revisará).
+
+| # | Contradicción | Propuesta de Cerebro |
+|---|---|---|
+| 1 | **Marca de variables en el texto.** El registro fija MAYÚSCULAS sin delimitador; el RIT y la PTU usan {{MAYÚSCULAS}}; las condiciones aparecen como [SI], ⟦SI⟧, [[SI]] u «Opcional —». | Nombre en MAYÚSCULAS_CON_GUION_BAJO y, dentro del texto, entre llaves dobles: {{REGISTRO_GEOLOC}}. Condiciones siempre [SI condición] … [FIN SI]. Las llaves le permiten al ingeniero localizar cada variable sin ambigüedad. |
+| 2 | **Términos definidos en instrumentos colectivos.** El RIT, la comisión de capacitación y la PTU usan «el patrón» y «personas trabajadoras» en minúscula. | «la Empresa» en todos los documentos, salvo citas legales y denominaciones legales de las comisiones. En instrumentos colectivos, «las personas trabajadoras» en plural y minúscula; «la Persona Trabajadora» queda para documentos individuales. |
+| 3 | **Designación de representantes obreros.** La CMRIT es por designación sin elecciones; la comisión de capacitación y la de PTU, por votación secreta. El número de representantes también difiere. | Votación para capacitación y PTU, porque sus actos afectan a cada persona (terminación del periodo y reparto) y su legitimidad será impugnada; **una sola jornada de elección** para ambas comisiones. La CMRIT conserva la designación con conformidad, o se elige en la misma jornada si el cliente quiere. Número: una variable común de representantes por parte (mínimo 1), igual en las tres. El personal de confianza vota y no es candidato en las tres. |
+| 4 | **Datos que no caben en los tres niveles:** elecciones, sesiones, opiniones, ejercicio de PTU, terminaciones y modificaciones. | Agregar un **cuarto nivel: procedimientos y eventos**, que captura RH o consultoría cada vez que ocurren y que usa los datos de los niveles 1 a 3 sin repetirlos. |
+| 5 | **Horarios.** El registro los define por puesto; el Anexo B del RIT, por centro y turno. | Catálogo de turnos en la configuración de la empresa (centro, nombre, tipo de jornada, días, entrada, salida, comida, descanso). Cada puesto se liga a uno o varios turnos. El Anexo B y la cláusula de jornada salen del mismo catálogo. |
+| 6 | **Periodicidad de pago.** El registro la captura por persona; el RIT, como variable de empresa. | La empresa habilita las periodicidades y los días de pago; el alta elige entre las habilitadas (solo semanal en trabajo material); el RIT lista las habilitadas. |
+| 7 | **Biométricos y ubicación.** El kit decidió que no dependen del consentimiento; el Anexo 3 del contrato da opción de negarse y un medio alterno; el registro habla de consentimiento separado. | Riesgo, explicado una vez: los datos biométricos pueden ser datos sensibles que requieren consentimiento expreso conforme a la LFPDPPP 2025 (verificar el texto vigente). Propuesta: la **ubicación** sin opción de negarse, fundada en la relación de trabajo y el registro de jornada; los **biométricos** con consentimiento expreso y un medio alterno (PIN o tarjeta) mientras se verifica la ley. El aviso y el Anexo 3 deben decir lo mismo. |
+| 8 | **Alertas de la comisión de capacitación.** DIAS_AVISO es configurable en la Base 14; el registro fija alertas no configurables. | Sin variable: la Base 14 dice que la Empresa solicita la opinión con la anticipación que fija el sistema, y el sistema la solicita con la alerta de 3 semanas antes del vencimiento. |
+| 9 | **PTU por captura.** Con totales globales no se calcula el reparto individual ni el tope. | La vía de captura pide, por persona, días trabajados y salario devengado del ejercicio; no se admiten solo totales globales. |
+| 10 | **Pendientes de diseño de la PTU.** | El personal de confianza vota (igual que en capacitación); el tiempo en cualquier comisión mixta es tiempo de trabajo con goce de salario; el dictamen tiene una versión publicable sin salario diario (nombre, días computables y monto), y la versión completa queda a disposición de la comisión y de cada persona respecto de sus propios datos. |
+| 11 | **Procedimiento previo a la rescisión.** El RIT lo deja facultativo, pero lo lista como pendiente. | Facultativo, como está. Un procedimiento obligatorio autoimpuesto puede volverse en contra de la Empresa si no se sigue; confirmar con la búsqueda de criterios judiciales que ya está en pendientes. |
+| 12 | **Descuentos por daño.** La carta responsiva prohíbe compensar con salario o finiquito; el art. 46 del RIT permite el descuento con autorización previa firmada en el resguardo. | Una sola regla: el descuento procede solo si el Comité determina la negligencia con audiencia, existe la autorización previa firmada y se respetan los límites legales. La carta responsiva remite al art. 46 en lugar de prohibir. |
+| 13 | **Acta de devolución de equipo.** El mapa la tenía como documento faltante; el inventario ya tiene fila de devolución y cancelación de accesos. | (Sustituida) Acta formal de devolución y entrega como documento propio; no condiciona el pago del finiquito. |
+| 14 | **Beneficiarios.** El formulario exige que sumen 100%; el documento prevé partes iguales si no suman 100%. | Quitar del documento la regla de partes iguales; el sistema no permite generar una designación que no sume 100%. Se conserva el reparto proporcional por fallecimiento. |
+| 15 | **Lineamientos frente al perfil de puesto.** Los lineamientos regulan 10 apartados, piden «a quién reporta», dicen «hasta 180 días» y activan teletrabajo desde el perfil. | Manda el formato del perfil (8 apartados, sin «Reporta a»). Los lineamientos se ajustan: periodo fijo según el atributo del puesto, y el perfil solo indica si el puesto admite días en casa (TELE_APTO); el módulo lo activa el alta. |
+| 16 | **Repeticiones de la ley en el RIT** (reposo de 30 minutos, cómputo del tiempo de comida). | Aceptarlas como excepción operativa, porque el RIT debe poder aplicarse sin consultar la ley. Agregar la excepción a la convención de la sección 10 de las instrucciones. |
+| 17 | **Coordinación de la comisión de capacitación.** El registro la fija como patronal; la Base 9 permite que la secretaría la supla. | La secretaría puede suplir solo para convocar y conducir una sesión, sin cambiar la titularidad de la coordinación. |
+| 18 | **Marca en los documentos.** Algunos títulos dicen «AEXIS» y el registro usa «AXIARH». | Los documentos generados para el cliente no llevan marca del sistema. AEXIS o AXIARH solo en notas internas. |
+
+---
+
+## Revisión de las pantallas del software (26/10/2026)
+
+Hallazgos para el ingeniero, de mayor a menor riesgo.
+
+**Respuestas del usuario (26/10/2026):** 1, alerta y nueva firma del perfil cuando cambie, extendida a jornada, salario y prestaciones (aprobada); 3, máximos por año aceptados; 7, salario fijo por puesto; 4, catálogo de clientes REPSE (aprobado; abajo); 10 y 11, aceptados; 12, la comisión de seguridad e higiene se quita por ahora.
+
+**Propuesta para el hallazgo 4 (centro de trabajo REPSE):** eliminar el centro genérico «Instalaciones del beneficiario»; crear en la configuración de la empresa un catálogo de clientes REPSE (razón social, RFC, domicilio de cada instalación, fecha y número del contrato de servicios, actividad REPSE que se presta); en el alta, con REPSE = Sí y lugar Cliente, el centro de trabajo se elige de las instalaciones de ese catálogo, su domicilio se imprime en el contrato y se genera el oficio de asignación; cada reasignación es un nuevo oficio desde el módulo 5.
+
+**Jurídicos**
+1. **Cambios al catálogo que alteran contratos vigentes.** «Si cambias una jornada, se actualizan los puestos que la usan» (y lo mismo al editar un puesto, sus prestaciones o el tabulador). Para las personas ya contratadas eso es una modificación de condiciones de trabajo: debe aplicarse solo a altas nuevas, o disparar el módulo 5 (comunicado o convenio según la matriz) para cada persona afectada, nunca cambiar en silencio sus condiciones.
+2. **Motivo «Despido injustificado» en la baja.** Registrarlo en el sistema de la empresa es una confesión. Los motivos deben ser las formas legales de terminación; la indemnización se muestra como escenario de negociación.
+3. **Límites de jornada fijos.** La pantalla «Lo que marca la LFT» muestra 48, 42 y 45 horas. Desde el 1 de enero de 2027 el máximo diurno es 46; debe usarse la tabla por año del registro (5.4).
+4. **«Instalaciones del beneficiario del servicio» como centro de trabajo sin domicilio.** Con REPSE_LUGAR_TIPO = Cliente, el centro es el domicilio del cliente del oficio de asignación; un centro genérico no se puede imprimir en el contrato.
+5. **Seguro de vida como prestación.** Si existe, la designación de beneficiarios debe advertir que los del seguro se designan en el formato de la aseguradora.
+6. **Comisión mixta de capacitación:** la leyenda dice «obligatoria con más de 50»; también lo es si la empresa usa periodo de prueba o capacitación inicial.
+7. **Tabulador por rango (mínimo y máximo) frente a «salario predeterminado».** Pendiente de decisión. Si hay rango, conviene documentar el criterio para ubicar a cada persona (antigüedad, desempeño) por el principio de igual salario por trabajo igual; el puesto de prueba ya muestra $315.04 a $872.73 para el mismo puesto.
+
+**Del sistema**
+8. Horario y horas por semana se escriben a mano: deben calcularse de los días y horas de entrada y salida, y el descanso semanal validarse contra los días laborados (el puesto de prueba dice 46 horas con «9 a 5» de lunes a sábado medio día, y descanso rotativo con días fijos).
+9. El mínimo de 30 minutos de descanso aplica a la jornada continua; la leyenda lo exige siempre.
+10. Faltan en «Agregar puesto»: periodicidad de pago (decidido: viene del puesto), sistemas y plataformas, información confidencial, propiedad intelectual del catálogo, puesto crítico para la seguridad y áreas con riesgo para embarazo, lactancia o menores.
+11. Faltan en «Alta de la empresa»: folio, vigencia y actividades REPSE, correo para datos personales, dominio de correo institucional, forma y día de pago, afiliación a Fonacot, autoridad de inspección (federal o local) y la opción de varios registros patronales.
+12. La comisión de seguridad e higiene aparece como pendiente en Axia RH, pero es materia de Axia NOMs (NOM-019). Decidir si en el PMV solo se alerta.
+13. Sin validación de dígito verificador en registros anteriores (CURP de «amir»), y la ficha muestra «Forma de pago: Semanal» (es la periodicidad).
+
+---
+
+## Encargos vigentes (actualizado el 12/11/2026)
+
+Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa el registro».
+
+**RIT y CMRIT**
+- Cumplidos según el corte del 12/11/2026: encargos 1 a 6 y 8, y los tres encargos del módulo de permisos (tabla I, evidencia no entregada y conducta 60).
+9. (12/11, enviado por el módulo 10) Art. 30 y sección 5 de la especificación del RIT: los permisos que otorga la Ley también pasan por la cadena de autorización (registro 4.9), que verifica datos, aviso y evidencia y puede devolverlos para corrección, sin negarlos; si llega la fecha sin autorización completa, RH los registra y la ausencia no es falta. Sustituye «no requieren autorización: Recursos Humanos los registra».
+10. (12/11, enviado por el módulo 10) Art. 16 (salidas durante la jornada) y fila de asuntos personales de la tabla II: remitir a la cadena del art. 30, o precisar que la jefatura es su primer paso.
+11. (13/11) FR-1, especificación 3.3 y 6.7 (registro 4.4, «Firma del RIT y de la FR-1»): quitar «Se firma siempre de forma autógrafa»; la FR-1 sigue FIRMA_MODALIDAD de cada persona en sus tres momentos, con autógrafa solo por firma en papel, falla de la Plataforma o negativa. La fila fija «Recursos Humanos» imprime el firmante que corresponda: el representante al ingreso y RH designado en la emisión y la modificación. FR1_MEDIO no determina la firma. Precisar que el RIT y el acta de la CMRIT para el depósito se firman de forma autógrafa.
+7. (02/11, abierto) Acta de la CMRIT: aplicar el criterio común de comisiones (sin votación secreta; designación por omisión; DESIGNACION_OBRERA en lugar de CMRIT_INTEGRACION_MODO; REPRESENTANTES_SUPLENTES; CONFORMIDAD_FIRMAS).
+
+**Comisión de capacitación**
+1. (02/11) Aplicar el criterio común (registro, 4.5): sin votación secreta; designación por omisión con la misma redacción de D-03 del kit de PTU; elección opcional con D-01 y D-02 del kit de PTU en lugar de la convocatoria, constancia y acta de elección propias; DESIGNACION_OBRERA, NUM_REPRESENTANTES_POR_PARTE y REPRESENTANTES_SUPLENTES.
+2. Encargo del 26/10 pendiente de corte: términos, marcas, F-2 antes de la terminación, Base 14 y leyenda de obligatoriedad. Guardar «Corte - Comisión de capacitación».
+
+**Kit de PTU**
+1. (02/11) Confirmar que D-01 y D-02 no prevean voto secreto en ninguna variante.
+2. (12/11) R-4, cálculo automático: la fuente de los «eventos de incidencias» es el módulo 10 (permisos y licencias). Días computables según el registro 4.7: B3, B4, B5 y las suspensiones D no computan; la lactancia (B1) sí, como día laborado.
+
+**Módulo 10 (permisos y licencias):** sin encargos pendientes. (12/11) Cumplido: INC-1 con el Tribunal laboral competente en texto fijo; TRIBUNAL_COMPETENTE eliminada (especificación v1.4).
+
+**Firma electrónica**
+2. (13/11) Agregar a la lista de firma autógrafa obligatoria los documentos para el depósito del RIT (el RIT firmado por la Comisión Mixta y el acta de integración de la CMRIT). Confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos (registro 4.4).
+1. (12/11, enviado por el módulo 10) Ampliar el firmante de la Empresa: además del representante con e.firma, la persona de RH designada en FIRMANTES_EMPRESA (solo puestos con funciones de dirección o administración), con usuario y código de un solo uso a su correo institucional, misma bitácora y hoja de evidencias. Mientras no se amplíe, RH firma de forma autógrafa LIC-1, LIC-3, INC-2, SUS-1 y SUS-2.
+
+**Paquete de contratación**
+1. (12/11) Carta responsiva: confirmar que registra el valor de reposición de cada bien y la autorización previa del descuento, porque el art. 46 del RIT ya no la menciona; remitir al art. 46.
+2. (12/11) Aviso de privacidad para personas trabajadoras: verificar que cubra los expedientes disciplinarios y las declaraciones manuscritas, el resultado confirmado de las pruebas, la confidencialidad de los exámenes (art. 59) y la conservación del expediente clínico por 2 años (art. 61). Del módulo 10: datos de incapacidades (folio, ramo y fechas, sin diagnóstico), constancias de detención (D1) y Declaración Especial de Ausencia.
+
+**Módulo 4 (terminación):** usar CAUSA_TEMPORALIDAD y FECHA_TERMINO del contrato; no existe acta administrativa genérica (usar FD-1, FD-2 y FD-5). (12/11) Se retira el encargo de tomar la causa del aviso de rescisión del Anexo A: desde la v1.3 el aviso es un servicio aparte y la tabla de correspondencia solo marca la posible rescisión en FD-1 y la propuesta en FD-3.
+1. (12/11) Agregar B3 (licencia del IMSS por hijo con cáncer) a las situaciones protegidas que bloquean la baja.
+2. (12/11) Con B4 vigente (comisión permanente), aviso del derecho a regresar y doble confirmación de la baja, sin bloqueo (BAJA_CONFIRMACION_B4).
+3. (12/11) SUS-2 vencido (art. 47, fr. XIV Bis) es antecedente del aviso de rescisión; consultoría decide.
+
+---
+
+## Encargos por conversación (historial del 26/10/2026)
+
+Pegar en cada conversación después de que el usuario resuelva las decisiones anteriores.
+
+**Contrato**
+- Incorporar las variantes de temporalidad B, C y D con la causa obligatoria, y las reglas de prueba en tiempo determinado.
+- Unificar el Anexo 3 con el kit (bloque de ubicación según la decisión 7).
+- Integrar notificaciones, lugar de trabajo, prestaciones y perfil de puesto.
+- Comparar la cláusula 19 con el documento de beneficiarios.
+- Aplicar las decisiones 1, 5 y 6.
+
+**Kit de contratación**
+- Ajustar la carta responsiva: disparador con híbrido (ya en el registro) y remisión al art. 46 del RIT (decisión 12).
+- Aviso de privacidad: cubrir datos de salud, pruebas de alcohol y drogas, exámenes médicos, firmas de conformidad de la CMRIT y uso de datos de nómina por la comisión de PTU; resolver biométricos (decisión 7).
+- Ajustar lineamientos de perfiles (decisión 15) y beneficiarios (decisión 14).
+- Redactar la asignación de correo institucional y la adenda de confidencialidad.
+
+**RIT y CMRIT**
+- Normalizar términos y marcas (decisiones 1 y 2); convertir los artículos 22, 34 y el transitorio segundo a [SI] … [FIN SI].
+- Aplicar las decisiones 3, 5, 6, 11 y 16.
+- Redactar los formatos disciplinarios, la constancia de recibo y la constancia de difusión.
+- Regular días en casa, registro de jornada en días en casa y traslado entre clientes REPSE.
+
+**Comisión de capacitación**
+- Normalizar términos y marcas (decisiones 1 y 2).
+- Aplicar las decisiones 3, 8 y 17; corregir la referencia a la «Cláusula Cuarta» (ahora Tercera, 3.3 a 3.6) y retirar la dependencia del aviso de privacidad sobre SIRCE.
+- Sin cláusula de opinión en el contrato: el vínculo vive en la Base 14, el F-2 y el candado del sistema.
+
+**PTU**
+- Normalizar términos y marcas (decisiones 1 y 2); renombrar TIPO_PATRON a EMPRESA_TIPO_PERSONA.
+- Aplicar las decisiones 3, 9 y 10.
+- Redactar el recibo individual, el control de PTU no cobrada y el layout de importación de nómina; ligar D-11 con la evidencia del módulo 6 y con el finiquito.
+
+**Conversaciones por abrir:** terminación y finiquito (módulo 4), modificación de condiciones (módulo 5), y reglas del sistema para validación de pagos, Fonacot y análisis de jornada (módulos 6, 8 y 9).
+
+---
+
+## Pendientes transversales
+
+- **A — Firma electrónica:** definir el tipo de firma y cómo se conserva la prueba de integridad y fecha (por ejemplo, constancia de conservación conforme a la NOM-151). Hoy se cotiza aparte. (12/11/2026) Ya existe «Corte - Firma electrónica» y el módulo 10 ya lo usa (registros SP-1 y SUS-3 y acuse de LIC-2): bitácora, hoja de evidencias, SHA-256, copia al correo personal, NOM-151 opcional y firma autógrafa si falla la Plataforma.
+- **A — Tabla de conservación de documentos:** unificar plazos; el RIT ya fija variables para expedientes disciplinarios y clínicos y la comisión de capacitación tiene la suya.
+- **B — Registro electrónico de jornada:** el contrato obliga a usar el sistema que designe la Empresa, pero la app del colaborador es fase 2.
+- **B — Diccionario de variables único** al terminar los modelos; hay variables duplicadas con distinto nombre (SINDICATO en capacitación y PTU, CENTROS y TURNOS, N_REP y NUM_REP_TRAB, TIPO_PATRON y EMPRESA_TIPO_PERSONA). (12/11/2026) Además: PERSONA_JEFATURA es la jefatura inmediata y DIRECTOR_AREA (nueva) la dirección del área, ambas por puesto; JEFE_INMEDIATO se elimina; FIRMANTES_EMPRESA va en la configuración de la empresa; CENTRO_TRABAJO equivale a PERSONA_CENTRO del RIT; DIAS_EN_CASA_EMPRESA y DIAS_EN_CASA_ACTIVO son distintas.
+
+## Decisiones de alcance
+
+Tomadas el 26/10/2026: entran la comisión mixta de capacitación, todo tipo de contratos, Fonacot, SIRCE y análisis de jornada; la PTU se calcula por importación o captura; el finiquito se precalcula bruto.
+
+Tomadas también el 26/10/2026:
+- La capacitación inicial es solo una cláusula del contrato.
+- De capacitación, Axia RH cubre el SIRCE, la comisión mixta y el DC-1; lo demás queda en Axia Capacitación.
+- Fonacot: solo alertas y evidencia.
+- Análisis de jornada: datos del reloj checador del cliente.
+
+Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entran a Axia RH, porque el candado de la terminación las exige y el SIRCE las reporta.
+
+## Orden sugerido de trabajo
+
+1. Resolver las 18 decisiones de este mapa (desbloquean a las cinco conversaciones).
+2. Cerrar el contrato con sus variantes de temporalidad y el kit.
+3. Cerrar el RIT y los formatos disciplinarios (desbloquean la rescisión).
+4. Cerrar la comisión de capacitación (desbloquea la terminación al vencer el periodo).
+5. Abrir la conversación de terminación y finiquito (módulo 4).
+6. Abrir modificación de condiciones (módulo 5).
+7. Cerrar la PTU y abrir validación de pagos (módulos 3 y 6).
+8. Fonacot, SIRCE y análisis de jornada (módulos 7, 8 y 9).
