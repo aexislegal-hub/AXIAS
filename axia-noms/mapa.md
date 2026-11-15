@@ -8,7 +8,7 @@ Lo escribe solo el Cerebro de Axia NOMs. Creado el 15/11/2026. Las decisiones vi
 
 **Entra:** las NOMs de seguridad y salud en el trabajo expedidas por la STPS que imponen obligaciones al centro de trabajo, traducidas a la matriz de obligaciones (responsable, plazo, periodicidad, evidencia, alerta) y, donde la NOM exige documentos, a modelos maestros. Incluye el Reglamento Federal de Seguridad y Salud en el Trabajo y la LFT en lo que esas NOMs desarrollan.
 
-**No entra (propuesta, por confirmar):**
+**No entra (aprobado el 15/11/2026):**
 - NOMs de producto (calzado, cascos, respiradores, etc.): no obligan al centro de trabajo a generar documentos; la NOM-017 las usa como referencia para elegir EPP certificado.
 - NOMs por sector (agrícola NOM-003-STPS-2023, forestal, ferrocarril, minas, construcción, minas de carbón): contradicen la regla de modelos sin giros; se tratarían después como módulos, igual que los giros de Axia RH.
 - Estudios técnicos de laboratorio o unidad de verificación: el sistema los registra y alerta su renovación, no los elabora.
@@ -17,7 +17,7 @@ Lo escribe solo el Cerebro de Axia NOMs. Creado el 15/11/2026. Las decisiones vi
 
 ---
 
-## 2. Catálogo propuesto y prioridad (15/11/2026, propuesta)
+## 2. Catálogo y prioridad (propuesto y aprobado el 15/11/2026)
 
 **Criterio de prioridad:** (1) peso en la inspección: obligaciones documentales que la autoridad revisa en toda inspección ordinaria de seguridad y salud; (2) alcance: aplica a todo centro, o depende de una condición frecuente, o de una actividad o riesgo específico; (3) dependencia de Axia RH: cuánto se apoya en datos de empresa, organigrama y alta que ya existen o que hay que pedir; (4) estabilidad: si la NOM está en modificación, se diseña con la matriz para actualizar numerales sin rehacer el módulo.
 
@@ -30,7 +30,7 @@ Nota sobre la fuente del criterio (1): no encontré una estadística oficial de 
 | A1 | NOM-035-STPS-2018 | Factores de riesgo psicosocial | Todo centro; obligaciones por tramo (≤15, 16-50, >50) | Alta: centros, plantilla, puestos, alta | Vigente. **En curso** |
 | A2 | NOM-030-STPS-2009 | Servicios preventivos: responsable, diagnóstico y programa de seguridad y salud | Todo centro (verificado) | Alta: centros, plantilla, puestos, atributos de riesgo (embarazo y lactancia, menores, puestos críticos) | Vigente |
 | A3 | NOM-019-STPS-2011 | Comisión de seguridad e higiene | Todo centro (verificado); obligaciones distintas por plantilla (por confirmar) | Alta: centros, turnos, clasificación base o confianza, criterio común de comisiones, sindicato | Vigente |
-| A4 | NOM-002-STPS-2010 | Prevención y protección contra incendios (brigadas, simulacros, plan de emergencia) | Todo centro (verificado) | Media: centros, plantilla, turnos | Vigente; **en modificación** (Suplemento PNIC 2026, ago-dic 2026) |
+| A4 | NOM-002-STPS-2010 | Prevención y protección contra incendios (brigadas, simulacros, plan de emergencia) | Todo centro (verificado) | Media: centros, plantilla, turnos | Vigente; **en modificación** (Suplemento PNIC 2026, ago-dic 2026). Se diseña ya, con numerales en la matriz |
 | A5 | NOM-001-STPS-2008 | Edificios, locales e instalaciones | Todo centro (verificado) | Baja: centros | Vigente |
 | A6 | NOM-026-STPS-2008 | Colores y señales de seguridad | Todo centro (por confirmar en su texto) | Baja | Vigente según fuentes secundarias; confirmar |
 | A7 | NOM-025-STPS-2008 | Iluminación (reconocimiento, evaluación, informe) | Todo centro (por confirmar en su texto) | Baja; estudio de tercero | Vigente según fuentes secundarias; confirmar |
@@ -62,7 +62,7 @@ NOMs de producto y NOMs por sector (apartado 1).
 | NOM | Estado | Último corte | Siguiente paso |
 |---|---|---|---|
 | NOM-035 | Arquitectura cerrada (provisional); aviso en borrador | 10/11/2026, act. 6 | Especificación funcional; revisión del aviso |
-| NOM-030 | Sin iniciar | — | Abrir conversación (ver apartado 7) |
+| NOM-030 | Sin iniciar | — | **Siguiente conversación** |
 | NOM-019 | Sin iniciar | — | Abrir conversación |
 | Resto | Sin iniciar | — | Según orden del apartado 7 |
 | Motor de aplicabilidad y matriz de obligaciones (transversal) | Propuesta | — | Se diseña dentro de la conversación de la NOM-030 |
@@ -102,7 +102,7 @@ NOMs de producto y NOMs por sector (apartado 1).
 
 | # | Contradicción | Propuesta |
 |---|---|---|
-| C1 | El corte de la NOM-035 crea variables de nivel empresa (NOM035_RESPONSABLE, NOM035_CANALIZACION_DESTINO, NOM035_CONTACTO_CANALIZACION, NOM035_DIAS_CANALIZACION, NOM035_GRUPO_MIN, NOM035_PERIODO_MESES, NOM035_CONSERVACION_ANOS) sin encargo, y la base común dice que las variables de empresa pertenecen a Axia RH. El motor de aplicabilidad necesitará muchas más por centro | Crear una **configuración propia de Axia NOMs** (por empresa y por centro), ligada a los centros de Axia RH, para los datos que solo usa esta línea. Solo se piden como encargo los datos que también use otra línea o que se capturen en el alta o el organigrama. **Decisión del usuario** |
+| C1 | **Resuelta (15/11/2026).** El corte de la NOM-035 crea variables de nivel empresa (NOM035_RESPONSABLE, NOM035_CANALIZACION_DESTINO, NOM035_CONTACTO_CANALIZACION, NOM035_DIAS_CANALIZACION, NOM035_GRUPO_MIN, NOM035_PERIODO_MESES, NOM035_CONSERVACION_ANOS) sin encargo, y la base común dice que las variables de empresa pertenecen a Axia RH. El motor de aplicabilidad necesitará muchas más por centro | Crear una **configuración propia de Axia NOMs** (por empresa y por centro), ligada a los centros de Axia RH, para los datos que solo usa esta línea. Solo se piden como encargo los datos que también use otra línea o que se capturen en el alta o el organigrama. **Aprobada por el usuario**; registro, sección 2; aviso a Axia RH por encargo |
 | C2 | La comisión de seguridad e higiene salió de Axia RH, pero el RIT remite a ella (arts. 11, 54, 55, 62) y el mapa de Axia RH (punto 12) aún pregunta si en el PMV «solo se alerta» | El módulo NOM-019 es dueño de la comisión, sus actas, recorridos y alertas. Axia RH conserva solo la remisión del RIT. Cuando el módulo exista se pedirá a Axia RH, por encargo, ajustar la redacción del RIT si hace falta |
 | C3 | El criterio común de comisiones de Axia RH (designación por las personas trabajadoras, sin votación) podría no coincidir con lo que la NOM-019 exige para designar a la representación de los trabajadores | Verificar los numerales en la conversación de la NOM-019. Si la NOM exige otra cosa, rige la NOM para esta comisión y se informa a Axia RH |
 | C4 | La política de prevención del usuario atribuye la investigación de quejas a las «Comisiones Mixtas»; el RIT la asigna al Comité de Integridad y Disciplina | La política se ajusta al RIT: investiga el Comité de Integridad (Axia Compliance). La comisión de seguridad e higiene no investiga quejas de violencia. Resolver en la conversación de la política |
@@ -116,14 +116,15 @@ NOMs de producto y NOMs por sector (apartado 1).
 
 | Conversación | Encargo |
 |---|---|
-| NOM-035 | Redactar la especificación funcional. Usar «Axia CYA». Esperar la decisión C1 antes de cerrar el nivel de las variables NOM035_* de empresa. Remitir la investigación de quejas al mecanismo de Axia Compliance (C4) |
-| NOM-030 (por abrir) | Diagnóstico completo de la NOM y del Reglamento (responsable, diagnóstico, programa, servicios internos o externos, quién puede ser responsable). Diseñar la matriz de obligaciones y el motor de aplicabilidad (registro, apartado 2). Verificar C5 y la vigencia del Reglamento Federal de Seguridad y Salud en el Trabajo |
+| NOM-035 | Redactar la especificación funcional. Usar «Axia CYA». Las variables NOM035_* de nivel empresa pasan a la configuración NOMs (empresa): actualizar el nivel en el corte. Remitir la investigación de quejas al mecanismo de Axia Compliance (C4) |
+| NOM-030 (por abrir) | Diagnóstico completo de la NOM y del Reglamento (responsable, diagnóstico, programa, servicios internos o externos, quién puede ser responsable). Diseñar la matriz de obligaciones y el motor de aplicabilidad (registro, sección 2) en la configuración NOMs. Diseñar el rol de AEXIS como responsable externo de los servicios preventivos: requisitos, funciones que no puede asumir, evidencia de su designación y qué debe decir el contrato AEXIS–cliente. Decidir si el responsable de la NOM-035 y el de la NOM-030 son la misma variable. Verificar C5 y la vigencia del Reglamento Federal de Seguridad y Salud en el Trabajo |
+| NOM-002 (por abrir, después de la NOM-035) | Diseñar con los numerales vigentes en la matriz y dejar señaladas las obligaciones que podría tocar la modificación (clasificación del riesgo de incendio del Apéndice A) |
 | NOM-019 (por abrir) | Diagnóstico por numeral: tramos de plantilla, integración, designación (C3), recorridos, actas, investigación de accidentes y su relación con INC-1. Resolver 6.4 y 6.5 de la NOM-035 |
-| Encargos para Axia RH | Tres encargos pendientes de la NOM-035 (10/11/2026), en `encargos-para-axia-rh.md` |
+| Encargos para Axia RH | Tres encargos pendientes de la NOM-035 (10/11/2026) y el aviso de la configuración propia de Axia NOMs (15/11/2026), en `encargos-para-axia-rh.md` |
 
 ---
 
-## 7. Orden sugerido de trabajo (propuesta)
+## 7. Orden de trabajo (aprobado el 15/11/2026)
 
 1. **NOM-030 con la matriz de obligaciones y el motor de aplicabilidad.** Es el eje: su diagnóstico revisa el cumplimiento de todas las NOMs aplicables y su programa recoge las acciones. Diseñarla primero fija la estructura que usan las demás.
 2. **NOM-019.** Todo centro, documental, el RIT ya remite a ella y Axia RH la dejó pendiente.

@@ -18,7 +18,8 @@ Estados: **provisional** (decisión tomada en conversación, sujeta a revisión 
 | Contrato de prestación de servicios AEXIS–cliente (encargo de datos, respaldo, confidencialidad, devolución) | — | Servicio de acompañamiento | Otra conversación; sin iniciar |
 | Módulo NOM-019: comisión de seguridad e higiene | NOM-019-STPS-2011 | Todo centro (la NOM distingue por número de personas trabajadoras; tramos por confirmar en su conversación) | Por diseñar. Salió de Axia RH el 26/10/2026 |
 | Módulo NOM-030: responsable de seguridad y salud, diagnóstico y programa | NOM-030-STPS-2009 | Todo centro | Por diseñar. La NOM-035 se integra a su diagnóstico |
-| Resto del catálogo | Ver `mapa.md`, apartado 2 | — | Propuesto el 15/11/2026, sin aprobar |
+| Módulo NOM-002: prevención y protección contra incendios | NOM-002-STPS-2010 | Todo centro | Por diseñar (aprobado diseñarla sin esperar la modificación en curso) |
+| Resto del catálogo | Ver `mapa.md`, apartado 2 | — | Catálogo y orden aprobados el 15/11/2026 |
 
 ---
 
@@ -26,10 +27,13 @@ Estados: **provisional** (decisión tomada en conversación, sujeta a revisión 
 
 Remite a la base común para los niveles 1 a 3 y los eventos. Aquí solo lo que agrega Axia NOMs.
 
-- (15/11/2026, propuesta) **Unidad de cumplimiento: el centro de trabajo.** Toda obligación se evalúa por centro (los de la configuración de la empresa de Axia RH, incluidas las instalaciones del catálogo de clientes REPSE cuando ahí se prestan servicios). El sistema solo exige a cada centro lo que su perfil activa.
-- (15/11/2026, propuesta) **Matriz de obligaciones.** Cada NOM se carga como filas de una tabla del sistema: NOM y numeral; fuente (NOM, Reglamento Federal de Seguridad y Salud en el Trabajo o LFT); tipo (obligación, buena práctica o medida estratégica); condición de activación; responsable; plazo o periodicidad; evidencia que acredita el cumplimiento; quién puede elaborarla o validarla; alerta. Los plazos y periodicidades viven en la tabla con fecha de vigencia, no en los textos (misma regla que las cifras de la base común).
-- (15/11/2026, propuesta) **Motor de aplicabilidad.** Un cuestionario por centro (actividades, procesos, maquinaria, sustancias, agentes físicos, teletrabajo, personas con discapacidad, etc.) determina qué NOMs y qué filas de la matriz aplican. Equivale funcionalmente al ASINOM de la STPS, pero alimenta la matriz. Se diseña junto con el diagnóstico de la NOM-030. Nivel de captura: pendiente de decisión (mapa, contradicción C1).
-- (15/11/2026, propuesta) **Estudios técnicos de terceros.** Donde la NOM exige reconocimiento, evaluación o estudios por laboratorio o unidad de verificación (ruido, iluminación, químicos, condiciones térmicas, vibraciones, etc.), el sistema no genera el estudio: registra el estudio, su fecha, vigencia, quién lo hizo y su acreditación, y alerta su renovación.
+- (15/11/2026, aprobada) **Configuración propia de Axia NOMs.** Los datos que solo usa esta línea se capturan en una configuración de Axia NOMs, por empresa y por centro, ligada a la empresa y a los centros de trabajo de Axia RH (nunca los duplica). Solo se piden como encargo a Axia RH los datos que también use otra línea o que se capturen en el alta o en el organigrama. Las variables NOM035_* de nivel empresa pasan a esta configuración. Se informa a Axia RH por encargo, porque toca la arquitectura de la base común.
+- (15/11/2026, aprobada) **Unidad de cumplimiento: el centro de trabajo.** Toda obligación se evalúa por centro (los de la configuración de la empresa de Axia RH, incluidas las instalaciones del catálogo de clientes REPSE cuando ahí se prestan servicios). El sistema solo exige a cada centro lo que su perfil activa.
+- (15/11/2026, aprobada) **Matriz de obligaciones.** Cada NOM se carga como filas de una tabla del sistema: NOM y numeral; fuente (NOM, Reglamento Federal de Seguridad y Salud en el Trabajo o LFT); tipo (obligación, buena práctica o medida estratégica); condición de activación; responsable; plazo o periodicidad; evidencia que acredita el cumplimiento; quién puede elaborarla o validarla; alerta. Los plazos y periodicidades viven en la tabla con fecha de vigencia, no en los textos (misma regla que las cifras de la base común).
+- (15/11/2026, aprobada) **Motor de aplicabilidad.** Un cuestionario por centro (actividades, procesos, maquinaria, sustancias, agentes físicos, teletrabajo, personas con discapacidad, etc.) determina qué NOMs y qué filas de la matriz aplican. Equivale funcionalmente al ASINOM de la STPS, pero alimenta la matriz. Se diseña junto con el diagnóstico de la NOM-030. Se captura en la configuración propia de Axia NOMs, por centro.
+- (15/11/2026, aprobada) **Estudios técnicos de terceros.** Donde la NOM exige reconocimiento, evaluación o estudios por laboratorio o unidad de verificación (ruido, iluminación, químicos, condiciones térmicas, vibraciones, etc.), el sistema no genera el estudio: registra el estudio, su fecha, vigencia, quién lo hizo y su acreditación, y alerta su renovación.
+- (15/11/2026, aprobada) **AEXIS como responsable de seguridad y salud.** AEXIS puede fungir como responsable de los servicios preventivos de seguridad y salud del cliente (servicio externo de la NOM-030) además de acompañar la NOM-035. El responsable es una variable de la configuración NOMs (interno del cliente o externo); como los documentos del cliente no llevan marca, AEXIS se imprime solo con los datos que exija la NOM. Requisitos, alcance y límites (funciones que la NOM o el Reglamento reserven a perfiles específicos) se verifican en la conversación de la NOM-030; el contrato AEXIS–cliente debe cubrir este encargo.
+- (15/11/2026, aprobada) **Alcance de la línea.** Entran las NOMs que obligan a todo centro o por condición frecuente (mapa, grupos A y B) y, como filas de la matriz con el patrón de estudio de tercero, las del grupo C. Quedan fuera por ahora las NOMs de producto y las de un sector (agrícola, forestal, ferrocarril, minas, construcción); se tratarían después como módulos.
 - (15/11/2026, regla del proyecto) Cada obligación se clasifica como obligación de la NOM (con numeral), del Reglamento o de la LFT, buena práctica o medida estratégica. Ninguna recomendación se presenta como obligación.
 
 ---
@@ -71,6 +75,14 @@ Fuente del corte: «Corte - Módulo NOM-035», 10/11/2026, actualización 6 (cop
 | Fecha | Decisión | Estado |
 |---|---|---|
 | 10/11/2026 | La NOM-035 se integra al diagnóstico de la NOM-030 (7.6 del corte de la NOM-035) | Provisional |
+| 15/11/2026 | Es la primera NOM por diseñar; su conversación diseña también la matriz de obligaciones y el motor de aplicabilidad | Aprobada |
+| 15/11/2026 | AEXIS puede ser el responsable externo de los servicios preventivos (sección 2) | Aprobada |
+
+### 3.4 NOM-002-STPS-2010 (incendios)
+
+| Fecha | Decisión | Estado |
+|---|---|---|
+| 15/11/2026 | Se diseña sin esperar la modificación inscrita en el Suplemento del PNIC 2026; los numerales y obligaciones viven en la matriz para actualizarlos cuando se publique la norma modificada | Aprobada |
 
 ---
 
@@ -86,17 +98,17 @@ Fuente del corte: «Corte - Módulo NOM-035», 10/11/2026, actualización 6 (cop
 
 ## 5. Variables de la línea
 
-Nivel según la base común. Las marcadas «encargo» pertenecen a Axia RH y están pedidas en `encargos-para-axia-rh.md`; las marcadas «nivel en revisión» dependen de la contradicción C1 del mapa.
+Nivel según la base común. Las marcadas «encargo» pertenecen a Axia RH y están pedidas en `encargos-para-axia-rh.md`. «Configuración NOMs» es la configuración propia de la línea (sección 2), por empresa o por centro.
 
 | Variable | Nivel | Tipo y validación | Uso | Situación |
 |---|---|---|---|---|
-| NOM035_RESPONSABLE | Empresa | Tabla: nombre, cédula profesional (opcional), tipo (AEXIS / Profesional de la salud del cliente); obligatoria | Validación del programa | Nivel en revisión |
-| NOM035_CANALIZACION_DESTINO | Empresa | Lista: institución de seguridad social / institución privada / médico o psicólogo del centro o de la empresa; obligatoria | Canalización | Nivel en revisión |
-| NOM035_CONTACTO_CANALIZACION | Empresa | Tabla: nombre y correo, mínimo 1; obligatoria | Aviso de Guía I positiva | Nivel en revisión |
-| NOM035_DIAS_CANALIZACION | Empresa | Entero | Recordatorio | Nivel en revisión |
-| NOM035_GRUPO_MIN | Empresa | Entero; 5 por omisión, mínimo 5 | Reportes agregados | Nivel en revisión |
-| NOM035_PERIODO_MESES | Empresa | Entero, máximo 24 | Periodicidad | Nivel en revisión |
-| NOM035_CONSERVACION_ANOS | Empresa | Entero, obligatoria, sin valor por omisión | Apartado 8 del aviso | Nivel en revisión |
+| NOM035_RESPONSABLE | Configuración NOMs (empresa) | Tabla: nombre, cédula profesional (opcional), tipo (AEXIS / Profesional de la salud del cliente); obligatoria | Validación del programa | Reasignada 15/11/2026 |
+| NOM035_CANALIZACION_DESTINO | Configuración NOMs (empresa) | Lista: institución de seguridad social / institución privada / médico o psicólogo del centro o de la empresa; obligatoria | Canalización | Reasignada 15/11/2026 |
+| NOM035_CONTACTO_CANALIZACION | Configuración NOMs (empresa) | Tabla: nombre y correo, mínimo 1; obligatoria | Aviso de Guía I positiva | Reasignada 15/11/2026 |
+| NOM035_DIAS_CANALIZACION | Configuración NOMs (empresa) | Entero | Recordatorio | Reasignada 15/11/2026 |
+| NOM035_GRUPO_MIN | Configuración NOMs (empresa) | Entero; 5 por omisión, mínimo 5 | Reportes agregados | Reasignada 15/11/2026 |
+| NOM035_PERIODO_MESES | Configuración NOMs (empresa) | Entero, máximo 24 | Periodicidad | Reasignada 15/11/2026 |
+| NOM035_CONSERVACION_ANOS | Configuración NOMs (empresa) | Entero, obligatoria, sin valor por omisión | Apartado 8 del aviso | Reasignada 15/11/2026 |
 | AEXIS_CORREO_ALERTAS | Plataforma | Correo, obligatoria | Alertas | — |
 | NOM035_AVISO_VERSION | Plataforma | Texto | Apartado 11 del aviso, casilla, constancias | — |
 | NOM035_TRAMO | Sistema, por centro | ≤15 / 16-50 / >50 | Guía y muestra | — |
@@ -134,7 +146,8 @@ Nivel según la base común. Las marcadas «encargo» pertenecen a Axia RH y est
 
 ## 7. Pendientes
 
-- [ ] Decisión del usuario sobre el nivel de captura de la configuración propia de la línea (mapa, C1).
-- [ ] Aprobación del catálogo y del orden de trabajo (mapa, apartados 2 y 7).
+- [x] (15/11/2026) Nivel de captura de la configuración propia: aprobado (sección 2).
+- [x] (15/11/2026) Catálogo, alcance y orden de trabajo: aprobados.
+- [ ] Definir si NOM035_RESPONSABLE se unifica con el responsable de seguridad y salud de la NOM-030 o se mantiene separado (conversación de la NOM-030).
 - [ ] NOM-035: especificación funcional; revisión del usuario al aviso; verificar en la LFPDPPP las excepciones para comunicar datos a la institución de canalización y a la autoridad; confirmar si la excepción del art. 9 alcanza a los datos sensibles del art. 8 (el reglamento de la ley nueva no se ha publicado); decidir si la persona encargada se nombra en el aviso; revisar la política de prevención del usuario.
 - [ ] Tabla de conservación de documentos (transversal): fija NOM035_CONSERVACION_ANOS y las de las demás NOMs.
