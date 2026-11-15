@@ -14,6 +14,8 @@ Documentos de diseño y decisiones de la familia de software Axia (AEXIS Complia
 
 ## Reglas
 
+0. **Un Cerebro por línea.** Cada producto Axia tiene su propio proyecto en claude.ai y su propio Cerebro, que es el único que escribe en su carpeta. El Cerebro de Axia RH es además dueño de `base-comun/`.
+
 1. **Una sola fuente.** Cada decisión vive en un solo archivo. La base común se deriva del registro de Axia RH; nadie la copia ni la reescribe en otro proyecto.
 2. **Variables compartidas.** Toda variable de los niveles empresa, organigrama o alta, aunque la proponga otro producto, se decide en Axia RH. El otro proyecto la pide como encargo y Cerebro la registra.
 3. **Cortes.** Las conversaciones de cada proyecto siguen guardando su «Corte - [documento]» en el conocimiento del proyecto de claude.ai. El Cerebro de cada producto los integra y actualiza aquí su registro y su mapa.
