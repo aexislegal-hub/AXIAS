@@ -1,6 +1,6 @@
 # Axia RH — Mapa del PMV
 
-Actualizado: 15 de noviembre de 2026, después de los cortes del RIT (15/11), del módulo 4 (12/11), del kit de PTU (13/11), del paquete de contratación (13/11), de firma electrónica (12/11) y del módulo de vacaciones y aguinaldo (15/11) · Coordinación: «Cerebro»
+Actualizado: 17 de noviembre de 2026, después de los cortes del módulo 5 (15/11), de los módulos 6 y 8 (15/11) y de vacaciones y aguinaldo (16/11) · Coordinación: «Cerebro»
 
 Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
 
@@ -35,12 +35,12 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
 | 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; encargos de la decisión 19 y de vacaciones | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
-| 5. Modificación | — | Todo | **Sin conversación** |
-| 6. Validación de pagos | — | Todo (reglas del sistema) | **Sin conversación** |
-| 8. Fonacot | — | Todo | **Sin conversación** |
+| 5. Modificación | MOD-1, MOD-2, MOD-4, MOD-5, ACT-1; especificación v1.0 con 13 casos de prueba | Correr en el software; MOD-6 (prioridad C); verificaciones | Diseño terminado (15/11/2026); **no cerrado** |
+| 6. Validación de pagos | Obligaciones de pago con evidencia cotejada (CFDI o dispersión); especificación v1.0 | Correr en el software; verificaciones del SAT | Diseño terminado (15/11/2026); **no cerrado** |
+| 8. Fonacot | Afiliación, cédula mensual, incidencias, retención en el finiquito, FON-1; especificación v1.0 (con el módulo 6) | Calendario de cédulas y fecha de entero | Diseño terminado (15/11/2026); **no cerrado** |
 | 9. Análisis de jornada | — | Todo | **Sin conversación** |
 | 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.6 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | Diseño terminado (12/11/2026); especificación lista; **no cerrado** |
-| 11. Vacaciones y aguinaldo | VAC-1, VAC-2 y VAC-3; cálculo de aguinaldo; especificación v1.0 con textos aprobados | Verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (15/11/2026); **no cerrado** |
+| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.1 | Nuevo art. 36 del RIT; verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (16/11/2026); **no cerrado** |
 
 ---
 
@@ -153,6 +153,8 @@ El precálculo dice «antes de impuestos y deducciones»; el recibo remite al CF
 
 ## Módulo 5. Modificación de condiciones de trabajo
 
+**Actualización 17/11/2026:** diseño terminado con la especificación v1.0 (registro 4.12). La matriz siguiente queda como historial; rige la sección 2 de la especificación.
+
 | Documento | Estado | Prioridad |
 |---|---|---|
 | Convenio modificatorio (salario, puesto, jornada, modalidad) | **Falta** | A |
@@ -185,7 +187,7 @@ El precálculo dice «antes de impuestos y deducciones»; el recibo remite al CF
 
 - Calendario de alertas: aguinaldo con AGUINALDO_FECHA_PAGO (a más tardar el 19 de diciembre; cálculo provisional 30 días antes y validación del contador, módulo 11); PTU con las fechas calculadas del kit de PTU.
 - (15/11/2026) El módulo 11 registra el pago del aguinaldo aquí, con el CFDI como evidencia; D-14 de PTU toma el UUID del estado Pagada.
-- **A — Definir «validar»:** el cliente marca «pagado» y sube el CFDI de nómina o la dispersión bancaria, por persona o por lote. D-11 de PTU debe usar la misma evidencia.
+- **Resuelto (15/11/2026):** ver registro 4.13. Texto anterior — **A — Definir «validar»:** el cliente marca «pagado» y sube el CFDI de nómina o la dispersión bancaria, por persona o por lote. D-11 de PTU debe usar la misma evidencia.
 - Personal que ya salió: el aguinaldo va en el finiquito; la PTU del ejercicio se le debe aunque ya no trabaje (EX_TRABAJADORES del kit de PTU).
 - Conservación de los comprobantes como evidencia para inspección.
 
@@ -207,6 +209,8 @@ El precálculo dice «antes de impuestos y deducciones»; el recibo remite al CF
 ---
 
 ## Módulo 8. Fonacot
+
+**Actualización 17/11/2026:** diseño terminado con la especificación de los módulos 6 y 8 (registro 4.13). La «constancia de afiliación» no se genera: la sustituye la ficha de afiliación con el convenio del Instituto. La tabla siguiente queda como historial.
 
 | Documento o función | Estado | Prioridad |
 |---|---|---|
@@ -360,6 +364,8 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 **RIT y CMRIT**
 - Cumplidos según el corte del 15/11/2026: encargos 1 a 11 (incluidos el acta de la CMRIT con el criterio común, días computables, art. 30, art. 16 y tabla II, y firma de FR-1).
 12. (15/11) El documento del Comité de Integridad y Disciplina se redacta en Axia Compliance; el RIT solo conserva la remisión del art. 79 y COMITE_INTEGRANTES como catálogo interno.
+13. (17/11, encargo del usuario desde vacaciones) **Art. 36**: primer párrafo condicionado a los tres valores de VAC_PROGRAMACION_MODO (Calendario anual, texto vigente; Periodos de solicitud por antigüedad; A solicitud) y párrafo nuevo para todos los modos sobre días bloqueados y cupos, con la redacción propuesta en la sección 4 del «Corte - Módulo de vacaciones y aguinaldo». Conservar el disfrute continuo del periodo mínimo, la distribución del resto, la prohibición de compensar con dinero y la remisión al art. 30. Cambiar el modo con el RIT depositado exige nuevo depósito.
+14. (17/11, del módulo 5) Especificación 2.6: el comunicado de horarios ajustados por reducción legal es MOD-2 «Ajuste legal de jornada» del módulo 5; el anexo de horarios lee la jornada de cada persona solo para el resumen.
 
 **Paquete de contratación**
 1. (12/11) Carta responsiva: valor de reposición por bien y autorización previa del descuento; remitir al art. 46 por su nombre o REF_ART_n, no por número (el RIT renumera).
@@ -367,9 +373,15 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 3. (15/11) Aplicar a la cláusula 22 las instrucciones del apartado 9 del «Corte - Firma electrónica».
 4. (15/11) Aplicar en una sola pasada las decisiones del corte del 13/11 (Arial, carátula de 1 a 2 páginas, FR-1 en el paquete y RIT_ENTREGA condicionada) y regenerar la versión para programación solo cuando el usuario lo pida.
 
+**Paquete de contratación**
+5. (17/11, del módulo 5) Cláusula 1.4, cierre: «ningún cambio disminuirá el salario» choca con la reducción por convenio (registro 4.12); limitarla a los mínimos legales y a lo devengado. La carátula imprime SALARIO_PERSONA.
+
 **Comisión de capacitación:** (15/11/2026) sale de Axia RH y pasa al proyecto de Axia CYA, que hereda los encargos pendientes (criterio común de comisiones, corte pendiente desde el 26/10, SIRCE). Axia RH solo necesita que Axia CYA mantenga las variables F2_* que lee el módulo 4.
 
-**Kit de PTU:** sin encargos pendientes (el de voto secreto quedó cumplido el 12/11).
+**Kit de PTU**
+1. (17/11, de los módulos 6 y 8) Regla R-3: «Pagada» = CFDI o dispersión cotejados en el módulo 6; la firma de D-14 deja de ser condición del estado (D14_FIRMADO, alerta sin revertir). D-14 toma UUID_CFDI, FECHA_PAGO, FORMA_PAGO y REFERENCIA_DISPERSION de la obligación en «Pagada»; con dispersión sin UUID se genera sin el folio fiscal y se versiona al cargarlo.
+2. (17/11) D-11, Parte 2: su Anexo 1 sale del módulo 6, sin cambio de texto.
+3. (17/11, del módulo 5) Leer SALARIO_PERSONA y la versión de condiciones de cada persona.
 
 **Módulo 4 (terminación)**
 1. (15/11, decisión 19) Recibir SITUACION_PROTEGIDA del módulo de permisos como alerta crítica, sin bloqueo, con doble confirmación y registro de usuario, fecha y hora (BAJA_CONFIRMACION_PROTEGIDA, nueva, evento de baja); B4 con la misma mecánica (BAJA_CONFIRMACION_B4). Nunca se imprime.
@@ -377,19 +389,35 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 3. (15/11) Sección 7.7, regla 2 del acta de devolución: actualizarla al art. 46 vigente del RIT (investigación por los arts. 80 y 81; descuento con reconocimiento en FD-5 o determinación en FD-3, conforme al art. 27).
 4. (15/11) Referencias al «Anexo A» del RIT como catálogo de conductas: decir «catálogo de conductas del RIT», sin letra.
 5. (12/11) SUS-2 vencido (art. 47, fr. XIV Bis) es antecedente del aviso de rescisión, que es servicio aparte.
+6. (17/11, de los módulos 6 y 8) Enviar al módulo 6 la evidencia del pago capturada en el cierre de la baja (comprobante del Anexo 2 y CFDI), con su cotejo; lo que el módulo 4 exige para cerrar no cambia.
+7. (17/11) Renglón automático «Crédito Fonacot»: solo la amortización del último periodo de salario pagado (FONACOT_RETENCION_FINIQUITO), con aviso si supera la retención mensual de la cédula. En fallecimiento, sin renglón de Fonacot y con alerta del aviso de defunción (15 días hábiles).
+8. (17/11) FONACOT_AVISO_DIAS = 5 días hábiles por omisión (convenio, cláusula Quinta); quitar «pendiente de verificar». La alerta es la misma incidencia de baja del módulo 8.
+9. (17/11) Con FONACOT_AVISO_PERSONA = Sí y FONACOT_CREDITO = Sí, agregar FON-1 al paquete de baja (salvo fallecimiento).
+10. (17/11, de vacaciones) Al dar de baja, liberar el cupo de los bloques de vacaciones que se cancelan.
+11. (17/11, del módulo 5) Leer SALARIO_PERSONA y la versión de condiciones de la persona en el precálculo.
 
 **Módulo 10 (permisos y licencias)**
 1. (15/11, decisión 19) SITUACION_PROTEGIDA ya no bloquea la baja: el módulo 4 la muestra como alerta crítica con doble confirmación. Ajustar la sección 11 de la especificación.
 2. (15/11) AGUINALDO_COMPUTA: B3 ya está decidido (no computa, decisión del usuario en el módulo de vacaciones); quitar «pendiente de decisión».
 3. (15/11) Confirmar la lectura de SUSP_VACACIONES_GENERA que propone la especificación de vacaciones (3.1, paso 4).
 4. (15/11) La conducta 60 es del catálogo de conductas del RIT (ya no «Anexo A»).
+5. (17/11, del módulo 5) Registrar INCAPACIDAD_PARCIAL e INCAPACIDAD_PARCIAL_FECHA al cerrar C2 (situación protegida del módulo 5). Proponer si una reubicación aceptada en D4 (constancia MOD-5) evita SUS-2.
+6. (17/11, de vacaciones) Admitir el valor «Cupo completo» de NEGATIVA_CAUSA, que solo usa el módulo de vacaciones.
 
 **Módulo 11 (vacaciones y aguinaldo)**
 1. (15/11) VAC_PROGRAMACION_MODO sin valor por omisión (regla general de pantalla del RIT), con una sola captura compartida con el RIT.
+2. (17/11, de los módulos 6 y 8) Al registrarse una baja con AGUINALDO_VALIDADO y sin pago, avisar al contador que la persona sale de la nómina anual; el módulo 6 cancela su obligación con motivo «Pago en finiquito».
+3. (17/11, del módulo 5) Leer SALARIO_PERSONA para la prima vacacional y el aguinaldo.
+
+**Módulo 5 (modificación de condiciones):** sin encargos; TELE_AVISO_DIAS queda confirmada como variable de empresa (registro, sección 2).
+
+**Módulo 9 (análisis de jornada)**
+1. (17/11, del módulo 5) La jornada esperada se toma de la versión de condiciones de cada persona y de las constancias MOD-5 vigentes.
 
 **Firma electrónica**
 1. (12/11) Cumplido en la v1.2: firmante de RH designado.
 2. (13/11) Agregar a la lista de firma autógrafa obligatoria el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5 y FR-2; confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos.
+3. (17/11, del módulo 5) Tabla de la sección 11: MOD-5 «RH designado»; ACT-1 sin firma (registro digital); MOD-1 representante y MOD-2 y MOD-4 RH designado (ya previstos como convenios, comunicados y oficio de reasignación). FON-1: firma autógrafa de recibido.
 
 ## Encargos por conversación (historial del 26/10/2026)
 
@@ -448,12 +476,12 @@ Tomadas también el 26/10/2026:
 
 Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entran a Axia RH, porque el candado de la terminación las exige y el SIRCE las reporta.
 
-## Orden sugerido de trabajo (15/11/2026)
+## Orden sugerido de trabajo (17/11/2026)
 
-1. Módulo 5, modificación de condiciones (conversación nueva).
-2. Paquete de contratación: corrido en el software y pasada única con el corte del 13/11.
-3. Módulos 6 (validación de pagos) y 8 (Fonacot) en una sola conversación.
-4. Módulo 9, análisis de jornada, con diseño provisional mientras la STPS publica las disposiciones del registro electrónico (vigencia 1/01/2027).
+1. Correr en el software los módulos 5, 6 y 8 y la especificación v1.1 de vacaciones.
+2. RIT: nuevo art. 36 (encargo 13) y tercer corrido.
+3. Paquete de contratación: corrido en el software y pasada única con el corte del 13/11 y la cláusula 1.4.
+4. Módulo 9, análisis de jornada (conversación por abrir).
 5. Cerebro: diccionario único de variables y tabla única de parámetros legales.
 6. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).
 

@@ -1,6 +1,6 @@
 # Base común de la familia Axia
 
-Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 15 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
+Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 17 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
 
 Contiene la arquitectura del sistema (niveles de captura y atributos de puesto) y las convenciones de redacción que comparten todos los productos Axia. Un proyecto distinto de Axia RH que necesite una variable nueva de empresa, organigrama o alta la pide como encargo a Cerebro.
 
@@ -24,6 +24,10 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 
 (26/10/2026, aprobada) **Cambios al catálogo con personas ya contratadas.** Cuando cambia el perfil de puesto, el sistema genera una alerta y una nueva versión para firma de quienes ya firmaron la anterior, con el aviso de PERFIL_AVISO_DIAS días de la cláusula 1.4. (26/10/2026, aprobada) La misma lógica se extiende a jornada, salario y prestaciones del puesto: el cambio aplica de inmediato a las altas nuevas y, para las personas ya contratadas, genera el comunicado o el convenio que corresponda según la matriz del módulo 5; nunca cambia en silencio sus condiciones.
 
+(15/11/2026, módulo 5) **Versión de condiciones por persona.** El catálogo del organigrama se versiona (PUESTO_VERSION, PERFIL_VERSION, JORNADA_VERSION, PRESTACIONES_VERSION). Cada persona queda ligada a la versión que firmó o se le comunicó y a su salario. Un cambio del catálogo aplica de inmediato a las altas nuevas; las personas vigentes pasan a la versión nueva al firmar MOD-1 o al surtir efectos MOD-2; si no firman, conservan la versión anterior sin plazo. Todos los módulos leen la versión de la persona. Concreta la regla del 26/10 de que el catálogo nunca cambia en silencio las condiciones de quien ya está contratado.
+
+(15/11/2026) Variables nuevas de empresa: ACTUALIZACION_ANUAL_MES (mes fijo de la actualización anual de datos, coincidente con la revisión de perfiles); afiliación a Fonacot (FONACOT_AFILIACION_ESTADO sin valor por omisión, FONACOT_NUM_CLIENTE, FONACOT_AFILIACION_FECHA, FONACOT_CONVENIO_ARCHIVO, FONACOT_CONVENIO_VERSION, FONACOT_RESPONSABLE, FONACOT_SOLICITUD_FECHA, FONACOT_NO_PROCEDENTE_MOTIVO, FONACOT_AFILIACION_ALERTA_DIAS 30, FONACOT_REINTENTO_MESES 12, FONACOT_AVISO_PERSONA Sí); pagos (PAGO_TOLERANCIA 1.00, PAGO_EVIDENCIA_DIAS 5, PAGO_ALERTAS_AGUINALDO 10 y 3 hábiles, PAGO_ALERTAS_PTU 15 y 5 hábiles, PAGO_CONSERVACION_ANIOS 5); vacaciones (VAC_ANIO_PROGRAMACION, VAC_PERIODOS_SOLICITUD, VAC_BLOQUEOS, VAC_CUPOS, VAC_NOTIFICACION_CANALES). Catálogo de centros: CENTRO_FONACOT (sin valor por omisión). Alta: FONACOT_CREDITO. TELE_AVISO_DIAS sigue siendo variable de empresa (la usan los módulos T y H del contrato y MOD-2; el RIT ya no la imprime). Tablas globales nuevas con la mecánica de aprobación de parámetros: FONACOT_PLAZOS, FONACOT_CALENDARIO y PAGO_CLAVES_SAT.
+
 (26/10/2026) La comisión de seguridad e higiene y su alerta salen de Axia RH por ahora.
 
 (26/10/2026, aprobada) **Catálogo de clientes REPSE** en la configuración de la empresa: razón social, RFC, domicilio de cada instalación, fecha y número del contrato de servicios y actividad REPSE que se presta. Se elimina el centro genérico «Instalaciones del beneficiario». Con REPSE = Sí y lugar Cliente, el centro de trabajo se elige de las instalaciones del catálogo, su domicilio se imprime en el contrato y se genera el oficio de asignación; cada reasignación es un nuevo oficio desde el módulo de modificaciones. El catálogo sirve también como expediente por cliente.
@@ -36,7 +40,7 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 | Puesto de dirección o administración, o técnico o profesional especializado | Sí / No | 180 días de prueba o 6 meses de capacitación. Es independiente de la clasificación base/confianza |
 | Trabajo material | Sí / No | Solo pago semanal |
 | (26/10/2026, aprobada) Periodicidad de pago | Semanal / Quincenal | Se define en el perfil de puestos, no en el alta; en trabajo material solo semanal. El RIT lista las periodicidades que usa la empresa |
-| (26/10/2026, aprobada) Salario | Monto fijo por puesto | Se define en el puesto y se muestra en el alta sin edición. Por ahora el tabulador no maneja rangos: un solo salario por puesto |
+| (26/10/2026, aprobada; **modificada el 15/11/2026**) Salario | Salario base del puesto y, por persona, SALARIO_PERSONA (igual o mayor) | El puesto fija el salario base. Desde el 15/11/2026 (módulo 5, decisión del usuario) cada persona puede tener SALARIO_PERSONA, sin exigir motivo objetivo; solo se valida el salario mínimo de la zona. Una cifra menor que la vigente solo por convenio (MOD-1). Nómina, vacaciones, aguinaldo, PTU y finiquito leen el salario de la persona |
 | Nivel de acceso a la información | General / Calificado | Calificado activa el convenio de confidencialidad |
 | Jornada, horario, días laborables, descanso (fijo o rotativo) | — | Cláusula de jornada |
 | Tiempo de comida y si puede salir del centro | — | Variante de la cláusula de jornada |
