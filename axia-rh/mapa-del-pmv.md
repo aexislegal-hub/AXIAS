@@ -399,6 +399,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 11. (17/11, del módulo 5) Leer SALARIO_PERSONA y la versión de condiciones de la persona en el precálculo.
 12. (18/11, del paquete) Otras deducciones: los renglones automáticos de Infonavit y Fonacot pueden precargarse con INFONAVIT_DESCUENTO_VALOR y FONACOT_DESCUENTO_MONTO como sugerencia editable; en Fonacot rige además el encargo 7.
 13. (18/11, del paquete) Acta de devolución: DEV_BIENES puede precargar el valor de reposición por bien de la carta responsiva.
+14. (18/11, decisión del usuario) Acta de devolución: admite firma electrónica o autógrafa, según se haga la entrega; testigos solo con negativa (registro 4.11).
 
 **Módulo 10 (permisos y licencias)**
 - Cumplidos 1 a 6 (especificaciones v1.7 y v1.8, 17/11/2026).
@@ -422,6 +423,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 4. (18/11, decisión del usuario) **Cumplido en la v1.4 (18/11/2026).** La verificación con INE y video es solo para la contratación: quitarla del cambio de correo o teléfono (secciones 5.7 y 5.9, encabezado de cambios de la v1.3 y guion de cambio de medio); ese cambio se verifica de forma presencial. Generar la v1.4.
 5. (18/11) **Cumplido en la v1.4 (18/11/2026).** Aviso de privacidad: el encargo de agregar la finalidad y la casilla de consentimiento de la verificación con INE y video pasa al paquete de contratación (ver su encargo 6).
 6. (18/11, del paquete) Definir el sello visible de firma (FIRMA_SELLO_TRAB y FIRMA_SELLO_EMPRESA) y el texto «Pendiente de firma electrónica»; el párrafo de firma del final del contrato depende de FIRMA_MODALIDAD (sustituye lo dicho en el apartado 9 sobre ese párrafo). Si la especificación agrega datos a la bitácora, avisar para ampliar el inciso l) del aviso de privacidad.
+7. (18/11, decisión del usuario) Acta de devolución y entrega de herramientas: agregarla a la sección 11 como documento posterior que admite firma electrónica o autógrafa, según se haga la entrega; proponer quién firma por la Empresa (por omisión, RH designado). Testigos solo con negativa.
 
 ## Encargos por conversación (historial del 26/10/2026)
 

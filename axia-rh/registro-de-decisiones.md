@@ -505,6 +505,7 @@ Documento de referencia: «AXIARH - Firma electrónica - Especificación para pr
 - (18/11/2026, decisión del usuario; corrige la v1.3; especificación v1.4) La verificación con INE y video **solo se usa en la contratación** (alta).
 - (18/11/2026, decisión del usuario; decisión 17 del «Corte - Firma electrónica») **El cambio de correo o teléfono se verifica siempre de forma presencial, sin biometría.** Sustituye la parte de la decisión del 16/11/2026 que permitía usar INE y video en ese cambio.
 - (12 y 13/11/2026) **Firma autógrafa obligatoria**, sea cual sea FIRMA_MODALIDAD: convenio de terminación, recibo de finiquito, acuerdo de descuento, el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5, FR-2 y FON-1 (firma autógrafa de recibido). La FR-1 sigue FIRMA_MODALIDAD (4.4).
+- (18/11/2026, decisión del usuario) **Acta de devolución y entrega de herramientas:** admite ambas formas, firma electrónica o autógrafa, según se haga la entrega. Es documento posterior al alta. Los testigos solo se usan si la persona se niega a firmar.
 
 ### 4.12 Modificación de condiciones de trabajo — módulo 5 (15/11/2026)
 
@@ -671,7 +672,7 @@ Datos que faltan en el alta para la baja: TRAB_NSS (necesario para la baja, no b
 - [ ] Definir con cada cliente el apoyo para gastos de teletrabajo y los medios de contacto.
 - [ ] Decidir si las prestaciones superiores se configuran por empresa o por puesto o nivel.
 - [x] (17/11/2026) Cerrado: adenda de confidencialidad (kit 3.8), asignación de correo institucional (kit 3.5) y constancia de recibo del RIT (FR-1) redactadas.
-- [ ] (18/11/2026) Definir con el usuario cómo se firma el acta de devolución y entrega de herramientas (electrónica, autógrafa o mixta): no figura en la tabla de quién firma por la Empresa ni en las excepciones autógrafas, y lleva testigos en papel.
+- [x] (18/11/2026) Cerrado: firma del acta de devolución (4.11).
 - [ ] (18/11/2026) Paquete: confirmar las opciones de INFONAVIT_DESCUENTO_TIPO contra el aviso de retención vigente y si el monto del Fonacot se captura mensual o por periodo de pago; verificar con la LFPDPPP 2025 si las constancias de detención y la Declaración Especial de Ausencia son datos sensibles.
 - [ ] Integrar al contrato maestro las cláusulas ajustadas por el layout (notificaciones, jornada, lugar de trabajo, REPSE, teletrabajo, prestaciones, perfil de puesto). La integración de jornada, teletrabajo y REPSE ya se hizo el 26/10/2026; falta la revisión final.
 - [x] (26/10/2026) Cerrado: variantes B, C y D incorporadas; paquete de contratación cerrado y diccionario de variables generado.
