@@ -1,7 +1,18 @@
 # AXIA RH — MÓDULO 2: REGLAMENTO INTERIOR DE TRABAJO Y FORMATOS DISCIPLINARIOS
 
-Especificación para programación · Versión 1.5 · 17/11/2026
-Fuente: «Modelo maestro — Reglamento Interior de Trabajo» (pestaña principal, rev. 1377, y pestaña «Formatos», rev. 33), «Modelo maestro — Acta de integración de la CMRIT» (rev. 36), «AXIARH - Registro de decisiones» (actualizado al 02/11/2026), «Corte - RIT» y «Corte - Módulo de permisos y licencias» y «Corte - Firma electrónica» (12/11/2026), y encargos del mapa del 13/11/2026.
+Especificación para programación · Versión 1.6 · 18/11/2026
+Fuente: «Modelo maestro — Reglamento Interior de Trabajo» (pestaña principal, rev. 1383, y pestaña «Formatos», rev. 33), «Modelo maestro — Acta de integración de la CMRIT» (rev. 36), «AXIARH - Registro de decisiones» (actualizado al 02/11/2026), «Corte - RIT» y «Corte - Módulo de permisos y licencias» y «Corte - Firma electrónica» (12/11/2026), y encargos del mapa del 13/11/2026.
+
+## Cambios respecto de la versión 1.5 (encargos del mapa del 18/11/2026)
+
+Si la 1.5 ya se cargó, aplicar solo estos cambios.
+
+| # | Sección | Cambio |
+| --- | --- | --- |
+| 1 | 6.1, art. 36 | Última frase del párrafo de días sin vacaciones: «Esas medidas no modifican, sin la conformidad de la persona trabajadora, las vacaciones que haya solicitado o que se le hayan autorizado antes de que la Empresa las dé a conocer.» Prevalece lo que se registra primero |
+| 2 | 0.1, regla 4; 8.2 | `VAC_PROGRAMACION_MODO` es un solo campo: si la pantalla del RIT lo pregunta, lee y escribe el mismo campo que el módulo de vacaciones |
+| 3 | 2.1; 8.1; 8.2 | `DIAS_EN_CASA_EMPRESA` deja de derivarse de `TELE_APTO` (eliminada): pasa a pregunta de empresa Sí/No, sin valor por omisión. Alerta si un alta tiene `DIAS_EN_CASA_ACTIVO` = Sí y la empresa dice No |
+| 4 | 6.1, art. 12 y anexo de horarios; 2.4; 8.1 | Descanso rotativo: con `TURNO_DESCANSO_TIPO` = Rotativo, el anexo imprime «N días por semana» y «Rotativo», sin tabla de días. El tipo de jornada es el calculado (Diurna, Nocturna o Mixta), nunca «Rotativa». Frase nueva en el art. 12 con `TURNOS_ROTATIVOS` = Sí. Ya no existe PUEDE_SALIR |
 
 ## Cambios respecto de la versión 1.4 (encargos del mapa del 17/11/2026)
 
@@ -110,7 +121,7 @@ Ni la 1.0 ni la 1.1 se cargaron al software; esta versión las sustituye complet
 1. **Datos faltantes:** al intentar generar con datos obligatorios vacíos, el sistema no solo muestra una alerta: resalta en rojo cada campo faltante, muestra junto a él «Dato obligatorio», lista los faltantes arriba del formulario con enlace a cada uno y lleva la pantalla al primero.
 2. **Tablas editables** (permisos de la Empresa, otros devengados, deducciones, etc.): cada renglón tiene botones visibles «Guardar» y «Quitar»; el renglón nuevo queda marcado «Sin guardar» hasta que se guarda; al salir con renglones sin guardar, el sistema pregunta si se guardan. El botón «+ Agregar» solo agrega un renglón vacío.
 3. **Documento firmado:** la casilla «El documento está firmado por todos» basta para avanzar el estado (acta de la CMRIT, RIT firmado, constancias). La carga del archivo firmado es opcional; sin archivo queda una alerta «Falta cargar el documento firmado», que no bloquea.
-4. **Un dato, una captura:** lo que se captura en el acta de la CMRIT (fecha, lugar, representantes con su CURP) llena en automático el dictamen y las firmas del RIT; no se vuelve a pedir ni se deja vacío. Lo mismo para cualquier dato que ya exista en otro nivel.
+4. **Un dato, una captura:** lo que se captura en el acta de la CMRIT (fecha, lugar, representantes con su CURP) llena en automático el dictamen y las firmas del RIT; no se vuelve a pedir ni se deja vacío. Lo mismo para cualquier dato que ya exista en otro nivel. Si dos pantallas preguntan el mismo dato (por ejemplo, `VAC_PROGRAMACION_MODO` en el RIT y en vacaciones), ambas leen y escriben el mismo campo.
 5. Los campos opcionales dicen «Opcional» y explican qué pasa si se dejan vacíos (por ejemplo: «Si lo deja vacío, se omite el artículo 74»).
 6. **Sin candados por fecha:** ningún documento se bloquea porque su fecha (sesión, emisión, conformidad, firma) sea futura. El usuario puede capturar, guardar, generar, imprimir y marcar como firmado un documento fechado después de hoy; los documentos se preparan antes del acto. Guardar nunca se bloquea por validaciones: estas solo impiden emitir la versión definitiva (sin marca de agua). Se conservan las validaciones de orden entre fechas (por ejemplo, `CMRIT_FECHA` ≤ `FECHA_EMISION`).
 7. **Campos que dependen de una opción:** la pregunta de opción va primero y, si la ley no fija un valor, no tiene valor por omisión («Selecciona…»). Los campos que dependen de ella solo aparecen cuando aplican; si no aplican, no se piden ni se listan como faltantes. Ejemplos: `LACTARIO` = No oculta ubicación y equipamiento; `VAC_PROGRAMACION_MODO` = A solicitud oculta el mes del calendario.
@@ -151,6 +162,7 @@ Orden de impresión: dictamen, Reglamento, firmas, Anexo A (centros de trabajo, 
 | Art. 31, tabla II | Una fila por cada registro de `PERMISOS_EMPRESA` | — |
 | **Art. 32 completo** (días por fallecimiento) | `PERMISO_FALLECIMIENTO` = Sí | Se omite el artículo y se renumera |
 | Art. 36, primera frase | `VAC_PROGRAMACION_MODO` = Calendario anual: calendario anual en `MES_CALENDARIO_VACACIONES`. = Periodos de solicitud por antigüedad: periodos por grupos de antigüedad y asignación por antigüedad. = A solicitud: solicitud de cada persona por la Plataforma | Se imprime solo el texto del valor elegido. El párrafo de días sin vacaciones y personas por área se imprime siempre |
+| Art. 12, descanso rotativo | `TURNOS_ROTATIVOS` = Sí (algún turno del catálogo con descanso rotativo) | Se omite la frase |
 | Art. 34, pago de los días de espera | `PAGO_DIAS_ESPERA` = Sí | Se omite la frase |
 | Art. 41, opinión de la Comisión Mixta de Capacitación | `MOD_PRUEBA` = Sí | Se omite la frase |
 | **Art. 50 completo** (vehículos) | `VEHICULOS_ASIGNADOS` = Sí | Se omite el artículo y se renumera |
@@ -213,7 +225,7 @@ Orden de impresión: dictamen, Reglamento, firmas, Anexo A (centros de trabajo, 
 | Art. 31, tabla II | `PERMISOS_EMPRESA` | Una fila por registro, en el orden del catálogo |
 | Art. 31, tabla I, última fila | `PERMISO_LEY_*` | Una fila por permiso que agregue consultoría; vacía no se imprime |
 | Anexo de centros | Catálogo de centros de trabajo (`CENTRO_*`) | Una fila por centro activo, numerada con `N`; solo con más de un centro |
-| Anexo de horarios | Catálogo de jornadas (`TURNO_*`) | Una fila por turno activo de los centros de la Empresa |
+| Anexo de horarios | Catálogo de jornadas (`TURNO_*`) | Una fila por turno activo de los centros de la Empresa. Con `TURNO_DESCANSO_TIPO` = Fijo: días laborables y días de descanso de la tabla. Con Rotativo: «`TURNO_DIAS_TRABAJO_SEMANA` días por semana» y «Rotativo». Tipo de jornada: el calculado con los horarios, nunca «Rotativa» |
 
 ### 2.5 Validaciones de los datos del RIT
 
@@ -259,7 +271,7 @@ Orden de impresión: dictamen, Reglamento, firmas, Anexo A (centros de trabajo, 
 | Alerta | Se activa | Bloquea |
 | --- | --- | --- |
 | Depósito pendiente | Versión firmada sin acuse; desde `FECHA_EMISION`, con vencimiento a los 8 días | No |
-| «RIT modificado: pendiente de depósito» | Cambio en el catálogo de jornadas (alta o cambio de turno), en el catálogo de centros (con más de un centro) o en `VAC_PROGRAMACION_MODO` | No. FR-1 y FR-2 siguen entregando la versión vigente |
+| «RIT modificado: pendiente de depósito» | Cambio en el catálogo de jornadas (alta o cambio de turno), en el catálogo de centros (con más de un centro), en `VAC_PROGRAMACION_MODO` o en `DIAS_EN_CASA_EMPRESA` | No. FR-1 y FR-2 siguen entregando la versión vigente |
 | Revisión anual | 12 meses después de `RIT_FECHA_DEPOSITO` de la versión vigente (art. 87) | No |
 | Constancias FR-1 pendientes | Personas activas sin FR-1 de la versión vigente | No |
 
@@ -462,7 +474,7 @@ Artículo 11. Pausas y prevención de la fatiga. Además del reposo del artícul
 
 La frecuencia y duración de las pausas se fijan en esas políticas con base en el diagnóstico de la Comisión de Seguridad e Higiene. Quien advierta en sí o en otra persona una fatiga que comprometa la seguridad avisará a la jefatura, que concederá una pausa o reasignará la tarea; el aviso nunca es motivo de sanción.
 
-Artículo 12. Descanso semanal. Los días de descanso son los del Anexo B. El trabajo en domingo o en el día de descanso se paga en los términos de la Ley.
+Artículo 12. Descanso semanal. Los días de descanso son los del Anexo B.[SI TURNOS_ROTATIVOS = Sí] En los turnos con descanso rotativo, el día de descanso se asigna conforme al contrato de cada persona trabajadora, sin que transcurran más de seis días consecutivos de trabajo.[FIN SI] El trabajo en domingo o en el día de descanso se paga en los términos de la Ley.
 
 Artículo 13. Registro de jornada. Cada persona trabajadora registrará personalmente su entrada y su salida en el sistema electrónico que designe la Empresa, conforme a la Ley y a las disposiciones de la STPS. Además:
 
@@ -584,7 +596,7 @@ Artículo 35. Días de vacaciones. Las personas trabajadoras disfrutan cada año
 
 Artículo 36. Programación y disfrute. [SI VAC_PROGRAMACION_MODO = Calendario anual]Recursos Humanos elaborará en {{MES_CALENDARIO_VACACIONES}} el calendario anual de vacaciones, considerando las preferencias de las personas trabajadoras y las necesidades operativas.[FIN SI][SI VAC_PROGRAMACION_MODO = Periodos de solicitud por antigüedad]La Empresa establece cada año los periodos en que las personas trabajadoras solicitan sus vacaciones, por grupos según su antigüedad, comenzando por el de mayor antigüedad, y los da a conocer con anticipación. Cuando en un área las solicitudes para las mismas fechas excedan el número de personas que pueden estar de vacaciones al mismo tiempo, las fechas se asignan por orden de antigüedad y a quien no alcance lugar se le proponen otras. Concluidos los periodos de solicitud, las vacaciones pendientes se solicitan en fechas libres.[FIN SI][SI VAC_PROGRAMACION_MODO = A solicitud]Cada persona trabajadora solicita sus vacaciones por la Plataforma dentro del periodo que la Ley fija para concederlas, considerando las necesidades operativas.[FIN SI] Las vacaciones se conceden dentro del plazo que fija la Ley. La persona trabajadora disfrutará en forma continua el periodo mínimo que establezca la Ley y podrá distribuir el resto como lo requiera, solicitándolo por la Plataforma con {{DIAS_ANTICIPACION_VACACIONES}} días naturales de anticipación. Las vacaciones no pueden compensarse con dinero, salvo en los casos que permite la Ley.
 
-La Empresa puede señalar, por escrito y con su motivo, los días en que no se programan vacaciones por necesidades operativas o de capacitación, y el número de personas de cada área que pueden estar de vacaciones al mismo tiempo, siempre que cada persona trabajadora pueda disfrutar sus vacaciones dentro del plazo que fija la Ley. Esas medidas no modifican las vacaciones ya autorizadas sin la conformidad de la persona trabajadora.
+La Empresa puede señalar, por escrito y con su motivo, los días en que no se programan vacaciones por necesidades operativas o de capacitación, y el número de personas de cada área que pueden estar de vacaciones al mismo tiempo, siempre que cada persona trabajadora pueda disfrutar sus vacaciones dentro del plazo que fija la Ley. Esas medidas no modifican, sin la conformidad de la persona trabajadora, las vacaciones que haya solicitado o que se le hayan autorizado antes de que la Empresa las dé a conocer.
 
 La solicitud no implica autorización automática: se valida y se autoriza conforme al artículo 30.
 
@@ -869,7 +881,7 @@ Horarios de cada centro de trabajo y turno, conforme a los artículos 8 y 12. Se
 
 | Centro / área | Turno | Tipo de jornada | Días laborables | Entrada | Salida | Comida o reposo | Descanso semanal | Horas semanales |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| {{TURNO_CENTRO}} | {{TURNO_NOMBRE}} | {{TURNO_TIPO_JORNADA}} | {{TURNO_DIAS_LABORABLES}} | {{TURNO_ENTRADA}} | {{TURNO_SALIDA}} | {{TURNO_COMIDA}} | {{TURNO_DESCANSO_SEMANAL}} | {{TURNO_HORAS_SEMANA}} |
+| {{TURNO_CENTRO}} | {{TURNO_NOMBRE}} | {{TURNO_TIPO_JORNADA}} | [SI TURNO_DESCANSO_TIPO = Fijo]{{TURNO_DIAS_LABORABLES}}[FIN SI][SI TURNO_DESCANSO_TIPO = Rotativo]{{TURNO_DIAS_TRABAJO_SEMANA}} días por semana[FIN SI] | {{TURNO_ENTRADA}} | {{TURNO_SALIDA}} | {{TURNO_COMIDA}} | [SI TURNO_DESCANSO_TIPO = Fijo]{{TURNO_DESCANSO_SEMANAL}}[FIN SI][SI TURNO_DESCANSO_TIPO = Rotativo]Rotativo[FIN SI] | {{TURNO_HORAS_SEMANA}} |
 
 ANEXO C. Catálogo de conductas y escala de medidas disciplinarias
 
@@ -1403,14 +1415,15 @@ Son ajustes de impresión, no de contenido. El maestro conserva su redacción.
 | NUM_CENTROS_TRABAJO, DOMICILIOS_CENTROS_TRABAJO | S | Catálogo de centros de trabajo | Dictamen; arts. 3 y 88; letras de los anexos (2.3); carátula del acta |
 | CENTRO_NOMBRE, CENTRO_DOMICILIO, CENTRO_ESTADO, CENTRO_REGISTRO_PATRONAL | O | Catálogo de centros de trabajo (domicilio: calle, número, colonia, código postal y municipio) | Anexo A; hojas del Anexo 1 del acta (nombre) |
 | REPSE_EMPRESA | S | Sí si la Empresa tiene folio REPSE vigente | Art. 9 |
-| DIAS_EN_CASA_EMPRESA | S | Sí si algún puesto tiene TELE_APTO | Art. 22 |
 | PERIODICIDADES_PAGO_EMPRESA | S | Periodicidades de los puestos del organigrama | Art. 24 |
 | PUESTOS_CRITICOS_SEGURIDAD, AREAS_RESTRINGIDAS_EMBARAZO_LACTANCIA, AREAS_RESTRINGIDAS_MENORES | S | Puestos con el atributo correspondiente del organigrama | Arts. 60, 65 y 67; conducta 25 |
 | MOD_PRUEBA | E | Paquete de contratación | Art. 41 |
 | FIRMA_MODALIDAD | A | Paquete de contratación | Solo FR-1; los demás documentos del módulo son autógrafos |
 | FIRMANTES_EMPRESA, FIRMA_EMPRESA_NOMBRE, FIRMA_EMPRESA_CARGO | E / S | Especificación de firma electrónica | Firma por la Empresa en FR-1 |
 | PLANTILLA_NUM | S | Personas activas a la fecha | FR-2 |
-| TURNO_CENTRO, _NOMBRE, _TIPO_JORNADA, _DIAS_LABORABLES, _ENTRADA, _SALIDA, _COMIDA, _DESCANSO_SEMANAL, _HORAS_SEMANA | K | Catálogo de jornadas | Anexo de horarios; días hábiles del expediente |
+| TURNO_CENTRO, _NOMBRE, _TIPO_JORNADA, _DIAS_LABORABLES, _ENTRADA, _SALIDA, _COMIDA, _DESCANSO_SEMANAL, _HORAS_SEMANA | K | Catálogo de jornadas. TURNO_TIPO_JORNADA = JORNADA_TIPO calculada (Diurna, Nocturna o Mixta; nunca «Rotativa»); TURNO_DESCANSO_SEMANAL = DESCANSO_DIAS (solo Fijo); TURNO_HORAS_SEMANA calculada | Anexo de horarios; días hábiles del expediente |
+| TURNO_DESCANSO_TIPO, TURNO_DIAS_TRABAJO_SEMANA | K | Catálogo de jornadas: DESCANSO_SEMANAL (Fijo / Rotativo) y DIAS_TRABAJO_SEMANA (1 a 6, solo Rotativo) | Anexo de horarios |
+| TURNOS_ROTATIVOS | S | Sí si algún turno activo tiene descanso Rotativo | Art. 12 |
 | FECHA_ACTA_INTEGRACION | C | Acta de la CMRIT | Dictamen |
 | REP_EMPRESA_NOMBRE / _CARGO / _CURP, REP_TRABAJADORES_NOMBRE / _CARGO / _CURP, NUM_REPRESENTANTES_POR_PARTE | C | Acta de la CMRIT | Firmas |
 | PERSONA_NOMBRE, PERSONA_PUESTO, PERSONA_CENTRO, PERSONA_JEFATURA, PERSONA_CORREO | A | Alta (correo personal) | Todos los formatos |
@@ -1436,6 +1449,7 @@ Son ajustes de impresión, no de contenido. El maestro conserva su redacción.
 | PERMISO_FALLECIMIENTO | S | Bandera | Sí si la fila «Fallecimiento de familiar» sigue en PERMISOS_EMPRESA | Art. 32 |
 | DIAS_FALLECIMIENTO_GRADO_1 / _2 / _3 | E | Número | 3, 2, 1 | Art. 32 |
 | KM_FUNERAL_FORANEO / DIAS_FUNERAL_FORANEO | E | Número | 200 / 1 | Art. 32 |
+| DIAS_EN_CASA_EMPRESA | E | Sí/No | Sin valor por omisión: «¿La Empresa admite días en casa (teletrabajo o trabajo híbrido)?». Alerta, sin bloqueo, si un alta tiene DIAS_EN_CASA_ACTIVO = Sí y aquí dice No (el RIT no regularía esos días; cambiarla con el RIT depositado exige nuevo depósito). Es distinta de DIAS_EN_CASA_ACTIVO (alta, contrato) | Art. 22 |
 | PAGO_DIAS_ESPERA | E | Sí/No | No | Art. 34 |
 | VAC_PROGRAMACION_MODO | E | Opción | Calendario anual · Periodos de solicitud por antigüedad · A solicitud; sin valor por omisión. Una sola captura, compartida con el módulo de vacaciones (que configura periodos, bloqueos y cupos) | Art. 36; alerta de depósito si cambia con el RIT depositado |
 | MES_CALENDARIO_VACACIONES / DIAS_ANTICIPACION_VACACIONES | E | Mes / número | Mes solo con Calendario anual; sin valor por omisión / 15 | Art. 36 |
@@ -1580,7 +1594,7 @@ Para las conductas 23 y 44, el sistema solo marca la posible rescisión si el hi
 | Módulo | Qué necesita este módulo | Qué le da este módulo |
 | --- | --- | --- |
 | Paquete de contratación (módulo 1) | MOD_PRUEBA, FIRMA_MODALIDAD, correo personal, resguardo o carta responsiva con valor de reposición | FR-1 en cada alta |
-| Organigrama | Atributos de puesto: crítico para la seguridad, riesgo para embarazo o lactancia, vedado a menores, TELE_APTO, clasificación | — |
+| Organigrama | Atributos de puesto: crítico para la seguridad, riesgo para embarazo o lactancia, vedado a menores, clasificación | — |
 | Catálogo de jornadas | Turnos para el anexo de horarios y días laborables para los plazos | Alerta de depósito al cambiar un turno |
 | Acta de la CMRIT (6.9) | FECHA_ACTA_INTEGRACION y representantes | — |
 | Kit de PTU (D-01, D-02) | Acta de la jornada común si DESIGNACION_OBRERA = Elección | — |

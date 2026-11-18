@@ -1,6 +1,6 @@
 # Axia RH — Mapa del PMV
 
-Actualizado: 18 de noviembre de 2026, después de los cortes de firma electrónica (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
+Actualizado: 18 de noviembre de 2026, después de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
 
 Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
 
@@ -31,7 +31,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | Módulo | Documentos redactados | Faltan | Situación |
 |---|---|---|---|
 | 1. Kit de contratación | Paquete completo (contrato A-D rev. 501, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Regenerar la versión para programación con los cambios del 17/11; encargos 6 y 7; módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; variables sin estructura | Versión para programación del 15/11/2026 en corrido; **no cerrado** |
-| 2. RIT y su comisión | RIT (rev. 1377), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 33), acta de la CMRIT (rev. 36); especificación v1.5 | Tercer corrido en el software; encargos 15 a 17; confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
+| 2. RIT y su comisión | RIT (rev. 1383), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 33), acta de la CMRIT (rev. 36); especificación v1.6 | Tercer corrido en el software (v1.6); confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
 | 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; encargos de la decisión 19 y de vacaciones | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
@@ -40,7 +40,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | 8. Fonacot | Afiliación, cédula mensual, incidencias, retención en el finiquito, FON-1; especificación v1.0 (con el módulo 6) | Calendario de cédulas y fecha de entero | Diseño terminado (15/11/2026); **no cerrado** |
 | 9. Análisis de jornada | — | Todo | **Sin conversación** |
 | 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.8 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | Diseño terminado (12/11/2026); especificación lista; **no cerrado** |
-| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.2 y textos (sexta versión) | Ajuste del párrafo nuevo del art. 36 (encargo 15 del RIT); verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (17/11/2026); **no cerrado** |
+| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.2 y textos (sexta versión) | Verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (17/11/2026); **no cerrado** |
 
 ---
 
@@ -267,7 +267,7 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 
 **Lo que depende de este módulo**
 - **Permisos (módulo 10):** VAC-1 es la segunda fuente de ausencias justificadas; un solo evento por día; la incapacidad prevalece e interrumpe las vacaciones. AGUINALDO_COMPUTA lo administra este módulo. (Aplicado en la especificación de permisos v1.6.)
-- **RIT:** art. 36 con VAC_PROGRAMACION_MODO (aplicado en la v1.4; tres modos y párrafo de bloqueos y cupos en la v1.5; falta ajustar el párrafo nuevo, encargo 15).
+- **RIT:** art. 36 con VAC_PROGRAMACION_MODO (aplicado en la v1.4; tres modos y párrafo de bloqueos y cupos en la v1.5; redacción final del párrafo nuevo en la v1.6, 18/11/2026).
 - **Módulo 4:** saldos, proporcionales y prescritos (solo informativos); no duplicar el aguinaldo ya pagado.
 - **Módulo 6:** registro del pago del aguinaldo con CFDI.
 
@@ -369,9 +369,9 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 12. **Cumplido (v1.5).** (15/11) El documento del Comité de Integridad y Disciplina se redacta en Axia Compliance; el RIT solo conserva la remisión del art. 79 y COMITE_INTEGRANTES como catálogo interno.
 13. **Cumplido (v1.5); ver el 15.** (17/11, encargo del usuario desde vacaciones) **Art. 36**: primer párrafo condicionado a los tres valores de VAC_PROGRAMACION_MODO (Calendario anual, texto vigente; Periodos de solicitud por antigüedad; A solicitud) y párrafo nuevo para todos los modos sobre días bloqueados y cupos, con la redacción propuesta en la sección 4 del «Corte - Módulo de vacaciones y aguinaldo». Conservar el disfrute continuo del periodo mínimo, la distribución del resto, la prohibición de compensar con dinero y la remisión al art. 30. Cambiar el modo con el RIT depositado exige nuevo depósito.
 14. **Cumplido (v1.5).** (17/11, del módulo 5) Especificación 2.6: el comunicado de horarios ajustados por reducción legal es MOD-2 «Ajuste legal de jornada» del módulo 5; el anexo de horarios lee la jornada de cada persona solo para el resumen.
-15. (18/11, de vacaciones) Art. 36, párrafo nuevo: la v1.5 dice «sin mover las ya autorizadas sin su conformidad». Sustituir por la redacción final del «Corte - Módulo de vacaciones y aguinaldo» (sección 4): «Esas medidas no modifican, sin la conformidad de la persona trabajadora, las vacaciones que haya solicitado o que se le hayan autorizado antes de que la Empresa las dé a conocer.» (prevalece lo que se registra primero). Si el RIT pregunta VAC_PROGRAMACION_MODO en su pantalla, debe leer y escribir el mismo campo que el módulo de vacaciones.
-16. (18/11, del paquete) DIAS_EN_CASA_EMPRESA ya no puede derivarse de TELE_APTO (eliminada el 13/11): definir su origen.
-17. (18/11, del paquete) Anexo de horarios: contemplar el descanso rotativo (DIAS_TRABAJO_SEMANA, sin días fijos) y no imprimir «Rotativa» como tipo de jornada; ya no existe PUEDE_SALIR.
+15. **Cumplido (v1.6, 18/11).** (18/11, de vacaciones) Art. 36, párrafo nuevo: la v1.5 dice «sin mover las ya autorizadas sin su conformidad». Sustituir por la redacción final del «Corte - Módulo de vacaciones y aguinaldo» (sección 4): «Esas medidas no modifican, sin la conformidad de la persona trabajadora, las vacaciones que haya solicitado o que se le hayan autorizado antes de que la Empresa las dé a conocer.» (prevalece lo que se registra primero). Si el RIT pregunta VAC_PROGRAMACION_MODO en su pantalla, debe leer y escribir el mismo campo que el módulo de vacaciones.
+16. **Cumplido (v1.6, 18/11).** (18/11, del paquete) DIAS_EN_CASA_EMPRESA ya no puede derivarse de TELE_APTO (eliminada el 13/11): definir su origen. Resuelto por el usuario: pregunta de la empresa, sin valor por omisión, con alerta si un alta tiene DIAS_EN_CASA_ACTIVO = Sí y la empresa dice No (registro 4.4).
+17. **Cumplido (v1.6, 18/11).** (18/11, del paquete) Anexo de horarios: contemplar el descanso rotativo (DIAS_TRABAJO_SEMANA, sin días fijos) y no imprimir «Rotativa» como tipo de jornada; ya no existe PUEDE_SALIR.
 
 **Paquete de contratación**
 - Cumplidos según el corte del 17/11/2026: encargos 1, 2 y 5 (17/11), y 3 y 4 (13/11, en las fuentes de trabajo; la versión para programación se regenera cuando el usuario lo pida).
@@ -485,7 +485,7 @@ Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entr
 ## Orden sugerido de trabajo (18/11/2026)
 
 1. Correr en el software los módulos 5, 6 y 8, la especificación v1.2 de vacaciones, la v1.8 de permisos y la v1.4 de firma electrónica.
-2. RIT: encargos 15 a 17 y tercer corrido (especificación v1.5).
+2. RIT: tercer corrido (especificación v1.6).
 3. Paquete de contratación: encargos 6 y 7 y regenerar la versión para programación con los cambios del 17/11.
 4. Módulo 9, análisis de jornada (conversación por abrir).
 5. Cerebro: diccionario único de variables y tabla única de parámetros legales.
