@@ -480,11 +480,11 @@ Tomadas también el 26/10/2026:
 
 Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entran a Axia RH, porque el candado de la terminación las exige y el SIRCE las reporta.
 
-## Orden sugerido de trabajo (17/11/2026)
+## Orden sugerido de trabajo (18/11/2026)
 
-1. Correr en el software los módulos 5, 6 y 8 y la especificación v1.1 de vacaciones.
-2. RIT: nuevo art. 36 (encargo 13) y tercer corrido.
-3. Paquete de contratación: corrido en el software y pasada única con el corte del 13/11 y la cláusula 1.4.
+1. Correr en el software los módulos 5, 6 y 8, la especificación v1.2 de vacaciones, la v1.8 de permisos y la v1.4 de firma electrónica.
+2. RIT: encargos 15 a 17 y tercer corrido (especificación v1.5).
+3. Paquete de contratación: encargos 6 y 7 y regenerar la versión para programación con los cambios del 17/11.
 4. Módulo 9, análisis de jornada (conversación por abrir).
 5. Cerebro: diccionario único de variables y tabla única de parámetros legales.
 6. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).
