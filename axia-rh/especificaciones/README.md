@@ -9,7 +9,7 @@ Copia de la versión vigente de cada especificación. La fuente es el documento 
 | `modulo-4-terminacion.md` | 4. Terminación y finiquito | — | — | Pendiente de copiar |
 | `modulo-5-modificaciones.md` | 5. Modificación de condiciones | 1.0 | 15/11/2026 | Copiada el 18/11/2026 |
 | `modulos-6-y-8-pagos-fonacot.md` | 6. Validación de pagos y 8. Fonacot | 1.0 | 15/11/2026 | Copiada el 18/11/2026 |
-| `permisos-y-licencias.md` | 10. Permisos y licencias | — | — | Pendiente de copiar |
+| `permisos-y-licencias.md` | 10. Permisos y licencias | 1.8 | 17/11/2026 | Copiada el 18/11/2026 (incluye los textos, sección 17) |
 | `vacaciones-y-aguinaldo.md` | 11. Vacaciones y aguinaldo | 1.2 | 17/11/2026 | Copiada el 18/11/2026. Los textos (VAC-1 a VAC-3, N-1 a N-6) están en el documento de textos, sexta versión, todavía no copiado |
 
 El paquete de contratación (módulo 1) se copiará cuando su conversación genere la nueva versión para programación.
