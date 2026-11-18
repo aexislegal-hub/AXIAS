@@ -1,6 +1,6 @@
 # Axia RH — Mapa del PMV
 
-Actualizado: 17 de noviembre de 2026, después de los cortes del módulo 5 (15/11), de los módulos 6 y 8 (15/11) y de vacaciones y aguinaldo (16/11) · Coordinación: «Cerebro»
+Actualizado: 18 de noviembre de 2026, después de los cortes de firma electrónica (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
 
 Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
 
@@ -30,8 +30,8 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 
 | Módulo | Documentos redactados | Faltan | Situación |
 |---|---|---|---|
-| 1. Kit de contratación | Paquete completo (contrato A-D, módulos, kit integrado) | Pasada única con el corte del 13/11 (cláusula 22, Arial, carátula, FR-1); adenda de confidencialidad y asignación de correo; 12 variables | Versión para programación en corrido en el software (15/11/2026); **no cerrado** |
-| 2. RIT y su comisión | RIT (rev. 1375), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador), acta de la CMRIT (rev. 36); especificación v1.4 | Tercer corrido en el software; confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
+| 1. Kit de contratación | Paquete completo (contrato A-D rev. 501, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Regenerar la versión para programación con los cambios del 17/11; encargos 6 y 7; módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; variables sin estructura | Versión para programación del 15/11/2026 en corrido; **no cerrado** |
+| 2. RIT y su comisión | RIT (rev. 1377), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 33), acta de la CMRIT (rev. 36); especificación v1.5 | Tercer corrido en el software; encargos 15 a 17; confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
 | 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; encargos de la decisión 19 y de vacaciones | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
@@ -39,12 +39,14 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | 6. Validación de pagos | Obligaciones de pago con evidencia cotejada (CFDI o dispersión); especificación v1.0 | Correr en el software; verificaciones del SAT | Diseño terminado (15/11/2026); **no cerrado** |
 | 8. Fonacot | Afiliación, cédula mensual, incidencias, retención en el finiquito, FON-1; especificación v1.0 (con el módulo 6) | Calendario de cédulas y fecha de entero | Diseño terminado (15/11/2026); **no cerrado** |
 | 9. Análisis de jornada | — | Todo | **Sin conversación** |
-| 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.6 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | Diseño terminado (12/11/2026); especificación lista; **no cerrado** |
-| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.1 | Nuevo art. 36 del RIT; verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (16/11/2026); **no cerrado** |
+| 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.8 con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | Diseño terminado (12/11/2026); especificación lista; **no cerrado** |
+| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.2 y textos (sexta versión) | Ajuste del párrafo nuevo del art. 36 (encargo 15 del RIT); verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (17/11/2026); **no cerrado** |
 
 ---
 
 ## Módulo 1. Kit de contratación
+
+**Actualización 18/11/2026:** contrato rev. 501 y biblioteca rev. 91; adenda de confidencialidad y asignación de correo redactadas; encargos 1 a 5 aplicados (13 y 17/11). La versión para programación del 15/11 no incluye los cambios del 17/11 y se regenera cuando el usuario lo pida. Decisiones en el registro, 4.1 y 4.3 bis.
 
 **Actualización 31/10/2026:** el paquete de contratación está cerrado por el usuario (contrato rev. 473, biblioteca rev. 80, visor integrado v8) y tiene versión para programación. La tabla siguiente queda como historial; la fuente vigente es el registro de decisiones.
 
@@ -235,7 +237,7 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 
 ## Módulo 10. Permisos y licencias
 
-**Alta en el mapa (12/11/2026).** Es la pantalla de eventos que el registro ya reconocía (26/10/2026). Conversación propia, separada del RIT. Diseño: «AXIARH — Módulo de permisos y licencias (diseño)» (https://claude.ai/artifact/CzspqdB6hqBzpXk5r9UgKB). Especificación para programación: «AXIARH - Módulo de permisos y licencias - Especificación para programación», v1.4 del 12/11/2026, con lógica y textos, armonizada con el registro, el mapa y el RIT v1.1. Cadena de autorización y firma de la Empresa por RH designado: registro 4.9. Estado y decisiones: «Corte - Módulo de permisos y licencias».
+**Alta en el mapa (12/11/2026).** Es la pantalla de eventos que el registro ya reconocía (26/10/2026). Conversación propia, separada del RIT. Diseño: «AXIARH — Módulo de permisos y licencias (diseño)» (https://claude.ai/artifact/CzspqdB6hqBzpXk5r9UgKB). Especificación para programación: «AXIARH - Módulo de permisos y licencias - Especificación para programación», v1.8 del 17/11/2026, con lógica y textos. Cadena de autorización y firma de la Empresa por RH designado: registro 4.9. Estado y decisiones: «Corte - Módulo de permisos y licencias».
 
 | Documento o función | Estado | Prioridad |
 |---|---|---|
@@ -247,12 +249,13 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 **Regla central:** el evento es la única fuente de ausencias para nómina, IMSS, PTU, vacaciones, finiquito y análisis de jornada.
 
 **Lo que depende de este módulo**
-- **RIT:** la conducta 60 del Anexo A y la regla de evidencia no entregada del art. 31.
+- **RIT:** la conducta 60 del catálogo de conductas y la regla de evidencia no entregada del art. 31.
 - **PTU:** días computables (registro 4.7), en lugar de los «eventos de incidencias» que el kit de PTU dejó como dependencia.
-- **Módulo 4:** situaciones protegidas (agrega B3), doble confirmación de la baja con B4 vigente y aviso de rescisión por SUS-2 vencido (fr. XIV Bis).
+- **Módulo 4:** situaciones protegidas como alerta crítica con doble confirmación (agrega B3 y SITUACION_PROTEGIDA_TIPO), doble confirmación de la baja con B4 vigente y aviso de rescisión por SUS-2 vencido (fr. XIV Bis).
 - **Módulo 9:** ausencias sin evento del checador y jornada reducida por lactancia.
+- **Módulo 5:** reubicación en D4 (MOD-5) en lugar de SUS-2 mientras dure; INCAPACIDAD_PARCIAL al cerrar C2.
 - **Firma electrónica:** SP-1, SUS-3 y el acuse de LIC-2 se apoyan en el «Corte - Firma electrónica». Resuelto: la especificación de firma electrónica admite al firmante de RH designado desde la v1.1.
-- **RIT:** la cadena de autorización incluye los permisos legales, sin opción de negarlos; el art. 30, el art. 16 y la tabla II deben armonizarse.
+- **RIT:** la cadena de autorización incluye los permisos legales, sin opción de negarlos. Resuelto en el RIT v1.3 (arts. 30 y 16 y tabla II).
 
 **Pendientes:** solo verificaciones legales (sección 7 del corte), que afectan parámetros y no la estructura.
 
@@ -260,11 +263,11 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 
 ## Módulo 11. Vacaciones y aguinaldo
 
-**Alta en el mapa (15/11/2026).** Pantalla de eventos con conversación propia. Especificación: «AXIARH - Módulo de vacaciones y aguinaldo - Especificación para programación», v1.0, con los textos aprobados. Decisiones: registro 4.10 y «Corte - Módulo de vacaciones y aguinaldo».
+**Alta en el mapa (15/11/2026).** Pantalla de eventos con conversación propia. Especificación: «AXIARH - Módulo de vacaciones y aguinaldo - Especificación para programación», v1.2 (17/11/2026), con los textos (sexta versión). Decisiones: registro 4.10 y «Corte - Módulo de vacaciones y aguinaldo».
 
 **Lo que depende de este módulo**
 - **Permisos (módulo 10):** VAC-1 es la segunda fuente de ausencias justificadas; un solo evento por día; la incapacidad prevalece e interrumpe las vacaciones. AGUINALDO_COMPUTA lo administra este módulo. (Aplicado en la especificación de permisos v1.6.)
-- **RIT:** art. 36 con VAC_PROGRAMACION_MODO (aplicado en la v1.4).
+- **RIT:** art. 36 con VAC_PROGRAMACION_MODO (aplicado en la v1.4; tres modos y párrafo de bloqueos y cupos en la v1.5; falta ajustar el párrafo nuevo, encargo 15).
 - **Módulo 4:** saldos, proporcionales y prescritos (solo informativos); no duplicar el aguinaldo ya pagado.
 - **Módulo 6:** registro del pago del aguinaldo con CFDI.
 
@@ -275,7 +278,7 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 | Hilo | Documentos que toca | Regla común |
 |---|---|---|
 | Perfil de puesto | Contrato, lineamientos, periodo de prueba, terminación, modificación, RIT, comisión de capacitación | Versionado; generado por IA con validación humana; el firmado no cambia; es la base de la evaluación y de la detección de necesidades de capacitación |
-| Comisión Mixta de Capacitación | Contrato (Cláusula Tercera, 3.3 a 3.6), formato F-2, terminación, DC-3, SIRCE | Su opinión (o la constancia de que se solicitó) es requisito de la terminación al vencer el periodo; el contrato no regula la opinión |
+| Comisión Mixta de Capacitación | Contrato (Cláusula Tercera, 3.1 a 3.4), formato F-2, terminación, DC-3, SIRCE | Su opinión (o la constancia de que se solicitó) es requisito de la terminación al vencer el periodo; el contrato no regula la opinión |
 | Comisiones mixtas (RIT, capacitación, PTU) | Las tres actas de integración | Misma estructura de instalación más bases; mismo criterio de designación y número de representantes (decisión 3) |
 | Temporalidad | Contratos de todo tipo, alertas, terminación, PTU (eventuales) | La causa de la temporalidad se captura siempre; las renovaciones se controlan |
 | Procedimiento disciplinario | RIT, Anexo A, formatos disciplinarios, aviso de rescisión, carta responsiva, módulo de permisos | Mismos formatos para sanción, para determinación de responsabilidad por daño y para la propuesta de rescisión; la conducta 60 nace de la alerta de patrón del módulo de permisos |
@@ -357,25 +360,23 @@ Hallazgos para el ingeniero, de mayor a menor riesgo.
 
 ---
 
-## Encargos vigentes (actualizado el 15/11/2026)
+## Encargos vigentes (actualizado el 18/11/2026)
 
 Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa el registro».
 
 **RIT y CMRIT**
 - Cumplidos según el corte del 15/11/2026: encargos 1 a 11 (incluidos el acta de la CMRIT con el criterio común, días computables, art. 30, art. 16 y tabla II, y firma de FR-1).
-12. (15/11) El documento del Comité de Integridad y Disciplina se redacta en Axia Compliance; el RIT solo conserva la remisión del art. 79 y COMITE_INTEGRANTES como catálogo interno.
-13. (17/11, encargo del usuario desde vacaciones) **Art. 36**: primer párrafo condicionado a los tres valores de VAC_PROGRAMACION_MODO (Calendario anual, texto vigente; Periodos de solicitud por antigüedad; A solicitud) y párrafo nuevo para todos los modos sobre días bloqueados y cupos, con la redacción propuesta en la sección 4 del «Corte - Módulo de vacaciones y aguinaldo». Conservar el disfrute continuo del periodo mínimo, la distribución del resto, la prohibición de compensar con dinero y la remisión al art. 30. Cambiar el modo con el RIT depositado exige nuevo depósito.
-14. (17/11, del módulo 5) Especificación 2.6: el comunicado de horarios ajustados por reducción legal es MOD-2 «Ajuste legal de jornada» del módulo 5; el anexo de horarios lee la jornada de cada persona solo para el resumen.
+12. **Cumplido (v1.5).** (15/11) El documento del Comité de Integridad y Disciplina se redacta en Axia Compliance; el RIT solo conserva la remisión del art. 79 y COMITE_INTEGRANTES como catálogo interno.
+13. **Cumplido (v1.5); ver el 15.** (17/11, encargo del usuario desde vacaciones) **Art. 36**: primer párrafo condicionado a los tres valores de VAC_PROGRAMACION_MODO (Calendario anual, texto vigente; Periodos de solicitud por antigüedad; A solicitud) y párrafo nuevo para todos los modos sobre días bloqueados y cupos, con la redacción propuesta en la sección 4 del «Corte - Módulo de vacaciones y aguinaldo». Conservar el disfrute continuo del periodo mínimo, la distribución del resto, la prohibición de compensar con dinero y la remisión al art. 30. Cambiar el modo con el RIT depositado exige nuevo depósito.
+14. **Cumplido (v1.5).** (17/11, del módulo 5) Especificación 2.6: el comunicado de horarios ajustados por reducción legal es MOD-2 «Ajuste legal de jornada» del módulo 5; el anexo de horarios lee la jornada de cada persona solo para el resumen.
+15. (18/11, de vacaciones) Art. 36, párrafo nuevo: la v1.5 dice «sin mover las ya autorizadas sin su conformidad». Sustituir por la redacción final del «Corte - Módulo de vacaciones y aguinaldo» (sección 4): «Esas medidas no modifican, sin la conformidad de la persona trabajadora, las vacaciones que haya solicitado o que se le hayan autorizado antes de que la Empresa las dé a conocer.» (prevalece lo que se registra primero). Si el RIT pregunta VAC_PROGRAMACION_MODO en su pantalla, debe leer y escribir el mismo campo que el módulo de vacaciones.
+16. (18/11, del paquete) DIAS_EN_CASA_EMPRESA ya no puede derivarse de TELE_APTO (eliminada el 13/11): definir su origen.
+17. (18/11, del paquete) Anexo de horarios: contemplar el descanso rotativo (DIAS_TRABAJO_SEMANA, sin días fijos) y no imprimir «Rotativa» como tipo de jornada; ya no existe PUEDE_SALIR.
 
 **Paquete de contratación**
-1. (12/11) Carta responsiva: valor de reposición por bien y autorización previa del descuento; remitir al art. 46 por su nombre o REF_ART_n, no por número (el RIT renumera).
-2. (12/11, ampliado) Aviso de privacidad para personas trabajadoras: expedientes disciplinarios y declaraciones manuscritas, resultado confirmado de las pruebas, confidencialidad de los exámenes, expediente clínico por 2 años, incapacidades (folio, ramo, fechas), constancias de detención, Declaración Especial de Ausencia y datos de la bitácora de firma (IP, dispositivo, correo, celular).
-3. (15/11) Aplicar a la cláusula 22 las instrucciones del apartado 9 del «Corte - Firma electrónica».
-4. (15/11) Aplicar en una sola pasada las decisiones del corte del 13/11 (Arial, carátula de 1 a 2 páginas, FR-1 en el paquete y RIT_ENTREGA condicionada) y regenerar la versión para programación solo cuando el usuario lo pida.
-
-**Paquete de contratación**
-6. (18/11, de firma electrónica) Aviso de privacidad (Anexo 4): agregar la finalidad y la casilla de consentimiento de la verificación de identidad con INE y video de aceptación, solo en la contratación y solo con IDV_SERVICIO = Sí, y los datos de la bitácora de firma.
-5. (17/11, del módulo 5) Cláusula 1.4, cierre: «ningún cambio disminuirá el salario» choca con la reducción por convenio (registro 4.12); limitarla a los mínimos legales y a lo devengado. La carátula imprime SALARIO_PERSONA.
+- Cumplidos según el corte del 17/11/2026: encargos 1, 2 y 5 (17/11), y 3 y 4 (13/11, en las fuentes de trabajo; la versión para programación se regenera cuando el usuario lo pida).
+6. (18/11, de firma electrónica) Aviso de privacidad (Anexo 4): agregar la finalidad y la casilla de consentimiento de la verificación de identidad con INE y video de aceptación, solo en la contratación y solo con IDV_SERVICIO = Sí, con el texto sugerido en el apartado 6 del «Corte - Firma electrónica». Los datos de la bitácora de firma ya están (inciso l).
+7. (18/11) Cláusula 22: cotejar el texto aplicado el 13/11 con el apartado 9 vigente del «Corte - Firma electrónica» (18/11), que agrega INE y video, el cambio de correo o teléfono con verificación presencial y FON-1 en la regla de firma autógrafa.
 
 **Comisión de capacitación:** (15/11/2026) sale de Axia RH y pasa al proyecto de Axia CYA, que hereda los encargos pendientes (criterio común de comisiones, corte pendiente desde el 26/10, SIRCE). Axia RH solo necesita que Axia CYA mantenga las variables F2_* que lee el módulo 4.
 
@@ -385,7 +386,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 3. (17/11, del módulo 5) Leer SALARIO_PERSONA y la versión de condiciones de cada persona.
 
 **Módulo 4 (terminación)**
-1. (15/11, decisión 19) Recibir SITUACION_PROTEGIDA del módulo de permisos como alerta crítica, sin bloqueo, con doble confirmación y registro de usuario, fecha y hora (BAJA_CONFIRMACION_PROTEGIDA, nueva, evento de baja); B4 con la misma mecánica (BAJA_CONFIRMACION_B4). Nunca se imprime.
+1. (15/11, decisión 19) Recibir SITUACION_PROTEGIDA del módulo de permisos como alerta crítica, sin bloqueo, con doble confirmación y registro de usuario, fecha y hora (BAJA_CONFIRMACION_PROTEGIDA, nueva, evento de baja); B4 con la misma mecánica (BAJA_CONFIRMACION_B4). Nunca se imprime. (17/11) El texto de la alerta usa SITUACION_PROTEGIDA_TIPO, que envía el módulo de permisos.
 2. (15/11) Adoptar la sección 11 de la especificación de vacaciones (saldos, proporcionales y prescritos solo informativos) y no duplicar el aguinaldo ya pagado en el año.
 3. (15/11) Sección 7.7, regla 2 del acta de devolución: actualizarla al art. 46 vigente del RIT (investigación por los arts. 80 y 81; descuento con reconocimiento en FD-5 o determinación en FD-3, conforme al art. 27).
 4. (15/11) Referencias al «Anexo A» del RIT como catálogo de conductas: decir «catálogo de conductas del RIT», sin letra.
@@ -396,24 +397,23 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 9. (17/11) Con FONACOT_AVISO_PERSONA = Sí y FONACOT_CREDITO = Sí, agregar FON-1 al paquete de baja (salvo fallecimiento).
 10. (17/11, de vacaciones) Al dar de baja, liberar el cupo de los bloques de vacaciones que se cancelan.
 11. (17/11, del módulo 5) Leer SALARIO_PERSONA y la versión de condiciones de la persona en el precálculo.
+12. (18/11, del paquete) Otras deducciones: los renglones automáticos de Infonavit y Fonacot pueden precargarse con INFONAVIT_DESCUENTO_VALOR y FONACOT_DESCUENTO_MONTO como sugerencia editable; en Fonacot rige además el encargo 7.
+13. (18/11, del paquete) Acta de devolución: DEV_BIENES puede precargar el valor de reposición por bien de la carta responsiva.
 
 **Módulo 10 (permisos y licencias)**
-1. (15/11, decisión 19) SITUACION_PROTEGIDA ya no bloquea la baja: el módulo 4 la muestra como alerta crítica con doble confirmación. Ajustar la sección 11 de la especificación.
-2. (15/11) AGUINALDO_COMPUTA: B3 ya está decidido (no computa, decisión del usuario en el módulo de vacaciones); quitar «pendiente de decisión».
-3. (15/11) Confirmar la lectura de SUSP_VACACIONES_GENERA que propone la especificación de vacaciones (3.1, paso 4).
-4. (15/11) La conducta 60 es del catálogo de conductas del RIT (ya no «Anexo A»).
-5. (17/11, del módulo 5) Registrar INCAPACIDAD_PARCIAL e INCAPACIDAD_PARCIAL_FECHA al cerrar C2 (situación protegida del módulo 5). Proponer si una reubicación aceptada en D4 (constancia MOD-5) evita SUS-2.
-6. (17/11, de vacaciones) Admitir el valor «Cupo completo» de NEGATIVA_CAUSA, que solo usa el módulo de vacaciones.
+- Cumplidos 1 a 6 (especificaciones v1.7 y v1.8, 17/11/2026).
 
 **Módulo 11 (vacaciones y aguinaldo)**
-1. (15/11) VAC_PROGRAMACION_MODO sin valor por omisión (regla general de pantalla del RIT), con una sola captura compartida con el RIT.
-2. (17/11, de los módulos 6 y 8) Al registrarse una baja con AGUINALDO_VALIDADO y sin pago, avisar al contador que la persona sale de la nómina anual; el módulo 6 cancela su obligación con motivo «Pago en finiquito».
-3. (17/11, del módulo 5) Leer SALARIO_PERSONA para la prima vacacional y el aguinaldo.
+- Cumplidos 1 a 3 (especificación v1.2, 17/11/2026).
 
-**Módulo 5 (modificación de condiciones):** sin encargos; TELE_AVISO_DIAS queda confirmada como variable de empresa (registro, sección 2).
+**Módulo 5 (modificación de condiciones)**
+1. (18/11, del módulo de permisos) MOD-5 por «Falta de documentos» aceptada: devolver al módulo de permisos D4_REUBICACION = Sí y D4_REUBICACION_FIN; quitar «verificar con el módulo de permisos» de la nota de MOD-5; agregar al texto de MOD-5, en esa causa, que la reasignación no modifica el plazo legal para regularizar la situación.
+2. (18/11, del paquete) SALARIO_PERSONA_LETRA con la fórmula «… pesos NN/100 M.N.», la misma de la carátula del contrato; si MOD-1 o MOD-2 usan otra, unificar.
+- TELE_AVISO_DIAS queda confirmada como variable de empresa (registro, sección 2).
 
 **Módulo 9 (análisis de jornada)**
 1. (17/11, del módulo 5) La jornada esperada se toma de la versión de condiciones de cada persona y de las constancias MOD-5 vigentes.
+2. (18/11, del paquete) El catálogo de jornadas ya no indica si la persona puede salir durante el descanso (PUEDE_SALIR eliminada); con descanso rotativo, DIAS_TRABAJO_SEMANA sin tabla de días y el art. 69 solo se valida con descanso fijo.
 
 **Firma electrónica**
 1. (12/11) Cumplido en la v1.2: firmante de RH designado.
@@ -421,6 +421,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 3. (17/11, del módulo 5) **Cumplido en la v1.4 (18/11/2026).** Tabla de la sección 11: MOD-5 «RH designado»; ACT-1 sin firma (registro digital); MOD-1 representante y MOD-2 y MOD-4 RH designado (ya previstos como convenios, comunicados y oficio de reasignación). FON-1: firma autógrafa de recibido.
 4. (18/11, decisión del usuario) **Cumplido en la v1.4 (18/11/2026).** La verificación con INE y video es solo para la contratación: quitarla del cambio de correo o teléfono (secciones 5.7 y 5.9, encabezado de cambios de la v1.3 y guion de cambio de medio); ese cambio se verifica de forma presencial. Generar la v1.4.
 5. (18/11) **Cumplido en la v1.4 (18/11/2026).** Aviso de privacidad: el encargo de agregar la finalidad y la casilla de consentimiento de la verificación con INE y video pasa al paquete de contratación (ver su encargo 6).
+6. (18/11, del paquete) Definir el sello visible de firma (FIRMA_SELLO_TRAB y FIRMA_SELLO_EMPRESA) y el texto «Pendiente de firma electrónica»; el párrafo de firma del final del contrato depende de FIRMA_MODALIDAD (sustituye lo dicho en el apartado 9 sobre ese párrafo). Si la especificación agrega datos a la bitácora, avisar para ampliar el inciso l) del aviso de privacidad.
 
 ## Encargos por conversación (historial del 26/10/2026)
 
@@ -465,7 +466,7 @@ Pegar en cada conversación después de que el usuario resuelva las decisiones a
 - **A — Tabla de conservación de documentos:** unificar plazos; el RIT ya fija variables para expedientes disciplinarios y clínicos y la comisión de capacitación tiene la suya.
 - **B — Parámetros legales globales** (UMA, ISR, subsidio, salarios mínimos, cuotas, exenciones, duraciones legales): una sola tabla versionada con monitor y aprobación (módulo 4, 5.3), compartida por PTU, vacaciones y aguinaldo, permisos y jornada.
 - **B — Registro electrónico de jornada:** el contrato obliga a usar el sistema que designe la Empresa, pero la app del colaborador es fase 2.
-- **B — Diccionario de variables único** al terminar los modelos; hay variables duplicadas con distinto nombre (SINDICATO en capacitación y PTU, CENTROS y TURNOS, N_REP y NUM_REP_TRAB, TIPO_PATRON y EMPRESA_TIPO_PERSONA). (12/11/2026) Además: PERSONA_JEFATURA es la jefatura inmediata y DIRECTOR_AREA (nueva) la dirección del área, ambas por puesto; JEFE_INMEDIATO se elimina; FIRMANTES_EMPRESA va en la configuración de la empresa; CENTRO_TRABAJO equivale a PERSONA_CENTRO del RIT; DIAS_EN_CASA_EMPRESA y DIAS_EN_CASA_ACTIVO son distintas.
+- **B — Diccionario de variables único** al terminar los modelos; hay variables duplicadas con distinto nombre (SINDICATO en capacitación y PTU, CENTROS y TURNOS, N_REP y NUM_REP_TRAB, TIPO_PATRON y EMPRESA_TIPO_PERSONA). (12/11/2026) Además: PERSONA_JEFATURA es la jefatura inmediata y DIRECTOR_AREA (nueva) la dirección del área, ambas por puesto; JEFE_INMEDIATO se elimina; FIRMANTES_EMPRESA va en la configuración de la empresa; CENTRO_TRABAJO equivale a PERSONA_CENTRO del RIT; DIAS_EN_CASA_EMPRESA y DIAS_EN_CASA_ACTIVO son distintas. (18/11/2026) Además: INCAPACIDAD_PARCIAL e INCAPACIDAD_PARCIAL_FECHA son del evento C2 del módulo de permisos; SITUACION_PROTEGIDA_TIPO, derivada; SALARIO_PERSONA sustituye a SALARIO (contrato) y a SALARIO_DIARIO como base de cálculo; PUEDE_SALIR y TELE_APTO, eliminadas; pendientes de registrar del paquete: HERRAMIENTAS_SUSPENDIDAS, REP_EFIRMA_RFC, REP_EFIRMA_VIGENCIA y FIRMA_ENLACE_DIAS.
 
 ## Decisiones de alcance
 

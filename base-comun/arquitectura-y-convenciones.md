@@ -1,6 +1,6 @@
 # Base común de la familia Axia
 
-Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 17 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
+Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 18 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
 
 Contiene la arquitectura del sistema (niveles de captura y atributos de puesto) y las convenciones de redacción que comparten todos los productos Axia. Un proyecto distinto de Axia RH que necesite una variable nueva de empresa, organigrama o alta la pide como encargo a Cerebro.
 
@@ -28,6 +28,8 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 
 (15/11/2026) Variables nuevas de empresa: ACTUALIZACION_ANUAL_MES (mes fijo de la actualización anual de datos, coincidente con la revisión de perfiles); afiliación a Fonacot (FONACOT_AFILIACION_ESTADO sin valor por omisión, FONACOT_NUM_CLIENTE, FONACOT_AFILIACION_FECHA, FONACOT_CONVENIO_ARCHIVO, FONACOT_CONVENIO_VERSION, FONACOT_RESPONSABLE, FONACOT_SOLICITUD_FECHA, FONACOT_NO_PROCEDENTE_MOTIVO, FONACOT_AFILIACION_ALERTA_DIAS 30, FONACOT_REINTENTO_MESES 12, FONACOT_AVISO_PERSONA Sí); pagos (PAGO_TOLERANCIA 1.00, PAGO_EVIDENCIA_DIAS 5, PAGO_ALERTAS_AGUINALDO 10 y 3 hábiles, PAGO_ALERTAS_PTU 15 y 5 hábiles, PAGO_CONSERVACION_ANIOS 5); vacaciones (VAC_ANIO_PROGRAMACION, VAC_PERIODOS_SOLICITUD, VAC_BLOQUEOS, VAC_CUPOS, VAC_NOTIFICACION_CANALES). Catálogo de centros: CENTRO_FONACOT (sin valor por omisión). Alta: FONACOT_CREDITO. TELE_AVISO_DIAS sigue siendo variable de empresa (la usan los módulos T y H del contrato y MOD-2; el RIT ya no la imprime). Tablas globales nuevas con la mecánica de aprobación de parámetros: FONACOT_PLAZOS, FONACOT_CALENDARIO y PAGO_CLAVES_SAT.
 
+(15 y 17/11/2026, paquete de contratación) Empresa: CORREO_AUDITORIA (No por omisión) y CORREO_RETENCION_MESES (24 por omisión; obligatoria con CORREO_AUDITORIA = Sí). Catálogo de jornadas: DESCANSO_SEMANAL Fijo o Rotativo; con Rotativo, DIAS_TRABAJO_SEMANA (1 a 6, por omisión 6) y DESCANSO_AVISO (Ninguna · Semana · Mes), sin tabla de días; JORNADA_TIPO calculada con los horarios (nunca «Rotativa»); HORAS_SEMANA calculada. Alta: SALARIO_PERSONA con precarga del puesto, PERFIL_MODALIDAD y ACTIVIDADES_PRINCIPALES (precarga del puesto), valor de reposición en EQUIPO_DESCRIPCION, INFONAVIT_DESCUENTO_TIPO, INFONAVIT_DESCUENTO_VALOR y FONACOT_DESCUENTO_MONTO (opcionales), contacto de emergencia en tres campos y TELE_DOMICILIO_IGUAL. Eliminadas: PUEDE_SALIR, TELE_APTO, SALARIO, SALARIO_LETRA y CENTAVOS.
+
 (17/11/2026, encargos de Axia NOMs) Atributo de puesto PUESTO_TIPO_NOM035 (Operativo / Supervisor / Profesional o técnico / Gerente) en el organigrama. Datos del nivel 3 capturados por la persona trabajadora y guardados en su expediente: TRAB_ESTADO_CIVIL, TRAB_ESCOLARIDAD y TRAB_EXPERIENCIA_LABORAL (precarga en la siguiente captura). El nombre del centro es CENTRO_NOMBRE, del catálogo único de centros (sustituye a CENTRO_TRABAJO_NOMBRE; CENTRO_TRABAJO y PERSONA_CENTRO se unifican en el diccionario).
 
 (17/11/2026, encargo de Axia NOMs) **Configuración propia por línea.** Cada línea Axia puede tener una configuración propia, por empresa y por centro, ligada a la empresa y a los centros de Axia RH, para los datos que solo usa esa línea (en Axia NOMs: responsables, perfil de seguridad y salud del centro y parámetros de cada NOM). No duplica datos de Axia RH: lo que use otra línea o se capture en el organigrama o el alta se sigue pidiendo por encargo.
@@ -47,8 +49,8 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 | (26/10/2026, aprobada; **modificada el 15/11/2026**) Salario | Salario base del puesto y, por persona, SALARIO_PERSONA (igual o mayor) | El puesto fija el salario base. Desde el 15/11/2026 (módulo 5, decisión del usuario) cada persona puede tener SALARIO_PERSONA, sin exigir motivo objetivo; solo se valida el salario mínimo de la zona. Una cifra menor que la vigente solo por convenio (MOD-1). Nómina, vacaciones, aguinaldo, PTU y finiquito leen el salario de la persona |
 | Nivel de acceso a la información | General / Calificado | Calificado activa el convenio de confidencialidad |
 | Jornada, horario, días laborables, descanso (fijo o rotativo) | — | Cláusula de jornada |
-| Tiempo de comida y si puede salir del centro | — | Variante de la cláusula de jornada |
-| Teletrabajo permitido | Sí / No | Muestra las casillas de días en casa |
+| Tiempo de comida | — | Cláusula de jornada. (17/11/2026, decisión del usuario) Ya no se pregunta si la persona puede salir del centro durante el descanso (PUEDE_SALIR eliminada) |
+| ~~Teletrabajo permitido~~ | — | (13/11/2026) Eliminado con TELE_APTO: las casillas de días en casa se muestran en el alta |
 | Propiedad intelectual | Sí / No | Cláusula de obras e invenciones |
 | Prestaciones extralegales (PRESTACIONES_EXTRA) | Las configuradas | Cláusula de prestaciones superiores si no está vacía |
 | Perfil de puesto | Clave, versión, fecha | Anexo del contrato; cada edición crea una versión nueva |
