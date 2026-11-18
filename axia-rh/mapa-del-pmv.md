@@ -31,7 +31,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | Módulo | Documentos redactados | Faltan | Situación |
 |---|---|---|---|
 | 1. Kit de contratación | Paquete completo (contrato A-D rev. 501, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Regenerar la versión para programación con los cambios del 17/11; encargos 6 y 7; módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; variables sin estructura | Versión para programación del 15/11/2026 en corrido; **no cerrado** |
-| 2. RIT y su comisión | RIT (rev. 1383), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 33), acta de la CMRIT (rev. 36); especificación v1.6 | Tercer corrido en el software (v1.6); confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
+| 2. RIT y su comisión | RIT (rev. 1383), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 33), acta de la CMRIT (rev. 36); especificación v1.6 | Encargo 18 (plazos del expediente en días naturales); tercer corrido en el software; confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
 | 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; encargos de la decisión 19 y de vacaciones | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
@@ -372,6 +372,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 15. **Cumplido (v1.6, 18/11).** (18/11, de vacaciones) Art. 36, párrafo nuevo: la v1.5 dice «sin mover las ya autorizadas sin su conformidad». Sustituir por la redacción final del «Corte - Módulo de vacaciones y aguinaldo» (sección 4): «Esas medidas no modifican, sin la conformidad de la persona trabajadora, las vacaciones que haya solicitado o que se le hayan autorizado antes de que la Empresa las dé a conocer.» (prevalece lo que se registra primero). Si el RIT pregunta VAC_PROGRAMACION_MODO en su pantalla, debe leer y escribir el mismo campo que el módulo de vacaciones.
 16. **Cumplido (v1.6, 18/11).** (18/11, del paquete) DIAS_EN_CASA_EMPRESA ya no puede derivarse de TELE_APTO (eliminada el 13/11): definir su origen. Resuelto por el usuario: pregunta de la empresa, sin valor por omisión, con alerta si un alta tiene DIAS_EN_CASA_ACTIVO = Sí y la empresa dice No (registro 4.4).
 17. **Cumplido (v1.6, 18/11).** (18/11, del paquete) Anexo de horarios: contemplar el descanso rotativo (DIAS_TRABAJO_SEMANA, sin días fijos) y no imprimir «Rotativa» como tipo de jornada; ya no existe PUEDE_SALIR.
+18. (18/11, decisión del usuario) **Plazos del expediente disciplinario en días naturales.** Cambiar de días hábiles a días naturales: arts. 80, fr. 4 (revisión de la falta leve), y 81, frs. 1, 2 y 4 (reporte de la jefatura, audiencia, notificación e inicio de la suspensión); conducta 43; FD-1 (audiencia), FD-2 (cierre), FD-4 (revisión); especificación 0 («Días hábiles del RIT») y 4.3. El art. 83 ya está en días naturales. La definición de días hábiles del art. 5 se conserva para los demás plazos del RIT (justificación de ausencias, aclaraciones, nómina, denuncias, permisos). Confirmar con el usuario si la duración de la suspensión (1 a 8 días) se sigue contando en días laborables del turno, porque no es un plazo.
 
 **Paquete de contratación**
 - Cumplidos según el corte del 17/11/2026: encargos 1, 2 y 5 (17/11), y 3 y 4 (13/11, en las fuentes de trabajo; la versión para programación se regenera cuando el usuario lo pida).
@@ -485,7 +486,7 @@ Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entr
 ## Orden sugerido de trabajo (18/11/2026)
 
 1. Correr en el software los módulos 5, 6 y 8, la especificación v1.2 de vacaciones, la v1.8 de permisos y la v1.4 de firma electrónica.
-2. RIT: tercer corrido (especificación v1.6).
+2. RIT: encargo 18 y tercer corrido (especificación v1.6 o la que resulte del encargo 18).
 3. Paquete de contratación: encargos 6 y 7 y regenerar la versión para programación con los cambios del 17/11.
 4. Módulo 9, análisis de jornada (conversación por abrir).
 5. Cerebro: diccionario único de variables y tabla única de parámetros legales.
