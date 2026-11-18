@@ -1,7 +1,16 @@
 # AXIA RH — MÓDULO 2: REGLAMENTO INTERIOR DE TRABAJO Y FORMATOS DISCIPLINARIOS
 
-Especificación para programación · Versión 1.6 · 18/11/2026
-Fuente: «Modelo maestro — Reglamento Interior de Trabajo» (pestaña principal, rev. 1383, y pestaña «Formatos», rev. 33), «Modelo maestro — Acta de integración de la CMRIT» (rev. 36), «AXIARH - Registro de decisiones» (actualizado al 02/11/2026), «Corte - RIT» y «Corte - Módulo de permisos y licencias» y «Corte - Firma electrónica» (12/11/2026), y encargos del mapa del 13/11/2026.
+Especificación para programación · Versión 1.7 · 18/11/2026
+Fuente: «Modelo maestro — Reglamento Interior de Trabajo» (pestaña principal, rev. 1388, y pestaña «Formatos», rev. 39), «Modelo maestro — Acta de integración de la CMRIT» (rev. 36), «AXIARH - Registro de decisiones» (actualizado al 02/11/2026), «Corte - RIT» y «Corte - Módulo de permisos y licencias» y «Corte - Firma electrónica» (12/11/2026), y encargos del mapa del 13/11/2026.
+
+## Cambios respecto de la versión 1.6 (encargo 18 del mapa, 18/11/2026)
+
+Si la 1.6 ya se cargó, aplicar solo estos cambios.
+
+| # | Sección | Cambio |
+| --- | --- | --- |
+| 1 | 0; 4.1; 4.3; 6.1, arts. 80 y 81 y conducta 43; 6.3; 6.5; 8.3 | **Plazos del expediente disciplinario en días naturales** (decisión del usuario): reporte de la jefatura (a más tardar al día siguiente), audiencia (1 a 5 días naturales después de FD-1), notificación de FD-3 (5 días naturales después de la audiencia), inicio de la suspensión (a más tardar 10 días naturales después de la notificación) y revisión de la falta leve (3 días naturales). El art. 83 ya estaba en días naturales. Los demás plazos del RIT siguen en días hábiles (art. 5) |
+| 2 | 4.3; 6.1, art. 81 | Reglas complementarias: si la audiencia o el inicio de la suspensión caen en día de descanso de la persona, pasan a su siguiente día laborable; si el plazo de revisión vence en su día de descanso, se extiende a su siguiente día laborable; la duración de la suspensión (1 a 8 días) se cuenta en días laborables del turno. El sistema propone las fechas y RH puede cambiarlas, con las validaciones de 4.3. Párrafo nuevo al final del art. 81 |
 
 ## Cambios respecto de la versión 1.5 (encargos del mapa del 18/11/2026)
 
@@ -109,7 +118,8 @@ Ni la 1.0 ni la 1.1 se cargaron al software; esta versión las sustituye complet
   - **S** = calculada o derivada por el sistema.
   - **X** = sistema, solo consultoría AEXIS (bloqueada para el cliente).
 - Fechas: formato largo («12 de noviembre de 2026»). Montos: MXN con dos decimales.
-- **Días hábiles del RIT:** el art. 5 los define como los días laborables del centro de trabajo de que se trate. Los plazos del expediente se cuentan con los días laborables del turno de la persona trabajadora (catálogo de jornadas), excluidos los días de descanso obligatorio. El conteo empieza el día hábil siguiente al evento. Es distinto del calendario del módulo 4.
+- **Días hábiles del RIT:** el art. 5 los define como los días laborables del centro de trabajo de que se trate. Se usan en los plazos que no son del expediente disciplinario (justificación de ausencias, aclaraciones, nómina, denuncias, permisos). El conteo empieza el día hábil siguiente al evento. Es distinto del calendario del módulo 4.
+- **Plazos del expediente disciplinario (arts. 80, 81 y 83):** en días naturales, contados desde el día siguiente al evento. Reglas: (a) si la audiencia o el inicio de la suspensión caen en un día de descanso de la persona según su turno, pasan a su siguiente día laborable; (b) si el plazo de revisión de una falta leve vence en un día de descanso de la persona, se extiende a su siguiente día laborable; (c) la duración de la suspensión (1 a 8 días) se cuenta en días laborables del turno. Los días de descanso obligatorio cuentan como días de descanso. El sistema propone las fechas con estas reglas; RH puede cambiarlas, sujeto a las validaciones de 4.3.
 - **Tipo de letra:** todos los documentos que genera el sistema, de este y de los demás módulos, se imprimen en Arial (12 puntos en el cuerpo; títulos en negrita, del mismo tamaño o un punto mayor). Incluye tablas y bloques de firma.
 - **Impresión:** el PDF se genera en el servidor (por ejemplo, Chromium sin interfaz con `displayHeaderFooter: false`), no con la función imprimir del navegador. Así no aparecen la fecha, el título de la página, la URL ni el número de página que agrega el navegador. Márgenes con `@page { size: letter; margin: 2.5cm 2cm; }`. Si el usuario imprime desde el navegador, la vista de impresión lleva `@page { margin: 0 }` y el margen se da con relleno del cuerpo, lo que suprime el encabezado y pie del navegador. Aplica a todos los módulos.
 - **Firma:** el RIT, el acta de la CMRIT (con su Anexo 1), las actas de sesión, FD-1 a FD-5 y FR-2 se firman siempre de forma autógrafa, sea cual sea `FIRMA_MODALIDAD`; el sistema genera el PDF para imprimir y la casilla «firmado» basta para avanzar (0.1). **FR-1 es la excepción:** sigue `FIRMA_MODALIDAD` de cada persona (3.3).
@@ -193,6 +203,7 @@ Orden de impresión: dictamen, Reglamento, firmas, Anexo A (centros de trabajo, 
 | Art. 34 | `ART_15` |
 | Art. 39 | `ART_69` |
 | Art. 63 y art. 65 | `ART_61` |
+| Art. 81, párrafo final | `ART_83` |
 | Art. 84 | `ART_81` |
 | Art. 85 | `ART_71` |
 | Art. 36 | `ART_30` |
@@ -306,7 +317,7 @@ Orden de impresión: dictamen, Reglamento, firmas, Anexo A (centros de trabajo, 
 
 | Tipo (`EXP_TIPO`) y nivel (`EXP_NIVEL`) | Formatos, en orden |
 | --- | --- |
-| Disciplinario, falta leve | FD-4. Revisión opcional ante el Comité dentro de 3 días hábiles |
+| Disciplinario, falta leve | FD-4. Revisión opcional ante el Comité dentro de 3 días naturales (regla b de 0) |
 | Disciplinario, falta grave o muy grave | FD-1 → FD-2 → FD-3 |
 | Daño o pérdida de bienes | FD-5. Si `FD5_RECONOCE` = No (o hay negativa a firmar): FD-1 → FD-2 → FD-3 con el bloque de daño |
 
@@ -327,14 +338,14 @@ Un expediente tiene un solo folio (`EXP_FOLIO`) para todos sus formatos.
 | Dato | Regla |
 | --- | --- |
 | `EXP_FECHA_CONOCIMIENTO_JEFATURA` | Obligatoria; no posterior a la fecha de captura |
-| `EXP_FECHA_AVISO_COMITE` | Obligatoria; igual o posterior a la anterior. Si pasa del día hábil siguiente a `EXP_FECHA_CONOCIMIENTO_JEFATURA`: alerta «Reporte tardío de la jefatura (conducta 43)» y botón «Abrir expediente a la jefatura», que crea un expediente nuevo con la conducta 43 precargada |
+| `EXP_FECHA_AVISO_COMITE` | Obligatoria; igual o posterior a la anterior. Si pasa del día siguiente a `EXP_FECHA_CONOCIMIENTO_JEFATURA`: alerta «Reporte tardío de la jefatura (conducta 43)» y botón «Abrir expediente a la jefatura», que crea un expediente nuevo con la conducta 43 precargada |
 | `EXP_FECHA_LIMITE_NOTIFICACION` | La menor entre (a) `EXP_FECHA_CONOCIMIENTO_JEFATURA` + 30 días naturales y (b) el mismo día del mes siguiente a `EXP_FECHA_CONOCIMIENTO_JEFATURA` (prescripción de un mes; si ese día no existe, el último día del mes). Se imprime en FD-3 |
 | Alertas del plazo | A 10, 5 y 2 días naturales del vencimiento. Vencido, FD-3 solo admite «Sin responsabilidad» y el expediente se cierra |
-| `FD1_FECHA_AUDIENCIA` | Entre 1 y 5 días hábiles después de `FD1_FECHA` |
+| `FD1_FECHA_AUDIENCIA` | Entre 1 y 5 días naturales después de `FD1_FECHA`; si cae en día de descanso de la persona, su siguiente día laborable (regla a). El sistema la propone; RH puede cambiarla dentro del plazo. Fuera de plazo: alerta y confirmación de RH |
 | Reprogramación | Una sola vez, con causa justificada acreditada; la nueva fecha debe respetar `EXP_FECHA_LIMITE_NOTIFICACION` |
-| `FD3_FECHA_NOTIFICACION` | Dentro de 5 días hábiles después de `FD2_FECHA` y ≤ `EXP_FECHA_LIMITE_NOTIFICACION`. Si no cabe, alerta crítica |
-| `FD3_SUSPENSION_INICIO` | A más tardar 10 días hábiles después de `FD3_FECHA_NOTIFICACION` |
-| Revisión de falta leve | Dentro de 3 días hábiles después de `FD4_FECHA` |
+| `FD3_FECHA_NOTIFICACION` | Dentro de 5 días naturales después de `FD2_FECHA` y ≤ `EXP_FECHA_LIMITE_NOTIFICACION`. Si no cabe, alerta crítica |
+| `FD3_SUSPENSION_INICIO` | A más tardar 10 días naturales después de `FD3_FECHA_NOTIFICACION`; si cae en día de descanso, el siguiente día laborable (regla a). `FD3_SUSPENSION_FIN` y `FD3_REINCORPORACION` se calculan contando los días de suspensión en días laborables del turno (regla c). Propuestas por el sistema, editables por RH |
+| Revisión de falta leve | Dentro de 3 días naturales después de `FD4_FECHA`; si vence en día de descanso de la persona, se extiende a su siguiente día laborable (regla b) |
 
 ### 4.4 Medidas que admite cada nivel (escala del catálogo de conductas)
 
@@ -815,14 +826,16 @@ Artículo 80. Ruta para faltas leves.
 1. La jefatura y/o Recursos Humanos conversa en privado con la persona trabajadora, le expone el hecho y escucha su versión.
 2. Registra en el formato de falta leve (FD-4) el hecho, la versión de la persona y lo acordado.
 3. Si procede, aplica una amonestación verbal registrada o una amonestación escrita. La persona firma de enterada; si se niega, lo hacen constar dos testigos.
-4. La persona afectada puede pedir al Comité, dentro de los 3 días hábiles siguientes, que revise la medida.
+4. La persona afectada puede pedir al Comité, dentro de los 3 días naturales siguientes, que revise la medida. Si el plazo vence en un día de descanso de la persona, se extiende a su siguiente día laborable.
 
 Artículo 81. Ruta para faltas graves y muy graves.
 
-1. Reporte. La jefatura inmediata, o quien conozca los hechos, los reporta de inmediato a Recursos Humanos y al Comité, a más tardar el día hábil siguiente, con la evidencia disponible. El reporte tardío de la jefatura es una falta conforme al Anexo C.
-2. Aviso de hechos. Recursos Humanos entrega a la persona trabajadora el aviso de hechos (formato FD-1), con los hechos, las conductas del Anexo C que podrían actualizarse, la fecha de la audiencia (entre 1 y 5 días hábiles después) y su derecho a presentar pruebas y testigos y a acompañarse de una persona trabajadora de su confianza.
+1. Reporte. La jefatura inmediata, o quien conozca los hechos, los reporta de inmediato a Recursos Humanos y al Comité, a más tardar al día siguiente de conocerlos, con la evidencia disponible. El reporte tardío de la jefatura es una falta conforme al Anexo C.
+2. Aviso de hechos. Recursos Humanos entrega a la persona trabajadora el aviso de hechos (formato FD-1), con los hechos, las conductas del Anexo C que podrían actualizarse, la fecha de la audiencia (entre 1 y 5 días naturales después de la entrega del aviso) y su derecho a presentar pruebas y testigos y a acompañarse de una persona trabajadora de su confianza.
 3. Audiencia. El Comité escucha a la persona, recibe sus pruebas y levanta el acta de audiencia (formato FD-2), que firman los asistentes. Si la persona se niega a firmar, lo hacen constar dos testigos. Si no asiste sin causa justificada, habiendo recibido el aviso, el Comité resuelve con lo que obre en el expediente.
-4. Resolución. El Comité resuelve por escrito, en el formato FD-3, indicando hechos, pruebas, conducta, medida y razones, y la notifica dentro de los 5 días hábiles siguientes a la audiencia. Si impone una suspensión, señala las fechas, que iniciarán a más tardar 10 días hábiles después de la notificación.
+4. Resolución. El Comité resuelve por escrito, en el formato FD-3, indicando hechos, pruebas, conducta, medida y razones, y la notifica dentro de los 5 días naturales siguientes a la audiencia. Si impone una suspensión, señala su duración, que se cuenta en días laborables del turno de la persona, y la suspensión inicia a más tardar 10 días naturales después de la notificación.
+
+Recursos Humanos fija la fecha de la audiencia y las del inicio y el término de la suspensión dentro de los plazos de este artículo y del artículo 83. Si la audiencia o el inicio de la suspensión caen en un día de descanso de la persona trabajadora, se trasladan a su siguiente día laborable.
 
 Artículo 82. Medidas provisionales. Cuando sea necesario para proteger a personas o pruebas, durante el procedimiento la Empresa puede reasignar temporalmente a la persona trabajadora de área, turno o funciones, o separarla del centro de trabajo con goce de salario. Ninguna medida provisional es sin goce de salario.
 
@@ -946,7 +959,7 @@ Faltas graves
 | 40 | Omitir la declaración de un conflicto de interés |
 | 41 | Dar, recibir u ofrecer regalos o atenciones contrarios a la política |
 | 42 | Presentar una denuncia falsa a sabiendas |
-| 43 | Siendo jefatura, no reportar a Recursos Humanos y al Comité una falta grave o muy grave de inmediato, a más tardar el día hábil siguiente a conocerla |
+| 43 | Siendo jefatura, no reportar a Recursos Humanos y al Comité una falta grave o muy grave de inmediato, a más tardar al día siguiente de conocerla |
 
 Faltas muy graves
 
@@ -1053,7 +1066,7 @@ Las pruebas no admitidas se registran con la razón de su rechazo.
 Inasistencia. La persona trabajadora no se presentó, habiendo recibido el aviso de hechos el {{FD1_FECHA}}, y no comunicó ni acreditó una causa justificada hasta la hora señalada. El Comité resolverá con lo que obre en el expediente.
 [FIN SI]
 
-Cierre. El Comité resolverá y notificará su resolución dentro de los 5 días hábiles siguientes. Leída el acta, la firman quienes intervinieron. La persona trabajadora recibe copia.
+Cierre. El Comité resolverá y notificará su resolución dentro de los 5 días naturales siguientes. Leída el acta, la firman quienes intervinieron. La persona trabajadora recibe copia.
 
 | Intervino como           | Nombre                          | Firma |
 | Integrante del Comité    | {{COMITE_INTEGRANTE_NOMBRE}}    |       |
@@ -1144,7 +1157,7 @@ FD-4. REGISTRO DE FALTA LEVE
 
 5. Medida. {{FD4_MEDIDA}}.
 
-6. Revisión. La persona trabajadora puede pedir al Comité de Integridad y Disciplina que revise esta medida dentro de los 3 días hábiles siguientes, por la Plataforma o por escrito ante Recursos Humanos.
+6. Revisión. La persona trabajadora puede pedir al Comité de Integridad y Disciplina que revise esta medida dentro de los 3 días naturales siguientes (si el último es su día de descanso, hasta su siguiente día laborable), por la Plataforma o por escrito ante Recursos Humanos.
 
 | Firma                 | Nombre                  |
 | Jefatura inmediata    | {{PERSONA_JEFATURA}}    |
@@ -1488,12 +1501,12 @@ Son ajustes de impresión, no de contenido. El maestro conserva su redacción.
 | EXP_TENTATIVA (nueva) | V | Sí/No | No por omisión; Sí baja un nivel | EXP_NIVEL |
 | EXP_FECHA_HECHOS, EXP_HORA_HECHOS, EXP_LUGAR_HECHOS, EXP_HECHOS, EXP_REPORTA | V | Fecha, hora, texto | Obligatorios | FD-1, FD-4 |
 | EXP_FECHA_CONOCIMIENTO_JEFATURA | V | Fecha | No posterior a la captura | FD-1, FD-3; base de la fecha límite |
-| EXP_FECHA_AVISO_COMITE | V | Fecha | ≥ EXP_FECHA_CONOCIMIENTO_JEFATURA; alerta si pasa del día hábil siguiente | FD-1, FD-3; alerta de conducta 43 |
+| EXP_FECHA_AVISO_COMITE | V | Fecha | ≥ EXP_FECHA_CONOCIMIENTO_JEFATURA; alerta si pasa del día siguiente | FD-1, FD-3; alerta de conducta 43 |
 | EXP_FECHA_LIMITE_NOTIFICACION | S | Fecha | Regla de 4.3 | FD-3; alertas y cierre |
 | EXP_EVIDENCIA_LISTA, EXP_LUGAR_CONSULTA | V | Lista / texto | Alerta si no hay evidencia | FD-1 |
 | EXP_POSIBLE_RESCISION | S/V | Sí/No | Sí en automático si alguna conducta está en la tabla de la sección 9; editable | Párrafo de FD-1 |
 | EXP_MEDIDA_PROVISIONAL, _DESCRIPCION, EXP_MEDIDA_INICIO, EXP_MEDIDA_FIN | V | Sí/No, texto, fechas | Siempre con goce de salario | FD-1, punto 6 |
-| FD1_FECHA, FD1_FECHA_AUDIENCIA, FD1_HORA_AUDIENCIA, FD1_LUGAR_AUDIENCIA | V | Fecha, hora, texto | Audiencia entre 1 y 5 días hábiles después de FD1_FECHA | FD-1 |
+| FD1_FECHA, FD1_FECHA_AUDIENCIA, FD1_HORA_AUDIENCIA, FD1_LUGAR_AUDIENCIA | V | Fecha, hora, texto | Audiencia entre 1 y 5 días naturales después de FD1_FECHA (reglas de 0 y 4.3) | FD-1 |
 | FD1_NEGATIVA / FD1_FECHA_ENVIO (y sus equivalentes FD2_, FD3_, FD4_, FD5_, FR1_) | V | Sí/No / fecha | Con Sí: dos testigos obligatorios | Bloques de negativa |
 | FD2_LUGAR, FD2_FECHA, FD2_HORA_INICIO, FD2_HORA_CIERRE, FD2_ACOMPANANTE | V | Texto, fecha, hora | — | FD-2 |
 | FD2_INASISTENCIA | V | Sí/No | — | Variante de FD-2 |
@@ -1504,7 +1517,7 @@ Son ajustes de impresión, no de contenido. El maestro conserva su redacción.
 | FD3_FECHA, FD3_HECHOS_ACREDITADOS, FD3_VALORACION, FD3_CONDUCTA_CATALOGO, FD3_NIVEL, FD3_CIRCUNSTANCIAS | V | Fecha, texto, selección | FD3_FECHA ≤ EXP_FECHA_LIMITE_NOTIFICACION | FD-3 |
 | FD3_REINCIDENCIA, FD3_ANTECEDENTE_FOLIO, FD3_ANTECEDENTE_FECHA | S | Derivadas del historial | Regla de 4.4 | FD-3; medidas admitidas |
 | FD3_RESULTADO | V | Opción | Solo las de la tabla de 4.4 | FD-3, punto 5 |
-| FD3_DIAS_SUSPENSION, FD3_SUSPENSION_INICIO, FD3_SUSPENSION_FIN, FD3_REINCORPORACION | V/S | Número, fechas | Días según 4.4; inicio ≤ 10 días hábiles después de la notificación; fin y reincorporación calculados con los días laborables del turno | FD-3 |
+| FD3_DIAS_SUSPENSION, FD3_SUSPENSION_INICIO, FD3_SUSPENSION_FIN, FD3_REINCORPORACION | V/S | Número, fechas | Días según 4.4, en días laborables del turno; inicio ≤ 10 días naturales después de la notificación (reglas de 0 y 4.3); fin y reincorporación calculados con los días laborables del turno | FD-3 |
 | FD3_NEGLIGENCIA | V | Sí/No | Solo con EXP_TIPO = Daño | Bloque de daño de FD-3 |
 | FD3_FECHA_NOTIFICACION | V | Fecha | ≤ EXP_FECHA_LIMITE_NOTIFICACION | FD-3; inicio del cómputo de reincidencia |
 | FD4_FECHA, FD4_ACUERDO, FD4_MEDIDA | V | Fecha, texto, opción | Solo medidas leves sin reincidencia | FD-4 |
