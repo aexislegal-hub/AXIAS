@@ -251,7 +251,7 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 - **PTU:** días computables (registro 4.7), en lugar de los «eventos de incidencias» que el kit de PTU dejó como dependencia.
 - **Módulo 4:** situaciones protegidas (agrega B3), doble confirmación de la baja con B4 vigente y aviso de rescisión por SUS-2 vencido (fr. XIV Bis).
 - **Módulo 9:** ausencias sin evento del checador y jornada reducida por lactancia.
-- **Firma electrónica:** SP-1, SUS-3 y el acuse de LIC-2 se apoyan en el «Corte - Firma electrónica». Falta que su especificación admita como firmante a la persona de RH designada (FIRMANTES_EMPRESA).
+- **Firma electrónica:** SP-1, SUS-3 y el acuse de LIC-2 se apoyan en el «Corte - Firma electrónica». Resuelto: la especificación de firma electrónica admite al firmante de RH designado desde la v1.1.
 - **RIT:** la cadena de autorización incluye los permisos legales, sin opción de negarlos; el art. 30, el art. 16 y la tabla II deben armonizarse.
 
 **Pendientes:** solo verificaciones legales (sección 7 del corte), que afectan parámetros y no la estructura.
@@ -417,10 +417,10 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Firma electrónica**
 1. (12/11) Cumplido en la v1.2: firmante de RH designado.
-2. (13/11) Agregar a la lista de firma autógrafa obligatoria el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5 y FR-2; confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos.
-4. (18/11, decisión del usuario) La verificación con INE y video es solo para la contratación: quitarla del cambio de correo o teléfono (secciones 5.7 y 5.9, encabezado de cambios de la v1.3 y guion de cambio de medio); ese cambio se verifica de forma presencial. Generar la v1.4.
-5. (18/11) Aviso de privacidad: el encargo de agregar la finalidad y la casilla de consentimiento de la verificación con INE y video pasa al paquete de contratación (ver su encargo 6).
-3. (17/11, del módulo 5) Tabla de la sección 11: MOD-5 «RH designado»; ACT-1 sin firma (registro digital); MOD-1 representante y MOD-2 y MOD-4 RH designado (ya previstos como convenios, comunicados y oficio de reasignación). FON-1: firma autógrafa de recibido.
+2. (13/11) **Cumplido en la v1.4 (18/11/2026).** Agregar a la lista de firma autógrafa obligatoria el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5 y FR-2; confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos.
+3. (17/11, del módulo 5) **Cumplido en la v1.4 (18/11/2026).** Tabla de la sección 11: MOD-5 «RH designado»; ACT-1 sin firma (registro digital); MOD-1 representante y MOD-2 y MOD-4 RH designado (ya previstos como convenios, comunicados y oficio de reasignación). FON-1: firma autógrafa de recibido.
+4. (18/11, decisión del usuario) **Cumplido en la v1.4 (18/11/2026).** La verificación con INE y video es solo para la contratación: quitarla del cambio de correo o teléfono (secciones 5.7 y 5.9, encabezado de cambios de la v1.3 y guion de cambio de medio); ese cambio se verifica de forma presencial. Generar la v1.4.
+5. (18/11) **Cumplido en la v1.4 (18/11/2026).** Aviso de privacidad: el encargo de agregar la finalidad y la casilla de consentimiento de la verificación con INE y video pasa al paquete de contratación (ver su encargo 6).
 
 ## Encargos por conversación (historial del 26/10/2026)
 
