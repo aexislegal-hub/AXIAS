@@ -374,6 +374,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 4. (15/11) Aplicar en una sola pasada las decisiones del corte del 13/11 (Arial, carátula de 1 a 2 páginas, FR-1 en el paquete y RIT_ENTREGA condicionada) y regenerar la versión para programación solo cuando el usuario lo pida.
 
 **Paquete de contratación**
+6. (18/11, de firma electrónica) Aviso de privacidad (Anexo 4): agregar la finalidad y la casilla de consentimiento de la verificación de identidad con INE y video de aceptación, solo en la contratación y solo con IDV_SERVICIO = Sí, y los datos de la bitácora de firma.
 5. (17/11, del módulo 5) Cláusula 1.4, cierre: «ningún cambio disminuirá el salario» choca con la reducción por convenio (registro 4.12); limitarla a los mínimos legales y a lo devengado. La carátula imprime SALARIO_PERSONA.
 
 **Comisión de capacitación:** (15/11/2026) sale de Axia RH y pasa al proyecto de Axia CYA, que hereda los encargos pendientes (criterio común de comisiones, corte pendiente desde el 26/10, SIRCE). Axia RH solo necesita que Axia CYA mantenga las variables F2_* que lee el módulo 4.
@@ -417,6 +418,8 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 **Firma electrónica**
 1. (12/11) Cumplido en la v1.2: firmante de RH designado.
 2. (13/11) Agregar a la lista de firma autógrafa obligatoria el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5 y FR-2; confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos.
+4. (18/11, decisión del usuario) La verificación con INE y video es solo para la contratación: quitarla del cambio de correo o teléfono (secciones 5.7 y 5.9, encabezado de cambios de la v1.3 y guion de cambio de medio); ese cambio se verifica de forma presencial. Generar la v1.4.
+5. (18/11) Aviso de privacidad: el encargo de agregar la finalidad y la casilla de consentimiento de la verificación con INE y video pasa al paquete de contratación (ver su encargo 6).
 3. (17/11, del módulo 5) Tabla de la sección 11: MOD-5 «RH designado»; ACT-1 sin firma (registro digital); MOD-1 representante y MOD-2 y MOD-4 RH designado (ya previstos como convenios, comunicados y oficio de reasignación). FON-1: firma autógrafa de recibido.
 
 ## Encargos por conversación (historial del 26/10/2026)

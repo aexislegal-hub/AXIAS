@@ -4,7 +4,7 @@ Copia de la versión vigente de cada especificación. La fuente es el documento 
 
 | Archivo | Módulo | Versión | Fecha | Estado |
 |---|---|---|---|---|
-| `firma-electronica.md` | Firma electrónica (toda la familia Axia) | 1.3 | 16/11/2026 | Copiada el 18/11/2026 |
+| `firma-electronica.md` | Firma electrónica (toda la familia Axia) | 1.3 | 16/11/2026 | Copiada el 18/11/2026. **Cambio pendiente (18/11):** la verificación con INE y video es solo para la contratación, no para el cambio de correo o teléfono; se aplicará en la v1.4 |
 | `rit.md` | 2. RIT, formatos y acta de la CMRIT | — | — | Pendiente de copiar |
 | `modulo-4-terminacion.md` | 4. Terminación y finiquito | — | — | Pendiente de copiar |
 | `modulo-5-modificaciones.md` | 5. Modificación de condiciones | — | — | Pendiente de copiar |
