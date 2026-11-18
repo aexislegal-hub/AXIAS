@@ -6,7 +6,7 @@ Copia de la versión vigente de cada especificación. La fuente es el documento 
 |---|---|---|---|---|
 | `firma-electronica.md` | Firma electrónica (toda la familia Axia) | 1.4 | 18/11/2026 | Copiada el 18/11/2026 (sustituye a la v1.3) |
 | `rit.md` | 2. RIT, formatos y acta de la CMRIT | — | — | Pendiente de copiar |
-| `modulo-4-terminacion.md` | 4. Terminación y finiquito | — | — | Pendiente de copiar |
+| `modulo-4-terminacion.md` | 4. Terminación y finiquito | 1.5 | 17/11/2026 | Copiada el 18/11/2026 (la 1.4 está cargada en el software; la 1.5 trae su tabla de cambios) |
 | `modulo-5-modificaciones.md` | 5. Modificación de condiciones | 1.0 | 15/11/2026 | Copiada el 18/11/2026 |
 | `modulos-6-y-8-pagos-fonacot.md` | 6. Validación de pagos y 8. Fonacot | 1.0 | 15/11/2026 | Copiada el 18/11/2026 |
 | `permisos-y-licencias.md` | 10. Permisos y licencias | 1.8 | 17/11/2026 | Copiada el 18/11/2026 (incluye los textos, sección 17) |
