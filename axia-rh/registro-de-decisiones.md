@@ -25,7 +25,7 @@ Este documento es la base de todas las conversaciones del proyecto. Reúne el ca
 | Documento de designación del sistema de registro de jornada | Contratación | Siempre | Existe como sección B del Anexo 3 del contrato; falta unificarlo con el kit |
 | Oficio de asignación REPSE | Operación | Cada asignación de un trabajador REPSE a un cliente, solo si el lugar de trabajo es el del cliente | Modelo propuesto |
 | Comunicado de cambio de centro de trabajo | Operación | Cada cambio de centro | Propuesto |
-| Convenio de terminación de la relación de trabajo por mutuo consentimiento y finiquito (un solo modelo; sin módulos A a E-bis desde la v1.2) | Terminación | En toda baja salvo fallecimiento; el motivo interno no se imprime | **Terminado y cargado en el software (12/11/2026)**; especificación del módulo 4 v1.4; firma siempre autógrafa |
+| Convenio de terminación de la relación de trabajo por mutuo consentimiento y finiquito (un solo modelo; sin módulos A a E-bis desde la v1.2) | Terminación | En toda baja salvo fallecimiento; el motivo interno no se imprime | **Terminado y cargado en el software (12/11/2026)**; especificación del módulo 4 v1.4 cargada y v1.5 (17/11/2026) entregada, sin cambios al convenio; firma siempre autógrafa |
 | Recibo de finiquito (Anexo 1 del convenio) | Terminación | En toda baja | Terminado; una sola hoja carta, con RFC de la Persona Trabajadora; firma autógrafa |
 | Comunicado de terminación al vencer el periodo de prueba o de capacitación inicial | Terminación | Solo como respaldo, si se cumplen sus requisitos (evaluación, F-2, evidencia de capacitación) | Terminado |
 | Comunicado de terminación por vencimiento del plazo o terminación de la obra | Terminación | Solo como respaldo, si se cumplen sus requisitos | Terminado |
@@ -424,7 +424,7 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 
 ### 4.8 Terminación y precálculo de finiquito (actualizado el 15/11/2026 con el corte del módulo 4 del 12/11)
 
-Documento de referencia: «AXIARH - Modulo 4 - Especificacion para programacion», **v1.4 (12/11/2026), terminada y cargada en el software**. Las decisiones del 26 y 27/10 que la v1.2 a la v1.4 sustituyeron quedan solo en el historial de la especificación.
+Documento de referencia: «AXIARH - Modulo 4 - Especificacion para programacion», **v1.4 (12/11/2026), terminada y cargada en el software**. (17/11/2026) La **v1.5** aplica los encargos 1 a 11 del mapa (situaciones protegidas con doble confirmación, D4 vencida, vacaciones y aguinaldo del módulo 11, SALARIO_PERSONA, Fonacot y FON-1, registro del pago para el módulo 6, efectos de la baja en otros módulos, regla 2 del acta de devolución con el art. 46 vigente); trae su tabla de cambios sobre la 1.4 y no cambia el convenio. Pendiente de cargar en el software. Las decisiones del 26 y 27/10 que la v1.2 a la v1.4 sustituyeron quedan solo en el historial de la especificación.
 
 **Paquete documental**
 - (10/11/2026, decisión del usuario) Un solo convenio, siempre por mutuo consentimiento (art. 53, fr. I), en toda baja salvo fallecimiento; se eliminan los módulos A a E-bis. El motivo de baja (BAJA_MOTIVO) es un dato interno para el cálculo y los documentos de respaldo; no se imprime.
@@ -461,7 +461,7 @@ Documento de referencia: «AXIARH - Modulo 4 - Especificacion para programacion�
 - (26/10/2026, provisional) Ruta por designación (vigente, confirmada en los últimos 12 meses, sin controversia y total menor que BENEF_UMBRAL) o ruta Tribunal; solo el pago por resolución del Tribunal libera frente a terceros. El pago por designación nunca en efectivo.
 
 **Acta de devolución**
-- (26/10/2026) No condiciona el pago; faltantes y daños abren expediente conforme al art. 46 del RIT; cierre de accesos a más tardar el día hábil siguiente a la baja; requerimiento por correo si la persona no se presenta. La regla 2 de la sección 7.7 de la especificación conserva la redacción anterior del art. 46 (encargo en el mapa).
+- (26/10/2026) No condiciona el pago; faltantes y daños abren expediente conforme al art. 46 del RIT; cierre de accesos a más tardar el día hábil siguiente a la baja; requerimiento por correo si la persona no se presenta. (17/11/2026) La regla 2 de la sección 7.7 ya sigue el art. 46 vigente del RIT (v1.5).
 
 ### 4.9 Permisos y licencias (12/11/2026)
 

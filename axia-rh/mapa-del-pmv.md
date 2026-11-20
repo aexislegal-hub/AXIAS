@@ -34,7 +34,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | 2. RIT y su comisión | RIT (rev. 1388), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 39), acta de la CMRIT (rev. 36); especificación v1.7 | Tercer corrido en el software (v1.7); confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
-| 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 | Suspensión por temporada, incapacidad, hoja interna; encargos de la decisión 19 y de vacaciones | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
+| 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 cargada y v1.5 (17/11/2026) con los encargos 1 a 11 | Cargar la v1.5 en el software; encargos 12 a 14; suspensión por temporada, incapacidad, hoja interna | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
 | 5. Modificación | MOD-1, MOD-2, MOD-4, MOD-5, ACT-1; especificación v1.0 con 13 casos de prueba | Correr en el software; MOD-6 (prioridad C); verificaciones | Diseño terminado (15/11/2026); **no cerrado** |
 | 6. Validación de pagos | Obligaciones de pago con evidencia cotejada (CFDI o dispersión); especificación v1.0 | Correr en el software; verificaciones del SAT | Diseño terminado (15/11/2026); **no cerrado** |
 | 8. Fonacot | Afiliación, cédula mensual, incidencias, retención en el finiquito, FON-1; especificación v1.0 (con el módulo 6) | Calendario de cédulas y fecha de entero | Diseño terminado (15/11/2026); **no cerrado** |
@@ -387,6 +387,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 3. (17/11, del módulo 5) Leer SALARIO_PERSONA y la versión de condiciones de cada persona.
 
 **Módulo 4 (terminación)**
+- (20/11, al integrar) Cumplidos 1 a 11 en la especificación v1.5 (17/11/2026; «Corte - Módulo 4», actualización 7). Pendientes: 12, 13 y 14.
 1. (15/11, decisión 19) Recibir SITUACION_PROTEGIDA del módulo de permisos como alerta crítica, sin bloqueo, con doble confirmación y registro de usuario, fecha y hora (BAJA_CONFIRMACION_PROTEGIDA, nueva, evento de baja); B4 con la misma mecánica (BAJA_CONFIRMACION_B4). Nunca se imprime. (17/11) El texto de la alerta usa SITUACION_PROTEGIDA_TIPO, que envía el módulo de permisos.
 2. (15/11) Adoptar la sección 11 de la especificación de vacaciones (saldos, proporcionales y prescritos solo informativos) y no duplicar el aguinaldo ya pagado en el año.
 3. (15/11) Sección 7.7, regla 2 del acta de devolución: actualizarla al art. 46 vigente del RIT (investigación por los arts. 80 y 81; descuento con reconocimiento en FD-5 o determinación en FD-3, conforme al art. 27).
