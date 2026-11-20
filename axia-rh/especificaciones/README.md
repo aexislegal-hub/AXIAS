@@ -12,4 +12,4 @@ Copia de la versión vigente de cada especificación. La fuente es el documento 
 | `permisos-y-licencias.md` | 10. Permisos y licencias | 1.8 | 17/11/2026 | Copiada el 18/11/2026 (incluye los textos, sección 17) |
 | `vacaciones-y-aguinaldo.md` | 11. Vacaciones y aguinaldo | 1.2 | 17/11/2026 | Copiada el 18/11/2026. Los textos (VAC-1 a VAC-3, N-1 a N-6) están en el documento de textos, sexta versión, todavía no copiado |
 
-El paquete de contratación (módulo 1) se copiará cuando su conversación genere la nueva versión para programación.
+El paquete de contratación (módulo 1) ya tiene versión para programación del 20/11/2026 (202 variables; sustituye a la del 15/11). Sus archivos («AEXIS - Paquete de contratación - VERSIÓN FINAL.txt» y «… - Variables y dependencias.md») están en la conversación del paquete; se copiarán aquí cuando se suban al proyecto.

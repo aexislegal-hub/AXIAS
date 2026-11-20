@@ -1,6 +1,6 @@
 # Axia RH — Mapa del PMV
 
-Actualizado: 18 de noviembre de 2026, después de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
+Actualizado: 20 de noviembre de 2026, después del corte del paquete de contratación (20/11), de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
 
 Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
 
@@ -30,7 +30,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 
 | Módulo | Documentos redactados | Faltan | Situación |
 |---|---|---|---|
-| 1. Kit de contratación | Paquete completo (contrato A-D rev. 501, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Regenerar la versión para programación con los cambios del 17/11; encargos 6 y 7; módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; variables sin estructura | Versión para programación del 15/11/2026 en corrido; **no cerrado** |
+| 1. Kit de contratación | Paquete completo (contrato A-D rev. 501, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Encargos 6 y 7; módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; dar estructura a las 34 variables usadas sin definir; correr la versión del 20/11 en el software | Versión para programación del 20/11/2026 (202 variables), con los cambios del 17/11; **no cerrado** |
 | 2. RIT y su comisión | RIT (rev. 1388), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 39), acta de la CMRIT (rev. 36); especificación v1.7 | Tercer corrido en el software (v1.7); confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
 | 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor | Revisión final del usuario; verificaciones de los arts. 122 y 127, fr. VIII | Borrador completo (rev. 74) |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
@@ -375,7 +375,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 18. **Cumplido (v1.7, 18/11; maestro rev. 1388, formatos rev. 39).** (18/11, decisión del usuario) **Plazos del expediente disciplinario en días naturales.** Cambiar de días hábiles a días naturales: arts. 80, fr. 4 (revisión de la falta leve), y 81, frs. 1, 2 y 4 (reporte de la jefatura, audiencia, notificación e inicio de la suspensión); conducta 43; FD-1 (audiencia), FD-2 (cierre), FD-4 (revisión); especificación 0 («Días hábiles del RIT») y 4.3. El art. 83 ya está en días naturales. La definición de días hábiles del art. 5 se conserva para los demás plazos del RIT (justificación de ausencias, aclaraciones, nómina, denuncias, permisos). (18/11, aprobado por el usuario) Reglas complementarias: si la audiencia o el inicio de la suspensión caen en un día de descanso de la persona, pasan a su siguiente día laborable; si el plazo de revisión de la persona vence en su día de descanso, se extiende a su siguiente día laborable; la duración de la suspensión (1 a 8 días) se cuenta en días laborables del turno. Las fechas exactas las decide RH: el sistema las propone con estas reglas y RH puede cambiarlas, con las validaciones de plazo de 4.3. Proponer cómo se redacta en los arts. 80 y 81 sin perder la remisión a la decisión de RH.
 
 **Paquete de contratación**
-- Cumplidos según el corte del 17/11/2026: encargos 1, 2 y 5 (17/11), y 3 y 4 (13/11, en las fuentes de trabajo; la versión para programación se regenera cuando el usuario lo pida).
+- Cumplidos según el corte del 20/11/2026: encargos 1, 2 y 5 (17/11), 3 (13/11) y 4 (versión para programación regenerada el 20/11/2026, 202 variables, con los cambios del 17/11; sustituye a la del 15/11).
 6. (18/11, de firma electrónica) Aviso de privacidad (Anexo 4): agregar la finalidad y la casilla de consentimiento de la verificación de identidad con INE y video de aceptación, solo en la contratación y solo con IDV_SERVICIO = Sí, con el texto sugerido en el apartado 6 del «Corte - Firma electrónica». Los datos de la bitácora de firma ya están (inciso l).
 7. (18/11) Cláusula 22: cotejar el texto aplicado el 13/11 con el apartado 9 vigente del «Corte - Firma electrónica» (18/11), que agrega INE y video, el cambio de correo o teléfono con verificación presencial y FON-1 en la regla de firma autógrafa.
 
@@ -487,7 +487,7 @@ Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entr
 
 1. Correr en el software los módulos 5, 6 y 8, la especificación v1.2 de vacaciones, la v1.8 de permisos y la v1.4 de firma electrónica.
 2. RIT: tercer corrido (especificación v1.7).
-3. Paquete de contratación: encargos 6 y 7 y regenerar la versión para programación con los cambios del 17/11.
+3. Paquete de contratación: correr la versión del 20/11 en el software; encargos 6 y 7 (con nueva regeneración si cambian los textos).
 4. Módulo 9, análisis de jornada (conversación por abrir).
 5. Cerebro: diccionario único de variables y tabla única de parámetros legales.
 6. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).

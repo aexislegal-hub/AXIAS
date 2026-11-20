@@ -1,6 +1,6 @@
 # AXIARH — Registro de decisiones de los documentos maestros
 
-Actualizado: 18 de noviembre de 2026 · Responsable: Damián Torres
+Actualizado: 20 de noviembre de 2026 · Responsable: Damián Torres
 
 Este documento es la base de todas las conversaciones del proyecto. Reúne el catálogo de documentos maestros, la arquitectura del sistema, las decisiones tomadas por documento y las reglas que el sistema debe aplicar. Todas las aprobaciones son **provisionales** hasta la revisión final de cada documento. Cuando una conversación tome una decisión nueva, se agrega aquí con su fecha. Las contradicciones entre conversaciones y su propuesta de solución están en «Axia RH - Mapa del PMV».
 
@@ -10,7 +10,7 @@ Este documento es la base de todas las conversaciones del proyecto. Reúne el ca
 
 | Documento | Grupo | Se genera | Estado |
 |---|---|---|---|
-| Paquete de contratación: contrato con carátula (tipos A indeterminado, B obra, C tiempo determinado, D temporada), biblioteca de módulos y kit integrado | Contratación | Siempre | **Cerrado por el usuario (26/10/2026)**; ajustes del 28/10, 31/10, 13/11, 15/11 y 17/11/2026 aplicados. Contrato rev. 501, biblioteca rev. 91. Versión para programación del 15/11/2026 (203 variables) en corrido; no incluye los cambios del 17/11 y se regenera cuando el usuario lo pida (quedará en 202 variables). Visor del paquete (v9) desactualizado |
+| Paquete de contratación: contrato con carátula (tipos A indeterminado, B obra, C tiempo determinado, D temporada), biblioteca de módulos y kit integrado | Contratación | Siempre | **Cerrado por el usuario (26/10/2026)**; ajustes del 28/10, 31/10, 13/11, 15/11 y 17/11/2026 aplicados. Contrato rev. 501, biblioteca rev. 91. (20/11/2026) **Versión para programación vigente: la del 20/11/2026** (202 variables; incluye todos los cambios del 17/11 y sustituye a la del 15/11, de 203 variables, que ya no debe usarse). Sin los encargos 6 y 7 del mapa. Visor del paquete (v9) desactualizado |
 | Perfil de puesto (Anexo 1 del contrato) | Contratación | Según PERFIL_MODALIDAD: solo con «Perfil de puesto»; lo genera la IA del sistema con los lineamientos y lo valida una persona | Cerrado con el paquete |
 | Lineamientos para generar perfiles de puesto | Sistema | Base de la IA que genera los perfiles | Borrador |
 | Aviso de privacidad para personas trabajadoras (Anexo 4) | Contratación | Siempre | Cerrado con el paquete; ajuste del 31/10 aplicado (pruebas y exámenes); ampliado el 17/11/2026 (ver 4.3 bis) |
@@ -68,7 +68,7 @@ Cada dato se captura una sola vez, en el nivel que le corresponde.
 
 | Nivel | Quién lo captura | Qué contiene |
 |---|---|---|
-| 1. Configuración de la empresa | Consultoría | (31/10/2026) PERFIL_MODALIDAD (Perfil de puesto / Lista de actividades). Datos generales, representante, centros de trabajo con domicilio completo, folio, vigencia y actividades REPSE registradas (cada una con su número y descripción), forma de pago, día de pago semanal, dominio de correo institucional, prestaciones extralegales por puesto (PRESTACIONES_EXTRA), apoyo de gastos y medios de contacto de teletrabajo, sistema de registro de jornada y si usa geolocalización, apoyo para los gastos del domicilio en la modalidad híbrida (HIBRIDO_APOYO_MODO y HIBRIDO_APOYO_MONTO), días de aviso de cambios al perfil de puesto (PERFIL_AVISO_DIAS), correo para asuntos de datos personales (AVISO_CORREO_DATOS), catálogo de propiedad intelectual (PI_CATALOGO), pena del convenio de confidencialidad (CONV_PENA y sus datos), parámetros del RIT (tolerancias, permisos, plazos, conservación, reincidencia) y datos colectivos (sindicato, número de personas trabajadoras, turnos) |
+| 1. Configuración de la empresa | Consultoría | (31/10/2026) PERFIL_MODALIDAD (Perfil de puesto / Lista de actividades), como valor por omisión; (13/11/2026) se elige en el alta. Datos generales, representante, centros de trabajo con domicilio completo, folio, vigencia y actividades REPSE registradas (cada una con su número y descripción), forma de pago, día de pago semanal, dominio de correo institucional, prestaciones extralegales por puesto (PRESTACIONES_EXTRA), apoyo de gastos y medios de contacto de teletrabajo, sistema de registro de jornada y si usa geolocalización, apoyo para los gastos del domicilio en la modalidad híbrida (HIBRIDO_APOYO_MODO y HIBRIDO_APOYO_MONTO), días de aviso de cambios al perfil de puesto (PERFIL_AVISO_DIAS), correo para asuntos de datos personales (AVISO_CORREO_DATOS), catálogo de propiedad intelectual (PI_CATALOGO), pena del convenio de confidencialidad (CONV_PENA y sus datos), parámetros del RIT (tolerancias, permisos, plazos, conservación, reincidencia) y datos colectivos (sindicato, número de personas trabajadoras, turnos) |
 | 2. Organigrama | Consultoría | (31/10/2026) ACTIVIDADES_PRINCIPALES (de 5 a 10; obligatoria con Lista de actividades). Puestos con sus atributos legales, condiciones de trabajo, perfil de puesto versionado y, por puesto, sistemas y plataformas (PUESTO_SISTEMAS), información confidencial a la que accede (PUESTO_INFO_CATEGORIAS) y propiedad intelectual a la que accede (PUESTO_PI) |
 | 3. Alta de la persona trabajadora | RH del cliente | Datos personales, puesto, centro de trabajo, ámbito geográfico, fecha de inicio, modalidad de inicio, salario, días en casa, trabajador REPSE y lugar de trabajo REPSE (Empresa o Cliente), origen de la modalidad híbrida (HIBRIDO_ORIGEN), equipo (tabla EQUIPO_DESCRIPCION: descripción, marca y modelo, serie, estado), beneficiarios, descuento, firma |
 
@@ -646,7 +646,7 @@ Datos que faltan en el alta para la baja: TRAB_NSS (necesario para la baja, no b
 - (26/10/2026) La capacitación inicial es solo una cláusula del contrato, no un contrato autónomo.
 - (26/10/2026) De capacitación, Axia RH solo cubre el SIRCE, la Comisión Mixta de Capacitación, Adiestramiento y Productividad y el DC-1. Lo demás (DNC, plan y programa, cursos) queda para Axia Capacitación.
 - (26/10/2026) La constancia DC-3 no entra a Axia RH. Para terminar la capacitación inicial, el sistema exige que se cargue la evidencia de la capacitación impartida (DC-3 u otra constancia generada fuera de Axia RH).
-- (26/10/2026) Fonacot: el PMV solo alerta y guarda evidencia; no calcula retenciones.
+- (26/10/2026) Fonacot: el PMV solo alerta y guarda evidencia; no calcula retenciones. (17/11/2026) FONACOT_DESCUENTO_MONTO del alta es solo un valor esperado para la prenómina; la cédula del módulo 8 es la evidencia (4.13).
 - (26/10/2026) Análisis de jornada: los datos salen del archivo del reloj checador del cliente.
 - (26/10/2026) Acta formal de devolución y entrega de herramientas a la salida, como documento propio del módulo de terminación.
 - (26/10/2026) Los documentos que recibe el cliente no llevan «AEXIS» ni «AXIARH». El logo del cliente se ofrece en otro nivel de servicio.
