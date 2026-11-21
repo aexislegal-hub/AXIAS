@@ -2,6 +2,8 @@
 
 Documentos de diseño y decisiones de la familia de software Axia (AEXIS Compliance Legal). Contiene modelos maestros genéricos y decisiones. **Nunca datos de clientes.**
 
+**Programación:** empezar por `PROGRAMACION.md`.
+
 ## Estructura
 
 | Carpeta | Contenido | Quién escribe |
