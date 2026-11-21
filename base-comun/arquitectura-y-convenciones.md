@@ -1,6 +1,6 @@
 # Base común de la familia Axia
 
-Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 20 de noviembre de 2026). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
+Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 20 de noviembre de 2026 (noche: cortes del paquete, módulo 4, módulo 5, módulo 9 y kit de PTU)). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
 
 Contiene la arquitectura del sistema (niveles de captura y atributos de puesto) y las convenciones de redacción que comparten todos los productos Axia. Un proyecto distinto de Axia RH que necesite una variable nueva de empresa, organigrama o alta la pide como encargo a Cerebro.
 
