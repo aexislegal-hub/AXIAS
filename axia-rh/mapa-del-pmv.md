@@ -386,6 +386,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Kit de PTU**
 - Cumplidos 1 a 3 (modelo rev. 87 y especificación v1.0, 20/11/2026) y 4 (rev. 89 y especificación v1.1, 21/11/2026).
+5. (21/11, decisión del usuario; registro 4.10) El criterio de la falta y del día sin goce ya está aprobado: quitar de la v1.1 «pendiente de aprobación» y la frase «el descanso proporcional que el módulo 9 descuenta en nómina», porque el módulo 9 ya no lo descontará (su encargo 4). La regla de PTU_COMPUTA no cambia.
 4. **Cumplido (v1.1, 21/11).** (20/11, del módulo 9) Con VIA_CALCULO = Automático, contar como no computables solo las faltas **confirmadas** del módulo 9; las «por confirmar» no descuentan días. Confirmar que R-4 ya lo dice o agregarlo en la tabla PTU_COMPUTA.
 1. (17/11, de los módulos 6 y 8) Regla R-3: «Pagada» = CFDI o dispersión cotejados en el módulo 6; la firma de D-14 deja de ser condición del estado (D14_FIRMADO, alerta sin revertir). D-14 toma UUID_CFDI, FECHA_PAGO, FORMA_PAGO y REFERENCIA_DISPERSION de la obligación en «Pagada»; con dispersión sin UUID se genera sin el folio fiscal y se versiona al cargarlo.
 2. (17/11) D-11, Parte 2: su Anexo 1 sale del módulo 6, sin cambio de texto.
@@ -416,6 +417,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Módulo 11 (vacaciones y aguinaldo)**
 - Cumplidos 1 a 3 (especificación v1.2, 17/11/2026) y 4 (v1.3, 21/11/2026).
+5. (21/11) En la siguiente versión, corregir la nota de 10.3 que dice que «el módulo 9 descuenta en nómina el descanso proporcional» (ya previsto en su corte, sección 7).
 4. **Cumplido (v1.3).** (20/11, del módulo 9) AGUINALDO_COMPUTA cuenta como no computables solo las faltas **confirmadas** del módulo 9; las «por confirmar» no descuentan días.
 
 **Módulo 6 (validación de pagos)**
@@ -509,7 +511,7 @@ Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entr
 
 1. Correr en el software: módulos 5 (v1.1), 6 y 8, 9 (v1.0), vacaciones (v1.2), permisos (v1.8), firma electrónica (v1.4), kit de PTU (v1.0), módulo 4 (v1.5) y la versión del 20/11 del paquete (204 variables).
 2. RIT: tercer corrido (especificación v1.7).
-3. Encargos menores pendientes (no detienen el corrido): módulo 9 (3, 4 y 5), módulo 6 (1), paquete 8 y firma electrónica 6 y 7. Cumplidos el 21/11: permisos 7 y 8, vacaciones 4, kit de PTU 4 y módulo 4 (15).
+3. Encargos menores pendientes (no detienen el corrido): módulo 9 (3, 4 y 5), kit de PTU (5), vacaciones (5), módulo 6 (1), paquete 8 y firma electrónica 6 y 7. Cumplidos el 21/11: permisos 7 y 8, vacaciones 4, kit de PTU 4 y módulo 4 (15).
 4. Cerebro: diccionario único de variables (necesita el archivo «Variables y dependencias» de la versión del 20/11 del paquete en el proyecto), tabla única de parámetros legales y tabla de conservación de documentos.
 5. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).
 

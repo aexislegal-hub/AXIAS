@@ -1,6 +1,6 @@
 # AXIA RH — MÓDULO 4: TERMINACIÓN DE LA RELACIÓN DE TRABAJO Y PRECÁLCULO DE FINIQUITO
 
-Especificación para programación · Versión 1.5 · 17/11/2026 (con los encargos 12 a 14 del mapa agregados el 20/11/2026)
+Especificación para programación · Versión 1.5 · 17/11/2026 (con los encargos 12 a 15 del mapa agregados el 20 y 21/11/2026)
 Fuente: documento de trabajo «Axia RH — Módulo 4», registro de decisiones (4.8, 4.10, 4.12, 4.13 y 5.5), encargos del mapa del PMV al módulo 4 (15, 17 y 18/11/2026) y ajustes del usuario del 10 y 12/11/2026.
 
 ## Cambios respecto de la versión 1.4 (la que está cargada en el software)
@@ -24,10 +24,11 @@ Aplicar estos cambios sobre la 1.4. Ante cualquier duda, rige el texto completo 
 | 13 (20/11) | Todo el documento; 8.3 | `SALARIO_PERSONA` sustituye a `SALARIO_DIARIO` como base de cálculo y en las plantillas (convenio y recibo). Imprime el mismo dato; solo cambia el nombre | Mapa, diccionario único (18/11) |
 | 14 (20/11) | 4.8 | Los renglones automáticos de Infonavit y Fonacot se precargan con el descuento del alta como sugerencia editable | Mapa, encargo 12 (18/11) |
 | 15 (20/11) | 7.7 | Acta de devolución: el valor de reposición de cada bien se precarga de la carta responsiva | Mapa, encargo 13 (18/11) |
-| 17 (20/11) | 2.4, 8.1, 8.2 | El embarazo informado (`EMBARAZO_INFORMADO_FECHA`, del expediente) activa la alerta de situación protegida con doble confirmación, sin bloqueo | Decisión del usuario (20/11) |
 | 16 (20/11) | 7.1, 7.7, 8.2 | Acta de devolución: firma electrónica o autógrafa, según se haga la entrega (`DEV_FIRMA_FORMA`); por la Empresa, RH designado; testigos solo si la persona se niega | Mapa, encargo 14; registro 4.11 (18/11) |
+| 17 (20/11) | 2.4, 8.1, 8.2 | El embarazo informado (`EMBARAZO_INFORMADO_FECHA`, del expediente) activa la alerta de situación protegida con doble confirmación, sin bloqueo | Decisión del usuario (20/11) |
+| 18 (21/11) | 4.2, 8.2, 9 | «Otros devengados» precarga como «Sugerido» el tiempo extra, la prima dominical y los descansos y festivos laborados que el módulo 9 tenga pendientes a `BAJA_FECHA`; lo «por validar» solo genera aviso | Mapa, encargo 15 (20/11) |
 
-Los cambios 12 a 17 se agregaron el 20/11/2026, cuando la 1.5 aún no se había cargado. Si ya se cargó, aplicar solo esos seis.
+Los cambios 12 a 17 se agregaron el 20/11/2026 y el 18 el 21/11/2026, cuando la 1.5 aún no se había cargado. Si ya se cargó, aplicar solo esos siete.
 
 ---
 
@@ -204,7 +205,11 @@ Reglas:
   - Cada renglón tiene un botón para quitarlo.
   - Columnas: Tipo (Tiempo extra / Prima dominical / Descanso laborado / Festivo laborado / Prestación del puesto / Otro), Concepto, Base, Cantidad, Importe, Soporte.
   - Soporte **opcional** (texto). Un renglón vacío no se imprime.
-  - El tiempo extra se valida con el módulo de análisis de jornada (tasas vigentes en tabla del sistema).
+- **Precarga del tiempo extra pendiente (21/11/2026, del módulo 9).** Al llegar a este paso, el sistema agrega un renglón por cada concepto que el módulo 9 tenga pendiente a `BAJA_FECHA`: lo validado y no exportado a nómina y los ajustes pendientes (sección 8.3 de la especificación del módulo 9).
+  - Tipo: Tiempo extra, Prima dominical, Descanso laborado o Festivo laborado, según lo envíe el módulo 9. Cantidad: horas o días. Importe: el bruto estimado del módulo 9 (`SALARIO_PERSONA` y tasas de la tabla del sistema). Soporte: periodo y folio del módulo 9.
+  - El importe se marca «Sugerido» hasta que RH lo confirma, lo cambia o quita el renglón (misma mecánica de 4.8).
+  - Lo que el módulo 9 tenga «por validar» (tiempo extra sin orden previa, PN-09) no se precarga. Aviso, sin bloqueo: «Hay tiempo extra por validar en el análisis de jornada. Resuélvalo antes de validar el cálculo: el tiempo trabajado sin orden se paga.»
+  - Sin módulo 9 (la empresa no lo usa u opera en modo «Solo archivo»), no hay precarga y RH captura a mano.
 
 ### 4.3 Fórmulas
 
@@ -875,7 +880,7 @@ Faltan en el alta: `PENSION_ALIMENTICIA`, `PENSION_AUTORIDAD`, `PENSION_PORCENTA
 | AGUINALDO_DIAS | E | Entero | ≥ 15 | Aguinaldo |
 | VAC_PEND_DIAS / VAC_PROP_DIAS | S | Decimal | Del módulo de vacaciones (4.9) | Recibo |
 | VAC_PRESCRITOS (1.5) | S | Días y fecha por periodo | Del módulo de vacaciones | Solo pantalla, informativo; **no se imprime** |
-| OTROS_DEVENGADOS | V | Tabla dinámica: tipo, concepto, base, cantidad, importe, soporte | 1 renglón por omisión; «+ Agregar concepto»; quitar renglón; sin límite; soporte opcional; renglón vacío no se imprime | Recibo |
+| OTROS_DEVENGADOS | V | Tabla dinámica: tipo, concepto, base, cantidad, importe, soporte; internos, no impresos (21/11): estado (Sugerido · Confirmado) y folio de origen del módulo 9 | 1 renglón por omisión; «+ Agregar concepto»; quitar renglón; sin límite; soporte opcional; renglón vacío no se imprime; precarga del módulo 9 (4.2) | Recibo |
 | PRESTACIONES_SUPERIORES | O/S | Tabla por puesto, de la versión de la persona | — | Recibo |
 | PA_INCLUIR | V | Sí/No | Bloqueada en Sí en los casos legales (4.2) | Recibo; convenio, cláusula tercera |
 | PTU_PENDIENTE / PTU_EJERCICIO | S | Sí/No; año | Del kit de PTU | Convenio, cláusula de PTU; recibo |
@@ -966,7 +971,7 @@ Recuperada en la 1.5: `SITUACION_PROTEGIDA`, que la 1.2 había eliminado. Ahora 
 | Módulo 5 (modificación) | `SALARIO_PERSONA` y versión de condiciones a `BAJA_FECHA`; en ascenso, el salario del puesto ocupado | — |
 | Módulo 6 (validación de pagos) | Estado del pago del finiquito (solo consulta) | Obligación «Finiquito» al validar; registro y evidencia del pago capturados en 5.4 |
 | Módulo 8 (Fonacot) | Retención mensual de la cédula; `FONACOT_BAJA_REPORTE_FECHA`; texto de FON-1 | Incidencia de baja o aviso de defunción; `FONACOT_RETENCION_FINIQUITO` |
-| Módulo 9 (jornada) | Tiempo extra pendiente y tasas vigentes | — |
+| Módulo 9 (jornada) | Tiempo extra pendiente a `BAJA_FECHA` (validado y no exportado, y ajustes pendientes) con horas o días, tipo, importe y folio; aviso de lo «por validar» (4.2) | `BAJA_FECHA` y calendario de días inhábiles |
 | Módulo 10 (permisos) | `SITUACION_PROTEGIDA`, B4 vigente, D4 vencido (`SUSP_LIMITE`) | — |
 | Módulo 11 (vacaciones y aguinaldo) | Saldos por periodo, proporcional, prescritos, aguinaldo proporcional o ya pagado (especificación v1.2, secciones 10.5 y 11) | Baja registrada: cancelar bloques posteriores y liberar cupo; aviso al contador si había aguinaldo validado sin pagar |
 
@@ -1059,7 +1064,8 @@ Valores esperados con los parámetros de A.1, para verificar la programación:
 | 13. Precarga Fonacot (20/11) | `FONACOT_DESCUENTO_MONTO` $1,200.00; último periodo de 15 días; sin cédula del periodo | Renglón «Sugerido» con $1,200.00 × 15 ÷ 30.4; RH lo confirma o lo cambia |
 | 14. Precarga Infonavit (20/11) | `INFONAVIT_DESCUENTO_TIPO` = Porcentaje | Importe vacío; la pantalla muestra el tipo y el valor del alta |
 | 15. Acta sin valor de reposición (20/11) | Bien de la carta responsiva sin valor de reposición, marcado «Se devuelve = No» | Marca «no procede descuento»; el finiquito no lleva deducción por ese bien |
-| 17. Embarazo informado (20/11) | `EMBARAZO_INFORMADO_FECHA` capturada, sin C3 | Alerta con «Embarazo informado» y doble confirmación; la baja continúa |
 | 16. Acta con negativa (20/11) | `DEV_FIRMA_FORMA` = Electrónica; la persona rechaza firmar | El acta pasa a autógrafa; constancia de negativa con dos testigos; envío a `TRAB_EMAIL` |
+| 17. Embarazo informado (20/11) | `EMBARAZO_INFORMADO_FECHA` capturada, sin C3 | Alerta con «Embarazo informado» y doble confirmación; la baja continúa |
+| 18. Tiempo extra pendiente (21/11) | Módulo 9 con 6 horas de tiempo extra validadas y no exportadas y una prima dominical en ajuste pendiente; además, 2 horas «por validar» | Dos renglones «Sugerido» en «Otros devengados» con el importe y el folio del módulo 9; aviso de lo «por validar», sin bloqueo |
 
 Estos valores sirven para probar el programa; el contador valida cada caso real.
