@@ -1,7 +1,20 @@
 # AXIA RH — MÓDULO 5: MODIFICACIÓN DE CONDICIONES DE TRABAJO
 
-Especificación para programación · Versión 1.0 · 15/11/2026
-Fuente: «AXIARH - Módulo 5 - Textos y reglas (borrador)», tercera versión, y «Corte - Módulo 5» (15/11/2026, decisiones del usuario). El usuario dio por terminado el modelo maestro el 15/11/2026; sus aprobaciones siguen siendo provisionales hasta la revisión final.
+Especificación para programación · Versión 1.1 · 20/11/2026
+Fuente: «AXIARH - Módulo 5 - Textos y reglas (borrador)», tercera versión, «Corte - Módulo 5» y encargos del mapa del PMV del 18/11/2026. El usuario dio por terminado el modelo maestro el 15/11/2026; sus aprobaciones siguen siendo provisionales hasta la revisión final.
+
+## Cambios respecto de la versión 1.0
+
+La 1.0 no se ha corrido en el software; esta versión la sustituye completa. Si ya se cargó, basta aplicar esta tabla.
+
+| # | Sección | Cambio |
+| --- | --- | --- |
+| 1 | 11.4 (MOD-5), apartado 3 | Con causa «Falta de documentos», el texto dice que la reasignación no modifica el plazo legal para regularizar la situación, y su fecha de vencimiento (`SUSP_LIMITE`) |
+| 2 | 11.4, notas; 9; 12.2 | MOD-5 por «Falta de documentos» aceptada devuelve al módulo de permisos `D4_REUBICACION` = Sí y, al concluir, `D4_REUBICACION_FIN`. Se quita «verificar con el módulo de permisos» |
+| 3 | 0; 12.2 | Importes en letra con la fórmula de la carátula del contrato («… pesos NN/100 M.N.»): `SALARIO_PERSONA_LETRA` en MOD-1 y `SALARIO_NUEVO_LETRA` en MOD-2 usan la misma función |
+| 4 | 11.1, cláusula de ascenso | Corrección de redacción: «regresará a su puesto de {{PUESTO_ANTERIOR}} al día siguiente de esa comunicación» |
+| 5 | 13 | Estado de los encargos actualizado con el registro del 20/11/2026 (versionado, SALARIO_PERSONA, ACTUALIZACION_ANUAL_MES, TELE_AVISO_DIAS, cláusula 1.4, INCAPACIDAD_PARCIAL, firma electrónica v1.4) |
+| 6 | 15 | Caso de prueba 14: reubicación en D4 |
 
 **Alcance:** la pantalla de eventos «Modificar condiciones» y el proceso de cambios del catálogo. Determina el instrumento de cada cambio, genera los documentos, controla su firma y sus efectos, mantiene la versión de condiciones de cada persona y alerta a nómina, IMSS, consultoría y los demás módulos. No genera el aviso de sustitución patronal (MOD-6, prioridad C) ni la nueva versión del perfil de puesto (documento del kit; este módulo solo la dispara).
 
@@ -12,7 +25,8 @@ Fuente: «AXIARH - Módulo 5 - Textos y reglas (borrador)», tercera versión, y
 - Variables `{{MAYÚSCULAS_CON_GUION_BAJO}}`; condiciones `[SI condición] … [FIN SI]`; las marcas nunca se imprimen. Se permiten condiciones anidadas.
 - Términos fijos de los textos: «la Empresa» y «la Persona Trabajadora».
 - Niveles de captura: **E** configuración de la empresa · **O** organigrama o puesto (incluye el catálogo de jornadas) · **A** alta · **V** evento (pantalla «Modificar condiciones» o lote del catálogo) · **S** calculada por el sistema · **B** bitácora (no editable) · **X** solo consultoría.
-- Fechas en formato largo; montos en MXN con dos decimales y en letra cuando se imprimen en un convenio.
+- Fechas en formato largo; montos en MXN con dos decimales y en letra cuando se imprimen en un convenio o comunicado.
+- Importes en letra: misma fórmula que la carátula del contrato, «… pesos NN/100 M.N.» (por ejemplo, $500.00 se imprime «quinientos pesos 00/100 M.N.»). Una sola función para `SALARIO_PERSONA_LETRA`, `SALARIO_NUEVO_LETRA` y cualquier otro importe en letra del módulo.
 - Arial en todos los documentos (12 en el cuerpo; títulos en negrita del mismo tamaño o uno mayor; papel carta). PDF generado en el servidor, sin encabezado ni pie del navegador.
 - Reglas de pantalla de todo el sistema (registro 5.0): campos faltantes resaltados y listados; tablas con «Guardar» y «Quitar» por renglón; la casilla «documento firmado» basta para avanzar y el archivo firmado es opcional (alerta sin bloqueo); un dato, una captura; sin candados por fecha (las validaciones solo impiden la versión definitiva); la opción se pregunta antes que sus campos y sin valor por omisión si la Ley no lo fija; concordancia de número.
 - Días hábiles: calendario de días inhábiles del módulo 4.
@@ -208,7 +222,7 @@ Destinatarios: **P** Persona Trabajadora · **RH** · **C** consultoría · **Ct
 | Módulo 4 | Salario, puesto y jornada de la versión de la persona en `BAJA_FECHA`; en ascenso temporal, el salario del puesto ocupado |
 | Vacaciones y aguinaldo | `SALARIO_PERSONA` vigente al iniciar cada bloque y a `AGUINALDO_FECHA_PAGO` |
 | PTU | Salario devengado por persona según sus versiones del ejercicio |
-| Permisos | `INCAPACIDAD_PARCIAL` lo captura RH al cerrar C2; MOD-5 por D4; alerta de regreso tras el parto |
+| Permisos | `D4_REUBICACION` y `D4_REUBICACION_FIN` (MOD-5 por falta de documentos); de permisos recibe `INCAPACIDAD_PARCIAL` (al cerrar C2), `SUSP_DOCUMENTO`, `SUSP_LIMITE` y la alerta de regreso tras el parto |
 | Módulo 9 | Jornada esperada por la versión de la persona y por la reasignación temporal |
 | Firma electrónica | Firmantes y estados (10) |
 
@@ -284,7 +298,7 @@ La duración semanal no excederá el máximo legal vigente, y las reglas de jorn
 
 [SI ASCENSO_TIPO = Temporal] La Persona Trabajadora ocupará el puesto de {{PUESTO_NUEVO}} de forma temporal, del {{MOD_FECHA_EFECTOS}} al {{ASCENSO_FECHA_FIN}}, por la causa siguiente: {{ASCENSO_CAUSA}}. Durante ese tiempo conserva la titularidad de su puesto de {{PUESTO_ANTERIOR}} y percibe el salario y las prestaciones del puesto que ocupa temporalmente. Si la causa termina antes, la Empresa se lo comunicará por escrito y la ocupación temporal concluirá en la fecha que señale. Al concluir, la Persona Trabajadora regresará a su puesto de {{PUESTO_ANTERIOR}}, con el salario, la jornada y las prestaciones vigentes para ese puesto en esa fecha. Como así se pacta desde ahora, el regreso no constituye una reducción de salario ni de condiciones. Si al llegar la fecha de fin la Persona Trabajadora continúa en el puesto por instrucción de la Empresa sin un nuevo convenio, el cambio se tendrá por definitivo.[FIN SI]
 
-[SI ASCENSO_TIPO = Con periodo de adaptación] La Persona Trabajadora ocupará el puesto de {{PUESTO_NUEVO}} sujeta a un periodo de adaptación de {{ASCENSO_ADAPTACION_DIAS}} días naturales contados desde la fecha de efectos, durante el cual la Empresa le impartirá la capacitación siguiente: {{ASCENSO_CAPACITACION}}, y evaluará su desempeño en el puesto nuevo conforme a [SI PERFIL_MODALIDAD = Perfil de puesto]los indicadores del perfil de puesto (Anexo 1)[FIN SI][SI PERFIL_MODALIDAD = Lista de actividades]los criterios que le comunica por escrito con este convenio[FIN SI]. Durante el periodo, la Persona Trabajadora conserva la titularidad de su puesto de {{PUESTO_ANTERIOR}} y percibe el salario y las prestaciones del puesto nuevo. Si la evaluación es satisfactoria, o si el periodo concluye sin que la Empresa le comunique por escrito un resultado no satisfactorio, el cambio queda firme. Si la evaluación no es satisfactoria, la Empresa se lo comunicará por escrito, con el resultado, a más tardar el último día del periodo, y la Persona Trabajadora regresará a su puesto al día siguiente de esa comunicación de {{PUESTO_ANTERIOR}}, con el salario, la jornada y las prestaciones vigentes para ese puesto, lo que no constituye reducción de salario ni de condiciones porque así se pacta desde ahora. Este periodo no es un periodo de prueba ni de capacitación inicial: su resultado no afecta la relación de trabajo, que continúa en todo caso.[FIN SI]
+[SI ASCENSO_TIPO = Con periodo de adaptación] La Persona Trabajadora ocupará el puesto de {{PUESTO_NUEVO}} sujeta a un periodo de adaptación de {{ASCENSO_ADAPTACION_DIAS}} días naturales contados desde la fecha de efectos, durante el cual la Empresa le impartirá la capacitación siguiente: {{ASCENSO_CAPACITACION}}, y evaluará su desempeño en el puesto nuevo conforme a [SI PERFIL_MODALIDAD = Perfil de puesto]los indicadores del perfil de puesto (Anexo 1)[FIN SI][SI PERFIL_MODALIDAD = Lista de actividades]los criterios que le comunica por escrito con este convenio[FIN SI]. Durante el periodo, la Persona Trabajadora conserva la titularidad de su puesto de {{PUESTO_ANTERIOR}} y percibe el salario y las prestaciones del puesto nuevo. Si la evaluación es satisfactoria, o si el periodo concluye sin que la Empresa le comunique por escrito un resultado no satisfactorio, el cambio queda firme. Si la evaluación no es satisfactoria, la Empresa se lo comunicará por escrito, con el resultado, a más tardar el último día del periodo, y la Persona Trabajadora regresará a su puesto de {{PUESTO_ANTERIOR}} al día siguiente de esa comunicación, con el salario, la jornada y las prestaciones vigentes para ese puesto, lo que no constituye reducción de salario ni de condiciones porque así se pacta desde ahora. Este periodo no es un periodo de prueba ni de capacitación inicial: su resultado no afecta la relación de trabajo, que continúa en todo caso.[FIN SI]
 
 [FIN SI]
 
@@ -405,7 +419,7 @@ Bloque de datos de la persona.
 
 2. **Funciones temporales.** Del {{REASIGNACION_INICIO}} [SI REASIGNACION_FIN no vacía]al {{REASIGNACION_FIN}}[FIN SI][SI REASIGNACION_FIN vacía]hasta que cese la causa[FIN SI], la Persona Trabajadora desempeñará las funciones siguientes: {{REASIGNACION_FUNCIONES}}, en {{REASIGNACION_LUGAR}}, con el horario {{REASIGNACION_HORARIO}}.
 
-3. **Condiciones.** La reasignación no disminuye su salario ni sus prestaciones, no modifica su puesto ni su antigüedad y no es una medida disciplinaria. [SI REASIGNACION_CAUSA = Falta de documentos]Mientras desempeñe estas funciones no se suspende la relación de trabajo.[FIN SI]
+3. **Condiciones.** La reasignación no disminuye su salario ni sus prestaciones, no modifica su puesto ni su antigüedad y no es una medida disciplinaria. [SI REASIGNACION_CAUSA = Falta de documentos]Mientras desempeñe estas funciones no se suspende la relación de trabajo. La reasignación no modifica el plazo que la ley señala para regularizar su situación, que vence el {{SUSP_LIMITE}}.[FIN SI]
 
 4. **Regreso.** Al concluir la causa, la Persona Trabajadora regresa a su puesto y funciones, lo que la Empresa le confirmará por escrito.
 
@@ -416,7 +430,7 @@ Cierre y firma: bloque común; la Persona Trabajadora firma de recibido. Por la 
 **Notas para programación**
 - No cambia la versión de condiciones de la persona (5); nómina sigue igual.
 - Embarazo y lactancia: se genera desde el aviso del art. 65 del RIT o desde B1; alerta a RH y al análisis de jornada si el horario cambia (sin horas extra ni trabajo nocturno, conforme al capítulo X del RIT).
-- Falta de documentos: solo con D4 registrado y antes de generar SUS-2; si se acepta, el sistema no genera SUS-2 mientras dure la reasignación (verificar con el módulo de permisos).
+- Falta de documentos: solo con D4 registrado y antes de generar SUS-2. Al quedar Vigente, el módulo 5 envía al módulo de permisos `D4_REUBICACION` = Sí; al concluir la reasignación (regularización, fin capturado o cancelación), envía `D4_REUBICACION_FIN`. Mientras dure, el módulo de permisos no genera SUS-2, el evento queda «Con reubicación», los días se pagan y cuentan como trabajados, y el plazo de dos meses sigue corriendo desde `SUSP_CONOCIMIENTO_FECHA` (registro 4.9). Si la reubicación termina sin regularizar, el módulo de permisos genera SUS-2 desde esa fecha.
 - La causa nunca se describe con diagnósticos.
 
 ### 11.5 ACT-1. Registro de actualización anual de datos y beneficiarios
@@ -449,14 +463,14 @@ La Persona Trabajadora hace constar, en la fecha de este registro, lo siguiente:
 - Del contrato y el kit: `PATRON_RAZON_SOCIAL`, `REP_NOMBRE`, `REP_CARACTER`, `TRAB_NOMBRE`, `TRAB_CURP`, `TRAB_EMAIL`, `TIPO_RELACION_TEXTO`, `FECHA_INICIO`, `CONTRATO_FECHA` (derivada), `PUESTO`, `AREA`, `CLASIFICACION`, `PUESTO_DIRECCION_TECNICO`, `PERFIL_MODALIDAD`, `PERFIL_CLAVE`, `PERFIL_VERSION`, `ACTIVIDADES_PRINCIPALES`, `PERFIL_AVISO_DIAS`, `PRESTACIONES_EXTRA`, `JORNADA_TIPO`, `DIAS_LABORADOS`, `HORARIO`, `HORAS_SEMANA`, `DESCANSO_SEMANAL`, `DESCANSO_MINUTOS`, `JORNADA_RESUMEN`, `PERIODICIDAD`, `CT_DOMICILIO`, `CT_AMBITO`, `NIVEL_ACCESO_INFO`, `FIRMA_MODALIDAD`, `TIPO_FIRMA`, `CLAUSULA_FIRMA_ELECTRONICA`, `FIRMA_SELLO_TRAB`, `FIRMA_SELLO_EMPRESA`, `LUGAR_FIRMA`, `FECHA_FIRMA`, `BENEF_DESIGNACION_FECHA`, `BENEF_CONFIRMACION_FECHA`.
 - De la biblioteca: `TELE_DIAS`, `PORC_TIEMPO_DOMICILIO`, `TELE_AVISO_DIAS`, `TELE_ORIGEN`, `TELE_SOLICITUD_FECHA`, `HIBRIDO_ORIGEN`, `HIBRIDO_APOYO_MODO`, `HIBRIDO_APOYO_MONTO`, `REPSE_LUGAR_TIPO`, `ASIGNACION_AVISO_DIAS`, `ASIGNACION_INICIO`, `CLIENTE_RAZON_SOCIAL`, `CLIENTE_RFC`, `CLIENTE_INSTALACION_DOMICILIO`, `SERVICIO_CONTRATO_FECHA`, `CLIENTE_DECLARACION_FECHA`, `CLIENTE_LINEAMIENTOS_ENTREGA`; cláusulas M-H.1 a M-H.8 y M-T.1 a M-T.11 y Anexos T1 a T3.
 - De firma electrónica: `FIRMANTES_EMPRESA`, `FIRMA_EMPRESA_NOMBRE`, `FIRMA_EMPRESA_CARGO`, `FIRMA_EMPRESA_DOC`.
-- De permisos: bloques comunes, `SALIDA`, `CONSTANCIA_FECHA`, `CONFIRMACION_FECHAHORA`, `NEGATIVA_FIRMA`, `TESTIGO_1_NOMBRE`, `TESTIGO_2_NOMBRE`, `FECHA_ENVIO`, `SUSP_DOCUMENTO`.
+- De permisos: bloques comunes, `SALIDA`, `CONSTANCIA_FECHA`, `CONFIRMACION_FECHAHORA`, `NEGATIVA_FIRMA`, `TESTIGO_1_NOMBRE`, `TESTIGO_2_NOMBRE`, `FECHA_ENVIO`, `SUSP_DOCUMENTO`, `SUSP_CONOCIMIENTO_FECHA`, `SUSP_LIMITE`.
 - Globales: tablas de salarios mínimos por zona y de jornada máxima por año; calendario de días inhábiles.
 
 ### 12.2 Variables del módulo
 
 | Variable | Nivel | Tipo | Validación u omisión | Activa |
 | --- | --- | --- | --- | --- |
-| SALARIO_PERSONA / SALARIO_PERSONA_LETRA | A, V / S | Moneda / texto | Por omisión el del puesto; ≥ mínimo de la zona; menor que el vigente solo por MOD-1 | MOD-1 cláusula cuarta; nómina y demás módulos |
+| SALARIO_PERSONA / SALARIO_PERSONA_LETRA | A, V / S | Moneda / texto | Por omisión el del puesto; ≥ mínimo de la zona; menor que el vigente solo por MOD-1. Letra: «… pesos NN/100 M.N.» (0) | MOD-1 cláusula cuarta; nómina y demás módulos |
 | PUESTO_VERSION, PERFIL_VERSION, JORNADA_VERSION, PRESTACIONES_VERSION | O (catálogo versionado) / S (persona) | Identificador | Cambian solo con un evento Vigente | Todos los módulos (5) |
 | ACTUALIZACION_ANUAL_MES | E | Mes | Obligatoria | Campaña ACT-1; alerta de revisión de perfiles |
 | INCAPACIDAD_PARCIAL / INCAPACIDAD_PARCIAL_FECHA | V (al cerrar C2, módulo de permisos) | Sí/No / fecha | Fecha obligatoria con Sí | Situación protegida; antecedente de readaptación |
@@ -474,7 +488,7 @@ La Persona Trabajadora hace constar, en la fecha de este registro, lo siguiente:
 | MOD_CONVENIOS_PREVIOS | S | Lista de fechas | Del expediente | MOD-1 antecedente I |
 | PUESTO_NUEVO, AREA_NUEVA, CLASIFICACION_NUEVA / PUESTO_ANTERIOR | V (del catálogo) / S | Texto | Del organigrama | MOD-1 cláusulas segunda y de ascenso |
 | JORNADA_TIPO_ANTERIOR, DIAS_LABORADOS_ANTERIOR, HORARIO_ANTERIOR, HORAS_SEMANA_ANTERIOR, DESCANSO_ANTERIOR, DESCANSO_MINUTOS_ANTERIOR / DESCANSO_SEMANAL_TEXTO | S | Texto | De la versión vigente y de la nueva | MOD-1 cláusula tercera |
-| SALARIO_ANTERIOR / SALARIO_NUEVO / SALARIO_NUEVO_LETRA | S / V / S | Moneda / texto | — | MOD-2; ficha y bitácora (no se imprimen en MOD-1) |
+| SALARIO_ANTERIOR / SALARIO_NUEVO / SALARIO_NUEVO_LETRA | S / V / S | Moneda / texto | Letra con la misma función que SALARIO_PERSONA_LETRA (0) | MOD-2; ficha y bitácora (no se imprimen en MOD-1) |
 | MOD_MODULO_ASCENSO / ASCENSO_TIPO | S / V | Sí/No / Temporal · Con periodo de adaptación | Solo con cambio a categoría superior | Cláusula de ascenso |
 | ASCENSO_FECHA_FIN / ASCENSO_CAUSA | V | Fecha / texto | Obligatorios con Temporal; fin > efectos | Cláusula de ascenso; alertas |
 | ASCENSO_ADAPTACION_DIAS / ASCENSO_CAPACITACION | V | Entero / texto | 1 a 90; hasta 180 con PUESTO_DIRECCION_TECNICO = Sí del puesto nuevo; capacitación obligatoria | Cláusula de ascenso; alertas |
@@ -494,6 +508,7 @@ La Persona Trabajadora hace constar, en la fecha de este registro, lo siguiente:
 | REASIGNACION_INICIO / REASIGNACION_FIN | V | Fecha | Fin opcional («hasta que cese la causa») | MOD-5; alertas |
 | REASIGNACION_FUNCIONES / REASIGNACION_LUGAR / REASIGNACION_HORARIO | V | Texto | Obligatorios; horario validado contra el capítulo X del RIT en embarazo y lactancia | MOD-5; módulo 9 |
 | REASIGNACION_SOPORTE | V | Texto + archivo | Obligatorio con Incapacidad temporal; sin diagnóstico | MOD-5 |
+| D4_REUBICACION / D4_REUBICACION_FIN | S (las entrega este módulo al de permisos) | Sí/No / fecha | Sí al quedar Vigente un MOD-5 con causa «Falta de documentos»; fin = fecha en que concluye la reasignación | Evento D4 «Con reubicación»; SUS-2 desde el fin si no se regularizó |
 | MOD_CONFIRMACION_PROTEGIDA | V | Usuario, fecha y hora | Obligatoria con situación protegida | No se imprime |
 | ACT_ESTADO | S | 4.3 | — | Campaña |
 | ACT_DATOS_RESUMEN | S | Texto | Datos confirmados o actualizados | ACT-1 |
@@ -508,17 +523,19 @@ La Persona Trabajadora hace constar, en la fecha de este registro, lo siguiente:
 
 ## 13. Dependencias y encargos
 
+Estado al 20/11/2026, según el registro de decisiones.
+
 | Pieza | Qué necesita este módulo | Estado |
 | --- | --- | --- |
-| Organigrama y catálogo de jornadas | Versionado por elemento y liga de cada persona a su versión | Encargo a Cerebro |
-| Alta | `SALARIO_PERSONA` (sustituye el «salario fijo por puesto») | Encargo a Cerebro |
-| Configuración de la empresa | `ACTUALIZACION_ANUAL_MES`; `TELE_AVISO_DIAS` como variable de empresa | Encargo a Cerebro |
-| Contrato | Cláusula 1.4: el cierre «ningún cambio disminuirá el salario» choca con la reducción por convenio | Encargo a Cerebro (paquete de contratación) |
+| Organigrama y catálogo de jornadas | Versionado por elemento y liga de cada persona a su versión | Registrado (registro, sección 2, 15/11/2026) |
+| Alta | `SALARIO_PERSONA` con precarga del puesto (sustituye el «salario fijo por puesto») | Registrado (sección 2 y 4.1, 17/11/2026) |
+| Configuración de la empresa | `ACTUALIZACION_ANUAL_MES`; `TELE_AVISO_DIAS` como variable de empresa | Registrado (sección 2, 15/11/2026) |
+| Contrato | Cláusula 1.4: el cierre ya no dice «ningún cambio disminuirá el salario» | Resuelto (registro 4.1, 17/11/2026) |
 | Biblioteca | M-H.1 a M-H.8, M-T.1 a M-T.11, Anexos T1 a T3 y oficio 2.3, sin cambios | Vigente |
-| Permisos | `INCAPACIDAD_PARCIAL` al cerrar C2; si una reubicación aceptada en D4 suspende la generación de SUS-2 | Encargo |
-| RIT | El lote de 2.6 genera MOD-2 «Ajuste legal de jornada» | Encargo |
-| Firma electrónica | Agregar MOD-5 («RH designado») y ACT-1 (sin firma) a la tabla de la sección 11 | Encargo |
-| Nómina, módulo 4, vacaciones y aguinaldo, PTU, módulo 9 | Leer la versión y el salario de cada persona | Encargo |
+| Permisos | `INCAPACIDAD_PARCIAL` al cerrar C2; D4 con reubicación (`D4_REUBICACION`, `D4_REUBICACION_FIN`) | Resuelto (especificación de permisos v1.7 y v1.8) |
+| RIT | El lote de 2.6 genera MOD-2 «Ajuste legal de jornada» | Resuelto (especificación del RIT v1.5) |
+| Firma electrónica | MOD-5 «RH designado» y ACT-1 sin firma en la tabla de la sección 11 | Resuelto (especificación de firma electrónica v1.4) |
+| Nómina, módulo 4, vacaciones y aguinaldo, PTU, módulo 9 | Leer la versión y el salario de cada persona | Módulo 4 v1.5 y vacaciones v1.2 ya lo leen; módulo 9, encargo vigente del mapa |
 
 ---
 
@@ -550,3 +567,4 @@ Si cambian, afectan textos o alertas, no la estructura.
 | 11. REPSE vencido | Reasignación con folio REPSE vencido | Bloqueo de MOD-4 |
 | 12. Perfil que cambia la naturaleza | RH marca que cambia la clasificación | El evento pasa de nueva versión del perfil a MOD-1 |
 | 13. ACT-1 sin respuesta | Campaña abierta el 1/03; sin respuesta | Recordatorios el 16/03 y el 31/03; «Sin respuesta» y alerta a RH el 15/04 |
+| 14. Reubicación en D4 | D4 registrado con `SUSP_CONOCIMIENTO_FECHA` 2/03/2027 (`SUSP_LIMITE` 2/05/2027); MOD-5 aceptado el 5/03; la persona regulariza el 20/04 | MOD-5 imprime el vencimiento del 2 de mayo de 2027; `D4_REUBICACION` = Sí el 5/03 y `D4_REUBICACION_FIN` = 20/04; sin SUS-2; días pagados y computables |

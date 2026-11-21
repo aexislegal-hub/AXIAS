@@ -1,7 +1,7 @@
 # AXIA RH — MÓDULO 4: TERMINACIÓN DE LA RELACIÓN DE TRABAJO Y PRECÁLCULO DE FINIQUITO
 
-Especificación para programación · Versión 1.5 · 17/11/2026
-Fuente: documento de trabajo «Axia RH — Módulo 4», registro de decisiones (4.8, 4.10, 4.12, 4.13 y 5.5), encargos del mapa del PMV al módulo 4 (15 y 17/11/2026) y ajustes del usuario del 10 y 12/11/2026.
+Especificación para programación · Versión 1.5 · 17/11/2026 (con los encargos 12 a 14 del mapa agregados el 20/11/2026)
+Fuente: documento de trabajo «Axia RH — Módulo 4», registro de decisiones (4.8, 4.10, 4.12, 4.13 y 5.5), encargos del mapa del PMV al módulo 4 (15, 17 y 18/11/2026) y ajustes del usuario del 10 y 12/11/2026.
 
 ## Cambios respecto de la versión 1.4 (la que está cargada en el software)
 
@@ -20,6 +20,14 @@ Aplicar estos cambios sobre la 1.4. Ante cualquier duda, rige el texto completo 
 | 9 | 5.5 (nueva) | Al registrar la baja: se cancelan las vacaciones autorizadas posteriores a `BAJA_FECHA` y se libera su cupo; si había aguinaldo validado sin pagar, se avisa al contador | Mapa, encargos 2 y 10 (15 y 17/11) |
 | 10 | 7.7 | Regla 2 del acta de devolución alineada con el art. 46 vigente del RIT | Mapa, encargo 3 (15/11) |
 | 11 | 9 | Dependencias actualizadas: módulos 5, 6, 8, 10 y 11; las variables F-2 vienen de Axia CYA | Registro 6 (15/11) |
+| 12 (20/11) | 2.4 | El texto de la alerta de situación protegida es el del módulo de permisos y usa `SITUACION_PROTEGIDA_TIPO` | Mapa, encargo 1 (17/11) |
+| 13 (20/11) | Todo el documento; 8.3 | `SALARIO_PERSONA` sustituye a `SALARIO_DIARIO` como base de cálculo y en las plantillas (convenio y recibo). Imprime el mismo dato; solo cambia el nombre | Mapa, diccionario único (18/11) |
+| 14 (20/11) | 4.8 | Los renglones automáticos de Infonavit y Fonacot se precargan con el descuento del alta como sugerencia editable | Mapa, encargo 12 (18/11) |
+| 15 (20/11) | 7.7 | Acta de devolución: el valor de reposición de cada bien se precarga de la carta responsiva | Mapa, encargo 13 (18/11) |
+| 17 (20/11) | 2.4, 8.1, 8.2 | El embarazo informado (`EMBARAZO_INFORMADO_FECHA`, del expediente) activa la alerta de situación protegida con doble confirmación, sin bloqueo | Decisión del usuario (20/11) |
+| 16 (20/11) | 7.1, 7.7, 8.2 | Acta de devolución: firma electrónica o autógrafa, según se haga la entrega (`DEV_FIRMA_FORMA`); por la Empresa, RH designado; testigos solo si la persona se niega | Mapa, encargo 14; registro 4.11 (18/11) |
+
+Los cambios 12 a 17 se agregaron el 20/11/2026, cuando la 1.5 aún no se había cargado. Si ya se cargó, aplicar solo esos seis.
 
 ---
 
@@ -120,11 +128,15 @@ Ninguna de estas situaciones bloquea la baja. Exigen doble confirmación para qu
 
 1. Alerta crítica en la pantalla, antes del paso 4:
 
-   > «Esta persona tiene vigente: {{EVENTO_TIPO_NOMBRE}}, desde el {{EVENTO_FECHA_INICIO}}. Dar por terminada la relación en esta situación puede generar un reclamo. ¿Desea continuar con la baja?»
+   > «Esta persona está en una situación que la ley protege ({{SITUACION_PROTEGIDA_TIPO}}). Darla de baja puede generar un reclamo. ¿Confirma que lo revisó con consultoría?»
 
-2. Si RH elige «Continuar», segunda confirmación: «Confirmo que la Empresa conoce esta situación y decide continuar con la baja.»
+   El texto es el de la especificación de permisos (sección 11). `SITUACION_PROTEGIDA_TIPO` lo envía ese módulo: Incapacidad en curso, Maternidad, Lactancia, Declaración Especial de Ausencia o Licencia por hijo con cáncer.
+
+2. Si RH confirma, segunda confirmación: «Confirmo que la Empresa conoce esta situación y decide continuar con la baja.»
 3. El sistema registra usuario, fecha y hora en `BAJA_CONFIRMACION_PROTEGIDA`. Sin las dos confirmaciones no se avanza al paso 4; «Cancelar» deja la baja guardada como borrador.
-4. Si hay varios eventos, la alerta los lista todos y basta una doble confirmación.
+4. Si hay varias situaciones, la alerta las lista todas, separadas por comas, y basta una doble confirmación.
+5. **Embarazo informado (decisión del usuario, 20/11/2026).** Si el expediente tiene `EMBARAZO_INFORMADO_FECHA` y todavía no hay evento C3, se muestra la misma alerta con «Embarazo informado» como situación, con la misma doble confirmación y el mismo registro en `BAJA_CONFIRMACION_PROTEGIDA`. Solo alerta: nunca bloquea.
+6. La calidad de representante obrero en una comisión no es situación protegida para la baja (decisión del usuario, 20/11/2026): no genera alerta.
 
 **Comisión permanente vigente (B4).** Misma mecánica, con este texto:
 
@@ -199,13 +211,13 @@ Reglas:
 | Concepto | Fórmula | Base |
 | --- | --- | --- |
 | Antigüedad | Años, meses y días de `FECHA_INICIO` a `BAJA_FECHA`, incluido el periodo de prueba o capacitación | — |
-| Salario diario | `SALARIO_PERSONA` vigente a `BAJA_FECHA` (versión de condiciones de la persona, módulo 5). Si la periodicidad es semanal: salario ÷ 7; si es mensual: ÷ 30. En ascenso temporal o con periodo de adaptación, el salario del puesto que ocupa | — |
-| Aguinaldo proporcional | Según 4.9: `AGUINALDO_DIAS` × días computables (`AGUINALDO_COMPUTA`) de `AGUINALDO_PERIODO_INICIO` a `BAJA_FECHA` ÷ 365. Cero si el aguinaldo del año ya se pagó | `SALARIO_DIARIO` |
-| Vacaciones pendientes | Suma de los saldos de los periodos Vigentes y Fuera de plazo del módulo 11 (4.9) | `SALARIO_DIARIO` |
-| Vacaciones proporcionales | Días del periodo siguiente × días transcurridos desde el último aniversario (o desde `FECHA_INICIO`, si no ha cumplido el año) ÷ 365 (módulo 11, sección 11) | `SALARIO_DIARIO` |
+| Salario diario (`SALARIO_PERSONA`) | Salario diario de la versión de condiciones de la persona vigente a `BAJA_FECHA` (módulo 5). Ya es diario: no se divide entre los días de la periodicidad. En ascenso temporal o con periodo de adaptación, el del puesto que ocupa | — |
+| Aguinaldo proporcional | Según 4.9: `AGUINALDO_DIAS` × días computables (`AGUINALDO_COMPUTA`) de `AGUINALDO_PERIODO_INICIO` a `BAJA_FECHA` ÷ 365. Cero si el aguinaldo del año ya se pagó | `SALARIO_PERSONA` |
+| Vacaciones pendientes | Suma de los saldos de los periodos Vigentes y Fuera de plazo del módulo 11 (4.9) | `SALARIO_PERSONA` |
+| Vacaciones proporcionales | Días del periodo siguiente × días transcurridos desde el último aniversario (o desde `FECHA_INICIO`, si no ha cumplido el año) ÷ 365 (módulo 11, sección 11) | `SALARIO_PERSONA` |
 | Prima vacacional | Importe total de vacaciones × `PRIMA_VACACIONAL_PCT` | — |
 | Prima de antigüedad | 12 × (años completos + fracción del año en curso) × `SALARIO_TOPADO` | `SALARIO_TOPADO` |
-| Salario topado | Menor entre `SALARIO_DIARIO` y 2 × salario mínimo del área geográfica del centro de trabajo. Si el centro abarca varias áreas: 2 × promedio de los mínimos | Tabla de salarios mínimos por año y zona |
+| Salario topado | Menor entre `SALARIO_PERSONA` y 2 × salario mínimo del área geográfica del centro de trabajo. Si el centro abarca varias áreas: 2 × promedio de los mínimos | Tabla de salarios mínimos por año y zona |
 | Salario diario integrado (`SDI`) | Cuota diaria + parte proporcional de prestaciones. Si el salario es variable: promedio de los 30 días efectivamente trabajados antes de `BAJA_FECHA` (si hubo aumento en ese lapso, promedio desde el aumento) | — |
 | Indemnización constitucional | 90 × `SDI` | `SDI` |
 | 20 días por año (art. 50, fr. II) | 20 × años de servicio (incluida la fracción) × `SDI` | `SDI` |
@@ -275,14 +287,14 @@ Las exenciones de aguinaldo, prima vacacional y PTU se reducen por lo ya exento 
 
 1. Base gravable ordinaria = percepciones ordinarias − exentos.
 2. ISR = tarifa mensual del art. 96 vigente a `BAJA_FECHA` (tabla del Anexo 8 de la RMF del año), aplicada a la base gravable.
-   - Si `SALARIO_DIARIO` es igual al salario mínimo del área geográfica del centro de trabajo, los salarios devengados no causan retención (art. 96, primer párrafo) y se restan de la base. Las demás percepciones gravadas sí se gravan. Mensaje al contador: «Persona con salario mínimo: no se retuvo ISR sobre el salario».
+   - Si `SALARIO_PERSONA` es igual al salario mínimo del área geográfica del centro de trabajo, los salarios devengados no causan retención (art. 96, primer párrafo) y se restan de la base. Las demás percepciones gravadas sí se gravan. Mensaje al contador: «Persona con salario mínimo: no se retuvo ISR sobre el salario».
 3. Subsidio para el empleo: se aplica según el decreto vigente (porcentaje de la UMA mensual y límite de ingresos de la tabla de parámetros), proporcional a los días del periodo (monto mensual ÷ 30.4 × días).
 4. ISR ordinario = ISR − subsidio (no menor que cero).
 
 **Paso 4. ISR de los pagos por separación**
 
 1. Base gravable de separación = pagos por separación − exento del paso 2.
-2. Último sueldo mensual ordinario (`USMO`): por omisión, `SALARIO_DIARIO` × 30. Si el salario es variable o hubo cambios, el contador lo captura.
+2. Último sueldo mensual ordinario (`USMO`): por omisión, `SALARIO_PERSONA` × 30. Si el salario es variable o hubo cambios, el contador lo captura.
 3. Tasa = ISR del USMO con la tarifa mensual ÷ USMO.
 4. ISR de separación = base gravable de separación × tasa.
    - La tasa se aplica a la parte gravada, no al total: lo exento por la fr. XIII del art. 93 no causa impuesto.
@@ -315,7 +327,12 @@ Misma mecánica que «Otros devengados y prestaciones» (4.2):
 - Un renglón vacío por omisión, botón «+ Agregar deducción» debajo de la tabla y botón para quitar cada renglón. Sin límite. Un renglón vacío no se imprime.
 - Columnas: Tipo, Concepto, Importe, Soporte (opcional).
 - Tipos: Crédito Infonavit · Crédito Fonacot · Pensión alimenticia · Pérdida o daño · Anticipo o préstamo de la Empresa · Otra deducción autorizada.
-- Si el alta tiene `INFONAVIT_CREDITO`, `FONACOT_CREDITO` o `PENSION_ALIMENTICIA` = Sí, el sistema agrega en automático el renglón de ese tipo con el importe vacío, para que RH lo capture. RH puede quitarlo.
+- Si el alta tiene `INFONAVIT_CREDITO`, `FONACOT_CREDITO` o `PENSION_ALIMENTICIA` = Sí, el sistema agrega en automático el renglón de ese tipo para que RH lo revise. RH puede quitarlo.
+- **Precarga como sugerencia editable (20/11).** El importe propuesto se marca «Sugerido» hasta que RH lo confirma o lo cambia:
+  - Infonavit: con `INFONAVIT_DESCUENTO_TIPO` = Cuota fija, `INFONAVIT_DESCUENTO_VALOR` proporcional a los días del último periodo de salario pagado. Con Porcentaje o Veces salario mínimo, RH captura el importe a mano; la pantalla muestra el tipo y el valor del alta como referencia (decisión del usuario, 20/11/2026).
+  - Fonacot: `FONACOT_DESCUENTO_MONTO` (importe mensual del alta) proporcional a los días del último periodo de salario pagado. Rige además la regla de Fonacot de abajo: si la cédula del módulo 8 tiene la retención del periodo, se precarga esa y no la del alta.
+  - Pensión alimenticia: el importe queda vacío; RH lo captura conforme a la resolución.
+  - Sin dato en el alta, el importe queda vacío con el aviso «Descuento pendiente de capturar».
 - **Crédito Fonacot (1.5).** El importe del renglón es `FONACOT_RETENCION_FINIQUITO`: solo la amortización que la cédula asigna al último periodo de salario que se paga en el finiquito, proporcional a los días de ese periodo. Nunca el saldo del crédito ni importes de otros conceptos del finiquito. Si el importe capturado supera la retención mensual de la cédula, aviso sin bloqueo: «Solo se retiene la amortización del último periodo; el saldo lo paga la Persona Trabajadora directamente al Instituto». La retención se entera en la cédula siguiente con la incidencia de baja (módulo 8).
 - **Fallecimiento (1.5).** No se agrega el renglón automático de Fonacot en el pago a beneficiarios (7.8); se activa la alerta del aviso de defunción (5.1).
 - Avisos (no bloquean): «Pérdida o daño» sin soporte → «Solo procede con expediente concluido (reconocimiento en FD-5 o determinación en FD-3)»; la suma de «Pérdida o daño», «Anticipo o préstamo» y «Otra» mayor que el límite del art. 110, fr. I LFT → «Rebasa el límite legal de descuento».
@@ -328,7 +345,7 @@ El módulo 4 no calcula saldos de vacaciones ni días de aguinaldo: los lee del 
 
 | Dato | Qué toma el módulo 4 | Se suma al finiquito |
 | --- | --- | --- |
-| Periodos Vigentes o Fuera de plazo | Saldo de días de cada periodo, salario base (`SALARIO_PERSONA` vigente a la baja, es decir, `SALARIO_DIARIO`) y prima | Sí, en «Vacaciones de periodos cumplidos no disfrutados» |
+| Periodos Vigentes o Fuera de plazo | Saldo de días de cada periodo, salario base (`SALARIO_PERSONA` vigente a la baja) y prima | Sí, en «Vacaciones de periodos cumplidos no disfrutados» |
 | Proporcional del año en curso | Días del periodo siguiente × días transcurridos desde el último aniversario (o desde `FECHA_INICIO`) ÷ 365 | Sí, en «Vacaciones proporcionales del año en curso» |
 | Periodos Prescritos | Días y fecha de prescripción | **No.** Solo se muestran en pantalla, como dato informativo para consultoría; no se imprimen |
 | Aguinaldo, baja antes del pago del año | Proporcional de `AGUINALDO_PERIODO_INICIO` a `BAJA_FECHA`, con la tabla de días computables `AGUINALDO_COMPUTA` | Sí |
@@ -458,6 +475,7 @@ Testigo: ______________________ (nombre y firma)     Testigo: __________________
 ```
 
 - Firma autógrafa obligatoria en el convenio (7.2), en el recibo de finiquito (art. 101 LFT) y en el recibido de FON-1, aunque `FIRMA_MODALIDAD` = Electrónica. Ninguno lleva cláusula de firma electrónica.
+- El acta de devolución (7.7) es la excepción del paquete de baja: admite firma electrónica o autógrafa, según se haga la entrega.
 - El convenio (7.2) se firma al margen de cada hoja y al calce, con huella digital de la Persona Trabajadora.
 
 ### 7.2 Convenio de terminación de la relación de trabajo por mutuo consentimiento y finiquito
@@ -475,7 +493,7 @@ SEGUNDO. Condiciones de trabajo. A la fecha de este convenio, las condiciones de
 
 | Puesto                     | {{PUESTO}}            |
 | Centro de trabajo          | {{CT_DOMICILIO}}      |
-| Salario diario             | {{SALARIO_DIARIO}}    |
+| Salario diario             | {{SALARIO_PERSONA}}    |
 | Salario diario integrado   | {{SDI}}               |
 | Jornada y descanso         | {{JORNADA_RESUMEN}}   |
 | Antigüedad                 | {{ANTIGUEDAD_TEXTO}}  |
@@ -690,11 +708,11 @@ RECIBO DE FINIQUITO
 A. PERCEPCIONES
 
 | Concepto                                                  | Base               | Factor            | Importe              |
-| Salarios devengados del {{DEV_DESDE}} al {{BAJA_FECHA}}   | {{SALARIO_DIARIO}} | {{DEV_FACTOR}}    | {{DEV_IMPORTE}}      |
+| Salarios devengados del {{DEV_DESDE}} al {{BAJA_FECHA}}   | {{SALARIO_PERSONA}} | {{DEV_FACTOR}}    | {{DEV_IMPORTE}}      |
 [SI OTROS_DEVENGADOS] Una fila por cada renglón capturado y no vacío: concepto · base · factor · importe [FIN SI]
-[SI AGUI_IMPORTE > 0] | Aguinaldo proporcional {{ANIO}} | {{SALARIO_DIARIO}} | {{AGUI_FACTOR}} | {{AGUI_IMPORTE}} | [FIN SI]
-[SI VAC_PEND_IMPORTE > 0] | Vacaciones de periodos cumplidos no disfrutados | {{SALARIO_DIARIO}} | {{VAC_PEND_FACTOR}} | {{VAC_PEND_IMPORTE}} | [FIN SI]
-| Vacaciones proporcionales del año en curso                | {{SALARIO_DIARIO}} | {{VAC_PROP_FACTOR}} | {{VAC_PROP_IMPORTE}} |
+[SI AGUI_IMPORTE > 0] | Aguinaldo proporcional {{ANIO}} | {{SALARIO_PERSONA}} | {{AGUI_FACTOR}} | {{AGUI_IMPORTE}} | [FIN SI]
+[SI VAC_PEND_IMPORTE > 0] | Vacaciones de periodos cumplidos no disfrutados | {{SALARIO_PERSONA}} | {{VAC_PEND_FACTOR}} | {{VAC_PEND_IMPORTE}} | [FIN SI]
+| Vacaciones proporcionales del año en curso                | {{SALARIO_PERSONA}} | {{VAC_PROP_FACTOR}} | {{VAC_PROP_IMPORTE}} |
 | Prima vacacional                                          | {{PV_BASE}}        | {{PRIMA_VACACIONAL_PCT}} | {{PV_IMPORTE}}  |
 [SI PA_INCLUIR = Sí] | Prima de antigüedad | {{SALARIO_TOPADO}} | {{PA_FACTOR}} | {{PA_IMPORTE}} | [FIN SI]
 [SI PRESTACIONES_SUPERIORES] Una fila por cada prestación superior devengada [FIN SI]
@@ -746,6 +764,12 @@ La plantilla ya existe en el kit de contratación. Este módulo agrega estas reg
 3. **Cierre de accesos.** Cada cuenta de `DEV_ACCESOS` requiere fecha de baja, igual o anterior a `BAJA_FECHA` + 1 día hábil.
 4. **Persona que no se presenta.** RH registra la inasistencia y el sistema genera un requerimiento de devolución dirigido a `TRAB_EMAIL`, con plazo de 5 días hábiles. No se retiene el finiquito.
 5. **Plazo:** el acta se levanta en la misma fecha del convenio o, a más tardar, dentro de 3 días hábiles.
+6. **Valor de reposición (20/11).** Cada bien de `DEV_BIENES` se precarga con la descripción y el valor de reposición de la columna de `EQUIPO_DESCRIPCION` de la carta responsiva vigente. RH puede corregirlo con motivo. Un bien sin valor de reposición no admite descuento (regla 2); la pantalla lo marca «Sin valor de reposición: no procede descuento».
+7. **Firma (20/11; registro 4.11).** RH elige cómo se firma (`DEV_FIRMA_FORMA`: Electrónica · Autógrafa), sin valor por omisión, según se haga la entrega:
+   - Electrónica: la Persona Trabajadora firma con su tipo de firma (especificación de firma electrónica) y por la Empresa firma la persona de RH designada (`FIRMANTES_EMPRESA`); sin ella, el representante (aprobado por el usuario, 20/11/2026).
+   - Autógrafa: firman en papel la Persona Trabajadora y quien recibe por la Empresa (`DEV_RECIBE`); se carga el escaneo.
+   - Testigos solo si la persona se niega a firmar: constancia de negativa (7.1) con dos testigos y envío del acta a `TRAB_EMAIL`. Si rechaza la firma electrónica, el acta pasa a autógrafa.
+   - La plantilla del kit imprime el bloque de testigos solo con negativa.
 
 ### 7.8 Convenio de pago a beneficiarios
 
@@ -821,7 +845,9 @@ Del módulo 5 (1.5): `SALARIO_PERSONA` y la versión de condiciones de la person
 
 Del módulo de vacaciones y aguinaldo (1.5, especificación v1.2): saldos por periodo y su estado (Vigente, Fuera de plazo, Prescrito), `AGUINALDO_PERIODO_INICIO`, `AGUINALDO_COMPUTA`, `AGUINALDO_VALIDADO` y el registro del pago del aguinaldo del año.
 
-Del módulo de permisos (1.5): `SITUACION_PROTEGIDA`, `EVENTO_TIPO_NOMBRE`, `EVENTO_FECHA_INICIO`, `COMISION_FECHA_LIMITE` y, del evento D4, `SUSP_LIMITE`.
+Del módulo de permisos (1.5): `SITUACION_PROTEGIDA`, `SITUACION_PROTEGIDA_TIPO`, `COMISION_FECHA_LIMITE` y, del evento D4, `SUSP_LIMITE`.
+
+Del alta (20/11): `INFONAVIT_DESCUENTO_TIPO`, `INFONAVIT_DESCUENTO_VALOR`, `FONACOT_DESCUENTO_MONTO` y la columna de valor de reposición de `EQUIPO_DESCRIPCION`; del kit: `DEV_RECIBE`.
 
 De los módulos 6 y 8 (1.5): `PAGO_REGISTRO`, `PAGO_EVIDENCIA`, `FONACOT_BAJA_REPORTE_FECHA`, `FONACOT_PLAZOS` (X), `FIRMANTES_EMPRESA`. De la empresa: `FONACOT_AVISO_PERSONA`.
 
@@ -837,11 +863,12 @@ Faltan en el alta: `PENSION_ALIMENTICIA`, `PENSION_AUTORIDAD`, `PENSION_PORCENTA
 | --- | --- | --- | --- | --- |
 | BAJA_MOTIVO | V | Opción (2.1) | Obligatoria; sin «despido injustificado» | Cálculo, documento de respaldo, mensajes. **No se imprime** |
 | BAJA_FECHA | V | Fecha | Obligatoria; ≥ FECHA_INICIO | Todos; revisión de 2.4 y efectos de 5.5 |
-| BAJA_CONFIRMACION_PROTEGIDA (1.5) | V | Registro: usuario, fecha y hora de cada una de las dos confirmaciones, eventos mostrados | Obligatoria si `SITUACION_PROTEGIDA` = Sí a `BAJA_FECHA` | Avance al paso 4 (2.4). **No se imprime** |
+| BAJA_CONFIRMACION_PROTEGIDA (1.5) | V | Registro: usuario, fecha y hora de cada una de las dos confirmaciones, situaciones mostradas | Obligatoria si `SITUACION_PROTEGIDA` = Sí o hay `EMBARAZO_INFORMADO_FECHA` sin C3 a `BAJA_FECHA` | Avance al paso 4 (2.4). **No se imprime** |
+| EMBARAZO_INFORMADO_FECHA (20/11) | A (expediente) | Fecha en que la trabajadora informó el embarazo; la captura RH cuando se le informa; deja de usarse al registrarse C3 | Opcional; sin valor por omisión | Alerta de 2.4. **No se imprime** |
 | BAJA_CONFIRMACION_B4 (1.5) | V | Registro: usuario, fecha y hora | Obligatoria si hay B4 vigente a `BAJA_FECHA` | Avance al paso 4 (2.4). **No se imprime** |
 | CANDADOS_OMITIDOS | S | Registro: usuario, fecha, requisitos faltantes | Automático al oprimir «Continuar sin requisitos» | Suprime el comunicado de respaldo (2.3) |
 | ANTIGUEDAD_TEXTO | S | Texto | Años, meses y días | Convenio; recibo |
-| SALARIO_DIARIO | S | Moneda | De `SALARIO_PERSONA` vigente a BAJA_FECHA (versión de la persona); en ascenso, el del puesto ocupado | Convenio; recibo |
+| SALARIO_PERSONA | A/S (módulo 5) | Moneda, diario | Vigente a BAJA_FECHA según la versión de condiciones de la persona; en ascenso, el del puesto ocupado | Convenio; recibo; base de cálculo |
 | SDI | S | Moneda | Sección 4.3 | Convenio; recibo; escenario |
 | SALARIO_TOPADO | S | Moneda | Sección 4.3 | Prima de antigüedad |
 | SALARIO_MINIMO (tabla) | E (global) | Tabla: año, zona, monto | Obligatoria | SALARIO_TOPADO |
@@ -873,12 +900,13 @@ Faltan en el alta: `PENSION_ALIMENTICIA`, `PENSION_AUTORIDAD`, `PENSION_PORCENTA
 | ISR_ORDINARIO / ISR_SEPARACION / SUBSIDIO_EMPLEO / ISR | S | Moneda | Sección 4.7; sustituibles con cifra propia | Recibo (ISR = ordinario + separación) |
 | EXENTO_ORDINARIO / EXENTO_SEPARACION | S | Moneda | Sección 4.7, paso 2 | Pantalla de cálculo |
 | EXENTO_ACUMULADO_ANIO | S/V | Moneda por concepto | De nómina si existe; si no, 0 con aviso | Paso 2 |
-| USMO | S/V | Moneda | Por omisión SALARIO_DIARIO × 30; editable por el contador | Tasa del ISR de separación |
+| USMO | S/V | Moneda | Por omisión SALARIO_PERSONA × 30; editable por el contador | Tasa del ISR de separación |
 | IMSS_CONCEPTOS_GRAVADOS | V | Selección de conceptos | Por omisión solo salarios devengados | Cuotas obreras |
 | REF_EXENCION | E (global) | Opción: UMA / Salario mínimo | Por omisión UMA | Exenciones del paso 2 |
 | PARAMETROS (tablas versionadas: UMA, TARIFA_ISR_96, SUBSIDIO_EMPLEO, SALARIO_MINIMO, CUOTAS_IMSS, EXENCIONES_93) | X | Tablas con vigencia | Solo se activan aprobadas | Cálculo 4.7 |
 | PARAM_APROBADO_POR / PARAM_APROBADO_FECHA / PARAM_DOBLE_REVISION | X | Texto; fecha; Sí/No | — | Activación de parámetros (5.3) |
 | PARAM_MONITOR_FRECUENCIA | X | Calendario | Por omisión diario dic-feb, semanal el resto | Monitor (5.3) |
+| DEV_FIRMA_FORMA (20/11) | V | Opción: Electrónica / Autógrafa | Sin valor por omisión; obligatoria para generar el acta | Acta de devolución, bloque de firma (7.7, regla 7) |
 | BAJA_FIRMA_EVIDENCIA | V | Archivo | — | Cierra el seguimiento 5.2 |
 | BAJA_SEGUIMIENTO_CERRADO | V | Botón + nota opcional; registra usuario y fecha | — | Cierra el seguimiento 5.2 |
 | ALERTA_BAJA_INTERVALO | E | Entero (días hábiles) | Por omisión 5 | Seguimiento 5.2 |
@@ -921,6 +949,7 @@ Eliminadas en las versiones 1.2 y 1.3 respecto de la 1.1:
 | `CONSTANCIA_SALIDA` | Sustituida por `CONSTANCIA_SERVICIOS` |
 | `INFONAVIT_IMPORTE`, `FONACOT_IMPORTE`, `PENSION_IMPORTE`, `DANO_IMPORTE`, `DANO_EXPEDIENTE`, `ANTICIPO_IMPORTE`, `DESCUENTO_DANO`, `ANTICIPOS` (1.3) | Sustituidas por la tabla `DEDUCCIONES` |
 | `AGUI_DIAS`, `VAC_PEND_DIAS`, `VAC_PROP_DIAS`, `PA_DIAS`, `IND_DIAS` en documentos (1.3) | En los documentos se imprime el factor; las variables pueden seguir existiendo en el cálculo |
+| `SALARIO_DIARIO` (1.5, 20/11) | Sustituida por `SALARIO_PERSONA` (diccionario único, 18/11/2026). Imprime el mismo dato |
 
 Recuperada en la 1.5: `SITUACION_PROTEGIDA`, que la 1.2 había eliminado. Ahora la envía el módulo de permisos y solo activa la alerta con doble confirmación de 2.4; nunca bloquea ni se imprime.
 
@@ -1027,5 +1056,10 @@ Valores esperados con los parámetros de A.1, para verificar la programación:
 | 10. Cierre con evidencia | Pago por transferencia con comprobante y XML del CFDI | El comprobante es el Anexo 2; el módulo 6 recibe ambos y coteja; el cierre de la baja no cambia |
 | 11. Vacaciones autorizadas posteriores | Bloque Autorizado del 14 al 18/12/2026; baja el 30/11/2026 | El bloque se cancela y su cupo se libera al guardar la baja |
 | 12. Salario de la persona | Puesto con salario base $400.00; `SALARIO_PERSONA` $450.00 | El finiquito usa $450.00 |
+| 13. Precarga Fonacot (20/11) | `FONACOT_DESCUENTO_MONTO` $1,200.00; último periodo de 15 días; sin cédula del periodo | Renglón «Sugerido» con $1,200.00 × 15 ÷ 30.4; RH lo confirma o lo cambia |
+| 14. Precarga Infonavit (20/11) | `INFONAVIT_DESCUENTO_TIPO` = Porcentaje | Importe vacío; la pantalla muestra el tipo y el valor del alta |
+| 15. Acta sin valor de reposición (20/11) | Bien de la carta responsiva sin valor de reposición, marcado «Se devuelve = No» | Marca «no procede descuento»; el finiquito no lleva deducción por ese bien |
+| 17. Embarazo informado (20/11) | `EMBARAZO_INFORMADO_FECHA` capturada, sin C3 | Alerta con «Embarazo informado» y doble confirmación; la baja continúa |
+| 16. Acta con negativa (20/11) | `DEV_FIRMA_FORMA` = Electrónica; la persona rechaza firmar | El acta pasa a autógrafa; constancia de negativa con dos testigos; envío a `TRAB_EMAIL` |
 
 Estos valores sirven para probar el programa; el contador valida cada caso real.

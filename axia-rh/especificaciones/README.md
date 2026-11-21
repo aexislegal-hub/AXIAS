@@ -6,10 +6,12 @@ Copia de la versión vigente de cada especificación. La fuente es el documento 
 |---|---|---|---|---|
 | `firma-electronica.md` | Firma electrónica (toda la familia Axia) | 1.4 | 18/11/2026 | Copiada el 18/11/2026 (sustituye a la v1.3) |
 | `rit.md` | 2. RIT y formatos disciplinarios | 1.7 | 18/11/2026 | Copiada el 18/11/2026; sustituye a la v1.6 (maestro rev. 1388, formatos rev. 39; trae sus tablas de cambios desde la 1.0) |
-| `modulo-4-terminacion.md` | 4. Terminación y finiquito | 1.5 | 17/11/2026 | Copiada el 18/11/2026 (la 1.4 está cargada en el software; la 1.5 trae su tabla de cambios) |
-| `modulo-5-modificaciones.md` | 5. Modificación de condiciones | 1.0 | 15/11/2026 | Copiada el 18/11/2026 |
+| `kit-de-ptu.md` | 3. PTU y su procedimiento (D-01 a D-14, reglas R-1 a R-5) | 1.0 | 20/11/2026 | Copiada el 20/11/2026 (modelo rev. 87; incluye las plantillas, sección 9) |
+| `modulo-4-terminacion.md` | 4. Terminación y finiquito | 1.5 | 17/11/2026, con agregados del 20/11/2026 | Copiada de nuevo el 20/11/2026 con los cambios 12 a 17 (la 1.4 está cargada en el software; la 1.5 trae su tabla de cambios) |
+| `modulo-5-modificaciones.md` | 5. Modificación de condiciones | 1.1 | 20/11/2026 | Copiada el 20/11/2026; sustituye a la v1.0 (trae su tabla de cambios) |
 | `modulos-6-y-8-pagos-fonacot.md` | 6. Validación de pagos y 8. Fonacot | 1.0 | 15/11/2026 | Copiada el 18/11/2026 |
+| `modulo-9-jornada-prenomina.md` | 9. Análisis de jornada y visor de pre-nómina | 1.0 | 20/11/2026 | Copiada el 20/11/2026; partes marcadas [DEPENDE STPS] |
 | `permisos-y-licencias.md` | 10. Permisos y licencias | 1.8 | 17/11/2026 | Copiada el 18/11/2026 (incluye los textos, sección 17) |
 | `vacaciones-y-aguinaldo.md` | 11. Vacaciones y aguinaldo | 1.2 | 17/11/2026 | Copiada el 18/11/2026. Los textos (VAC-1 a VAC-3, N-1 a N-6) están en el documento de textos, sexta versión, todavía no copiado |
 
-El paquete de contratación (módulo 1) ya tiene versión para programación del 20/11/2026 (202 variables; sustituye a la del 15/11). Sus archivos («AEXIS - Paquete de contratación - VERSIÓN FINAL.txt» y «… - Variables y dependencias.md») están en la conversación del paquete; se copiarán aquí cuando se suban al proyecto.
+El paquete de contratación (módulo 1) tiene versión para programación regenerada el 20/11/2026 (204 variables, contrato rev. 506; sustituye a todas las anteriores). Sus archivos («AEXIS - Paquete de contratación - VERSIÓN FINAL.txt» y «… - Variables y dependencias.md») están en la conversación del paquete; se copiarán aquí cuando se suban al proyecto.
