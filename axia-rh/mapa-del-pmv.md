@@ -267,7 +267,7 @@ Decidido (26/10/2026): el PMV solo alerta y guarda evidencia; no calcula retenci
 
 ## Módulo 11. Vacaciones y aguinaldo
 
-**Alta en el mapa (15/11/2026).** Pantalla de eventos con conversación propia. Especificación: «AXIARH - Módulo de vacaciones y aguinaldo - Especificación para programación», v1.3 (21/11/2026), con los textos (sexta versión). Decisiones: registro 4.10 y «Corte - Módulo de vacaciones y aguinaldo».
+**Alta en el mapa (15/11/2026).** Pantalla de eventos con conversación propia. Especificación: «AXIARH - Módulo de vacaciones y aguinaldo - Especificación para programación», v1.4 (21/11/2026), con los textos (sexta versión). Decisiones: registro 4.10 y «Corte - Módulo de vacaciones y aguinaldo».
 
 **Lo que depende de este módulo**
 - **Permisos (módulo 10):** VAC-1 es la segunda fuente de ausencias justificadas; un solo evento por día; la incapacidad prevalece e interrumpe las vacaciones. AGUINALDO_COMPUTA lo administra este módulo. (Aplicado en la especificación de permisos v1.6.)

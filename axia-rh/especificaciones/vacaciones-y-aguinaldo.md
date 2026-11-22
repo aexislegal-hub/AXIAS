@@ -8,7 +8,7 @@ Especificación para programación · Versión 1.4 · 21/11/2026
 - «AXIARH - Registro de decisiones» y «Axia RH - Mapa del PMV» (21/11/2026; encargos 4 y 5 del módulo 11).
 - Especificación del RIT v1.7 (arts. 29 y 35 a 37).
 - Especificación del módulo de permisos y licencias v1.9.
-- Especificaciones de los módulos 4 (v1.5), 5 (v1.1), 6 y 8 (v1.0) y 9 (v1.1).
+- Especificaciones de los módulos 4 (v1.5), 5 (v1.1), 6 y 8 (v1.0) y 9 (v1.1). (Nota de Cerebro, 21/11/2026: hoy rigen los módulos 6 y 8 v1.1 y el kit de PTU v1.2; no cambia nada de esta especificación.)
 - Especificación del kit de PTU v1.0 (regla R-4).
 
 **Alcance:** la pantalla «Vacaciones y Aguinaldo».

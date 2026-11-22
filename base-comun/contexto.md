@@ -8,12 +8,12 @@ Los datos vienen de tres niveles y cada uno se captura una sola vez: (1) configu
 
 ## Familia Axia
 
-- **Axia RH:** cumplimiento laboral (contratación, RIT, PTU, terminación, modificaciones, permisos y licencias, vacaciones y aguinaldo, capacitación en lo que toca a SIRCE y la comisión mixta, Fonacot y análisis de jornada).
+- **Axia RH:** cumplimiento laboral (contratación, RIT, PTU, terminación, modificaciones, permisos y licencias, vacaciones y aguinaldo, Fonacot y análisis de jornada). Desde el 15/11/2026 la comisión mixta de capacitación, el SIRCE y el DC-1 pasaron a Axia CYA; Axia RH conserva la cláusula de prueba o capacitación inicial, la remisión del art. 41 del RIT y la lectura de las variables F2_* para el módulo 4.
 - **Axia NOMs:** normas oficiales mexicanas de seguridad y salud en el trabajo (NOM-035, NOM-019, NOM-030 y demás). Usa los niveles 1 a 3 de Axia RH.
-- **Axia CYA:** capacitación y adiestramiento (DNC, planes y programas, cursos y DC-3). Axia RH conserva la Comisión Mixta, el SIRCE y el DC-1.
+- **Axia CYA:** capacitación y adiestramiento: comisión mixta de capacitación (formatos F-1 a F-5), DNC, planes y programas, cursos, DC-1, DC-3 y SIRCE (decisión del 15/11/2026, registro de Axia RH, sección 6).
 - **Axia Compliance:** anticorrupción, ética, Comité de Integridad y Disciplina, políticas legales (trabajo híbrido y teletrabajo, prevención de la violencia y el acoso) y políticas organizacionales a las que remite el RIT.
 - **Axia Corporativa:** línea posterior.
 
 ## Especificaciones transversales
 
-La especificación de firma electrónica («AXIARH - Firma electrónica - Especificación para programación», v1.2; decisiones en el registro de Axia RH, 4.11) rige la firma de todos los documentos de la familia. Hoy vive en el proyecto de Axia RH.
+La especificación de firma electrónica («AXIARH - Firma electrónica - Especificación para programación», v1.5; decisiones en el registro de Axia RH, 4.11) rige la firma de todos los documentos de la familia. Hoy vive en el proyecto de Axia RH.
