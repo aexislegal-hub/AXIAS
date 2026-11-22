@@ -1,7 +1,17 @@
 # AXIA RH — MÓDULO 9: ANÁLISIS DE JORNADA Y VISOR DE PRE-NÓMINA
 
-Especificación para programación · Versión 1.0 · 20/11/2026
-Fuente: decisiones del usuario del 20/11/2026 en la conversación del módulo 9; «AXIARH - Registro de decisiones» (secciones 2, 4.1, 4.4, 4.9, 4.10, 5.0 y 5.4); «Axia RH - Mapa del PMV»; especificaciones del RIT v1.4, permisos v1.6 a v1.8, vacaciones v1.0, módulo 4 v1.4, módulo 5 v1.0 y módulos 6 y 8 v1.0; LFT compilada por la Cámara de Diputados (última reforma DOF 14-05-2026).
+Especificación para programación · Versión 1.1 · 21/11/2026
+Fuente: decisiones del usuario del 20/11/2026 en la conversación del módulo 9; «AXIARH - Registro de decisiones» (secciones 2, 4.1, 4.4, 4.9, 4.10, 4.14, 5.0 y 5.4, actualizado al 21/11/2026); «Axia RH - Mapa del PMV» (encargos del 21/11/2026); especificaciones del RIT v1.4, permisos v1.6 a v1.9, vacaciones v1.0 a v1.3, módulo 4 v1.4 y v1.5, módulo 5 v1.0 y módulos 6 y 8 v1.0; LFT compilada por la Cámara de Diputados (última reforma DOF 14-05-2026).
+
+## Cambios respecto de la versión 1.0 (encargos 3, 4 y 5 del mapa, 21/11/2026)
+
+La 1.0 no se ha corrido en el software. Si ya se cargó, basta aplicar esta tabla; ante cualquier duda rige el texto completo.
+
+| # | Sección | Cambio |
+| --- | --- | --- |
+| 1 | 4.5; 8.1; 17; 18 | **Sin descuento del descanso proporcional** (decisión del usuario del 21/11/2026, registro 4.10 y 4.14; sustituye la decisión 5 del 20/11). La falta confirmada y el día sin goce descuentan solo el salario de su propio día. Se elimina la fórmula del art. 72 y el renglón «Descanso proporcional (art. 72)» de la salida a nómina. Caso 6: $480.00 |
+| 2 | 5 (PN-18); 14.2; 15 | `BIOMETRICO_CONSENTIMIENTO` se renombra **`BIOMETRICO_JORNADA_CONSENT`** (nombre fijado por Cerebro); se quita «confirmar el nombre con el kit». Es distinta de `BIOMETRICO_FIRMA_CONSENT` |
+| 3 | 6.2; 8.4 (nueva); 9; 10; 18 | **Personas con baja.** Desde que se registra la baja, la persona no se exporta en ninguna exportación posterior y todos sus conceptos variables no exportados quedan como «Revisar en el finiquito», fuera de la salida a nómina. Evita el doble pago, porque el módulo 4 precarga esos conceptos en el finiquito y no avisa a este módulo (decisión del usuario en el módulo 4). Caso 19 nuevo |
 
 **Alcance.** Un solo motor de análisis de jornada cuya pantalla de resultados es el visor de pre-nómina. Importa el archivo del reloj checador del cliente, arma la jornada esperada de cada persona y día, compara, clasifica incidencias, permite a RH resolverlas con soporte, entrega a nómina cantidades e importes brutos estimados por concepto y conserva la evidencia. **No** timbra, **no** calcula ISR ni cuotas del IMSS y **no** captura ausencias: la fuente única de ausencias justificadas es el módulo de permisos (eventos) y el módulo de vacaciones (VAC-1). La app de registro del colaborador es fase 2.
 
@@ -174,10 +184,10 @@ Asignación por semana de cómputo, en orden cronológico de los días y, dentro
 - Las tasas (100 %, 200 %, mínimo de la prima dominical) viven en `TE_LIMITES` y en la tabla de parámetros; el código no las fija.
 - No se calculan ISR, exenciones ni cuotas: los define nómina.
 
-### 4.5 Faltas y descanso proporcional
+### 4.5 Faltas y días sin goce
 
-- Falta confirmada (PN-01 confirmada) o día sin goce del módulo de permisos: se descuenta `SALARIO_PERSONA` del día.
-- **Descanso proporcional (art. 72 LFT):** además se descuenta `SALARIO_PERSONA` × días no laborados ÷ días laborables de la semana de cómputo. Con más de un día de descanso por semana se aplica la misma fórmula (interpretación).
+- Falta confirmada (PN-01 confirmada) o día sin goce del módulo de permisos: se descuenta solo `SALARIO_PERSONA` de ese día.
+- **Nunca se descuenta la parte proporcional del día de descanso** (decisión del usuario del 21/11/2026). Es más favorable que el art. 72 LFT; no genera riesgo legal.
 - No se descuentan retardos ni salidas anticipadas (PN-03, PN-04).
 
 ---
@@ -203,7 +213,7 @@ Asignación por semana de cómputo, en orden cronológico de los días y, dentro
 | PN-15 | Comida o reposo irregular | Solo con `CHECADOR_REGISTRA_COMIDA` = Sí: reposo < 30 min en jornada continua (art. 63) o mayor que el pactado | Ninguno | 4 (si excede) | No |
 | PN-16 | Día en casa sin registro | Día en casa esperado sin marcas de origen remoto | Ninguno; alerta «registro faltante» a RH. No es falta por confirmar | — | No |
 | PN-17 | Más de seis días seguidos de trabajo | Cómputo continuo entre semanas (art. 69) | Ninguno; alerta | — | No |
-| PN-18 | Verificación biométrica sin consentimiento | Modo de verificación biométrico para persona con `BIOMETRICO_CONSENTIMIENTO` = No | Ninguno; alerta de privacidad a RH | — | No |
+| PN-18 | Verificación biométrica sin consentimiento | Modo de verificación biométrico para persona con `BIOMETRICO_JORNADA_CONSENT` = No o revocado | Ninguno; alerta de privacidad a RH | — | No |
 
 - **Ninguna incidencia impone sanción.** Las que tienen conducta generan un «expediente sugerido» con la conducta precargada; RH decide si abre FD-4 o FD-1 por la vía del RIT. La fecha en que la alerta se mostró a la jefatura precarga `EXP_FECHA_CONOCIMIENTO_JEFATURA`.
 - Los bloqueos **nunca** detienen el salario ordinario: la persona se exporta con los días pagados según la jornada esperada y los conceptos variables bloqueados quedan como ajuste del periodo siguiente cuando se resuelven.
@@ -223,7 +233,7 @@ Importar → depurar y asignar → cruzar con jornada esperada, eventos, órdene
 | Importado | Al menos un archivo cargado | Ver resultados; corregir |
 | En revisión | RH abre la bandeja de incidencias | Resolver incidencias, confirmar faltas, validar tiempo extra sin orden |
 | Validado | RH valida (`PRENOMINA_VALIDACION`: usuario, fecha y hora) | Exportar. Un cambio posterior regresa a En revisión |
-| Exportado | Se genera el archivo para nómina | Envía el resumen a cada persona (7.1); abre el plazo de aclaración |
+| Exportado | Se genera el archivo para nómina (sin las personas con baja registrada, 8.4) | Envía el resumen a cada persona (7.1); abre el plazo de aclaración |
 | Cerrado | Vence `DIAS_ACLARACION_REGISTRO` y no quedan aclaraciones abiertas | El periodo queda «conforme para nómina» (art. 13 del RIT). Cambios posteriores: solo ajustes del periodo siguiente |
 
 La validación de RH no espera al cierre: la nómina se paga con lo registrado y las aclaraciones resueltas entran como ajustes del periodo siguiente (art. 17 del RIT: el tiempo extra se paga en la nómina del periodo en que se laboró).
@@ -267,9 +277,8 @@ Una fila por persona y periodo (CSV o XLSX), con `CONCEPTO_CLAVE_NOMINA` por con
 | Concepto | Cantidad | Importe bruto estimado | Fuente |
 | --- | --- | --- | --- |
 | Días pagados | Días | — | Jornada esperada y eventos |
-| Faltas confirmadas | Días | Descuento (4.5) | PN-01 confirmada |
-| Descanso proporcional (art. 72) | Fracción de día | Descuento (4.5) | Faltas y días sin goce |
-| Días sin goce | Días | Descuento | Módulo de permisos |
+| Faltas confirmadas | Días | Descuento del salario de cada día (4.5) | PN-01 confirmada |
+| Días sin goce | Días | Descuento del salario de cada día (4.5) | Módulo de permisos |
 | Incapacidades y días de espera pagados | Días | Solo días de espera con `PAGO_DIAS_ESPERA` = Sí | Módulo de permisos |
 | Vacaciones y prima vacacional | Días | Del módulo de vacaciones | VAC-1 |
 | Horas extra con 100 % más | Horas | 4.4 | PN-08, PN-09 |
@@ -295,7 +304,15 @@ Una fila por persona y periodo (CSV o XLSX), con `CONCEPTO_CLAVE_NOMINA` por con
 
 ### 8.3 Ajustes
 
-Aclaraciones procedentes, faltas descartadas o confirmadas después, incapacidades que llegan tarde, reversiones del art. 31 del RIT (evidencia de permisos) y diferencias de una importación posterior a «Exportado» se registran como ajustes con folio de origen y se exportan en el periodo siguiente.
+Aclaraciones procedentes, faltas descartadas o confirmadas después, incapacidades que llegan tarde, reversiones del art. 31 del RIT (evidencia de permisos) y diferencias de una importación posterior a «Exportado» se registran como ajustes con folio de origen y se exportan en el periodo siguiente, salvo la regla de 8.4.
+
+### 8.4 Personas con baja
+
+1. Al registrarse la baja en el módulo 4 (`BAJA_FECHA`), la persona queda fuera de toda exportación a nómina que se genere después, incluida la del periodo que contiene `BAJA_FECHA` si aún no se había exportado. Las exportaciones ya generadas no cambian.
+2. Todos sus conceptos variables no exportados (validados y no exportados, por validar, bloqueados y ajustes pendientes) pasan al estado **«Revisar en el finiquito»**, con su periodo, folio, horas e importe bruto estimado. No entran a la salida a nómina.
+3. Lo que cambie o aparezca después del registro de la baja (aclaración procedente, corrección, falta descartada, incapacidad que llega tarde) también queda «Revisar en el finiquito» y genera alerta a RH y consultoría: «Concepto posterior a la baja; revise si debe incluirse en el finiquito o pagarse por separado».
+4. Si la baja se cancela en el módulo 4, los conceptos regresan a su estado anterior y la persona vuelve a exportarse.
+5. Motivo (no se imprime): el módulo 4 precarga como «Sugerido» los conceptos pendientes del módulo 9 a `BAJA_FECHA` y, por decisión del usuario, no informa a este módulo cuáles pagó. Con esta regla, este módulo nunca los manda a nómina; el finiquito es la única vía de pago. Lo que el módulo 4 no haya precargado (por ejemplo, PN-09 por validar) queda visible aquí con su etiqueta para que RH lo revise.
 
 ---
 
@@ -314,6 +331,7 @@ Aclaraciones procedentes, faltas descartadas o confirmadas después, incapacidad
 | Más de seis días seguidos (PN-17) | Al clasificar | RH |
 | Privacidad (PN-18) | Al importar | RH |
 | Turno o jornada sobre el máximo del año siguiente | `DIAS_AVISO_AJUSTE_HORARIO` antes del 1 de enero | RH (lo genera el RIT, 2.6) |
+| Concepto posterior a la baja | Al aparecer o cambiar un concepto de una persona con baja registrada (8.4) | RH y consultoría |
 
 ---
 
@@ -324,7 +342,7 @@ Aclaraciones procedentes, faltas descartadas o confirmadas después, incapacidad
 | Permisos y licencias | Ausencias sin evento: «por confirmar» (alertas preventivas y patrón, etiquetadas) y «confirmadas» (alerta de cuarta falta, art. 47, fr. X) | Eventos, LACTANCIA_MODALIDAD, días sin goce |
 | Vacaciones y aguinaldo | Faltas confirmadas para `AGUINALDO_COMPUTA` | VAC-1, prima vacacional |
 | PTU | Faltas confirmadas y días laborados por persona | — |
-| Módulo 4 | Tiempo extra pendiente a `BAJA_FECHA` (validado no exportado y ajustes pendientes), con horas, tipo e importe; precarga «Otros devengados» con tipo Tiempo extra, Prima dominical, Descanso laborado y Festivo laborado | `BAJA_FECHA`, calendario de días inhábiles |
+| Módulo 4 | Tiempo extra pendiente a `BAJA_FECHA` (validado no exportado y ajustes pendientes), con horas, tipo e importe; precarga «Otros devengados» con tipo Tiempo extra, Prima dominical, Descanso laborado y Festivo laborado (cambio 18 de su v1.5) | `BAJA_FECHA` y su registro, que excluye a la persona de la exportación y deja sus conceptos como «Revisar en el finiquito» (8.4); calendario de días inhábiles. El módulo 4 no informa qué conceptos pagó |
 | Módulo 5 | — | Versión de condiciones, MOD-5, `SALARIO_PERSONA` |
 | Módulo 6 | Claves SAT por concepto para el cotejo | `PAGO_CLAVES_SAT` |
 | Módulo 8 | — | Cédula como evidencia del Fonacot esperado |
@@ -391,7 +409,7 @@ Mecánica de vigencia, aprobación y monitor: módulo 4, 5.3 (tabla única de pa
 | CONCEPTO_CLAVE_NOMINA | E | Tabla: concepto, clave interna, clave SAT | Clave SAT de PAGO_CLAVES_SAT; obligatoria por concepto con importe | 8.1 |
 | REGISTRO_CONSERVACION_ANIOS | E | Entero | ≥ 1; 1 | 11 |
 | CENTRO_ZONA_HORARIA | Catálogo de centros | Lista | Obligatoria | 2.4 |
-| BIOMETRICO_CONSENTIMIENTO | A (del aviso de privacidad) | Sí/No | Confirmar el nombre con el kit | PN-18 |
+| BIOMETRICO_JORNADA_CONSENT | A (la otorga la persona en la casilla de biométricos del apartado 10 del aviso) | Sí / No, con fecha | Con No o revocado opera SISTEMA_REGISTRO_ALTERNO; distinta de BIOMETRICO_FIRMA_CONSENT | PN-18 |
 | JORNADA_MAXIMA | X | Tabla con vigencia | Solo aprobados | 3.3; PN-10 |
 | TE_LIMITES | X | Tabla con vigencia | Solo aprobados | 4.3 |
 | ROL_PERIODO | V | Archivo: persona, fecha, turno o descanso | Opcional | 3.1 |
@@ -420,7 +438,7 @@ Mecánica de vigencia, aprobación y monitor: módulo 4, 5.3 (tabla única de pa
 | Vacaciones y aguinaldo; PTU | Usar solo faltas confirmadas |
 | Módulo 6 | Cotejo por la clave SAT de `CONCEPTO_CLAVE_NOMINA` |
 | Axia Compliance | Política de registro de jornada que limite las entradas anticipadas y regule el uso del checador (la jornada cuenta desde la marca de entrada, art. 9 del RIT) |
-| Kit de contratación | Confirmar el nombre de la variable del consentimiento biométrico del aviso de privacidad |
+| Kit de contratación | `BIOMETRICO_JORNADA_CONSENT` en su diccionario (encargo 8 del paquete, a cargo de Cerebro) |
 
 ---
 
@@ -441,7 +459,7 @@ Si cambian, afectan valores, campos y textos de esta especificación y, en su ca
 
 ## 17. Pendientes que no bloquean la programación
 
-- Lecturas propias por confirmar con criterios o disposiciones: convivencia del máximo diario y de días del art. 66 con el tope gradual del transitorio cuarto; asignación cronológica de doble y triple; quinto día o quinta hora como triple; método neto del tiempo extra diario; tope semanal literal para nocturna y mixta; topes diarios como máximos frente a la distribución del art. 58; fórmula del art. 72 con más de un día de descanso; prima dominical además del pago de los arts. 73 y 75 para menores en domingo.
+- Lecturas propias por confirmar con criterios o disposiciones: convivencia del máximo diario y de días del art. 66 con el tope gradual del transitorio cuarto; asignación cronológica de doble y triple; quinto día o quinta hora como triple; método neto del tiempo extra diario; tope semanal literal para nocturna y mixta; topes diarios como máximos frente a la distribución del art. 58; prima dominical además del pago de los arts. 73 y 75 para menores en domingo.
 - Art. 784, fr. VIII LFT: la carga de la prueba del patrón sigue en 9 h semanales de tiempo extra; desde 2028 el tope legal la rebasa. Sin efecto en el diseño; vigilar criterios.
 - El aviso del 20 % del Fonacot viene del paquete de contratación; su fundamento lo verifica esa conversación.
 
@@ -458,7 +476,7 @@ Datos comunes salvo indicación: año 2026; turno diurno de lunes a sábado, 09:
 | 3 | Con orden, martes 5 h | Doble 4 h = $480.00; triple 1 h = $180.00 |
 | 4 | Persona de 17 años, 2 h con orden | Triple 2 h = $360.00; PN-11 crítica |
 | 5 | Con orden: lunes 4, martes 4, miércoles 4, jueves 3 (15 h) | Doble 9 h (lunes, martes y 1 h del miércoles) = $1,080.00; triple 6 h = $1,080.00; PN-10 por 2 h sobre el excedente semanal |
-| 6 | Falta confirmada el martes | Descuento $480.00 + descanso proporcional $480.00 × 1/6 = $80.00; total $560.00 |
+| 6 | Falta confirmada el martes | Descuento $480.00 (solo el día; sin descuento del descanso) |
 | 7 | Descanso los lunes; labora el domingo como día laborable | Prima dominical $120.00 |
 | 8 | Labora su domingo de descanso | Descanso laborado $960.00 + prima dominical $120.00 |
 | 9 | Labora el 16 de septiembre, día laborable | Festivo laborado $960.00 |
@@ -470,4 +488,5 @@ Datos comunes salvo indicación: año 2026; turno diurno de lunes a sábado, 09:
 | 15 | Semana del lunes 28/12/2026 al domingo 3/01/2027 | Máximo semanal prorrateado (48 × 4 + 46 × 3) ÷ 7 = 47.14 h; tope semanal de tiempo extra con 100 % más: 9 h |
 | 16 | Lactancia con reducción; marca 7 h | Jornada esperada 7 h; sin PN-04 |
 | 17 | Día en casa sin marcas | PN-16; no se genera PN-01 |
-| 18 | Ausencia sin evento en modo Conectado, confirmada por RH antes de validar | El módulo de permisos la recibe como confirmada; descuento como en el caso 6 |
+| 18 | Ausencia sin evento en modo Conectado, confirmada por RH antes de validar | El módulo de permisos la recibe como confirmada; descuento como en el caso 6 ($480.00) |
+| 19 | Periodo semanal validado con 3 h de tiempo extra con orden (doble $360.00), no exportado; el mismo día RH registra la baja | La persona no entra a la exportación; las 3 h quedan «Revisar en el finiquito» con su importe; el módulo 4 las precarga como «Sugerido». Una aclaración procedente posterior queda también «Revisar en el finiquito», con alerta a RH y consultoría |

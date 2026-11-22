@@ -1,25 +1,59 @@
 # AXIA RH — MÓDULO DE VACACIONES Y AGUINALDO
 
-Especificación para programación · Versión 1.2 · 17/11/2026
-Fuente: «Corte - Módulo de vacaciones y aguinaldo» (17/11/2026); «AXIARH - Módulo de vacaciones y aguinaldo - Textos (borrador)» (sexta versión, 17/11/2026); «AXIARH - Registro de decisiones» y «Axia RH - Mapa del PMV» (17/11/2026, encargos del módulo 11); especificación del RIT v1.4 (arts. 29 y 35 a 37); especificación del módulo de permisos y licencias v1.6; especificaciones de los módulos 4, 5 y 6.
+Especificación para programación · Versión 1.4 · 21/11/2026
 
-**Alcance:** la pantalla «Vacaciones y Aguinaldo». Calcula la antigüedad y los días de vacaciones de cada persona; registra las solicitudes y su autorización; controla saldos, plazos y prescripción; calcula la prima vacacional y el aguinaldo, y genera VAC-1, VAC-2 y VAC-3. El módulo 6 valida el pago del aguinaldo y el módulo 4 hace el finiquito; ambos leen de este módulo.
+**Fuentes:**
+- «Corte - Módulo de vacaciones y aguinaldo» (21/11/2026).
+- «AXIARH - Módulo de vacaciones y aguinaldo - Textos (borrador)», sexta versión del 17/11/2026, sin cambios.
+- «AXIARH - Registro de decisiones» y «Axia RH - Mapa del PMV» (21/11/2026; encargos 4 y 5 del módulo 11).
+- Especificación del RIT v1.7 (arts. 29 y 35 a 37).
+- Especificación del módulo de permisos y licencias v1.9.
+- Especificaciones de los módulos 4 (v1.5), 5 (v1.1), 6 y 8 (v1.0) y 9 (v1.1).
+- Especificación del kit de PTU v1.0 (regla R-4).
 
-## Cambios respecto de la versión 1.1
+**Alcance:** la pantalla «Vacaciones y Aguinaldo».
+- Calcula la antigüedad y los días de vacaciones de cada persona.
+- Registra las solicitudes y su autorización.
+- Controla saldos, plazos y prescripción.
+- Calcula la prima vacacional y el aguinaldo.
+- Genera VAC-1, VAC-2 y VAC-3.
 
-La v1.1 no se ha cargado al software. Esta versión la sustituye completa.
+El módulo 6 valida el pago del aguinaldo y el módulo 4 hace el finiquito; ambos leen de este módulo.
+
+## Cambios respecto de la versión 1.3
+
+Si la v1.3 ya se cargó, basta aplicar esta tabla. No cambia ningún cálculo ni ningún texto.
 
 | # | Sección | Cambio | Origen |
 | --- | --- | --- | --- |
-| 1 | 4.1, 14 | `VAC_PROGRAMACION_MODO` **sin valor por omisión**. Se captura una sola vez y la comparten el RIT (art. 36) y este módulo. Sus campos dependientes solo aparecen al elegir el modo | Encargo 1 del mapa; registro 4.4 y 5.0 |
-| 2 | 0, 8, 10, 11, 14 | Salario base de vacaciones, prima, aguinaldo y finiquito: **`SALARIO_PERSONA`** de la versión de condiciones vigente de la persona, en lugar del salario del puesto | Encargo 3 del mapa; registro 2 y 4.12 |
-| 3 | 10.5, 9, 17 | Baja con `AGUINALDO_VALIDADO` y sin pago: aviso al contador de que la persona sale de la nómina anual; el módulo 6 cancela la obligación con motivo «Pago en finiquito» | Encargo 2 del mapa; registro 4.13 |
-| 4 | 4.6, 13, 14 | Días bloqueados: siempre se guardan (en borrador). La validación de suficiencia impide **activarlos**, no guardarlos. Un bloqueo en borrador no surte efectos ni se notifica | Registro 5.0 («guardar nunca se bloquea») |
-| 5 | 0, 3, 6 | Los días laborables se toman de la jornada de la versión de condiciones de la persona y de las constancias MOD-5 vigentes | Registro 2 (versión de condiciones por persona) |
-| 6 | 0, 2 | `PARAMETROS_LEGALES_VACACIONES` forma parte de la tabla global de parámetros legales, con aprobación humana y monitor de fuentes oficiales | Registro 3; mapa, pendientes transversales |
-| 7 | 12.3 | Concordancia de número en documentos y avisos: con valor 1, singular; nunca «(s)» | Registro 5.0 |
-| 8 | 15 | Dependencias actualizadas: la especificación de permisos v1.6 ya reconoce este módulo como segunda fuente de ausencias y deja `AGUINALDO_COMPUTA` a cargo de este módulo | Registro 4.9 y mapa |
-| 9 | 4.6, 5, 9, 13, 14, 17 | **Prevalece lo que se registra primero.** Las vacaciones solicitadas antes de activarse un bloqueo (en cualquier estado activo de la solicitud, no solo las autorizadas) quedan fuera del bloqueo; ya no se devuelven. Si el bloqueo se activa primero, esos días no pueden solicitarse | Aclaración del usuario, 17/11/2026 |
+| 1 | 10.3 | Se corrige la nota del descanso proporcional. Ya no dice que el módulo 9 lo descuenta en nómina. Ahora dice que una falta confirmada o un día sin goce restan solo su propio día y que ninguno descuenta el proporcional del día de descanso, tampoco en nómina | Encargo 5 del mapa (21/11/2026); decisión del usuario del 21/11/2026 (registro 4.10 y 4.14); módulo 9 v1.1 |
+| 2 | Fuentes, 15 | Referencia al módulo 9 v1.1 | Mapa del 21/11/2026 |
+
+## Historial: cambios de la versión 1.3 respecto de la 1.2 (21/11/2026)
+
+| # | Sección | Cambio | Origen |
+| --- | --- | --- | --- |
+| 1 | 10.3 | `AGUINALDO_COMPUTA` cuenta como no computables solo las faltas confirmadas del módulo 9; las «por confirmar» computan mientras RH no las confirme | Encargo 4 del mapa |
+| 2 | 10.3 | La falta confirmada resta solo su propio día; el descanso no resta | Decisión del usuario |
+| 3 | 10.3 | `AGUINALDO_COMPUTA` y `PTU_COMPUTA` cambian juntas | Registro 4.7 |
+| 4 | 9, 10.4, 10.5, 11 | Alerta por faltas por confirmar; reversión de `AGUINALDO_VALIDADO` | Encargo 4 del mapa |
+| 5 | 14.1 | Estado de la falta del módulo 9 | Registro 4.14 |
+| 6 | 15, 16 | Dependencias al día | Mapa del 20/11/2026 |
+| 7 | 17 | Casos de prueba 22 y 23 | — |
+
+## Historial: cambios de la versión 1.2 respecto de la 1.1 (17/11/2026)
+
+| # | Sección | Cambio | Origen |
+| --- | --- | --- | --- |
+| 1 | 4.1, 14 | `VAC_PROGRAMACION_MODO` sin valor por omisión; captura única con el RIT | Encargo 1 del mapa |
+| 2 | 0, 8, 10, 11, 14 | Base `SALARIO_PERSONA` | Encargo 3 del mapa |
+| 3 | 10.5, 9, 17 | Baja con `AGUINALDO_VALIDADO` y sin pago | Encargo 2 del mapa |
+| 4 | 4.6, 13, 14 | Bloqueos en borrador; la suficiencia impide activar, no guardar | Registro 5.0 |
+| 5 | 0, 3, 6 | Días laborables según la versión de condiciones y MOD-5 | Registro 2 |
+| 6 | 0, 2 | Tabla global de parámetros legales | Registro 3 |
+| 7 | 12.3 | Concordancia de número | Registro 5.0 |
+| 8 | 15 | Permisos v1.6 reconoce este módulo | Registro 4.9 |
+| 9 | 4.6, 5, 9, 13, 14, 17 | Prevalece lo que se registra primero frente a un bloqueo | Aclaración del usuario |
 
 ---
 
@@ -38,10 +72,15 @@ La v1.1 no se ha cargado al software. Esta versión la sustituye completa.
   - Se resaltan los campos faltantes.
   - Guardar nunca se bloquea; las validaciones solo impiden la versión definitiva o la activación.
   - Las opciones con campos dependientes se preguntan primero y no tienen valor por omisión, salvo que la Ley lo fije.
-- **Días laborables:** se toman de la jornada de la versión de condiciones vigente de la persona (registro, sección 2) y de las constancias MOD-5 vigentes del módulo 5. **Días hábiles** (plazos de RH): calendario de días inhábiles del módulo 4.
+- **Días laborables:** se toman de la jornada de la versión de condiciones vigente de la persona (registro, sección 2) y de las constancias MOD-5 vigentes del módulo 5.
+- **Días hábiles** (plazos de RH): calendario de días inhábiles del módulo 4.
 - **Cifras legales:** ningún texto fija cifras que cambian por reforma. La tabla de días, el bloque continuo mínimo y el mínimo de menores viven en `PARAMETROS_LEGALES_VACACIONES`, dentro de la tabla global de parámetros legales con fecha de vigencia. Se activan solo con aprobación humana (módulo 4, 5.3).
 - **Salario:** todo cálculo de este módulo usa `SALARIO_PERSONA` de la versión de condiciones vigente de la persona en la fecha que indica cada sección.
-- **Fuentes de ausencias justificadas:** este módulo es la fuente de los días de vacaciones; el módulo de permisos (v1.6), de los demás eventos. Nómina, PTU, aguinaldo y análisis de jornada leen de los dos. Un día no puede tener vacaciones y otro evento de día completo; la incapacidad prevalece (sección 6, regla 5, y sección 7).
+- **Fuentes de ausencias justificadas:**
+  - Este módulo es la fuente de los días de vacaciones; el módulo de permisos, de los demás eventos.
+  - Las faltas vienen del módulo 9 por medio del módulo de permisos, como «por confirmar» o «confirmadas».
+  - Nómina, PTU, aguinaldo y análisis de jornada leen de esas fuentes.
+  - Un día no puede tener vacaciones y otro evento de día completo; la incapacidad prevalece (sección 6, regla 5, y sección 7).
 
 ---
 
@@ -102,8 +141,15 @@ Un valor nuevo aprobado aplica a los periodos cuyo aniversario cae dentro de su 
 - `VAC_DIAS_PERIODO` se calcula así:
   1. Días de la tabla para N años.
   2. Si la persona es menor de 18 años en el aniversario (edad tomada de la CURP): el mayor entre los días de la tabla y `VAC_MINIMO_MENORES`.
-  3. Con contrato de temporada (tipo D) o servicios discontinuos: `VAC_PROPORCIONAL` = Sí, y días = días de la tabla × días trabajados en el año de servicios ÷ 365, redondeado hacia arriba al entero. Los días trabajados son los de relación activa, sin los de suspensión por fin de temporada.
-  4. Suspensiones largas (B4, B5, D2, D3) del módulo de permisos dentro del año de servicios: los años siempre cuentan (decisión 7 de permisos). Los días de la tabla se reducen en proporción a los días de suspensión: días de la tabla × (365 − días de suspensión) ÷ 365, redondeado hacia arriba. Excepción: si RH marcó `SUSP_VACACIONES_GENERA` = Sí, se suman los `VACACIONES_DIAS_GENERADOS` que capturó. Ningún otro evento reduce los días, tampoco las incapacidades.
+  3. Con contrato de temporada (tipo D) o servicios discontinuos:
+     - `VAC_PROPORCIONAL` = Sí.
+     - Días = días de la tabla × días trabajados en el año de servicios ÷ 365, redondeado hacia arriba al entero.
+     - Los días trabajados son los de relación activa, sin los de suspensión por fin de temporada.
+  4. Suspensiones largas (B4, B5, D2, D3) del módulo de permisos dentro del año de servicios:
+     - Los años siempre cuentan (decisión 7 de permisos).
+     - Los días de la tabla se reducen en proporción a los días de suspensión: días de la tabla × (365 − días de suspensión) ÷ 365, redondeado hacia arriba.
+     - Excepción: si RH marcó `SUSP_VACACIONES_GENERA` = Sí, se suman los `VACACIONES_DIAS_GENERADOS` que capturó, sin exceder los días que quitó la reducción (lectura confirmada con permisos, v1.7).
+     - Ningún otro evento reduce los días: ni las incapacidades ni las faltas.
 - `VAC_LIMITE_OTORGAMIENTO` = aniversario + `VAC_MESES_OTORGAMIENTO` (mismo día del mes; si ese día no existe, el último día del mes).
 - `VAC_FECHA_PRESCRIPCION` = `VAC_LIMITE_OTORGAMIENTO` + `VAC_MESES_PRESCRIPCION`.
 - Al crearse el periodo se genera VAC-2 (sección 12).
@@ -136,26 +182,39 @@ Un valor nuevo aprobado aplica a los periodos cuyo aniversario cae dentro de su 
 
 ### 4.1 Modos (`VAC_PROGRAMACION_MODO`, E)
 
-**Captura (encargo del 15/11/2026):** se captura una sola vez en la configuración de la empresa. La comparten el art. 36 del RIT y este módulo. No tiene valor por omisión: es obligatoria y se pregunta antes que sus campos dependientes, que solo aparecen al elegir el modo. Mientras no se elija, la pantalla de vacaciones solo admite solicitudes con `VAC_ORIGEN` = Solicitud y muestra el aviso «Elija el modo de programación de vacaciones en la configuración de la empresa». Cambiar el modo con el RIT depositado genera la alerta «RIT modificado: pendiente de depósito».
+**Captura:**
+- Se captura una sola vez en la configuración de la empresa. La comparten el art. 36 del RIT y este módulo.
+- No tiene valor por omisión: es obligatoria y se pregunta antes que sus campos dependientes, que solo aparecen al elegir el modo.
+- Mientras no se elija, la pantalla de vacaciones solo admite solicitudes con `VAC_ORIGEN` = Solicitud y muestra el aviso «Elija el modo de programación de vacaciones en la configuración de la empresa».
+- Cambiar el modo con el RIT depositado genera la alerta «RIT modificado: pendiente de depósito».
 
 | Modo | Campos dependientes | Funcionamiento |
 | --- | --- | --- |
 | Calendario anual | `MES_CALENDARIO_VACACIONES`, `VAC_PREFERENCIAS_DIAS` | En los `VAC_PREFERENCIAS_DIAS` días naturales anteriores a `MES_CALENDARIO_VACACIONES`, cada persona registra sus fechas preferidas. Cada preferencia se convierte en una solicitud con `VAC_ORIGEN` = Calendario y pasa por la cadena. RH publica el calendario cuando todas están resueltas. Las preferencias no requieren `DIAS_ANTICIPACION_VACACIONES` |
-| Periodos de solicitud por antigüedad | `VAC_ANIO_PROGRAMACION`, `VAC_PERIODOS_SOLICITUD` | La Empresa fija, para cada año, periodos de solicitud por grupos de antigüedad. Las solicitudes de cada grupo se asignan al cierre de su periodo, por antigüedad y conforme a los cupos (4.5). `VAC_ORIGEN` = Periodo de solicitud. Requiere el art. 36 del RIT con este modo (encargo 13 del mapa) |
+| Periodos de solicitud por antigüedad | `VAC_ANIO_PROGRAMACION`, `VAC_PERIODOS_SOLICITUD` | La Empresa fija, para cada año, periodos de solicitud por grupos de antigüedad. Las solicitudes de cada grupo se asignan al cierre de su periodo, por antigüedad y conforme a los cupos (4.5). `VAC_ORIGEN` = Periodo de solicitud. El art. 36 del RIT ya prevé este modo (v1.5 y siguientes) |
 | A solicitud | — | Sin calendario ni periodos de solicitud. `VAC_ORIGEN` = Solicitud |
 
 Los días bloqueados (4.6), los cupos (4.7) y las notificaciones (4.8) aplican en los tres modos.
 
 ### 4.2 Solicitud
 
-- La persona elige el periodo, la fecha de inicio y la fecha de fin. El sistema calcula `VAC_DIAS` y muestra el saldo resultante. `VAC_DIAS` cuenta los días laborables del rango y excluye los descansos, los días de descanso obligatorio y los días bloqueados que le aplican.
+- La persona elige el periodo, la fecha de inicio y la fecha de fin. El sistema calcula `VAC_DIAS` y muestra el saldo resultante.
+- `VAC_DIAS` cuenta los días laborables del rango. Excluye los descansos, los días de descanso obligatorio y los días bloqueados que le aplican.
 - El calendario de selección marca desde el inicio los días bloqueados activos y los días sin cupo en el área de la persona.
 - Las validaciones están en la sección 6.
 - Con Periodos de solicitud por antigüedad, si la solicitud se hace dentro del periodo de solicitud de la persona, queda En asignación hasta el cierre (4.5). En los demás casos pasa directo a En autorización.
 
 ### 4.3 Cadena de autorización
 
-Es la de la especificación de permisos, sección 3.4. «Vacaciones» es un concepto de la cadena, con su propia columna «Autorizan». Por omisión se usa la cadena completa: jefatura inmediata, RH y dirección del área, si existe. Se aplican igual `AUTORIZACION_PLAZO_DIAS`, el suplente, la regla de que nadie autoriza lo propio y la de un solo paso cuando la misma persona ocupa dos. Diferencias:
+Es la de la especificación de permisos, sección 3.4. «Vacaciones» es un concepto de la cadena, con su propia columna «Autorizan».
+- Por omisión se usa la cadena completa: jefatura inmediata, RH y dirección del área, si existe.
+- Se aplican igual:
+  - `AUTORIZACION_PLAZO_DIAS`;
+  - el suplente;
+  - la regla de que nadie autoriza lo propio;
+  - la regla de un solo paso cuando la misma persona ocupa dos.
+
+Diferencias:
 
 | Acción | Disponible | Requisitos | Efecto |
 | --- | --- | --- | --- |
@@ -164,7 +223,8 @@ Es la de la especificación de permisos, sección 3.4. «Vacaciones» es un conc
 | Devolver para corrección | Todos los pasos | `DEVOLUCION_MOTIVO` | Estado Devuelto; al corregirse, reinicia en el paso que devolvió |
 | Negar | **No existe** | — | — |
 
-- La `FECHA_ALTERNA` cumple las mismas validaciones que una solicitud (sección 6), incluidos los días bloqueados y los cupos. El bloque reprogramado debe terminar a más tardar en `VAC_LIMITE_OTORGAMIENTO` si el periodo está Vigente, o en `VAC_FECHA_PRESCRIPCION` si está Fuera de plazo.
+- La `FECHA_ALTERNA` cumple las mismas validaciones que una solicitud (sección 6), incluidos los días bloqueados y los cupos.
+- El bloque reprogramado debe terminar a más tardar en `VAC_LIMITE_OTORGAMIENTO` si el periodo está Vigente, o en `VAC_FECHA_PRESCRIPCION` si está Fuera de plazo.
 - Un bloqueo activado después de la solicitud no es causa para devolverla ni para reprogramarla (4.6, regla 3). La cadena no puede usarlo como motivo.
 - Si llega la fecha de inicio sin resolución y la solicitud se hizo con la anticipación debida, se envía una alerta a RH, que resuelve ese mismo día. Mientras tanto, la ausencia no se marca como falta.
 - La persona puede cancelar su solicitud mientras el bloque no haya iniciado.
@@ -193,7 +253,8 @@ Reglas de configuración. La tabla siempre se guarda; si no cumple estas reglas,
 4. La tabla publicada se puede editar hasta la apertura de su primer periodo de solicitud. Después, solo se pueden ampliar las fechas de cierre de los periodos que no han cerrado, y cada cambio queda en la bitácora.
 
 **Pertenencia al grupo:**
-- Cada persona pertenece al grupo de sus años de servicios cumplidos a la apertura del primer periodo de solicitud del año. Los años se cuentan desde `FECHA_INICIO`; en un reingreso, desde la nueva fecha.
+- Cada persona pertenece al grupo de sus años de servicios cumplidos a la apertura del primer periodo de solicitud del año.
+- Los años se cuentan desde `FECHA_INICIO`; en un reingreso, desde la nueva fecha.
 - La persona ve su grupo y las fechas de su periodo de solicitud desde que se publica la tabla.
 
 **Qué se solicita:**
@@ -231,9 +292,17 @@ RH registra los días en que no pueden programarse vacaciones.
 
 Reglas:
 
-1. **Guardar y activar:** el bloqueo siempre se guarda en Borrador (registro 5.0). Un bloqueo en Borrador no surte efectos: no limita solicitudes, no aparece en VAC-2 y no se notifica. Solo pasa a Activo con el botón «Activar», que aplica la validación de suficiencia. La fecha y hora de activación (`VAC_BLOQUEO_ACTIVACION`) es la que se compara en la regla 3.
-2. **Suficiencia (impide activar):** no se activa un bloqueo si, para alguna persona de su alcance con saldo Vigente, los días laborables libres entre hoy (o su aniversario, si es posterior) y su `VAC_LIMITE_OTORGAMIENTO` dejan de alcanzar para su saldo, incluido un bloque continuo de `VAC_BLOQUE_MINIMO` días o del saldo, si es menor. Se consideran libres los días sin bloqueos activos y sin vacaciones solicitadas o autorizadas que los ocupen. La pantalla muestra la lista de personas afectadas para que RH ajuste las fechas o el alcance.
-3. **Prevalece lo que se registra primero (aclaración del usuario, 17/11/2026):**
+1. **Guardar y activar:**
+   - El bloqueo siempre se guarda en Borrador (registro 5.0).
+   - Un bloqueo en Borrador no surte efectos: no limita solicitudes, no aparece en VAC-2 y no se notifica.
+   - Solo pasa a Activo con el botón «Activar», que aplica la validación de suficiencia.
+   - La fecha y hora de activación (`VAC_BLOQUEO_ACTIVACION`) es la que se compara en la regla 3.
+2. **Suficiencia (impide activar):**
+   - No se activa un bloqueo si, para alguna persona de su alcance con saldo Vigente, los días laborables libres entre hoy (o su aniversario, si es posterior) y su `VAC_LIMITE_OTORGAMIENTO` dejan de alcanzar para su saldo.
+   - El cálculo incluye un bloque continuo de `VAC_BLOQUE_MINIMO` días, o del saldo si es menor.
+   - Se consideran libres los días sin bloqueos activos y sin vacaciones solicitadas o autorizadas que los ocupen.
+   - La pantalla muestra la lista de personas afectadas para que RH ajuste las fechas o el alcance.
+3. **Prevalece lo que se registra primero (aclaración del usuario, 17/11/2026; registro 4.10):**
    - **Bloqueo primero.** Si el bloqueo se activó antes de la solicitud, los días bloqueados no pueden solicitarse (sección 6, regla 9).
    - **Solicitud primero.** Si la persona solicitó antes de la activación (`EVENTO_SOLICITUD_FECHAHORA` < `VAC_BLOQUEO_ACTIVACION`), el bloqueo no le aplica en esas fechas. La protección cubre las solicitudes en estado Solicitado, En asignación, En autorización, Devuelto, Reprogramado, Autorizado o En curso, y las preferencias del calendario anual ya registradas.
    - **Qué no hace el bloqueo con esas vacaciones:**
@@ -307,13 +376,24 @@ La activación de un bloqueo no cambia el estado de ninguna solicitud. Cada camb
 
 1. **Saldo:** `VAC_DIAS` ≤ saldo disponible del periodo, descontados los días comprometidos. Bloqueo.
 2. **Periodo prescrito:** no se puede solicitar. Bloqueo.
-3. **Anticipación:** la fecha de inicio debe estar al menos `DIAS_ANTICIPACION_VACACIONES` días naturales después de la solicitud. No aplica a las preferencias del calendario ni a las solicitudes hechas dentro de un periodo de solicitud. Si no se cumple, no hay bloqueo: el sistema avisa a la persona y la cadena puede devolver o reprogramar con la causa «Requisitos no subsanados».
-4. **Bloque continuo:** cada periodo debe tener, entre sus bloques Autorizados o Disfrutados, al menos uno continuo de `VAC_BLOQUE_MINIMO` días laborables, o del saldo total si es menor. Si una solicitud deja el saldo restante por debajo del bloque mínimo y todavía no existe un bloque continuo, el sistema pregunta a la persona si quiere fraccionarlo. Si confirma, la solicitud continúa, la confirmación queda en la bitácora y se envía una alerta a consultoría, sin bloqueo.
-5. **Traslape con eventos:** no se pueden solicitar vacaciones en días con evento de día completo de las familias C o D, de la familia B (salvo B1, lactancia) ni en días con otro bloque de vacaciones. Bloqueo. Si después se registra un evento C sobre días de vacaciones, rige la sección 7.
+3. **Anticipación:**
+   - La fecha de inicio debe estar al menos `DIAS_ANTICIPACION_VACACIONES` días naturales después de la solicitud.
+   - No aplica a las preferencias del calendario ni a las solicitudes hechas dentro de un periodo de solicitud.
+   - Si no se cumple, no hay bloqueo: el sistema avisa a la persona y la cadena puede devolver o reprogramar con la causa «Requisitos no subsanados».
+4. **Bloque continuo:**
+   - Cada periodo debe tener, entre sus bloques Autorizados o Disfrutados, al menos uno continuo de `VAC_BLOQUE_MINIMO` días laborables, o del saldo total si es menor.
+   - Si una solicitud deja el saldo restante por debajo del bloque mínimo y todavía no existe un bloque continuo, el sistema pregunta a la persona si quiere fraccionarlo.
+   - Si confirma, la solicitud continúa, la confirmación queda en la bitácora y se envía una alerta a consultoría, sin bloqueo.
+5. **Traslape con eventos:**
+   - No se pueden solicitar vacaciones en días con evento de día completo de las familias C o D, de la familia B (salvo B1, lactancia) ni en días con otro bloque de vacaciones. Bloqueo.
+   - Si después se registra un evento C sobre días de vacaciones, rige la sección 7.
 6. **Días laborables:** según la jornada de la versión de condiciones de la persona y las constancias MOD-5 vigentes en cada fecha. Bloqueo si el rango no contiene días laborables.
 7. **Relación vigente:** no se puede solicitar con baja registrada ni con fecha de inicio posterior a `BAJA_FECHA`.
 8. **Primer aniversario:** no hay vacaciones antes del primer aniversario. Bloqueo.
-9. **Días bloqueados:** el rango no puede incluir días laborables con un bloqueo Activo que aplique a la persona y que se haya activado antes de la solicitud. Las fechas protegidas de `VAC_BLOQUEO_EXCEPCIONES` no se rechazan (4.6, regla 3). Bloqueo. El calendario de selección no permite elegir días bloqueados para una solicitud nueva.
+9. **Días bloqueados:**
+   - El rango no puede incluir días laborables con un bloqueo Activo que aplique a la persona y que se haya activado antes de la solicitud. Bloqueo.
+   - Las fechas protegidas de `VAC_BLOQUEO_EXCEPCIONES` no se rechazan (4.6, regla 3).
+   - El calendario de selección no permite elegir días bloqueados para una solicitud nueva.
 10. **Cupo:** fuera de la asignación por antigüedad, no se admite una solicitud que exceda el cupo en algún día; el sistema muestra los días sin lugar y propone hasta tres fechas alternativas. Bloqueo.
 11. **Periodo de solicitud:** con Periodos de solicitud por antigüedad, antes de que abra el periodo de solicitud de la persona no se admiten fechas de `VAC_ANIO_PROGRAMACION`. Bloqueo, con el mensaje «Su periodo de solicitud abre el {{VAC_SOLICITUD_INICIO}}».
 
@@ -329,7 +409,9 @@ Si el módulo de permisos registra un evento C1, C2 o C3 cuyo certificado inicia
 
 1. El bloque pasa a Interrumpido. `VAC_INTERRUPCION_FECHA` = inicio del certificado.
 2. `VAC_DIAS_INTERRUMPIDOS` = días laborables del bloque desde esa fecha hasta su fin.
-3. Esos días regresan al saldo del mismo periodo y se libera su cupo. Si el periodo vence o prescribe mientras dura la incapacidad, `VAC_LIMITE_OTORGAMIENTO` y `VAC_FECHA_PRESCRIPCION` no se extienden, pero se envía una alerta a RH y a consultoría para que la persona solicite esos días en cuanto regrese.
+3. Esos días regresan al saldo del mismo periodo y se libera su cupo. Si el periodo vence o prescribe mientras dura la incapacidad:
+   - `VAC_LIMITE_OTORGAMIENTO` y `VAC_FECHA_PRESCRIPCION` no se extienden;
+   - se envía una alerta a RH y a consultoría para que la persona solicite esos días en cuanto regrese.
 4. Los días de incapacidad se registran como evento C en el módulo de permisos y dejan de ser vacaciones (la incapacidad prevalece).
 5. **Nómina:** el salario de vacaciones y la prima ya pagados por esos días quedan «a cuenta» de los días devueltos y no se pagan de nuevo cuando se disfruten. El sistema muestra el importe a cuenta al contador.
 6. VAC-1 imprime el apartado III. VAC-3 se genera por los días disfrutados.
@@ -337,7 +419,10 @@ Si el módulo de permisos registra un evento C1, C2 o C3 cuyo certificado inicia
 
 ### 7.2 Incapacidad antes del inicio
 
-Si al llegar la fecha de inicio de un bloque Autorizado hay una incapacidad vigente, el bloque no inicia y pasa a Reprogramado, sin fecha alterna. Los días vuelven al saldo, se libera el cupo y la persona solicita nuevas fechas al regresar. Si la prima ya se pagó, queda a cuenta, igual que en 7.1.
+Si al llegar la fecha de inicio de un bloque Autorizado hay una incapacidad vigente:
+- El bloque no inicia y pasa a Reprogramado, sin fecha alterna.
+- Los días vuelven al saldo, se libera el cupo y la persona solicita nuevas fechas al regresar.
+- Si la prima ya se pagó, queda a cuenta, igual que en 7.1.
 
 ### 7.3 Datos
 
@@ -350,7 +435,9 @@ No se captura diagnóstico. Este módulo solo lee del certificado la fecha de in
 - `VAC_SALARIO_BASE` = `SALARIO_PERSONA` de la versión de condiciones vigente de la persona al iniciar el bloque. Es el salario ordinario, no el integrado.
 - Salario de vacaciones = `VAC_SALARIO_BASE` × `VAC_DIAS`. Nómina lo paga en el periodo de pago que corresponda.
 - `VAC_PRIMA_MONTO` = `VAC_SALARIO_BASE` × `VAC_DIAS` × `PRIMA_VACACIONAL_PCT` ÷ 100.
-- Momento de la prima (`MOMENTO_PAGO_PRIMA`): con «al inicio del periodo», se envía a la nómina del periodo en que inicia el bloque; con «en la nómina inmediata anterior», a la nómina anterior al inicio.
+- Momento de la prima (`MOMENTO_PAGO_PRIMA`):
+  - Con «al inicio del periodo», se envía a la nómina del periodo en que inicia el bloque.
+  - Con «en la nómina inmediata anterior», a la nómina anterior al inicio.
 - Interfaz con nómina, por bloque: persona, periodo, fechas, `VAC_DIAS`, `VAC_SALARIO_BASE`, `VAC_PRIMA_MONTO`, periodo de pago de la prima e importes a cuenta (7.1).
 - `VAC_CFDI_UUID`: lo devuelve nómina o lo captura RH. Si no llega dentro de los 10 días hábiles siguientes al fin del bloque, se envía una alerta a RH, sin bloqueo.
 - Mientras exista la relación, el sistema no ofrece pagar vacaciones sin disfrutarlas (art. 79).
@@ -385,7 +472,9 @@ Destinatarios: **P** Persona Trabajadora, **J** jefatura, **RH**, **C** consulto
 | Fraccionamiento del bloque mínimo | Al confirmarlo la persona | C | Informativa |
 | Reingreso cercano | Al dar el alta | C | 3.3 |
 | Aguinaldo | 30 días antes de `AGUINALDO_FECHA_PAGO` | RH, Ct | Cálculo provisional para revisión (10.4) |
+| Faltas por confirmar en el aguinaldo | En el cálculo provisional y cada vez que se recalcula, si alguna persona tiene faltas por confirmar en el año | RH | «{{N}} faltas por confirmar en el año: confírmelas o descártelas antes de la validación del contador; mientras no se confirmen, cuentan como días computables» (10.4). Sin bloqueo |
 | Baja con aguinaldo validado y sin pago | Al registrar la baja | Ct | «La persona sale de la nómina anual de aguinaldo; se paga en el finiquito» (10.5) |
+| Faltas por confirmar a la baja | Al registrar la baja, si hay faltas por confirmar en el año | RH | Misma alerta, para el aguinaldo proporcional del finiquito (10.5). Sin bloqueo |
 
 ---
 
@@ -398,14 +487,17 @@ Destinatarios: **P** Persona Trabajadora, **J** jefatura, **RH**, **C** consulto
 
 ### 10.2 Cálculo
 
-- **Periodo:** `AGUINALDO_PERIODO_INICIO` es la fecha más reciente entre el 1 de enero y `FECHA_INICIO`; el fin es el 31 de diciembre. El cálculo se hace al 31 de diciembre y considera computables los días que van de la fecha de cálculo al 31 de diciembre. No se recalcula ni se descuenta por lo que ocurra después del pago.
+- **Periodo:**
+  - `AGUINALDO_PERIODO_INICIO` es la fecha más reciente entre el 1 de enero y `FECHA_INICIO`; el fin es el 31 de diciembre.
+  - El cálculo se hace al 31 de diciembre y considera computables los días que van de la fecha de cálculo al 31 de diciembre.
+  - No se recalcula ni se descuenta por lo que ocurra después del pago.
 - `AGUINALDO_DIAS_COMPUTABLES` = días naturales del periodo − días de eventos con `AGUINALDO_COMPUTA` = No.
 - `AGUINALDO_SALARIO_BASE` = `SALARIO_PERSONA` de la versión de condiciones vigente de la persona en `AGUINALDO_FECHA_PAGO`.
 - `AGUINALDO_MONTO` = `AGUINALDO_DIAS` × `AGUINALDO_DIAS_COMPUTABLES` ÷ días del año (365 o 366) × `AGUINALDO_SALARIO_BASE`, redondeado a centavos.
 
 ### 10.3 `AGUINALDO_COMPUTA` (tabla global, E; la administra este módulo)
 
-Usa el mismo criterio que los días computables de la PTU (registro 4.7). La especificación de permisos v1.6 la lee de este módulo.
+Usa el mismo criterio que los días computables de la PTU (registro 4.7). La especificación de permisos la lee de este módulo.
 
 | Concepto | Computa |
 | --- | --- |
@@ -420,24 +512,50 @@ Usa el mismo criterio que los días computables de la PTU (registro 4.7). La esp
 | C1 enfermedad general | No; sí en los días de espera que paga la Empresa con `PAGO_DIAS_ESPERA` = Sí |
 | C2 riesgo de trabajo, C3 maternidad | Sí |
 | D1 | No; sí por la fr. III, solo si RH marca que se acreditó que la persona obró en defensa de la Empresa |
-| D2, D3, D4, D5 | No |
-| Falta injustificada (módulo 9, sin evento justificado) | No |
+| D2, D3, D5 | No |
+| D4 sin reubicación / D4 con reubicación aceptada (MOD-5) | No / Sí (los días cuentan como trabajados, permisos v1.8) |
+| **Falta confirmada** (módulo 9, recibida por el módulo de permisos) | No |
+| **Falta por confirmar** (módulo 9) | Sí, mientras RH no la confirme |
 | Suspensión disciplinaria (FD-3 del RIT) | No |
 | Suspensión por fin de temporada (módulo 4) | No |
 
-Solo consultoría (X) la edita, y cada cambio queda en la bitácora.
+Notas para programación:
+- **Faltas (encargo 4 del mapa, 20/11/2026).**
+  - Solo descuenta días la falta en estado Confirmada.
+  - Una falta por confirmar computa como día normal hasta que RH la confirma.
+  - Si una falta, confirmada o no, se borra porque llega un evento justificado (permisos, validación 1), el día se cuenta según ese evento.
+- **Descanso (decisión del usuario, 21/11/2026; registro 4.10 y 4.14; módulo 9 v1.1).**
+  - Una falta confirmada o un día sin goce restan solo su propio día.
+  - Ninguno de los dos descuenta el proporcional del día de descanso, tampoco en nómina.
+  - Los días de descanso semanal computan siempre, en el aguinaldo y en la PTU.
+- **Tabla gemela.**
+  - `AGUINALDO_COMPUTA` y `PTU_COMPUTA` (kit de PTU, R-4) cambian juntas.
+  - Tienen dos diferencias deliberadas: los días de espera de C1 pagados por la Empresa y D1 por la fr. III computan para el aguinaldo, pero no para la PTU.
+  - Todo cambio en una de las dos se avisa a quien administra la otra.
+- Solo consultoría (X) edita la tabla, y cada cambio queda en la bitácora.
 
 ### 10.4 Proceso anual
 
 1. 30 días antes de `AGUINALDO_FECHA_PAGO`, el sistema hace un cálculo provisional para todas las personas activas y avisa a RH y al contador.
-2. RH revisa los días no computables por persona, con el detalle de los eventos. El contador valida (`AGUINALDO_VALIDADO`, V: usuario y fecha). Si después cambia un evento del año, se revierte la validación de esa persona.
+2. RH revisa los días no computables por persona, con el detalle de los eventos.
+   - La pantalla muestra aparte las **faltas por confirmar** de cada persona en el año, con un botón para confirmarlas o descartarlas.
+   - Si quedan faltas por confirmar, se envía la alerta de la sección 9. No hay bloqueo.
+   - El contador valida (`AGUINALDO_VALIDADO`, V: usuario y fecha). Al validar, la pantalla le muestra cuántas faltas por confirmar quedan.
+   - Si después cambia un evento del año de esa persona, se revierte su validación. Cuentan como cambios de evento:
+     - la confirmación de una falta;
+     - el descarte de una falta;
+     - la llegada de un evento justificado que borra una falta.
 3. Con la validación, el sistema exporta a nómina la persona, los días computables, el salario base y el importe, y crea en el módulo 6 la obligación de pago de cada persona.
 4. El módulo 6 registra el pago y su evidencia (CFDI). Sus alertas (`PAGO_ALERTAS_AGUINALDO`) avisan antes de `AGUINALDO_FECHA_PAGO` si no hay pago.
+5. Después del pago, el aguinaldo no se recalcula: una falta del año que se confirme después no se descuenta (10.2).
 
 ### 10.5 Bajas
 
-- **Baja antes del pago del año:** el aguinaldo proporcional va en el finiquito (módulo 4), de `AGUINALDO_PERIODO_INICIO` a `BAJA_FECHA`, con la misma tabla de cómputo y con `SALARIO_PERSONA` vigente a la baja. La persona sale del cálculo anual.
-- **Baja con `AGUINALDO_VALIDADO` y sin pago registrado** (encargo del 17/11/2026):
+- **Baja antes del pago del año:**
+  - El aguinaldo proporcional va en el finiquito (módulo 4), de `AGUINALDO_PERIODO_INICIO` a `BAJA_FECHA`, con la misma tabla de cómputo y con `SALARIO_PERSONA` vigente a la baja.
+  - Solo descuentan las faltas confirmadas a la fecha del cálculo. Si hay faltas por confirmar, se envía a RH la alerta de la sección 9, sin bloqueo.
+  - La persona sale del cálculo anual.
+- **Baja con `AGUINALDO_VALIDADO` y sin pago registrado:**
   - Al registrarse la baja, el sistema avisa al contador: «{{TRAB_NOMBRE}} sale de la nómina anual de aguinaldo; el aguinaldo proporcional se paga en el finiquito».
   - Se retira a la persona de la exportación pendiente.
   - El módulo 6 cancela su obligación de pago de aguinaldo con motivo «Pago en finiquito».
@@ -452,12 +570,12 @@ El ISR y las exenciones del aguinaldo los calcula nómina. El PMV calcula en bru
 
 ## 11. Terminación (interfaz con el módulo 4)
 
-El módulo 4 toma de este módulo, a la fecha de `BAJA_FECHA`:
+El módulo 4 (v1.5) toma de este módulo, a la fecha de `BAJA_FECHA`:
 
 - Por cada periodo Vigente o Fuera de plazo: saldo de días, salario base (`SALARIO_PERSONA` vigente a la baja) y prima.
 - Proporcional del año en curso: días del periodo siguiente × días transcurridos desde el último aniversario (o desde `FECHA_INICIO`, si no ha cumplido el año) ÷ 365. Es la fórmula del caso de prueba A.3 del módulo 4.
 - Periodos Prescritos: solo como dato informativo para consultoría; no se suman.
-- Aguinaldo: según 10.5.
+- Aguinaldo: según 10.5, con el número de faltas por confirmar como dato para la pantalla de la baja.
 
 Al registrarse la baja, se cancelan los bloques Autorizados posteriores a `BAJA_FECHA` y las solicitudes pendientes, y se libera su cupo.
 
@@ -488,7 +606,7 @@ El aguinaldo no tiene documento propio: se acredita con el CFDI en el módulo 6.
 ### 12.3 Reglas comunes
 
 - Se usan los bloques de la especificación de permisos, sección 17.1. El folio es `VAC_FOLIO` en VAC-1 y VAC-3, y `VAC_PERIODO` en VAC-2.
-- Los registros digitales siguen la sección 12.3 de permisos y la especificación de firma electrónica v1.2.
+- Los registros digitales siguen la sección 12.3 de permisos y la especificación de firma electrónica (v1.4).
 - **Concordancia de número** (registro 5.0): con valor 1, singular («1 día», «1 año»); nunca «(s)». Aplica a VAC-1, VAC-2, VAC-3 y a los avisos (por ejemplo, `VAC_SALDO_RESUMEN` y N-5).
 - Cada documento generado guarda la versión del modelo con la que se emitió.
 - **Paquete probatorio por periodo:**
@@ -507,7 +625,10 @@ El aguinaldo no tiene documento propio: se acredita con el CFDI en el módulo 6.
 
 - **Mis vacaciones:** periodos con días, saldo, días comprometidos, estado, límite para disfrutarlas (`VAC_LIMITE_OTORGAMIENTO`) y la VAC-2 de cada periodo. No muestra `VAC_FECHA_PRESCRIPCION`.
 - **Mi periodo de solicitud** (solo con Periodos de solicitud por antigüedad): grupo, apertura, cierre y estado de la asignación.
-- **Solicitar:** calendario con días bloqueados activos (con su descripción), días sin cupo y días no laborables. Muestra al momento los días y el saldo, y aplica las validaciones de la sección 6. Permite guardar un borrador; un borrador no reserva fechas frente a un bloqueo hasta que se envía.
+- **Solicitar:**
+  - Calendario con días bloqueados activos (con su descripción), días sin cupo y días no laborables.
+  - Muestra al momento los días y el saldo, y aplica las validaciones de la sección 6.
+  - Permite guardar un borrador; un borrador no reserva fechas frente a un bloqueo hasta que se envía.
 - **Preferencias del calendario** (solo con Calendario anual, durante la ventana).
 - **Pendientes:** avisos, propuestas por aceptar (con alternativas), VAC-2 por firmar y VAC-3 por confirmar.
 
@@ -523,12 +644,20 @@ El aguinaldo no tiene documento propio: se acredita con el CFDI en el módulo 6.
 5. **Cupos.**
 6. **Solicitudes en curso:** con reasignación de suplente, igual que en permisos.
 7. **Registro desde el formato de respaldo.** La fecha y hora de la solicitud es la que consta en el formato, que RH captura.
-8. **Aguinaldo:** cálculo provisional por persona con el detalle de los días no computables, validación del contador, exportación a nómina y avisos de bajas (10.5).
+8. **Aguinaldo:**
+   - Cálculo provisional por persona, con el detalle de los días no computables.
+   - Columna de faltas por confirmar, con su acceso a confirmar o descartar.
+   - Validación del contador.
+   - Exportación a nómina.
+   - Avisos de bajas (10.5).
 9. **Configuración** (consultoría y RH, según permisos): parámetros de la sección 14. `VAC_PROGRAMACION_MODO` se muestra desde la configuración común con el RIT.
 
 ### 13.3 Autorizadores
 
-Es la bandeja de la especificación de permisos, sección 3.3, con las solicitudes de vacaciones. Botones: «Autorizar», «Reprogramar» y «Devolver para corrección». Leyenda fija: «Las vacaciones son un derecho de la Persona Trabajadora. Puede autorizar las fechas o proponer otras; no puede negarlas.» Si la solicitud tiene fechas protegidas dentro de un bloqueo, se muestra además: «Esta solicitud se hizo antes de que se bloquearan esas fechas; el bloqueo no es motivo para reprogramarla.»
+Es la bandeja de la especificación de permisos, sección 3.3, con las solicitudes de vacaciones.
+- Botones: «Autorizar», «Reprogramar» y «Devolver para corrección».
+- Leyenda fija: «Las vacaciones son un derecho de la Persona Trabajadora. Puede autorizar las fechas o proponer otras; no puede negarlas.»
+- Si la solicitud tiene fechas protegidas dentro de un bloqueo, se muestra además: «Esta solicitud se hizo antes de que se bloquearan esas fechas; el bloqueo no es motivo para reprogramarla.»
 
 ---
 
@@ -545,9 +674,10 @@ Es la bandeja de la especificación de permisos, sección 3.3, con las solicitud
 - **De permisos:**
   - Cadena de autorización: `CADENA_AUTORIZACION`, `AUTORIZACION_PLAZO_DIAS`, `AUTORIZADOR_SUPLENTE`, `NEGATIVA_CAUSA` (con el valor «Cupo completo», que solo usa este módulo), `NEGATIVA_MOTIVO`, `NEGATIVA_AUTOR`, `NEGATIVA_NIVEL`, `FECHA_ALTERNA`, `DEVOLUCION_MOTIVO`, `AUTORIZACIONES`, `RESOLUCION_FECHA`.
   - Registros y constancias: `EVENTO_SOLICITUD_FECHAHORA`, `CONSTANCIA_FECHA`, `SALIDA`.
-  - Eventos que afectan el cálculo: `PAGO_DIAS_ESPERA`, `SUSP_VACACIONES_GENERA`, `VACACIONES_DIAS_GENERADOS`.
+  - Eventos que afectan el cálculo: `PAGO_DIAS_ESPERA`, `SUSP_VACACIONES_GENERA`, `VACACIONES_DIAS_GENERADOS`, `D4_REUBICACION`.
   - Negativa a firmar: `NEGATIVA_FIRMA`, `TESTIGO_1_NOMBRE`, `TESTIGO_2_NOMBRE`, `FECHA_ENVIO`.
   - Bloques comunes: `PATRON_RAZON_SOCIAL`, `TRAB_NOMBRE`, `TRAB_CURP`, `PUESTO`, `AREA`, `CENTRO_TRABAJO` (en el diccionario único, `CENTRO_NOMBRE`), `TRAB_EMAIL`, `LUGAR_FIRMA`, `FECHA_FIRMA`, `CLAUSULA_FIRMA_ELECTRONICA`, `FIRMA_EMPRESA_NOMBRE`, `FIRMA_EMPRESA_CARGO`.
+- **Del módulo 9, por medio del módulo de permisos:** el estado de cada falta del año (Por confirmar · Confirmada), con su fecha. Este módulo solo lo lee; lo confirma o descarta RH con las reglas de los módulos 9 y 10.
 - **Del alta, del organigrama y del módulo 5:**
   - Persona: `FECHA_INICIO`, CURP, **`SALARIO_PERSONA`** y la versión de condiciones de la persona (`JORNADA_VERSION`, `PRESTACIONES_VERSION`).
   - Puesto: `PRESTACIONES_EXTRA`, `PERSONA_JEFATURA`, `DIRECTOR_AREA`.
@@ -555,6 +685,7 @@ Es la bandeja de la especificación de permisos, sección 3.3, con las solicitud
   - Constancias MOD-5 vigentes.
 - **Del módulo 4:** `BAJA_FECHA` y el calendario de días inhábiles.
 - **Del módulo 6:** `PAGO_ALERTAS_AGUINALDO` y la obligación de pago de aguinaldo de cada persona.
+- **Del kit de PTU:** `PTU_COMPUTA`, solo para la regla de tabla gemela (10.3).
 
 ### 14.2 Variables del módulo
 
@@ -578,7 +709,8 @@ Es la bandeja de la especificación de permisos, sección 3.3, con las solicitud
 | REINGRESO_ALERTA_DIAS | E | Entero | 90 | 3.3 |
 | AGUINALDO_DIAS | E | Entero | ≥ 15; 15 | 10.2 |
 | AGUINALDO_FECHA_PAGO | E | Día y mes | ≤ 19 de diciembre; 15 de diciembre | 10.4; módulo 6 |
-| AGUINALDO_COMPUTA | E (global, editable por X; administrada por este módulo) | Tabla | Valores de 10.3 | 10.2; módulos 4 y 10 |
+| AGUINALDO_COMPUTA | E (global, editable por X; administrada por este módulo) | Tabla | Valores de 10.3; cambia junto con `PTU_COMPUTA` | 10.2; módulos 4 y 10 |
+| AGUINALDO_FALTAS_POR_CONFIRMAR | S | Entero, por persona y año | Faltas del año en estado Por confirmar a la fecha del cálculo | Alerta de la sección 9; pantalla de aguinaldo; dato para el módulo 4 |
 | VAC_PERIODO | S | Identificador | Uno por persona y aniversario | Folio de VAC-2 |
 | VAC_ANIVERSARIO / VAC_ANTIGUEDAD_ANIOS | S | Fecha / entero | 3.1 | VAC-1, VAC-2, VAC-3 |
 | VAC_DIAS_PERIODO | S | Entero | 3.1 | VAC-2; saldo |
@@ -603,7 +735,7 @@ Es la bandeja de la especificación de permisos, sección 3.3, con las solicitud
 | VAC_AVISO_ENVIOS | B | Registro por envío (aviso, canal, fecha y hora, resultado) | No editable | Paquete probatorio |
 | AGUINALDO_PERIODO_INICIO / AGUINALDO_DIAS_COMPUTABLES / AGUINALDO_MONTO | S | Fecha / entero / moneda | 10.2 | Exportación a nómina; módulo 6 |
 | AGUINALDO_SALARIO_BASE | S | Moneda | `SALARIO_PERSONA` vigente en `AGUINALDO_FECHA_PAGO` | 10.2 |
-| AGUINALDO_VALIDADO | V | Usuario y fecha del contador | Se revierte si cambia un evento del año | Exportación; obligación en el módulo 6; aviso de baja (10.5) |
+| AGUINALDO_VALIDADO | V | Usuario y fecha del contador | Se revierte si cambia un evento del año, incluida la confirmación o el descarte de una falta | Exportación; obligación en el módulo 6; aviso de baja (10.5) |
 
 ### 14.3 Eliminadas (no programar)
 
@@ -613,7 +745,8 @@ Es la bandeja de la especificación de permisos, sección 3.3, con las solicitud
   - La acción «Negar» en vacaciones.
   - El valor por omisión de `VAC_PROGRAMACION_MODO`.
   - La devolución automática de solicitudes en curso al activarse un bloqueo.
-- Base salarial: el uso del salario del puesto (`SALARIO_DIARIO`) como base; rige `SALARIO_PERSONA`.
+- Fila genérica «Falta injustificada» de `AGUINALDO_COMPUTA`: se sustituye por las filas de falta confirmada y falta por confirmar.
+- Base salarial: el uso del salario del puesto (`SALARIO_DIARIO`, eliminada en todo el sistema) como base; rige `SALARIO_PERSONA`.
 
 ---
 
@@ -621,26 +754,27 @@ Es la bandeja de la especificación de permisos, sección 3.3, con las solicitud
 
 | Pieza | Qué necesita este módulo | Estado |
 | --- | --- | --- |
-| RIT v1.4, arts. 29 y 35 a 37 | Calendario, anticipación, prima, constancias y `VAC_PROGRAMACION_MODO` | El art. 36 ya prevé Calendario anual y A solicitud. **Pendiente (encargo 13 del mapa):** tercer modo y párrafo de días bloqueados y cupos, antes de que un cliente los use |
-| Módulo de permisos v1.6 | Eventos para traslapes, interrupción y cómputo del aguinaldo; cadena; bloques comunes; `SUSP_VACACIONES_GENERA` | Ya reconoce este módulo como segunda fuente de ausencias, con prevalencia de la incapacidad, y lee `AGUINALDO_COMPUTA` de aquí. **Encargos del mapa a permisos:** admitir «Cupo completo» en `NEGATIVA_CAUSA`; quitar «pendiente» de B3; confirmar la lectura de `SUSP_VACACIONES_GENERA` |
-| Módulo 4 | `BAJA_FECHA` y calendario de días inhábiles; lee saldos y aguinaldo (10.5 y 11) | **Encargos del mapa al módulo 4:** adoptar la sección 11; no duplicar el aguinaldo; liberar el cupo al dar de baja; leer `SALARIO_PERSONA` |
-| Módulo 5 | `SALARIO_PERSONA`, versión de condiciones y constancias MOD-5 | Vigente (registro 2 y 4.12) |
-| Módulo 6 | Obligación y pago del aguinaldo con CFDI; cancelación con motivo «Pago en finiquito» | Vigente (registro 4.13) |
-| Módulo 9 | Faltas injustificadas para `AGUINALDO_COMPUTA`; los días de vacaciones justifican ausencias | Sin conversación |
+| RIT, arts. 29 y 35 a 37 | Calendario, anticipación, prima, constancias, `VAC_PROGRAMACION_MODO`, tres modos y párrafo de días bloqueados y cupos | **Resuelto.** Art. 36 con los tres modos (v1.5) y el párrafo nuevo con la redacción final, «prevalece lo que se registra primero» (v1.6). Especificación vigente del RIT: v1.7 |
+| Módulo de permisos v1.9 | Eventos para traslapes, interrupción y cómputo del aguinaldo; cadena; bloques comunes; `SUSP_VACACIONES_GENERA`; faltas del módulo 9 | **Encargos cumplidos:** «Cupo completo» (v1.7), B3 no computa (v1.7), lectura de `SUSP_VACACIONES_GENERA` confirmada (v1.7), D4 con reubicación (v1.8) y faltas por confirmar y confirmadas (v1.9) |
+| Módulo 4 v1.5 | `BAJA_FECHA` y calendario de días inhábiles; lee saldos y aguinaldo (10.5 y 11) | **Encargos cumplidos en la v1.5:** sección 11, aguinaldo sin duplicar, cancelación de vacaciones y liberación del cupo, aviso de aguinaldo validado y `SALARIO_PERSONA` |
+| Módulo 5 v1.1 | `SALARIO_PERSONA`, versión de condiciones y constancias MOD-5 | Vigente (registro 2 y 4.12) |
+| Módulo 6 v1.0 | Obligación y pago del aguinaldo con CFDI; cancelación con motivo «Pago en finiquito» | Vigente (registro 4.13; sección 6 de su especificación) |
+| Módulo 9 v1.1 | Faltas por confirmar y confirmadas para `AGUINALDO_COMPUTA`; los días de vacaciones justifican ausencias | Vigente (registro 4.14). Desde la v1.1, sin descuento del descanso proporcional |
+| Kit de PTU v1.0 | `PTU_COMPUTA` (R-4), tabla gemela | Vigente (registro 4.7). Su encargo 4 aplica la misma regla de faltas confirmadas; la regla del descanso (10.3) también le aplica |
 | Organigrama | Centros, áreas y puestos para el alcance de bloqueos y cupos | Vigente |
 | Tabla global de parámetros legales | `PARAMETROS_LEGALES_VACACIONES` con aprobación y monitor | Pendiente transversal de Cerebro |
 | App del colaborador | Notificaciones push | Fase 2; mientras tanto, notificación en la Plataforma |
-| Firma electrónica v1.2 | Firma de VAC-2; registros digitales | Vigente |
+| Firma electrónica v1.4 | Firma de VAC-2; registros digitales | Vigente |
 | Nómina | Pago de salario, prima y aguinaldo; devolución del CFDI | Interfaz de 8 y 10.4 |
 
 ---
 
 ## 16. Pendientes que no bloquean la programación
 
-- Cotejar con el Semanario Judicial: 2a./J. 15/98, 2a./J. 1/97, 2a./J. 63/2019, 2a./J. 31/2011, I.13o.T. J/8, III.T.268 L y la tesis colegiada sobre faltas y aguinaldo. Cotejar el texto oficial del Convenio 52 de la OIT y su ámbito.
+- Cotejar con el Semanario Judicial: 2a./J. 15/98, 2a./J. 1/97, 2a./J. 63/2019, 2a./J. 31/2011, I.13o.T. J/8, III.T.268 L y la tesis colegiada sobre faltas y aguinaldo.
+- Cotejar el texto oficial del Convenio 52 de la OIT y su ámbito.
 - Buscar criterios sobre el fraccionamiento del bloque continuo (art. 78).
 - Definir si las prestaciones extralegales regulares integran el salario ordinario para la prima y el aguinaldo (hoy la base es `SALARIO_PERSONA`).
-- Que el módulo de permisos confirme la lectura de `SUSP_VACACIONES_GENERA` (3.1, paso 4).
 - Cuadro general de antigüedades (art. 158): si entra al PMV, tomará la antigüedad de este módulo.
 - Preferencia por antigüedad cuando hay contrato colectivo: sus reglas prevalecen y la tabla de 4.5 debe reflejarlas.
 
@@ -673,9 +807,11 @@ Si cambian, afectan parámetros o textos, no la estructura.
 | 19. Solicitud pendiente antes del bloqueo | D envía el 2/04/2027 una solicitud del 17 al 21/05; está En autorización. RH activa el 5/04 un bloqueo de capacitación del 18 al 20/05 | La solicitud de D no se devuelve ni cambia de estado; sus fechas quedan en `VAC_BLOQUEO_EXCEPCIONES`; la cadena no puede reprogramarla por el bloqueo; D recibe N-4 con el párrafo de que sus vacaciones no cambian |
 | 20. Bloqueo antes de la solicitud | Bloqueo del 18 al 20/05/2027 activado el 5/04; E intenta solicitar el 6/04 del 17 al 21/05 | No se puede enviar; los días 18 a 20 aparecen bloqueados en el calendario; E puede pedir otras fechas |
 | 21. Borrador frente a bloqueo | F guardó un borrador el 1/04 del 18 al 20/05 sin enviarlo; el bloqueo se activa el 5/04 | El borrador no está protegido; al enviarlo, la validación 9 lo rechaza |
+| 22. Faltas por confirmar y confirmadas | Año completo 2026; `SALARIO_PERSONA` $500.00; 15 días; 2 faltas confirmadas y 3 por confirmar en el cálculo provisional del 15/11/2026 | Días computables: 365 − 2 = 363; 15 × 363 ÷ 365 × 500 = **$7,458.90**. Alerta a RH por las 3 faltas por confirmar; el contador puede validar. Los días de descanso de esas semanas computan |
+| 23. Confirmación después de validar | Caso 22 validado el 20/11/2026; el 25/11 RH confirma una de las faltas por confirmar | Se revierte `AGUINALDO_VALIDADO` de esa persona; nuevo cálculo con 362 días: 15 × 362 ÷ 365 × 500 = **$7,438.36**; el contador valida de nuevo |
 
 ---
 
 ## 18. Textos
 
-Se programan tal como están en «AXIARH - Módulo de vacaciones y aguinaldo - Textos (borrador)», sexta versión del 17/11/2026: VAC-1, VAC-2, VAC-3 y los avisos N-1 a N-6, con sus reglas de armado y notas. Respecto de la quinta versión, «vacaciones ya autorizadas» pasa a «vacaciones ya solicitadas o autorizadas» en la sección «Cómo se fijan las fechas», en VAC-2 (apartado 4) y en N-4; además, VAC-1 tiene una nota nueva para programación. Cualquier cambio de texto se hace allí y se emite una nueva versión de esta especificación.
+Se programan tal como están en «AXIARH - Módulo de vacaciones y aguinaldo - Textos (borrador)», sexta versión del 17/11/2026: VAC-1, VAC-2, VAC-3 y los avisos N-1 a N-6, con sus reglas de armado y notas. La v1.4 no cambia ningún texto. Cualquier cambio de texto se hace allí y se emite una nueva versión de esta especificación.

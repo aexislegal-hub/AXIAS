@@ -1,7 +1,21 @@
 # AXIA RH — MÓDULO 3: PROCEDIMIENTO DE PARTICIPACIÓN DE LOS TRABAJADORES EN LAS UTILIDADES (PTU)
 
-Especificación para programación · Versión 1.0 · 20/11/2026
+Especificación para programación · Versión 1.2 · 21/11/2026
 Fuente: «Kit maestro – Procedimiento de PTU» (Claude Docs, rev. 87), «Corte - Kit de PTU» (20/11/2026), registro de decisiones (4.5, 4.7, 4.13 y 5.4) y encargos del mapa del PMV al kit (17/11/2026). Aprobaciones provisionales hasta la revisión final del usuario.
+
+## Cambios respecto de las versiones 1.0 y 1.1
+
+Si la 1.0 ya se cargó, basta aplicar esta tabla (los cambios 5 a 7 son de la 1.2). Ante cualquier duda, rige el texto completo.
+
+| # | Sección | Cambio | Origen |
+| --- | --- | --- | --- |
+| 1 | 5.2 (R-4, tabla `PTU_COMPUTA`) | La fila «Falta injustificada» se divide: **falta confirmada** del módulo 9 (no computa) y **falta por confirmar** (computa mientras RH no la confirme) | Encargo 4 del mapa (20/11/2026); registro 4.14 |
+| 2 | 5.2 (R-4, reglas) | Con faltas por confirmar al calcular, alerta a RH sin bloquear; confirmar o descartar una falta después de `CALCULO_CONFIRMADO` revierte la confirmación de esa persona; con D-08 B firme se atiende como observación (D-10) | Mismo encargo; gemelo de la regla de `AGUINALDO_VALIDADO` |
+| 3 | 5.2 y 5.4 | El descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT) no resta días computables; cada falta confirmada resta solo su día. `PTU_COMPUTA` y `AGUINALDO_COMPUTA` cambian juntas | Decisión del usuario (21/11/2026) |
+| 4 | Anexo A.3 | Casos 17 y 18 | — |
+| 5 | 8 y 8.1 (nueva) | Los documentos de la Comisión se firman de forma electrónica o autógrafa con `FIRMA_COMISION`, por documento; sustituye el uso de `FIRMA_MODALIDAD` en esos documentos | Decisión del usuario (21/11/2026) |
+| 6 | 10.2, 11.3 | `FIRMA_COMISION` en el diccionario; se cierra el pendiente del nivel de firma | Ídem |
+| 7 | Anexo A.3 | Casos 19 y 20 | — |
 
 El módulo genera los 14 documentos del procedimiento (D-01 a D-14), calcula el reparto individual, precalcula el neto de cada persona y controla el pago y la PTU no cobrada junto con el módulo 6. Funciona con y sin sindicato y para cualquier resultado del ejercicio: sin cantidad repartible (A), con reparto (B) o con excepción legal (C).
 
@@ -199,9 +213,10 @@ Tabla PTU_COMPUTA (17/11/2026). Indica, por tipo de evento del módulo de permis
 | C3 maternidad | Sí | Servicio activo (art. 127, fr. IV) |
 | D1 a D5 | No | Suspensiones (registro 4.7) |
 | D4 con reubicación aceptada (MOD-5) | Sí | Se trabaja con salario |
-| Falta injustificada, suspensión disciplinaria y suspensión por fin de temporada | No | Registro 4.7 |
+| Falta confirmada (módulo 9), suspensión disciplinaria y suspensión por fin de temporada | No | Registro 4.7 |
+| Falta por confirmar (módulo 9) | Sí, mientras RH no la confirme | Ausencia sin evento aún no calificada; solo la falta confirmada descuenta (registro 4.14) |
 
-Reglas: la tabla vive con los parámetros versionados y solo cambia con aprobación humana; un cambio no altera dictámenes firmes. Cada día tiene un solo evento (la incapacidad prevalece), por lo que ningún día se descuenta dos veces. Con VIA_CALCULO = Importación o Captura, la tabla no se aplica a los días que reporta el cliente, pero el sistema la usa para advertir si DIAS_TRABAJADOS no coincide con los eventos registrados. Los 60 días de las personas eventuales se cuentan con días computables.
+Reglas: la tabla vive con los parámetros versionados y solo cambia con aprobación humana; un cambio no altera dictámenes firmes. Cada día tiene un solo evento (la incapacidad prevalece), por lo que ningún día se descuenta dos veces. Con VIA_CALCULO = Importación o Captura, la tabla no se aplica a los días que reporta el cliente, pero el sistema la usa para advertir si DIAS_TRABAJADOS no coincide con los eventos registrados. Los 60 días de las personas eventuales se cuentan con días computables. (21/11/2026, encargo 4 del mapa) Al calcular con VIA_CALCULO = Automático, si hay faltas por confirmar del ejercicio, el sistema alerta a RH para confirmarlas o descartarlas, sin bloquear; confirmar o descartar una falta después de CALCULO_CONFIRMADO revierte la confirmación de esa persona, y después de D-08 B firme se atiende como observación (D-10). Cada falta confirmada resta solo su propio día: el descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT) no resta días computables, igual que en AGUINALDO_COMPUTA (decisión del usuario, 21/11/2026; las dos tablas cambian juntas).
 
 ### 5.3 Algoritmo del reparto
 
@@ -220,7 +235,7 @@ Caso de prueba: Anexo A.1.
 
 ### 5.4 Tabla `PTU_COMPUTA`
 
-Ver R-4 (5.2). Debe coincidir con la columna «Día computable para PTU» de la tabla de efectos del módulo de permisos (10.1). Es tabla aparte de `AGUINALDO_COMPUTA`: las dos difieren solo en los días de espera de C1 pagados por la Empresa y en D1 por la fr. III, que computan para el aguinaldo y no para la PTU.
+Ver R-4 (5.2). Debe coincidir con la columna «Día computable para PTU» de la tabla de efectos del módulo de permisos (10.1). Es tabla aparte de `AGUINALDO_COMPUTA`: las dos difieren solo en los días de espera de C1 pagados por la Empresa y en D1 por la fr. III, que computan para el aguinaldo y no para la PTU. Las faltas siguen la misma regla en las dos: solo la confirmada descuenta, y solo su propio día.
 
 ---
 
@@ -300,8 +315,21 @@ Si la persona reclama después de ese plazo, el sistema no paga: registra la rec
 | Documento | Quién firma | Forma |
 | --- | --- | --- |
 | D-01 aviso de convocatoria, D-06 aviso de consulta, D-11 Parte 1 aviso a ex trabajadores | Nadie (avisos) | Evidencia: fotografía fechada por lugar de publicación (D-01, D-06) o constancia de envío (D-11 Parte 1) |
-| D-02, D-03, D-04, D-05, D-07, D-08, D-09, D-10, D-11 Parte 2, D-12, D-13 | Integrantes de la Comisión y, donde el texto lo indica, el representante legal, la mesa o el sindicato | Autógrafa por omisión; la cláusula de firma electrónica se imprime con `FIRMA_MODALIDAD` = Electrónica (ver pendiente 11.3 sobre el nivel de esa variable en documentos colectivos) |
+| D-02, D-03, D-04, D-05, D-07, D-08, D-09, D-10, D-11 Parte 2, D-12, D-13 | Integrantes de la Comisión y, donde el texto lo indica, el representante legal, la mesa o el sindicato | `FIRMA_COMISION`, por documento (sección 8.1) |
 | D-14 recibo individual | La persona trabajadora | `FIRMA_D14` (7.4) |
+
+---
+
+### 8.1 Firma de los documentos de la Comisión (`FIRMA_COMISION`, 21/11/2026)
+
+Decisión del usuario: las actas y constancias de la Comisión se pueden firmar de forma electrónica o autógrafa.
+
+1. `FIRMA_COMISION` se elige al generar cada documento (Electrónica · Autógrafa), sin valor por omisión.
+2. Electrónica solo si todos los firmantes tienen usuario en la Plataforma. Si firma alguien externo (representante sindical, integrante de mesa sin usuario), la pantalla solo ofrece Autógrafa.
+3. Con Electrónica: cada firmante firma con su tipo de firma (especificación de firma electrónica); la tabla de firmas imprime el sello de cada uno (`FIRMA_SELLO_*`; antes de firmar, «Pendiente de firma electrónica») y el documento cierra con `CLAUSULA_FIRMA_ELECTRONICA`. El documento queda firmado cuando firman todos.
+4. Con Autógrafa: la tabla imprime la columna «Firma» en blanco y RH carga el escaneo; la casilla «documento firmado» basta para avanzar (regla 5.0).
+5. Si un firmante rechaza la firma electrónica o falla la Plataforma, el documento se regenera como Autógrafa, con la misma fecha y contenido; la bitácora conserva la versión anterior.
+6. Los avisos (D-01, D-06 y D-11 Parte 1) no se firman. D-14 sigue `FIRMA_D14` (7.4).
 
 ---
 
@@ -1155,6 +1183,7 @@ Extraídas del texto de D-01 a D-14 (incluye las que solo aparecen en condicione
 | D14_FIRMADO | Módulo 6 | Casilla + archivo opcional | Alerta a RH a los PAGO_EVIDENCIA_DIAS días hábiles; no revierte Pagada | Anexo 1 de D-11 Parte 2 |
 | FECHA_TRASPASO_PTU | S | Fecha | Un año desde el día siguiente a FECHA_LIMITE_PAGO | Estado No reclamada; traspaso |
 | PTU_RECIBIDA_1, _2, _3 | S/V | Moneda | Del historial del sistema; si no, del layout; si no, 0 con aviso | Límite por promedio |
+| FIRMA_COMISION | V (por documento) | Electrónica / Autógrafa | Sin valor por omisión; Electrónica solo si todos los firmantes tienen usuario | Sellos o línea de firma y cláusula de firma electrónica en D-02 a D-05, D-07 a D-10, D-11 Parte 2, D-12 y D-13 (8.1) |
 | PTU_COMPUTA | X | Tabla por tipo de evento: Sí/No | Con vigencia; aprobación humana | Días computables (R-4); advertencias (R-1, R-2) |
 | REF_EXENCION, UMA, TARIFA_ISR_96 | X | Tablas versionadas del módulo 4 | Solo aprobadas | R-5 |
 | Campos del layout R-1 | V (importación) | Ver 5.2 | Errores bloquean D-08 B | Anexo 1 de D-07 y D-08 |
@@ -1208,9 +1237,9 @@ Extraídas del texto de D-01 a D-14 (incluye las que solo aparecen en condicione
 1. `AUTORIDAD_INSPECCION` en la pantalla de alta de la empresa (mapa, hallazgo 11). Mientras no exista, D-03 imprime el campo vacío como marcador visible.
 2. Revisión final del usuario del modelo maestro (aprobaciones provisionales).
 
-### 11.3 Por confirmar con el usuario
+### 11.3 Decisiones resueltas en la v1.2
 
-- **Nivel de `FIRMA_MODALIDAD` en los documentos colectivos.** En el contrato es un dato de cada persona; en las actas de la Comisión firman varias personas. Mientras se decide, el programa trata `FIRMA_MODALIDAD` de los documentos colectivos como dato del evento (pantalla «Comisión» o «Ejercicio»), con Autógrafa por omisión.
+- Sin pendientes de decisión: el nivel de firma de los documentos colectivos quedó resuelto con `FIRMA_COMISION` (21/11/2026).
 
 ---
 
@@ -1260,6 +1289,10 @@ Parámetros 2026 (UMA $117.31; tarifa mensual del Anexo 8 RMF 2026, la misma del
 | 14. Resolución del SAT impugnada | `EVENTO` = Resolución SAT; `IMPUGNACION_EMPRESA` = Sí | D-12 con `GARANTIA` obligatoria; sin reparto adicional mientras no quede firme |
 | 15. Elección con baja participación | Primera jornada con 45 % del padrón | D-02 con segunda jornada dentro de 10 días hábiles, sin umbral |
 | 16. Suplentes desactivados | `REPRESENTANTES_SUPLENTES` = No | D-01 a D-03 y D-13 sin menciones, filas ni columnas de suplentes |
+| 17. Falta por confirmar | Persona con 2 faltas por confirmar y 1 confirmada en el ejercicio; VIA_CALCULO = Automático | Se resta 1 día; alerta a RH por las 2 por confirmar; no bloquea |
+| 18. Falta confirmada después | RH confirma una de esas faltas después de `CALCULO_CONFIRMADO` | Se revierte la confirmación de esa persona y se recalcula su día |
+| 19. Acta con firma electrónica | D-07 con `FIRMA_COMISION` = Electrónica; los cuatro integrantes tienen usuario | Sellos en la tabla de firmas y cláusula al final; firmado cuando firman los cuatro |
+| 20. Firmante externo | D-03 con `SINDICATO` = Sí (firma el representante sindical sin usuario) | Solo se ofrece Autógrafa |
 
 Estos valores sirven para probar el programa; el contador valida cada caso real.
 

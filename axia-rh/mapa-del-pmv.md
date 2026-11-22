@@ -1,6 +1,6 @@
 # Axia RH — Mapa del PMV
 
-Actualizado: 21 de noviembre de 2026, después de los cortes del kit de PTU, del módulo 4, de permisos y licencias y de vacaciones y aguinaldo (21/11), de los cortes del paquete de contratación, del módulo 5 y del módulo 9 (20/11), de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
+Actualizado: 21 de noviembre de 2026, después de los cortes del kit de PTU, del módulo 4, de permisos y licencias, de vacaciones y aguinaldo, del módulo 9, de los módulos 6 y 8, del paquete de contratación y de firma electrónica (21/11), de los cortes del paquete de contratación, del módulo 5 y del módulo 9 (20/11), de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
 
 Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
 
@@ -30,17 +30,17 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 
 | Módulo | Documentos redactados | Faltan | Situación |
 |---|---|---|---|
-| 1. Kit de contratación | Paquete completo (contrato A-D rev. 506, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; dar estructura a las 34 variables usadas sin definir; correr la versión del 20/11 en el software; republicar el visor | Versión para programación regenerada el 20/11/2026 después de la decisión 32 (204 variables), con los encargos 6 y 7; **no cerrado** |
+| 1. Kit de contratación | Paquete completo (contrato A-D rev. 507, biblioteca rev. 91, kit integrado con adenda y asignación de correo) | Módulo H y LIC-3 en la carta responsiva; Anexo A del convenio; dar estructura a las 34 variables usadas sin definir; correr la versión del 21/11 en el software; republicar el visor | Versión para programación regenerada el 21/11/2026 (205 variables), con los encargos 6 a 8; **no cerrado** |
 | 2. RIT y su comisión | RIT (rev. 1388), formatos FD-1 a FD-5, FR-1 y FR-2 (borrador, rev. 39), acta de la CMRIT (rev. 36); especificación v1.7 | Tercer corrido en el software (v1.7); confirmar las propuestas 11.1; revisión de los formatos | Diseño para programación terminado; en corrido; **no cerrado** |
-| 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor; especificación v1.1 (21/11/2026) | Correr en el software; confirmar el nivel de FIRMA_MODALIDAD en los documentos colectivos; AUTORIDAD_INSPECCION en la pantalla de la empresa; revisión final del usuario | Modelo maestro terminado (rev. 89, 21/11/2026); **no cerrado** |
+| 3. PTU | Kit D-01 a D-14, reglas R-1 a R-5 (precálculo neto), visor; especificación v1.2 (21/11/2026; firma de la Comisión con FIRMA_COMISION) | Correr en el software; AUTORIDAD_INSPECCION en la pantalla de la empresa; firma electrónica con varios firmantes; revisión final del usuario | Modelo maestro terminado (rev. 92, 21/11/2026); **no cerrado** |
 | 7. Capacitación | — | — | **Pasa a Axia CYA (15/11/2026)** |
 | 4. Terminación | Convenio único por mutuo consentimiento, recibo, comunicados de respaldo, beneficiarios, constancia de servicios; precálculo neto; especificación v1.4 cargada y v1.5 (17/11/2026, con los encargos 1 a 15 y las decisiones del 20 y 21/11) | Cargar la v1.5 en el software; plazo de Infonavit; suspensión por temporada, incapacidad, hoja interna | **Cerrado por el usuario y cargado en el software (12/11/2026)** — único módulo cerrado |
 | 5. Modificación | MOD-1, MOD-2, MOD-4, MOD-5, ACT-1; especificación v1.1 (20/11/2026) con 14 casos de prueba | Correr en el software; MOD-6 (prioridad C); verificaciones | Diseño terminado (15/11/2026); **no cerrado** |
-| 6. Validación de pagos | Obligaciones de pago con evidencia cotejada (CFDI o dispersión); especificación v1.0 | Correr en el software; verificaciones del SAT | Diseño terminado (15/11/2026); **no cerrado** |
-| 8. Fonacot | Afiliación, cédula mensual, incidencias, retención en el finiquito, FON-1; especificación v1.0 (con el módulo 6) | Calendario de cédulas y fecha de entero | Diseño terminado (15/11/2026); **no cerrado** |
-| 9. Análisis de jornada | Motor de análisis con visor de pre-nómina (modos Conectado y Solo archivo), importación del checador, catálogo PN-01 a PN-18, aclaraciones, salida a nómina; especificación v1.0 (20/11/2026) con 18 casos de prueba | Correr en el software; revisar la sección 16 cuando la STPS publique las disposiciones del registro electrónico; lecturas propias por confirmar (sección 17) | Diseño terminado (20/11/2026); **no cerrado** |
+| 6. Validación de pagos | Obligaciones de pago con evidencia cotejada (CFDI o dispersión); especificación v1.1 (21/11/2026; PAGO_CLAVES_SAT como tabla única) | Correr en el software; verificaciones del SAT | Diseño terminado (15/11/2026); **no cerrado** |
+| 8. Fonacot | Afiliación, cédula mensual, incidencias, retención en el finiquito, FON-1; especificación v1.1 (con el módulo 6) | Calendario de cédulas y fecha de entero | Diseño terminado (15/11/2026); **no cerrado** |
+| 9. Análisis de jornada | Motor de análisis con visor de pre-nómina (modos Conectado y Solo archivo), importación del checador, catálogo PN-01 a PN-18, aclaraciones, salida a nómina, personas con baja; especificación v1.1 (21/11/2026) con 19 casos de prueba | Correr en el software; revisar la sección 16 cuando la STPS publique las disposiciones del registro electrónico; lecturas propias por confirmar (sección 17) | Diseño terminado (20/11/2026); **no cerrado** |
 | 10. Permisos y licencias | Catálogo de 18 eventos en cuatro familias, siete documentos y dos registros digitales; cadena de autorización; especificación v1.9 (21/11/2026) con lógica y textos | Verificaciones legales (afectan parámetros, no la estructura) | Diseño terminado (12/11/2026); especificación lista; **no cerrado** |
-| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.3 (21/11/2026) y textos (sexta versión) | Verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (17/11/2026); **no cerrado** |
+| 11. Vacaciones y aguinaldo | VAC-1, VAC-2, VAC-3, avisos N-1 a N-6; periodos de solicitud por antigüedad, días bloqueados y cupos; especificación v1.4 (21/11/2026) y textos (sexta versión) | Verificaciones legales; decidir el cuadro general de antigüedades | Diseño terminado (17/11/2026); **no cerrado** |
 
 ---
 
@@ -380,13 +380,14 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Paquete de contratación**
 - Cumplidos según el corte del 20/11/2026: encargos 1, 2 y 5 (17/11), 3 (13/11), 4 (versión para programación regenerada el 20/11/2026) y **6 y 7 (20/11/2026, contrato rev. 506; versión para programación de 204 variables regenerada después de la decisión 32)**.
-8. (20/11, del módulo 9) Agregar al diccionario del kit la variable del consentimiento biométrico del registro de jornada con el nombre **BIOMETRICO_JORNADA_CONSENT** (alta; Sí / No con fecha; la otorga la persona en la casilla de biométricos del apartado 10 del aviso; con No o revocado opera SISTEMA_REGISTRO_ALTERNO). Es distinta de BIOMETRICO_FIRMA_CONSENT. Si el kit ya tiene una variable para esa casilla con otro nombre, avisar a Cerebro en el corte en lugar de renombrarla.
+8. **Cumplido (21/11, decisión 33; contrato rev. 507, 205 variables).** (20/11, del módulo 9) Agregar al diccionario del kit la variable del consentimiento biométrico del registro de jornada con el nombre **BIOMETRICO_JORNADA_CONSENT**.
+9. (21/11, de Cerebro, provisional; registro 4.3 bis) Aviso de privacidad, apartado 10: imprimir la casilla de biométricos del registro de jornada, y la finalidad que la explica, solo con REGISTRO_BIOMETRICO = Sí, como la de INE y video con IDV_SERVICIO. Si el aviso ya trae esa condición en otro lugar, solo confirmarlo en el corte. Regenerar la versión para programación solo si cambia el texto.
 
 **Comisión de capacitación:** (15/11/2026) sale de Axia RH y pasa al proyecto de Axia CYA, que hereda los encargos pendientes (criterio común de comisiones, corte pendiente desde el 26/10, SIRCE). Axia RH solo necesita que Axia CYA mantenga las variables F2_* que lee el módulo 4.
 
 **Kit de PTU**
-- Cumplidos 1 a 3 (modelo rev. 87 y especificación v1.0, 20/11/2026) y 4 (rev. 89 y especificación v1.1, 21/11/2026).
-5. (21/11, decisión del usuario; registro 4.10) El criterio de la falta y del día sin goce ya está aprobado: quitar de la v1.1 «pendiente de aprobación» y la frase «el descanso proporcional que el módulo 9 descuenta en nómina», porque el módulo 9 ya no lo descontará (su encargo 4). La regla de PTU_COMPUTA no cambia.
+- Cumplidos 1 a 3 (modelo rev. 87 y especificación v1.0, 20/11/2026) y 4 (rev. 89 y especificación v1.1, 21/11/2026). La v1.2 (rev. 92, 21/11/2026) agrega FIRMA_COMISION.
+5. **Sigue pendiente (revisado en la v1.2).** (21/11, decisión del usuario; registro 4.10) Quitar la frase «el descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT)», que sigue en la tabla de cambios (cambio 3) y al final de R-4 (5.2), y la misma frase del corte. El módulo 9 v1.1 ya no descuenta el descanso. Redacción sugerida: «Cada falta confirmada o día sin goce resta solo su propio día; ninguno resta el día de descanso». La regla de PTU_COMPUTA no cambia.
 4. **Cumplido (v1.1, 21/11).** (20/11, del módulo 9) Con VIA_CALCULO = Automático, contar como no computables solo las faltas **confirmadas** del módulo 9; las «por confirmar» no descuentan días. Confirmar que R-4 ya lo dice o agregarlo en la tabla PTU_COMPUTA.
 1. (17/11, de los módulos 6 y 8) Regla R-3: «Pagada» = CFDI o dispersión cotejados en el módulo 6; la firma de D-14 deja de ser condición del estado (D14_FIRMADO, alerta sin revertir). D-14 toma UUID_CFDI, FECHA_PAGO, FORMA_PAGO y REFERENCIA_DISPERSION de la obligación en «Pagada»; con dispersión sin UUID se genera sin el folio fiscal y se versiona al cargarlo.
 2. (17/11) D-11, Parte 2: su Anexo 1 sale del módulo 6, sin cambio de texto.
@@ -417,11 +418,11 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Módulo 11 (vacaciones y aguinaldo)**
 - Cumplidos 1 a 3 (especificación v1.2, 17/11/2026) y 4 (v1.3, 21/11/2026).
-5. (21/11) En la siguiente versión, corregir la nota de 10.3 que dice que «el módulo 9 descuenta en nómina el descanso proporcional» (ya previsto en su corte, sección 7).
+5. **Cumplido (v1.4, 21/11).** (21/11) Corregir la nota de 10.3 que dice que «el módulo 9 descuenta en nómina el descanso proporcional».
 4. **Cumplido (v1.3).** (20/11, del módulo 9) AGUINALDO_COMPUTA cuenta como no computables solo las faltas **confirmadas** del módulo 9; las «por confirmar» no descuentan días.
 
 **Módulo 6 (validación de pagos)**
-1. (20/11, del módulo 9) El cotejo del CFDI usa la clave SAT de cada concepto de CONCEPTO_CLAVE_NOMINA (tabla de empresa del módulo 9, que toma sus claves de PAGO_CLAVES_SAT). Confirmar que no hace falta otra tabla.
+1. **Cumplido (v1.1, 21/11).** (20/11, del módulo 9) El cotejo del CFDI usa PAGO_CLAVES_SAT, única tabla de claves; CONCEPTO_CLAVE_NOMINA solo liga conceptos a ella. No hace falta otra tabla.
 
 **Módulo 5 (modificación de condiciones)**
 - Cumplidos 1 y 2 (especificación v1.1, 20/11/2026).
@@ -430,10 +431,10 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 - TELE_AVISO_DIAS queda confirmada como variable de empresa (registro, sección 2).
 
 **Módulo 9 (análisis de jornada)**
-- Cumplidos 1 y 2 (especificación v1.0, 20/11/2026, secciones 3.1 y 14.3).
-3. (20/11, de Cerebro) Renombrar BIOMETRICO_CONSENTIMIENTO a **BIOMETRICO_JORNADA_CONSENT** (registro 4.14); quitar «confirmar el nombre con el kit».
-4. (21/11, decisión del usuario desde vacaciones; registro 4.10 y 4.14) **Quitar el descuento del descanso proporcional.** La falta confirmada y el día sin goce descuentan solo el salario de su propio día, nunca la parte proporcional del descanso (se elimina la fórmula «salario × días no laborados ÷ días laborables de la semana» de 4.5 y su renglón «Descanso proporcional (art. 72)» de la salida a nómina, 8.1). Revisar los casos de prueba 6 y 18 (el 6 queda en $480.00).
-5. (21/11, del módulo 4; aprobado por el usuario el 21/11, registro 4.14) Sin aviso del módulo 4: los conceptos pendientes que el finiquito precarga en «Otros devengados» siguen como pendientes en el módulo 9. Para evitar el doble pago dentro de este mismo módulo, una persona con baja no se exporta en periodos posteriores a BAJA_FECHA y sus pendientes quedan con la etiqueta «Revisar en el finiquito», sin entrar a la salida a nómina. Si la conversación lo ve inviable, proponer otra solución sin pedir datos al módulo 4.
+- Cumplidos 1 y 2 (especificación v1.0, 20/11/2026, secciones 3.1 y 14.3) y 3 a 5 (v1.1, 21/11/2026; sección 8.4 nueva y caso 19).
+3. **Cumplido (v1.1).** (20/11, de Cerebro) Renombrar BIOMETRICO_CONSENTIMIENTO a **BIOMETRICO_JORNADA_CONSENT** (registro 4.14); quitar «confirmar el nombre con el kit».
+4. **Cumplido (v1.1).** (21/11, decisión del usuario desde vacaciones; registro 4.10 y 4.14) **Quitar el descuento del descanso proporcional.** La falta confirmada y el día sin goce descuentan solo el salario de su propio día, nunca la parte proporcional del descanso (se elimina la fórmula «salario × días no laborados ÷ días laborables de la semana» de 4.5 y su renglón «Descanso proporcional (art. 72)» de la salida a nómina, 8.1). Revisar los casos de prueba 6 y 18 (el 6 queda en $480.00).
+5. **Cumplido (v1.1, 8.4).** (21/11, del módulo 4; aprobado por el usuario el 21/11, registro 4.14) Sin aviso del módulo 4: los conceptos pendientes que el finiquito precarga en «Otros devengados» siguen como pendientes en el módulo 9. Para evitar el doble pago dentro de este mismo módulo, una persona con baja no se exporta en periodos posteriores a BAJA_FECHA y sus pendientes quedan con la etiqueta «Revisar en el finiquito», sin entrar a la salida a nómina. Si la conversación lo ve inviable, proponer otra solución sin pedir datos al módulo 4.
 1. (17/11, del módulo 5) La jornada esperada se toma de la versión de condiciones de cada persona y de las constancias MOD-5 vigentes.
 2. (18/11, del paquete) El catálogo de jornadas ya no indica si la persona puede salir durante el descanso (PUEDE_SALIR eliminada); con descanso rotativo, DIAS_TRABAJO_SEMANA sin tabla de días y el art. 69 solo se valida con descanso fijo.
 
@@ -441,14 +442,15 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 - (20/11, del módulo 9) Política de registro de jornada: limitar las entradas anticipadas y regular el uso del checador, porque la jornada cuenta desde la marca de entrada (art. 9 del RIT).
 
 **Firma electrónica**
-- Pendientes 6 y 7 (su último corte es del 18/11/2026).
+- Cumplidos 1 a 7 (especificación v1.5, 21/11/2026). Pendiente del usuario: aprobar el sello visible (registro 4.11).
+8. (21/11, del kit de PTU; registro 4.7) **Varios firmantes por documento** para los documentos de la Comisión de PTU con FIRMA_COMISION = Electrónica: todos con usuario en la Plataforma, cada uno con su tipo de firma y su sello en la tabla de firmas; el documento queda «Firmado» cuando firman todos; si uno rechaza o falla la Plataforma, se regenera como Autógrafa con la misma fecha y contenido y la bitácora conserva la versión anterior. Quitar de la sección 11 «sus firmantes son varios y su modalidad está por confirmar» y del pendiente 12 la ampliación condicional. Proponer el orden de firma (simultáneo o secuencial) y qué firma por la Empresa en esos documentos (los propios integrantes de la representación de la Empresa, no FIRMA_EMPRESA_DOC).
 1. (12/11) Cumplido en la v1.2: firmante de RH designado.
 2. (13/11) **Cumplido en la v1.4 (18/11/2026).** Agregar a la lista de firma autógrafa obligatoria el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5 y FR-2; confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos.
 3. (17/11, del módulo 5) **Cumplido en la v1.4 (18/11/2026).** Tabla de la sección 11: MOD-5 «RH designado»; ACT-1 sin firma (registro digital); MOD-1 representante y MOD-2 y MOD-4 RH designado (ya previstos como convenios, comunicados y oficio de reasignación). FON-1: firma autógrafa de recibido.
 4. (18/11, decisión del usuario) **Cumplido en la v1.4 (18/11/2026).** La verificación con INE y video es solo para la contratación: quitarla del cambio de correo o teléfono (secciones 5.7 y 5.9, encabezado de cambios de la v1.3 y guion de cambio de medio); ese cambio se verifica de forma presencial. Generar la v1.4.
 5. (18/11) **Cumplido en la v1.4 (18/11/2026).** Aviso de privacidad: el encargo de agregar la finalidad y la casilla de consentimiento de la verificación con INE y video pasa al paquete de contratación (ver su encargo 6).
-6. (18/11, del paquete) Definir el sello visible de firma (FIRMA_SELLO_TRAB y FIRMA_SELLO_EMPRESA) y el texto «Pendiente de firma electrónica»; el párrafo de firma del final del contrato depende de FIRMA_MODALIDAD (sustituye lo dicho en el apartado 9 sobre ese párrafo). Si la especificación agrega datos a la bitácora, avisar para ampliar el inciso l) del aviso de privacidad.
-7. (18/11, decisión del usuario) Acta de devolución y entrega de herramientas: agregarla a la sección 11 como documento posterior que admite firma electrónica o autógrafa, según se haga la entrega; proponer quién firma por la Empresa (por omisión, RH designado). Testigos solo con negativa.
+6. **Cumplido (v1.5, 6.1; pendiente de aprobación del usuario).** (18/11, del paquete) Definir el sello visible de firma (FIRMA_SELLO_TRAB y FIRMA_SELLO_EMPRESA) y el texto «Pendiente de firma electrónica»; el párrafo de firma del final del contrato depende de FIRMA_MODALIDAD (sustituye lo dicho en el apartado 9 sobre ese párrafo). Si la especificación agrega datos a la bitácora, avisar para ampliar el inciso l) del aviso de privacidad.
+7. **Cumplido (v1.5).** (18/11, decisión del usuario) Acta de devolución y entrega de herramientas: agregarla a la sección 11 como documento posterior que admite firma electrónica o autógrafa, según se haga la entrega; proponer quién firma por la Empresa (por omisión, RH designado). Testigos solo con negativa.
 
 ## Encargos por conversación (historial del 26/10/2026)
 
@@ -509,10 +511,10 @@ Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entr
 
 ## Orden sugerido de trabajo (20/11/2026)
 
-1. Correr en el software: módulos 5 (v1.1), 6 y 8, 9 (v1.0), vacaciones (v1.2), permisos (v1.8), firma electrónica (v1.4), kit de PTU (v1.0), módulo 4 (v1.5) y la versión del 20/11 del paquete (204 variables).
+1. Correr en el software: módulos 5 (v1.1), 6 y 8 (v1.1), 9 (v1.1), vacaciones (v1.4), permisos (v1.9), firma electrónica (v1.5), kit de PTU (v1.2), módulo 4 (v1.5) y la versión del 21/11 del paquete (205 variables). Todas están copiadas en GitHub (`axia-rh/especificaciones/`), salvo los archivos del paquete.
 2. RIT: tercer corrido (especificación v1.7).
-3. Encargos menores pendientes (no detienen el corrido): módulo 9 (3, 4 y 5), kit de PTU (5), vacaciones (5), módulo 6 (1), paquete 8 y firma electrónica 6 y 7. Cumplidos el 21/11: permisos 7 y 8, vacaciones 4, kit de PTU 4 y módulo 4 (15).
-4. Cerebro: diccionario único de variables (necesita el archivo «Variables y dependencias» de la versión del 20/11 del paquete en el proyecto), tabla única de parámetros legales y tabla de conservación de documentos.
+3. Encargos menores pendientes (no detienen el corrido): kit de PTU (5), paquete (9) y firma electrónica (8); aprobación del sello visible por el usuario. Cumplidos el 21/11: módulo 9 (3, 4 y 5), vacaciones (4 y 5), módulo 6 (1), paquete (8), firma electrónica (6 y 7), permisos (7 y 8), kit de PTU (4) y módulo 4 (15).
+4. Cerebro: diccionario único de variables (necesita el archivo «Variables y dependencias» de la versión del 21/11 del paquete, 205 variables, en el proyecto), tabla única de parámetros legales y tabla de conservación de documentos.
 5. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).
 
 Historial: el orden del 18/11 se cumplió en sus pasos 3 y 4 (paquete con encargos 6 y 7; módulo 9 con especificación). Historial: el orden del 26/10 se cumplió en sus pasos 1 a 5 y 7.

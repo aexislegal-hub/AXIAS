@@ -1,12 +1,17 @@
 # AXIARH — Firma electrónica — Especificación funcional para programación
 
-Versión 1.4 · 18/11/2026 · Responsable: Damián Torres
+Versión 1.5 · 21/11/2026 · Responsable: Damián Torres
 Decisiones de origen: «Corte - Firma electrónica» y registro, sección 4.11. Cláusula del contrato: VIGÉSIMA SEGUNDA, «Formalización por medios electrónicos» (CL_FIRMA_ELECTRONICA).
 
 Cambios de la v1.1: se agrega el firmante designado de RH como firmante de la Empresa.
 Cambios de la v1.2: todo lo que se firma en el alta lo firma el representante; RH designado firma documentos posteriores.
 Cambios de la v1.3: verificación remota de identidad con INE y video de aceptación, opcional para la persona.
-Cambios de la v1.4 (encargos del mapa del 13, 17 y 18/11/2026): la verificación con INE y video es **solo para la contratación**; el cambio de correo o teléfono se verifica de forma presencial (secciones 2, 5.7 y 5.9). Se amplía la lista de firma autógrafa obligatoria (sección 1). Se agregan a la sección 11 los documentos de los módulos 5 y 8.
+Cambios de la v1.4: la verificación con INE y video es solo para la contratación; lista de firma autógrafa obligatoria ampliada; documentos de los módulos 5 y 8 en la sección 11.
+Cambios de la v1.5 (encargos 6 y 7 del mapa y armonización con el registro del 21/11/2026):
+- Sección 6.1 nueva: sello visible de firma (FIRMA_SELLO_TRAB y FIRMA_SELLO_EMPRESA) y texto «Pendiente de firma electrónica».
+- Acta de devolución y entrega de herramientas: firma electrónica o autógrafa según DEV_FIRMA_FORMA (secciones 1 y 11).
+- D-14: solo firma la Persona Trabajadora, con FIRMA_D14 (sección 11; registro 4.7).
+- El acceso al video y a los resultados de la verificación con INE se restringe a DATOS_SENSIBLES_ACCESO (secciones 5.9 y 8; registro 4.9).
 
 Este documento dice **qué** debe hacer el sistema: pantallas, estados, validaciones y bloqueos. **Cómo** se implementa (librerías, proveedores de correo, SMS y verificación de identidad, conexión con el SAT y con el INE, almacenamiento) lo decide el programador; sus decisiones están listadas en la sección 10.
 
@@ -14,7 +19,7 @@ Este documento dice **qué** debe hacer el sistema: pantallas, estados, validaci
 
 ## 1. Alcance
 
-- Firma de los documentos generados por Axia RH con FIRMA_MODALIDAD = Electrónica: contrato y anexos, kit de contratación, FR-1, nuevas versiones del perfil de puesto, recibo de PTU (D-14), documentos de los módulos de permisos y licencias y de modificación de condiciones, comunicados y demás documentos que remiten a la cláusula de formalización por medios electrónicos.
+- Firma de los documentos generados por Axia RH con FIRMA_MODALIDAD = Electrónica: contrato y anexos, kit de contratación, FR-1, nuevas versiones del perfil de puesto, recibo de PTU (D-14), documentos de los módulos de permisos y licencias y de modificación de condiciones, acta de devolución y entrega de herramientas (con DEV_FIRMA_FORMA = Electrónica), comunicados y demás documentos que remiten a la cláusula de formalización por medios electrónicos.
 - **Firma autógrafa obligatoria**, sea cual sea FIRMA_MODALIDAD. El sistema los genera para imprimir y no permite enviarlos a firma electrónica:
   - convenio de terminación y finiquito, y recibo de finiquito;
   - acuerdo de descuento;
@@ -23,10 +28,11 @@ Este documento dice **qué** debe hacer el sistema: pantallas, estados, validaci
   - constancia de difusión del RIT (FR-2);
   - FON-1, aviso sobre el crédito Fonacot (firma autógrafa de recibido).
 - La FR-1 sigue FIRMA_MODALIDAD en sus tres momentos (emisión, ingreso y modificación). Es autógrafa solo cuando la persona firma en papel, cuando falla la Plataforma o cuando se niega a firmar.
+- El D-14 se firma según FIRMA_D14 (por persona; por omisión su FIRMA_MODALIDAD). El acta de devolución, según DEV_FIRMA_FORMA (se elige en la baja, sin valor por omisión; si la persona rechaza la electrónica, pasa a autógrafa). En ambos, los testigos solo se usan si la persona se niega a firmar.
 - Sin firma: los registros que se resuelven en la Plataforma (SP-1 y SUS-3 del módulo de permisos; ACT-1 del módulo 5). Su prueba es la bitácora; se rigen por la especificación de su módulo.
 - Firmantes:
   - la Persona Trabajadora (FES o e.firma);
-  - por la Empresa, según el momento y el tipo de documento (sección 11): el representante legal (siempre e.firma) o la persona de RH designada (FIRMANTES_EMPRESA).
+  - por la Empresa, según el momento y el tipo de documento (sección 11): el representante legal (siempre e.firma) o la persona de RH designada (FIRMANTES_EMPRESA). Algunos documentos solo los firma la Persona Trabajadora (sección 11).
 
 ## 2. Tipos de firma y verificación de identidad
 
@@ -48,6 +54,7 @@ Medios de verificación de identidad en la contratación (MEDIO_IDENTIFICACION):
 Reglas absolutas:
 - La plataforma **nunca** solicita, recibe, transmite ni almacena el archivo .key ni la contraseña de la e.firma. La firma se genera en el navegador o dispositivo del firmante; al servidor solo llegan la firma resultante y el certificado público (.cer).
 - La verificación con INE y video **nunca** es obligatoria y **solo se usa en la contratación**. Quien no otorgue el consentimiento, lo revoque o no tenga credencial para votar se verifica de forma presencial, con e.firma o firma en papel, sin ninguna consecuencia laboral.
+- BIOMETRICO_FIRMA_CONSENT es distinto de BIOMETRICO_JORNADA_CONSENT (biométricos del registro de jornada, registro 4.14); uno no sustituye al otro.
 
 ## 3. Configuración y datos
 
@@ -62,7 +69,8 @@ Reglas absolutas:
 | FIRMA_ENLACE_DIAS | Entero | Por omisión 5; mínimo 1, máximo 30 |
 | Registro del representante con e.firma | Carga del .cer únicamente | Se validan con el SAT: vigencia, no revocación y que el RFC coincida con el del representante registrado. Se guardan REP_EFIRMA_RFC y REP_EFIRMA_VIGENCIA |
 | FIRMANTES_EMPRESA | Tabla: persona trabajadora, puesto, correo institucional, celular (obligatorio con Correo y SMS), fecha de inicio, fecha de fin (opcional), folio de designación | Solo personas trabajadoras activas de la Empresa, en puestos con clasificación Confianza. El correo debe ser del dominio institucional de la empresa. Cada fila nace de una designación firmada por el representante (5.6). Si no hay ninguno vigente, ver la sección 11 |
-| FIRMA_EMPRESA_DOC | Por tipo de documento y momento (Alta / Posterior): Representante / RH designado | Valores fijos de la sección 11. Todo documento con momento Alta es «Representante» sin excepción. La empresa puede subir un documento posterior de «RH designado» a «Representante», nunca al revés |
+| FIRMA_EMPRESA_DOC | Por tipo de documento y momento (Alta / Posterior): Representante / RH designado / Sin firma de la Empresa | Valores fijos de la sección 11. Todo documento con momento Alta es «Representante» sin excepción. La empresa puede subir un documento posterior de «RH designado» a «Representante», nunca al revés |
+| DATOS_SENSIBLES_ACCESO | Lista de usuarios | Existente (registro 4.9). Única lista de usuarios autorizados para datos sensibles; aquí rige el acceso al video y a los resultados de la verificación con INE |
 
 Puede haber más de un representante y más de un firmante de RH; la empresa elige quién firma cada documento o lote.
 
@@ -83,14 +91,15 @@ Puede haber más de un representante y más de un firmante de RH; la empresa eli
 - Con «Representante»: REP_NOMBRE y su carácter.
 - Con «RH designado»: FIRMA_EMPRESA_NOMBRE y FIRMA_EMPRESA_CARGO, que el sistema toma del firmante que firmó. No se capturan a mano.
 - Los formatos con una fila fija «Recursos Humanos» (por ejemplo, FR-1) imprimen el firmante que corresponda según la sección 11.
+- Con firma electrónica, en lugar de la línea de firma se imprime el sello de la sección 6.1.
 
 ## 4. Estados del documento
 
 | Estado | Significa | Pasa a |
 |---|---|---|
 | Borrador | Generado, aún editable | Listo para firma · Cancelado |
-| Listo para firma | Validado por RH; ya no se edita. Se calcula el hash del PDF sin firmas | En firma |
-| En firma – Persona Trabajadora | Solicitud enviada; corre el plazo FIRMA_ENLACE_DIAS | En firma – Empresa · Rechazado · Vencido · Firma autógrafa |
+| Listo para firma | Validado por RH; ya no se edita. Se calcula el hash del PDF sin firmas (HASH_ORIGEN) | En firma |
+| En firma – Persona Trabajadora | Solicitud enviada; corre el plazo FIRMA_ENLACE_DIAS | En firma – Empresa · Firmado (si la Empresa no firma) · Rechazado · Vencido · Firma autógrafa |
 | En firma – Empresa | Firmó la Persona Trabajadora; falta el firmante de la Empresa que corresponde (representante o RH designado) | Firmado · Vencido |
 | Firmado | Firmaron todos; se generan el PDF final y la hoja de evidencias, se calcula el hash final y se envía la copia | Con constancia (si NOM151_SERVICIO = Sí) |
 | Con constancia | Se recibió la constancia NOM-151 | Estado final |
@@ -101,7 +110,7 @@ Puede haber más de un representante y más de un firmante de RH; la empresa eli
 
 Reglas:
 - Un documento en «Listo para firma» o posterior no se puede editar. Cualquier cambio genera una versión nueva, que requiere nuevas firmas; la versión anterior se conserva.
-- Orden de firma: primero la Persona Trabajadora y después la Empresa. En los documentos que firma solo la Empresa (por ejemplo, SUS-1 cuando la persona no está disponible), firma la Empresa y el documento se envía a la persona.
+- Orden de firma: primero la Persona Trabajadora y después la Empresa. En los documentos que firma solo la Empresa (por ejemplo, SUS-1 cuando la persona no está disponible), firma la Empresa y el documento se envía a la persona. En los que firma solo la Persona Trabajadora (por ejemplo, D-14), el documento pasa a «Firmado» con su firma.
 - Con MEDIO_IDENTIFICACION = INE y video de aceptación, los documentos del alta no se pueden enviar a firma mientras la verificación (5.9) no esté aprobada.
 - El firmante de RH no puede firmar por la Empresa un documento en el que él mismo es la Persona Trabajadora. Ese documento pasa a otro firmante de RH o al representante.
 - Si la Persona Trabajadora rechaza el **contrato**: alerta crítica a RH y a consultoría. La relación de trabajo existe aunque no haya contrato firmado, y la falta del escrito se imputa a la Empresa; RH debe resolverlo en papel o documentar la negativa con dos testigos, como en las demás constancias.
@@ -193,33 +202,77 @@ Se usa solo en el alta, antes de los documentos de contratación. Los demás doc
 4. **Video de aceptación.** La persona graba un video de máximo 30 segundos leyendo el guion que muestra la pantalla: «Yo, {{TRAB_NOMBRE}}, el {{FECHA_VIDEO}}, acepto firmar por medios electrónicos mi contrato de trabajo con {{PATRON_RAZON_SOCIAL}} y los documentos de mi contratación. Código {{CODIGO_VIDEO}}». CODIGO_VIDEO es un número aleatorio que genera el sistema para esa grabación, para impedir que se reutilice un video anterior.
 5. **Resultado.** Aprobada: MEDIO_IDENTIFICACION = INE y video de aceptación y se habilita el envío de los documentos del alta. Fallida: se permite un segundo intento; si vuelve a fallar, RH recibe alerta y la persona se verifica de forma presencial, con e.firma o en papel. Una verificación fallida no impide la contratación.
 
-Conservación y supresión:
+Conservación, acceso y supresión:
 - Se conservan, como evidencia de la firma: el resultado de la validación con el INE (sin la imagen de la credencial, si el proveedor lo permite), el resultado de la prueba de vida y del cotejo (aprobado o fallido, con su fecha y hora), el video de aceptación y la bitácora.
+- **Acceso:** el video y los resultados de la verificación son datos sensibles. Solo los ven los usuarios de DATOS_SENSIBLES_ACCESO; consultoría, solo si la Empresa la incluye. La jefatura y los reportes generales solo ven el medio de identificación («INE y video de aceptación») y la fecha. Cada consulta o descarga queda en la bitácora.
 - La plantilla biométrica (el modelo matemático del rostro) se borra después del cotejo. El proveedor no conserva imágenes, video ni plantillas una vez entregado el resultado.
 - Si la persona revoca el consentimiento, no se hace ningún nuevo tratamiento biométrico; el video ya grabado se conserva solo como prueba del acto que firmó, durante el plazo de conservación del documento.
 - Personas sin credencial para votar (por ejemplo, extranjeras): la opción no se ofrece; verificación presencial, e.firma o papel.
 
-## 6. Bitácora y hoja de evidencias
+## 6. Bitácora, sello visible y hoja de evidencias
 
 Cada evento se registra con: fecha y hora (hora del servidor sincronizada, en UTC y en hora local), IP, dispositivo y navegador, usuario o firmante, acción y resultado.
 
-Eventos mínimos: generación; paso a «Listo para firma» con su hash; envío de la solicitud; apertura del enlace; visualización completa; aceptación de la casilla; solicitud y envío del código (canal y destino enmascarado, p. ej. c\*\*\*@dominio y \*\*\*\*1234); validación del código (correcta o fallida); consentimiento biométrico (otorgado, negado o revocado, con la versión del texto); validación de la credencial con el INE, prueba de vida, cotejo y video (resultado, intento, proveedor e identificador de la transacción); verificación presencial (RH que verificó); firma con e.firma (número de serie, emisor, vigencia y resultado de la validación del certificado, con fecha y hora); rechazo con motivo; vencimiento; cancelación; reasignación del firmante de la Empresa; firma de la Empresa; hash final; envío de la copia; constancia NOM-151 (folio, PSC, fecha). Para el firmante de RH: verificación de la designación vigente y su folio.
+Eventos mínimos: generación; paso a «Listo para firma» con su hash; envío de la solicitud; apertura del enlace; visualización completa; aceptación de la casilla; solicitud y envío del código (canal y destino enmascarado, p. ej. c\*\*\*@dominio y \*\*\*\*1234); validación del código (correcta o fallida); consentimiento biométrico (otorgado, negado o revocado, con la versión del texto); validación de la credencial con el INE, prueba de vida, cotejo y video (resultado, intento, proveedor e identificador de la transacción); verificación presencial (RH que verificó); firma con e.firma (número de serie, emisor, vigencia y resultado de la validación del certificado, con fecha y hora); rechazo con motivo; vencimiento; cancelación; reasignación del firmante de la Empresa; firma de la Empresa; hash final; envío de la copia; constancia NOM-151 (folio, PSC, fecha); consulta o descarga del video o de los resultados de la verificación. Para el firmante de RH: verificación de la designación vigente y su folio.
 
-La **hoja de evidencias** es la última página del PDF final y contiene: datos del documento y versión; firmantes con nombre, RFC o CURP, tipo de firma y medio de identificación (con INE y video: resultado y fecha de la verificación, e identificador del video); para el firmante de RH, su puesto y el folio de su designación; la cronología de eventos; el hash del documento sin firmas y el hash final. No contiene imágenes de la credencial ni del rostro. La constancia NOM-151, si existe, se emite sobre el PDF que ya incluye la hoja de evidencias.
+### 6.1 Sello visible de firma (FIRMA_SELLO_TRAB y FIRMA_SELLO_EMPRESA)
+
+Con firma electrónica, cada bloque de firma imprime un sello en lugar de la línea «Firma: ____». Con firma autógrafa se conserva la línea. Los sellos son variables derivadas: el sistema las compone, nadie las captura.
+
+**Antes de firmar** (borrador, «Listo para firma» y «En firma»):
+
+```text
+Pendiente de firma electrónica
+```
+
+**Después de firmar**, según el tipo de firma:
+
+```text
+[SI firma = FES]
+Firmado electrónicamente por {{FIRMANTE_SELLO_NOMBRE}}
+el {{FIRMA_FECHA}} a las {{FIRMA_HORA}} (hora del centro de trabajo)
+Firma electrónica simple con código de verificación de un solo uso
+[FIN SI]
+[SI firma = e.firma]
+Firmado con firma electrónica avanzada (e.firma del SAT) por {{FIRMANTE_SELLO_NOMBRE}}, RFC {{FIRMANTE_SELLO_RFC}}
+el {{FIRMA_FECHA}} a las {{FIRMA_HORA}} (hora del centro de trabajo)
+Certificado núm. {{EFIRMA_SERIE}}
+[FIN SI]
+[SI firmante = RH designado]
+En representación de {{PATRON_RAZON_SOCIAL}}, como {{FIRMA_EMPRESA_CARGO}}; designación {{DESIGNACION_FOLIO}}
+[FIN SI]
+[SI firmante = Representante]
+En representación de {{PATRON_RAZON_SOCIAL}}
+[FIN SI]
+Folio de firma {{FIRMA_FOLIO}} · Documento {{DOC_FOLIO}} · Huella {{HASH_ORIGEN_CORTO}}
+Ver hoja de evidencias
+```
+
+Reglas:
+- FIRMA_FECHA y FIRMA_HORA se toman de la bitácora, en la zona horaria del centro de trabajo (CENTRO_ZONA_HORARIA); la hoja de evidencias da además la hora en UTC.
+- HASH_ORIGEN_CORTO son los primeros 16 caracteres del hash SHA-256 del documento sin firmas (HASH_ORIGEN), calculado al pasar a «Listo para firma». El sello no puede llevar el hash final porque forma parte del documento que se cifra; el hash final va en la hoja de evidencias y en el correo de la copia.
+- El sello no imprime correo, teléfono, IP ni el medio de identificación; esos datos están solo en la hoja de evidencias, enmascarados.
+- La firma de la Persona Trabajadora con MEDIO_IDENTIFICACION = INE y video no agrega nada al sello; la referencia a la verificación está en la hoja de evidencias.
+- El párrafo de firma del final del contrato depende de FIRMA_MODALIDAD (decisión del paquete de contratación del 15/11/2026, ya aplicada en el contrato).
+- El sello no agrega datos personales nuevos a la bitácora: el inciso l) del aviso de privacidad no necesita ampliarse por él.
+
+### 6.2 Hoja de evidencias
+
+Es la última página del PDF final y contiene: datos del documento y versión; firmantes con nombre, RFC o CURP, tipo de firma y medio de identificación (con INE y video: resultado y fecha de la verificación, e identificador del video); para el firmante de RH, su puesto y el folio de su designación; la cronología de eventos; el hash del documento sin firmas (HASH_ORIGEN) y el hash final. No contiene imágenes de la credencial ni del rostro. La constancia NOM-151, si existe, se emite sobre el PDF que ya incluye la hoja de evidencias.
 
 ## 7. Cierre del documento
 
 Al firmar el último firmante:
-1. Se genera el PDF final con las firmas visibles y la hoja de evidencias.
+1. Se genera el PDF final con los sellos visibles y la hoja de evidencias.
 2. Se calcula el hash SHA-256 del PDF final.
 3. Si NOM151_SERVICIO = Sí, se solicita la constancia al PSC.
 4. Se guarda en almacenamiento que no permita modificar ni borrar el archivo.
-5. Se envía el PDF al correo personal de la Persona Trabajadora, con el hash escrito en el cuerpo del correo, y se publica en PORTAL_DESCARGA.
+5. Se envía el PDF al correo personal de la Persona Trabajadora, con el hash final escrito en el cuerpo del correo, y se publica en PORTAL_DESCARGA.
 6. Se registra el envío del correo y su resultado (entregado, rebotado). Rebote: alerta a RH.
 
 ## 8. Paquete probatorio exportable
 
-Por documento, un archivo comprimido con: el PDF final; la bitácora completa en formato legible por máquina (JSON o XML); en e.firma, los archivos de firma y los certificados públicos; la constancia NOM-151 si existe; si firmó RH, la constancia de designación vigente a la fecha de la firma; si la identidad se verificó con INE y video, el video de aceptación con su hash, el comprobante del consentimiento y los resultados de la verificación; y una hoja de instrucciones para el perito: cómo recalcular los hash y cómo verificar cada firma. Se puede descargar por documento o por persona trabajadora. El acceso al video queda restringido a RH y consultoría y cada descarga se registra.
+Por documento, un archivo comprimido con: el PDF final; la bitácora completa en formato legible por máquina (JSON o XML); en e.firma, los archivos de firma y los certificados públicos; la constancia NOM-151 si existe; si firmó RH, la constancia de designación vigente a la fecha de la firma; si la identidad se verificó con INE y video, el video de aceptación con su hash, el comprobante del consentimiento y los resultados de la verificación; y una hoja de instrucciones para el perito: cómo recalcular los hash y cómo verificar cada firma. Se puede descargar por documento o por persona trabajadora. El paquete que incluye el video o los resultados de la verificación solo lo descargan los usuarios de DATOS_SENSIBLES_ACCESO; para los demás se genera sin esos archivos. Cada descarga se registra.
 
 ## 9. Alertas
 
@@ -244,7 +297,7 @@ Por documento, un archivo comprimido con: el PDF final; la bitácora completa en
 1. Validación del certificado del SAT (vigencia, cadena de confianza y revocación) y su registro como evidencia.
 2. Firma con e.firma en el navegador o dispositivo del firmante, sin que la llave privada ni la contraseña salgan de él; formato de la firma.
 3. Proveedores de correo y SMS: entregabilidad, registro de entrega y rebote.
-4. Generación del PDF final y de la hoja de evidencias; cálculo del hash SHA-256.
+4. Generación del PDF final, de los sellos visibles y de la hoja de evidencias; cálculo del hash SHA-256 (HASH_ORIGEN y hash final).
 5. Sincronización de la hora del servidor.
 6. Almacenamiento no modificable y respaldos.
 7. Integración opcional con un PSC para la constancia NOM-151.
@@ -253,7 +306,7 @@ Por documento, un archivo comprimido con: el PDF final; la bitácora completa en
 10. Control de acceso del firmante de RH: solo ve y firma los documentos de tipo «RH designado» que tiene asignados.
 11. Marcar cada documento con su momento (Alta / Posterior) al generarlo, para asignar el firmante de la Empresa.
 12. Proveedor de verificación de identidad: que tenga convenio vigente con el INE para la verificación de datos de la credencial y, si se usa, para el cotejo facial; prueba de vida resistente a fotos, pantallas, máscaras y videos manipulados; borrado de plantillas e imágenes después del resultado; servidores y transferencias conforme a la ley de datos personales. Integración por API y registro del identificador de cada transacción. Solo se invoca en el flujo de contratación.
-13. Grabación del video en el navegador o la app: duración máxima, calidad mínima, hash del archivo al cerrarse la grabación y almacenamiento cifrado con acceso restringido.
+13. Grabación del video en el navegador o la app: duración máxima, calidad mínima, hash del archivo al cerrarse la grabación y almacenamiento cifrado con acceso restringido a DATOS_SENSIBLES_ACCESO.
 
 ## 11. Quién firma por la Empresa (FIRMA_EMPRESA_DOC)
 
@@ -273,18 +326,19 @@ Por documento, un archivo comprimido con: el PDF final; la bitácora completa en
 | FR-1 por emisión o modificación del RIT | RH designado | Decidido (12 y 13/11/2026) |
 | Carta responsiva y asignación de correo institucional posteriores (cambio de equipo, de sistemas o de puesto) | RH designado | Decidido (12/11/2026) |
 | Nuevas versiones del perfil de puesto | RH designado | Decidido (12/11/2026) |
-| Recibo individual de PTU (D-14) | RH designado | Decidido (12/11/2026) |
 | Comunicados (por ejemplo, cambio de centro de trabajo) | RH designado | Decidido (12/11/2026) |
+| Acta de devolución y entrega de herramientas | Con DEV_FIRMA_FORMA = Electrónica: RH designado y, sin él, el representante. Con Autógrafa: quien recibe (DEV_RECIBE) | Decidido (18 y 20/11/2026) |
+| D-14 Recibo individual de PTU | Sin firma de la Empresa: solo firma la Persona Trabajadora, según FIRMA_D14 | Decidido (20/11/2026, kit de PTU) |
 | ACT-1 Registro de actualización anual (módulo 5) | Sin firma: registro digital | Decidido (17/11/2026) |
 
 Reglas:
 - La empresa puede subir un documento posterior de «RH designado» a «Representante», nunca al revés. Los documentos del alta no se pueden bajar a «RH designado».
 - Si no hay firmante de RH vigente, el documento de tipo «RH designado» pasa al representante, con alerta; no se manda a papel.
 - Los documentos de firma autógrafa obligatoria (sección 1) quedan fuera de esta tabla.
+- Los documentos colectivos (por ejemplo, los del kit de PTU firmados por la comisión mixta) no están cubiertos por esta especificación: sus firmantes son varios y su modalidad está por confirmar (registro 4.7).
 
 ## 12. Pendientes
 
 - Contrato de encargo con el proveedor de verificación de identidad (confidencialidad, supresión, prohibición de usos propios, ubicación de servidores, convenio con el INE).
 - Plazo de conservación de documentos firmados, evidencias, videos y designaciones (tabla de conservación).
-- Aplicar al contrato las instrucciones del apartado 9 del corte (encargo 3 del paquete de contratación).
-- Aviso de privacidad: finalidad y consentimiento de la verificación con INE y video, y datos de la bitácora de firma (encargos 2 y 6 del paquete de contratación).
+- Si se decide que los documentos colectivos admitan firma electrónica, ampliar esta especificación a varios firmantes por documento.

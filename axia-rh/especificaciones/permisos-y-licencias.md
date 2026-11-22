@@ -1,6 +1,6 @@
 # AXIA RH — MÓDULO DE PERMISOS Y LICENCIAS
 
-Especificación para programación · Versión 1.8 · 17/11/2026
+Especificación para programación · Versión 1.9 · 21/11/2026
 Fuente: «AXIARH — Módulo de permisos y licencias (diseño)» (https://claude.ai/artifact/CzspqdB6hqBzpXk5r9UgKB), «Corte - Módulo de permisos y licencias», «Corte - Firma electrónica» y decisiones del usuario del 12/11/2026.
 
 **Alcance de esta versión:** la lógica completa del módulo (eventos, pantallas, estados, validaciones, plazos, alertas, efectos en otros módulos y variables) y los textos de los siete documentos y los dos registros (sección 17), revisados por el usuario. Visor de los textos: https://claude.ai/artifact/RxLxU4yPFpCGmcxiQkbftL.
@@ -18,6 +18,7 @@ Fuente: «AXIARH — Módulo de permisos y licencias (diseño)» (https://claude
 | 1.6 | 13/11/2026 | Armonización con el módulo de vacaciones y aguinaldo: el registro de vacaciones es la segunda fuente de ausencias justificadas; validación 1 y faltas incluyen los días de vacaciones; columna de aguinaldo con los valores de `AGUINALDO_COMPUTA` que fija ese módulo (B3 pendiente, por omisión No) |
 | 1.7 | 17/11/2026 | Encargos del mapa del 17/11: situaciones protegidas como alerta crítica con doble confirmación, sin bloqueo (decisión 19); B3 no computa para el aguinaldo; lectura de `SUSP_VACACIONES_GENERA` confirmada con el módulo de vacaciones; «catálogo de conductas del RIT»; `INCAPACIDAD_PARCIAL` al cerrar C2; valor «Cupo completo» de `NEGATIVA_CAUSA` (solo vacaciones); la incapacidad interrumpe las vacaciones |
 | 1.8 | 17/11/2026 | D4 con reubicación aceptada (MOD-5) sustituye a la suspensión mientras dure (decisión del usuario) |
+| 1.9 | 21/11/2026 | Encargos 7 y 8 del mapa del 20/11: faltas «por confirmar» y «confirmadas» del módulo 9; D1 y D5 como datos sensibles (decisión 32) |
 
 ---
 
@@ -150,7 +151,7 @@ Cada cambio de estado queda en la bitácora (usuario, fecha y hora).
 3. **Paternidad:** se cuenta en días laborables según el catálogo de jornadas de la persona; el sistema excluye descansos y festivos. La duración vive en la tabla de parámetros legales (hoy 5 días; vigilar reforma).
 4. **Topes de `PERMISOS_EMPRESA`:** se aplican solos; el exceso pasa a sin goce, como dice la tabla II del RIT.
 5. **Incapacidades:** folio, ramo (EG / RT / Maternidad), fechas y días. **No existe campo de diagnóstico.**
-6. **D1:** la evidencia solo la ven RH y consultoría; el documento cita la fracción legal, nunca los hechos ni el delito.
+6. **D1 y D5 (datos sensibles, decisión 32 del registro):** la evidencia (constancia de detención o arresto, resolución de Declaración Especial de Ausencia) y el tipo del evento solo los ve el personal de RH autorizado para datos sensibles (sección 13). El documento cita la fracción legal, nunca los hechos ni el delito.
 7. **B5:** `LIC3_FECHA_REGRESO` ≤ inicio + `LIC3_MAX_DIAS`; la prórroga genera una nueva versión del convenio.
 8. **INC-2:** `TRANSF_SEMANAS` de 0 a 4; con más de 0, el archivo de la autorización médica es obligatorio antes de generar el documento.
 9. **B1:** `LACTANCIA_FIN` ≤ el máximo legal (cómputo por confirmar: desde el parto o desde el regreso). Con `LACTARIO` = Sí, la trabajadora elige entre reposos y reducción; con `LACTARIO` = No, solo se ofrece la reducción de una hora (RIT, art. 66) y la opción de reposos no aparece. Con Reposos y `UBICACION_LACTARIO` vacío, alerta (no bloquea).
@@ -206,15 +207,16 @@ Destinatarios: **P** = Persona Trabajadora, **RH**, **J** = jefatura, **C** = co
 
 ## 9. Faltas y patrón de ausentismo
 
-**Fuente:** días con ausencia en el archivo del checador (módulo 9) sin evento justificado de este módulo ni vacaciones registradas (VAC-1). No cuentan como faltas los permisos autorizados (con o sin goce), las incapacidades, las suspensiones, los días de vacaciones ni los días con evento justificado. Si después llega una incapacidad por esos días, la falta se borra (validación 1).
+**Fuente:** el módulo 9 envía las ausencias sin evento justificado de este módulo ni vacaciones registradas (VAC-1) en dos estados: **falta por confirmar** (PN-01, sin descuento hasta que RH la confirme) y **falta confirmada**. Las que RH descarta no llegan. No cuentan como faltas los permisos autorizados (con o sin goce), las incapacidades, las suspensiones, los días de vacaciones ni los días con evento justificado. Si después llega un evento justificado por esos días (por ejemplo, una incapacidad), la falta se borra, esté confirmada o por confirmar (validación 1).
 
 **Regla de faltas (ventana móvil de 30 días):**
 
 - La ventana es cualquier periodo de 30 días naturales, no el mes calendario. El sistema revisa diario, para cada persona, las faltas de los 30 días que terminan ese día.
-- **3 faltas en la ventana:** alerta preventiva a RH, «en el límite».
-- **4.ª falta en la ventana:** alerta crítica a RH y C: se actualiza la causa del art. 47, fr. X LFT y corre el plazo de un mes para rescindir (art. 517). El sistema muestra la fecha límite (fecha de la cuarta falta + 1 mes; criterio de inicio del plazo por verificar).
+- **3 faltas en la ventana (confirmadas y por confirmar):** alerta preventiva a RH, «en el límite», con cada falta etiquetada («confirmada» o «por confirmar»).
+- **4.ª falta confirmada en la ventana:** alerta crítica a RH y C: se actualiza la causa del art. 47, fr. X LFT y corre el plazo de un mes para rescindir (art. 517). El sistema muestra la fecha límite (fecha de la cuarta falta + 1 mes; criterio de inicio del plazo por verificar). Solo cuentan las faltas confirmadas.
+- **4 o más faltas en la ventana con alguna por confirmar:** alerta a RH, «posible cuarta falta: confirme o descarte las faltas pendientes», porque el plazo para rescindir puede correr desde que la Empresa conoce la falta y no desde que la confirma. No es la alerta crítica.
 
-**Patrón de ausentismo (sin necesidad de llegar a 3 faltas):** el sistema revisa los últimos `ALERTA_PATRON_MESES` meses y alerta a RH y C, con el historial de fechas, si se cumple **cualquiera** de estos indicadores:
+**Patrón de ausentismo (sin necesidad de llegar a 3 faltas):** cuenta las faltas confirmadas y las por confirmar. El sistema revisa los últimos `ALERTA_PATRON_MESES` meses y alerta a RH y C, con el historial de fechas y el estado de cada falta («confirmada» o «por confirmar»), si se cumple **cualquiera** de estos indicadores:
 
 | Indicador | Regla | Valor por omisión |
 | --- | --- | --- |
@@ -258,7 +260,7 @@ Destinatarios: **P** = Persona Trabajadora, **RH**, **J** = jefatura, **C** = co
 | Módulo 3 (PTU, cálculo automático, regla R-4) | Días por persona y tipo de evento para los días computables |
 | Módulo 4 (terminación) | `SITUACION_PROTEGIDA` y `SITUACION_PROTEGIDA_TIPO` (alerta crítica con doble confirmación, sin bloqueo), aviso de B4 con doble confirmación, días sin goce para salarios devengados, saldos de vacaciones; D4 vencido para el aviso de rescisión (fr. XIV Bis) |
 | Módulo 5 (modificaciones) | Alerta de regreso al mismo puesto durante un año desde el parto (C3); reubicación en D4 con MOD-5: si la persona la acepta, el módulo 5 devuelve `D4_REUBICACION` = Sí y su fecha de fin, y este módulo no genera SUS-2 (validación 10). La lactancia y la licencia sin goce **no** son modificaciones; `INCAPACIDAD_PARCIAL` e `INCAPACIDAD_PARCIAL_FECHA` al cerrar C2 (situación protegida del módulo 5) |
-| Módulo 9 (jornada) | Eventos que justifican ausencias; jornada esperada reducida en B1; recibe de vuelta las faltas para la sección 9 |
+| Módulo 9 (jornada) | Eventos que justifican ausencias; jornada esperada reducida en B1; recibe de vuelta las ausencias sin evento como «falta por confirmar» y «falta confirmada» para la sección 9 |
 | Vacaciones y aguinaldo | Eventos por persona y fecha (bloqueo de fechas y regla de interrupción por incapacidad); días generados en suspensiones largas cuando RH lo decide; días de cada evento para el aguinaldo con `AGUINALDO_COMPUTA`. Este módulo recibe de vuelta los días de vacaciones (VAC-1) para la validación 1 y para no marcar faltas |
 
 ---
@@ -313,12 +315,13 @@ Los textos están en la sección 17. Esta tabla define cuándo se genera cada pi
 | Dato | Quién lo ve |
 | --- | --- |
 | Certificados de incapacidad (folio, ramo, fechas) | RH y la persona; la jefatura solo ve «Incapacidad» y las fechas |
-| Evidencia de D1 y D5 | RH y consultoría |
+| Evidencia de D1 y D5 (constancia de detención o arresto, resolución de Declaración Especial de Ausencia), SUS-1 de D1 y el tipo de esos eventos | Solo el personal de RH autorizado para datos sensibles (`DATOS_SENSIBLES_ACCESO`, configuración de la empresa); consultoría, solo si la Empresa la incluye en esa lista. Son datos sensibles (decisión 32 del registro; inciso m del aviso de privacidad) |
+| D1 y D5 para la jefatura, la dirección y en reportes generales | Solo «Suspensión» y las fechas; nunca el tipo, la fracción ni la evidencia |
 | Diagnósticos | No se capturan |
 | Licencia del IMSS por hijo con cáncer | RH y la persona; la jefatura solo ve «Licencia» y las fechas |
 | Motivo de un permiso de asuntos personales | No se pide |
 
-El aviso de privacidad para personas trabajadoras debe cubrir estos datos (pendiente de verificar; encargo para Cerebro).
+El aviso de privacidad para personas trabajadoras ya cubre estos datos: incapacidades con folio, ramo y fechas, y la privación de la libertad y la ausencia declarada como datos sensibles (inciso m), con consentimiento expreso. Cada consulta de la evidencia de D1 y D5 queda en la bitácora (usuario, fecha y hora).
 
 ---
 
@@ -396,6 +399,7 @@ Del RIT: `PERSONA_JEFATURA` (jefatura inmediata, tomada del organigrama; el regi
 | SUSP_DOCUMENTO / SUSP_DOCUMENTO_FUNDAMENTO / SUSP_DOCUMENTO_ESTADO / SUSP_DOCUMENTO_VENCIMIENTO | V | Texto / texto / Vencido, No presentado / fecha | Fundamento obligatorio | SUS-2 |
 | SUSP_CONOCIMIENTO_FECHA / SUSP_IMPUTABILIDAD | V | Fecha / texto | Obligatorios en D4 | SUS-2 |
 | SUSP_LIMITE | S | Fecha | Conocimiento + 2 meses | SUS-2, alertas |
+| DATOS_SENSIBLES_ACCESO | E | Lista de usuarios de RH (y, si la Empresa lo decide, de consultoría) | Al menos uno; nombre por confirmar en el diccionario único | Acceso a la evidencia y al tipo de D1 y D5 (sección 13) |
 | D4_VISTO_BUENO | V | Usuario de consultoría y fecha | Obligatorio para generar SUS-2 | SUS-2 |
 | D4_REUBICACION / D4_REUBICACION_FIN | S (del módulo 5, MOD-5 aceptada) | Sí/No / fecha | Solo D4; con Sí no se genera SUS-2 mientras dure | Estado «Con reubicación»; SUS-2 al terminar sin regularizar |
 | EVENTO_ORIGEN_TIPO / EVENTO_ORIGEN_NOMBRE / EVENTO_ORIGEN_INICIO / EVENTO_ORIGEN_FIN | S | Del evento que termina | — | SUS-3 |
@@ -408,8 +412,8 @@ Del RIT: `PERSONA_JEFATURA` (jefatura inmediata, tomada del organigrama; el regi
 | SITUACION_PROTEGIDA / SITUACION_PROTEGIDA_TIPO | S | Sí/No / texto (Incapacidad en curso, Maternidad, Lactancia, Declaración Especial de Ausencia, Licencia por hijo con cáncer) | Sección 11 | Alerta crítica con doble confirmación en el módulo 4; no se imprime |
 | BAJA_CONFIRMACION_B4 | V (módulo 4) | Usuario y fecha | Obligatoria si hay B4 vigente | Baja |
 | DIAS_SIN_GOCE_PERIODO | S | Entero por persona y periodo | — | Nómina, IMSS, PTU |
-| FALTAS_VENTANA_30 | S | Entero por persona y día | Sección 9 | Alertas de faltas |
-| PATRON_INDICADORES | S | Registro: indicador cumplido, valor, fechas | Sección 9 | Alerta de patrón |
+| FALTAS_VENTANA_30_CONFIRMADAS / FALTAS_VENTANA_30_POR_CONFIRMAR | S | Entero por persona y día | Sección 9; la alerta crítica solo usa las confirmadas | Alertas de faltas |
+| PATRON_INDICADORES | S | Registro: indicador cumplido, valor, fechas y estado de cada falta | Sección 9 | Alerta de patrón |
 
 ### 14.3 Eliminadas (no programar)
 
@@ -427,7 +431,7 @@ Del RIT: `PERSONA_JEFATURA` (jefatura inmediata, tomada del organigrama; el regi
 | Organigrama | Jefatura inmediata y dirección del área de cada puesto |
 | Kit de contratación | Designación de beneficiarios; inventario de la carta responsiva |
 | Módulo 4 | Bloqueo por situación protegida y doble confirmación por B4; calendario de días inhábiles |
-| Módulo 9 | Archivo del checador (fuente de faltas) |
+| Módulo 9 | Ausencias sin evento, por confirmar y confirmadas (fuente de faltas) |
 | Módulo de vacaciones y aguinaldo | Registro de vacaciones (VAC-1) como segunda fuente de ausencias justificadas; regla de interrupción de las vacaciones por incapacidad; tabla `AGUINALDO_COMPUTA` |
 | Catálogo de jornadas | Días laborables, descansos y festivos de cada persona |
 | Días de pago del RIT (DIA_PAGO_SEMANAL, DIAS_PAGO_QUINCENAL) | Indicador «pegadas» del patrón de ausentismo |
@@ -676,7 +680,7 @@ Si no regresa en el plazo sin causa justificada, sus ausencias se registrarán c
 
 [SI TRAB_DISPONIBLE_FIRMA = No] La Persona Trabajadora no está disponible para firmar. La constancia se envió el {{FECHA_ENVIO}} a su correo personal y se le entregará en mano a su regreso. [FIN SI]
 
-**Notas para programación.** SUSP_REGRESO_LIMITE lo calcula el sistema al registrar el fin de la causa. En D1, el documento nunca describe los hechos ni el delito; la evidencia solo la ven RH y consultoría. En D2 y D3 la suspensión puede durar hasta 6 años; las alertas siguen la regla de B4. Si el proceso de D1 es por un delito contra la Empresa o sus compañeros, el sistema envía el caso a consultoría (el plazo de 15 días tiene una excepción legal).
+**Notas para programación.** SUSP_REGRESO_LIMITE lo calcula el sistema al registrar el fin de la causa. En D1, el documento nunca describe los hechos ni el delito; la evidencia y este documento solo los ve el personal de RH autorizado para datos sensibles (sección 13). En D2 y D3 la suspensión puede durar hasta 6 años; las alertas siguen la regla de B4. Si el proceso de D1 es por un delito contra la Empresa o sus compañeros, el sistema alerta a consultoría sin mostrarle la evidencia, salvo que esté en `DATOS_SENSIBLES_ACCESO` (el plazo de 15 días tiene una excepción legal).
 
 ### 17.9 SUS-2. Aviso de suspensión por falta de documentos
 

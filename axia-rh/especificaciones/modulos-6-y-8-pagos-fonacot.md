@@ -1,7 +1,20 @@
 # AXIA RH — MÓDULOS 6 Y 8: VALIDACIÓN DE PAGO DE PTU Y AGUINALDO · FONACOT
 
-Especificación para programación · Versión 1.0 · 15/11/2026
+Especificación para programación · Versión 1.1 · 21/11/2026
 Fuente: registro de decisiones (4.7, 4.8, 4.10, 4.11, 5.0, 5.5 y 6), mapa del PMV (módulos 6 y 8 y encargos), «Corte - Kit de PTU» (13/11/2026) y kit maestro de PTU rev. 74 (regla R-3, D-11 y D-14), especificación del módulo 4 v1.4 (4.8, 5.1, 5.3 y 9), especificación de vacaciones y aguinaldo v1.0 (10 y 15), texto vigente de la LFT (última reforma DOF 14-05-2026) y convenio de afiliación de centro de trabajo del Instituto FONACOT, formulario FO411.07 (persona moral), publicado en fonacot.gob.mx.
+
+## Cambios respecto de la versión 1.0 (15/11/2026)
+
+Aplicar estos cambios sobre la 1.0. Ante cualquier duda, rige el texto completo de este documento.
+
+| # | Sección | Cambio | Origen |
+| --- | --- | --- | --- |
+| 1 | 4.3 y 10.2 | `PAGO_CLAVES_SAT` es la única tabla de claves de percepción del SAT de la plataforma; el módulo 9 la usa a través de `CONCEPTO_CLAVE_NOMINA` y el módulo 6 la lee directamente. No se crea otra tabla. Valores iniciales: aguinaldo 002 y PTU 003 | Encargo 1 del módulo 6 (mapa, 20/11) |
+| 2 | 4.3 | Cotejo del finiquito por totales: puede haber más de un XML (el ordinario y el de pagos por separación, que se timbra aparte según el módulo 4); se suman y se comparan con `TOTAL_NETO`; no se coteja clave de percepción | Precisión, por el cambio 1 |
+| 3 | 3, 6 y 7 | D-14 final solo con la obligación en «Pagada» y `PTU_CALCULO_VALIDADO`; el módulo 6 entrega `CFDI_REGISTRADO` (Sí/No) que el kit usa para imprimir o no el folio fiscal; la forma de firma de D-14 la decide `FIRMA_D14` del kit | Registro 4.7, corte del kit del 20/11 |
+| 4 | 13.4 y 16 | `FONACOT_DESCUENTO_MONTO` del alta (valor esperado mensual) se coteja con la retención de la cédula importada; si difieren, aviso a RH, sin cálculo. En el finiquito, la cédula prevalece; sin cédula importada, el módulo 4 usa el monto del alta | Registro 4.1, 4.8 y 4.13 |
+| 5 | 15 y 17 | Incidencias de Fonacot que nacen de D1 o D5: quien no está en `DATOS_SENSIBLES_ACCESO` solo ve «Suspensión» y las fechas | Registro 4.9 (decisión del 21/11) |
+| 6 | 22 | Claves 002 y 003 cotejadas con fuentes secundarias; queda por cotejar el catálogo oficial vigente del SAT | Verificación |
 
 Decisiones del usuario del 15/11/2026 (provisionales hasta la revisión final). Cada regla que deriva de una de ellas lleva la marca **[Dn]**.
 
@@ -111,7 +124,9 @@ Reglas:
 
 - El CFDI es la evidencia principal. La dispersión prueba el pago, pero no sustituye al comprobante fiscal: mientras falte el UUID, la alerta «CFDI pendiente» se repite cada `PAGO_EVIDENCIA_DIAS` días hábiles.
 - Un mismo UUID puede respaldar varios conceptos de la misma persona (aguinaldo pagado en la nómina ordinaria), nunca a dos personas.
-- Las claves de percepción del SAT (por ejemplo, gratificación anual y participación de utilidades) viven en la tabla `PAGO_CLAVES_SAT`, porque el catálogo del complemento de nómina puede cambiar. Valores por cargar al instalar: verificarlos contra el catálogo vigente del SAT.
+- **Claves del SAT (v1.1).** Las claves de percepción viven en una sola tabla de la plataforma, `PAGO_CLAVES_SAT` (X), porque el catálogo del complemento de nómina puede cambiar. Valores iniciales: Aguinaldo = 002 (gratificación anual) y PTU y PTU adicional = 003 (participación de los trabajadores en las utilidades); por cotejar con el catálogo oficial vigente del SAT antes de aprobarlos. La tabla `CONCEPTO_CLAVE_NOMINA` del módulo 9 (empresa) no guarda claves propias: liga cada concepto de la empresa a una clave de `PAGO_CLAVES_SAT`. El módulo 6 lee `PAGO_CLAVES_SAT` directamente, porque sus conceptos (aguinaldo y PTU) son fijos y su clave no depende de la empresa. No hace falta otra tabla. Si el SAT cambia una clave, se aprueba la nueva versión de `PAGO_CLAVES_SAT` y la toman los dos módulos.
+- **Finiquito (v1.1).** El cotejo no revisa clave de percepción, porque el finiquito reúne varios conceptos. Puede haber más de un XML para la misma baja (el del pago ordinario y el de los pagos por separación, que se timbran aparte según el módulo 4, 4.7, paso 4): el sistema los suma y compara el neto (total de percepciones menos total de deducciones) con `TOTAL_NETO`, dentro de `PAGO_TOLERANCIA`, además del RFC, la CURP y el UUID de cada uno. Con pago diferido, el cotejo es por parcialidad.
+- `CFDI_REGISTRADO` (S, Sí/No): Sí cuando la obligación tiene al menos un UUID válido. El kit de PTU la usa para imprimir o no el folio fiscal en D-14.
 - La verificación del estado del CFDI ante el SAT (vigente o cancelado) queda para una fase posterior; en el PMV, RH marca «CFDI cancelado» y carga el sustituto.
 
 ### 4.4 Discrepancias («Observada»)
@@ -183,7 +198,7 @@ La presentación de objeciones ante el SAT no suspende el pago (art. 122 LFT; D-
 | PTU determinada y no pagada a la baja | Si el finiquito incluye «PTU determinada no pagada», la obligación de PTU pasa a «Pagada en finiquito» con la evidencia del finiquito y bloquea el segundo pago (kit) |
 | PTU no determinada a la baja | La obligación nace después, con `EX_TRABAJADOR` = Sí; se avisa con D-11 Parte 1 y sigue la regla R-3 |
 | Fallecimiento | Lo pendiente se paga a beneficiarios con el convenio 7.8 del módulo 4; la evidencia es el pago a cada beneficiaria. Estado: Pagada, con marca «Pagada a beneficiarios» |
-| Ex trabajador que cobra en ventanilla | Recibo D-14 con firma autógrafa y copia de identificación; pago por transferencia, D-14 por firma electrónica al correo personal si la persona conserva ese medio (firma electrónica v1.2) o autógrafa |
+| Ex trabajador | La forma de firma de D-14 la decide `FIRMA_D14` del kit de PTU (por omisión, la `FIRMA_MODALIDAD` de la persona; autógrafa si cobra en ventanilla, en papel, por falla o con negativa ante dos testigos). Este módulo solo registra el pago y su evidencia |
 
 **Evidencia del finiquito [D3].** El módulo 6 la guarda con el mismo motor (concepto «Finiquito»), sin alertas propias. Se captura una sola vez, en el cierre de la baja del módulo 4, y sirve para el finiquito, para «Pagada en finiquito» (aguinaldo y PTU) y para el paquete probatorio.
 
@@ -191,8 +206,8 @@ La presentación de objeciones ante el SAT no suspende el pago (art. 122 LFT; D-
 
 ## 7. Interfaz con D-11 y D-14 del kit de PTU
 
-- **D-14** toma de este módulo `UUID_CFDI`, `FECHA_PAGO`, `FORMA_PAGO` y `REFERENCIA_DISPERSION` cuando la obligación está en «Pagada» **[D2]**. Antes de ese estado solo se genera como borrador. Si cambia el UUID (CFDI cancelado y sustituido), se genera una nueva versión de D-14.
-- Con pago por dispersión sin UUID todavía, D-14 se genera sin el renglón del folio fiscal y con la referencia de la dispersión; al cargarse el UUID, se genera la nueva versión.
+- **D-14** toma de este módulo `UUID_CFDI`, `FECHA_PAGO`, `FORMA_PAGO`, `REFERENCIA_DISPERSION` y `CFDI_REGISTRADO` cuando la obligación está en «Pagada» **[D2]**. Su versión final requiere además `PTU_CALCULO_VALIDADO` (kit). Antes de eso solo se genera como borrador. Si cambia el UUID (CFDI cancelado y sustituido), se genera una nueva versión de D-14.
+- Con pago por dispersión sin UUID todavía (`CFDI_REGISTRADO` = No), D-14 se genera sin el renglón del folio fiscal y con la referencia de la dispersión; al cargarse el UUID, se genera la nueva versión.
 - **D-11 Parte 2** (constancia de cumplimiento) se habilita cuando todas las personas del Anexo 1 del dictamen están en Pagada, Pagada en finiquito o Pendiente con aviso (kit). Su Anexo 1 sale de este módulo: persona, monto, fecha, UUID o referencia de dispersión y estado.
 - `D14_FIRMADO` (V): casilla «recibo firmado» y archivo opcional; sin casilla, alerta a RH a los `PAGO_EVIDENCIA_DIAS` días hábiles. No revierte «Pagada».
 
@@ -222,7 +237,7 @@ La presentación de objeciones ante el SAT no suspende el pago (art. 122 LFT; D-
 
 ### 10.1 Reutilizadas
 
-Del módulo 11: `AGUINALDO_MONTO`, `AGUINALDO_VALIDADO`, `AGUINALDO_FECHA_PAGO`. Del kit de PTU: `FECHA_LIMITE_PAGO`, `FECHA_LIMITE_PAGO_ADICIONAL`, `FECHA_TRASPASO_PTU`, `PTU_AVISO_RECORDATORIO_DIAS`, `EX_TRABAJADOR`, `EX_TRABAJADORES`, `MONTO_NETO`, `PTU_CALCULO_VALIDADO`, `UUID_CFDI`, `REFERENCIA_DISPERSION`, `PTU_ESTADO_PAGO`, `FECHA_PAGO`, `FORMA_PAGO`, `MONTO_NO_RECLAMADO_ANTERIOR`. Del módulo 4: `TOTAL_NETO`, `CALCULO_VALIDADO`, `CONV_PARCIALIDADES`, `BAJA_FECHA`, `ALERTA_BAJA_INTERVALO` y el calendario de días inhábiles. Del alta: `TRAB_CURP`, `TRAB_RFC`. De la empresa: `PATRON_RFC`.
+Del módulo 11: `AGUINALDO_MONTO`, `AGUINALDO_VALIDADO`, `AGUINALDO_FECHA_PAGO`. Del kit de PTU: `FECHA_LIMITE_PAGO`, `FECHA_LIMITE_PAGO_ADICIONAL`, `FECHA_TRASPASO_PTU`, `PTU_AVISO_RECORDATORIO_DIAS`, `EX_TRABAJADOR`, `EX_TRABAJADORES`, `MONTO_NETO`, `PTU_CALCULO_VALIDADO`, `UUID_CFDI`, `REFERENCIA_DISPERSION`, `PTU_ESTADO_PAGO`, `FECHA_PAGO`, `FORMA_PAGO`, `MONTO_NO_RECLAMADO_ANTERIOR`, `FIRMA_D14` (v1.1). Del módulo 9: `CONCEPTO_CLAVE_NOMINA` (v1.1). Del módulo 4: `TOTAL_NETO`, `CALCULO_VALIDADO`, `CONV_PARCIALIDADES`, `BAJA_FECHA`, `ALERTA_BAJA_INTERVALO` y el calendario de días inhábiles. Del alta: `TRAB_CURP`, `TRAB_RFC`. De la empresa: `PATRON_RFC`.
 
 ### 10.2 Nuevas
 
@@ -237,7 +252,8 @@ Del módulo 11: `AGUINALDO_MONTO`, `AGUINALDO_VALIDADO`, `AGUINALDO_FECHA_PAGO`.
 | PAGO_EVIDENCIA | V | Archivo + tipo (XML CFDI · PDF CFDI · Layout de dispersión · Comprobante bancario · Recibo firmado) + hash | Un archivo puede respaldar un lote | Estado; paquete |
 | PAGO_LOTE | V | Identificador, fecha, medio, total, comprobante global | Cuadre 4.2, paso 4 | Registro en grupo |
 | PAGO_TOLERANCIA | E | Moneda | 1.00 por omisión | Cotejo 4.3 y 4.4 |
-| PAGO_CLAVES_SAT | X | Tabla con vigencia: concepto, clave de percepción del catálogo del SAT | Valores por verificar contra el catálogo vigente | Cotejo del XML |
+| PAGO_CLAVES_SAT | X | Tabla con vigencia: concepto, clave de percepción del catálogo del SAT | Única tabla de claves de la plataforma (v1.1); iniciales Aguinaldo 002, PTU 003, por cotejar con el catálogo oficial | Cotejo del XML; `CONCEPTO_CLAVE_NOMINA` del módulo 9 |
+| CFDI_REGISTRADO | S | Sí/No | Sí con al menos un UUID válido (v1.1) | D-14 (folio fiscal) |
 | PAGO_EVIDENCIA_DIAS | E | Entero (días hábiles) | 5 por omisión | Alertas de Pago declarado, CFDI pendiente y D-14 sin firma |
 | PAGO_ALERTAS_AGUINALDO | E | Lista de días antes de AGUINALDO_FECHA_PAGO | 10 y 3 hábiles por omisión | 5.1 |
 | PAGO_ALERTAS_PTU | E | Lista de días hábiles antes de FECHA_LIMITE_PAGO | 15 y 5 por omisión | 5.2 |
@@ -306,7 +322,8 @@ No se genera una «constancia de afiliación» propia. La evidencia de la afilia
    - Persona con `FONACOT_CREDITO` = Sí que ya no aparece: aviso a RH para confirmar si liquidó el crédito («carta de no retención», Anexo A, art. 8).
    - Persona de la cédula que no está en el alta o tiene baja: alerta «Reporte la baja en la cédula».
 3. Los créditos se guardan en `FONACOT_CREDITOS` (V, por persona): número de crédito, retención mensual según la cédula, mes de la primera cédula y fuente (Cédula · Declaración). **El sistema no calcula ni modifica la retención**: solo muestra la cifra de la cédula.
-4. Alerta informativa, sin bloqueo: si la suma de las retenciones de Fonacot de la persona más los demás descuentos del art. 110 registrados en el sistema parece rebasar el límite, el sistema no lo calcula; solo recuerda en la ficha de la persona el límite del art. 110, fr. VII y remite a nómina.
+4. **Monto esperado del alta (v1.1).** `FONACOT_DESCUENTO_MONTO` (alta, opcional, mensual) es el valor esperado que la persona o RH declaran para la prenómina (registro 4.1 y 4.13). Con la importación de la cédula, si la retención mensual de la cédula es distinta de ese monto, aviso a RH, sin bloqueo: «La cédula de Fonacot trae una retención distinta de la registrada en el alta; actualice el alta». La cédula prevalece; el sistema no modifica el alta por sí solo ni calcula la diferencia más allá de mostrar las dos cifras.
+5. Alerta informativa, sin bloqueo: si la suma de las retenciones de Fonacot de la persona más los demás descuentos del art. 110 registrados en el sistema parece rebasar el límite, el sistema no lo calcula; solo recuerda en la ficha de la persona el límite del art. 110, fr. VII y remite a nómina.
 
 ---
 
@@ -352,7 +369,9 @@ El sistema detecta el hecho, crea la incidencia (`FONACOT_INCIDENCIA`) para cada
 | --- | --- | --- | --- |
 | Ingreso de una persona con crédito vigente | Alta (`FONACOT_CREDITO` = Sí) o cédula | 7 días hábiles (Anexo A, art. 10) | «Avise el ingreso de una persona con crédito vigente» |
 | Baja | Módulo 4 (`BAJA_FECHA`) | 5 días hábiles desde que la Empresa conoce la separación (cláusula Quinta) | Sección 16 |
-| Incapacidad, licencia, permiso sin goce o suspensión que deja a la persona sin salario en el periodo | Módulo de permisos: C1 (después de los días de espera pagados), C2, C3, B3, B4, B5, permisos sin goce, D1 a D5; suspensión disciplinaria | 5 días hábiles (cláusulas Cuarta y Sexta) | «Reporte la incidencia en la cédula: en ese periodo no hay salario del cual descontar» |
+| Incapacidad, licencia, permiso sin goce o suspensión que deja a la persona sin salario en el periodo | Módulo de permisos: C1 (después de los días de espera pagados), C2, C3, B3, B4, B5, permisos sin goce, D1 a D5 (D4 solo sin reubicación); suspensión disciplinaria | 5 días hábiles (cláusulas Cuarta y Sexta) | «Reporte la incidencia en la cédula: en ese periodo no hay salario del cual descontar» |
+
+**Datos sensibles (v1.1).** Cuando la incidencia nace de D1 (detención o arresto) o D5 (Declaración Especial de Ausencia), las personas usuarias que no están en `DATOS_SENSIBLES_ACCESO` (configuración de la empresa; registro 4.9) solo ven «Suspensión» y las fechas, en la bandeja, en la ficha de la persona y en el paquete probatorio de Fonacot. El portal del Instituto solo pide el tipo de incidencia que él mismo cataloga; el sistema no exporta el tipo de evento de origen. Cada consulta del detalle queda en la bitácora. Con D4 con reubicación aceptada (MOD-5) hay salario y no se genera incidencia.
 | Defunción, incapacidad permanente total o invalidez | Módulo 4 (motivo Fallecimiento o Incapacidad) o captura de RH | 15 días hábiles, con el acta o el certificado (cláusula Séptima) | «Reporte el hecho al Instituto con el acta o el certificado» |
 | Emplazamiento a huelga | Captura de RH | 3 días hábiles (cláusula Octava) | Informativa |
 | Cambio de domicilio, sustitución patronal o de régimen | Configuración de la empresa (cambio de domicilio o de razón social) | 5 días hábiles (cláusula Décima Quinta); sin aviso, el Instituto suspende al centro | «Informe el cambio al Instituto» |
@@ -363,7 +382,7 @@ El sistema detecta el hecho, crea la incidencia (`FONACOT_INCIDENCIA`) para cada
 
 1. **Alerta de baja.** `FONACOT_AVISO_DIAS` del módulo 4 deja de estar «pendiente de verificar»: por omisión, 5 días hábiles (cláusula Quinta del convenio), tomado de `FONACOT_PLAZOS`. La alerta del módulo 4 y la incidencia de la sección 15 son la misma; se cierra una sola vez.
 2. **[D5] Retención en el finiquito.** El convenio prohíbe seguir descontando cuando concluye la relación (cláusula Cuarta). Regla propuesta para el renglón automático «Crédito Fonacot» del módulo 4 (4.8):
-   - solo procede la amortización que la cédula asigna al último periodo de salario que se paga en el finiquito, proporcional a los días de ese periodo;
+   - solo procede la amortización que la cédula asigna al último periodo de salario que se paga en el finiquito, proporcional a los días de ese periodo (v1.1: si no hay cédula importada, el módulo 4 precarga `FONACOT_DESCUENTO_MONTO` proporcional como sugerencia; si la hay, prevalece la cédula, registro 4.8);
    - nunca el saldo del crédito ni importes de otros conceptos del finiquito;
    - aviso en pantalla, sin bloqueo, si el importe capturado supera la retención mensual de la cédula: «Solo se retiene la amortización del último periodo; el saldo lo paga la Persona Trabajadora directamente al Instituto».
    - Si la persona quiere liquidar su crédito con el finiquito, lo hace ella ante el Instituto. La Empresa no recibe instrucciones de pago del crédito (FON-2 descartada).
@@ -378,7 +397,7 @@ El sistema detecta el hecho, crea la incidencia (`FONACOT_INCIDENCIA`) para cada
 1. **Afiliación:** ficha (12.3), estado, archivos y centros registrados.
 2. **Cédulas:** una fila por mes con estado, fechas del calendario, total, pagado, diferencia, incidencias y archivos.
 3. **Personas con crédito:** créditos (13.3), incidencias abiertas y cerradas, historial de cédulas.
-4. **Incidencias pendientes:** bandeja con plazo y semáforo.
+4. **Incidencias pendientes:** bandeja con plazo y semáforo; con la regla de datos sensibles de la sección 15.
 5. **Configuración:** `FONACOT_PLAZOS` y `FONACOT_CALENDARIO` (solo consultoría; X), alertas de afiliación y FON-1 (E).
 
 ---
@@ -387,7 +406,7 @@ El sistema detecta el hecho, crea la incidencia (`FONACOT_INCIDENCIA`) para cada
 
 ### 18.1 Reutilizadas
 
-`FONACOT_CREDITO` (A; pedida en el registro 5.5, falta darla de alta), `FONACOT_AVISO_DIAS` (E, módulo 4), `BAJA_FECHA`, `BAJA_MOTIVO`, eventos del módulo de permisos, catálogo de centros, `ALERTA_BAJA_INTERVALO`, calendario de días inhábiles, `TRAB_NOMBRE`, `TRAB_EMAIL`, `PATRON_RAZON_SOCIAL`, `LUGAR_FIRMA`, `FECHA_FIRMA`.
+`FONACOT_CREDITO` (A; pedida en el registro 5.5, falta darla de alta), `FONACOT_DESCUENTO_MONTO` (A, opcional, mensual; v1.1), `DATOS_SENSIBLES_ACCESO` (E; v1.1), `FONACOT_AVISO_DIAS` (E, módulo 4), `BAJA_FECHA`, `BAJA_MOTIVO`, eventos del módulo de permisos, catálogo de centros, `ALERTA_BAJA_INTERVALO`, calendario de días inhábiles, `TRAB_NOMBRE`, `TRAB_EMAIL`, `PATRON_RAZON_SOCIAL`, `LUGAR_FIRMA`, `FECHA_FIRMA`.
 
 ### 18.2 Nuevas
 
@@ -426,7 +445,8 @@ El sistema detecta el hecho, crea la incidencia (`FONACOT_INCIDENCIA`) para cada
 | Módulo 11 (vacaciones y aguinaldo) | `AGUINALDO_MONTO`, `AGUINALDO_VALIDADO`, `AGUINALDO_FECHA_PAGO`; salida de la persona del cálculo anual por baja | Vigente; el encargo «usar AGUINALDO_FECHA_PAGO» queda cumplido aquí |
 | Kit de PTU | Fechas, montos, `EX_TRABAJADOR`, R-3, D-11 y D-14 | **Encargo [D2]**: definición de «Pagada» en R-3 |
 | Módulo 4 | Baja, finiquito, evidencia de pago capturada en el cierre de la baja, renglón automático de Fonacot, `FONACOT_AVISO_DIAS` | **Encargos [D3] y [D5]**: enviar al módulo 6 la evidencia del cierre; regla de importe del renglón Fonacot; fallecimiento sin renglón de Fonacot; `FONACOT_AVISO_DIAS` = 5 días hábiles por omisión |
-| Módulo de permisos | Eventos que generan incidencias de Fonacot (15) | Solo lectura; sin cambio |
+| Módulo de permisos | Eventos que generan incidencias de Fonacot (15); `DATOS_SENSIBLES_ACCESO` para D1 y D5 | Solo lectura; sin cambio |
+| Módulo 9 | `CONCEPTO_CLAVE_NOMINA` liga sus conceptos a `PAGO_CLAVES_SAT` | Vigente (v1.1, cambio 1); sin tabla nueva |
 | Configuración de la empresa | Variables nuevas de afiliación y `CENTRO_FONACOT` en el catálogo de centros | **Se piden a Cerebro** |
 | Alta | `FONACOT_CREDITO` | Ya pedida (registro 5.5); falta darla de alta |
 | Firma electrónica v1.2 | D-14 de ex trabajadores; FON-1 sigue el paquete de baja (autógrafo) | Vigente |
@@ -479,7 +499,7 @@ No se programa. La Empresa no recibe del finiquito pagos voluntarios del crédit
 
 - Cargar `FONACOT_CALENDARIO` 2026 y 2027 desde el calendario oficial del Instituto y confirmar la fecha límite real de entero.
 - Confirmar los plazos de `FONACOT_PLAZOS` con el convenio que firmó cada cliente (persona física y persona moral).
-- Verificar las claves vigentes del catálogo de tipos de percepción del complemento de nómina para `PAGO_CLAVES_SAT`.
+- Cotejar con el catálogo oficial vigente del SAT (complemento de nómina 1.2, con la actualización de 2026) las claves iniciales de `PAGO_CLAVES_SAT`: 002 gratificación anual (aguinaldo) y 003 PTU. Hoy solo constan en fuentes secundarias.
 - Verificar CFF, art. 30 y LSS, art. 15, fr. II para el plazo de conservación de 5 años.
 - Verificar con el contador si el CFDI de nómina se puede emitir después de la dispersión y en qué plazo (la alerta «CFDI pendiente» usa `PAGO_EVIDENCIA_DIAS`).
 - Fase posterior: verificación del estado del CFDI ante el SAT.
