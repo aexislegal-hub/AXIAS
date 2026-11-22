@@ -24,7 +24,7 @@ La 1.0 no se ha corrido en el software. Si ya se cargó, basta aplicar esta tabl
 - Variables `{{MAYÚSCULAS_CON_GUION_BAJO}}`; condiciones `[SI …] … [FIN SI]`; las marcas nunca se imprimen.
 - Términos fijos: «la Empresa» y «la Persona Trabajadora».
 - Niveles: **E** empresa · **O** organigrama o puesto · **K** catálogo de jornadas · **A** alta · **V** evento (pantallas de este módulo) · **S** calculada · **B** bitácora · **X** solo consultoría (global).
-- Reglas de pantalla de todo el sistema (registro 5.0): campos faltantes resaltados; tablas con botones visibles de guardar y quitar; sin candados por fecha; guardar nunca se bloquea; opciones sin valor por omisión cuando la Ley no lo fija; concordancia de número; Arial; PDF generado en el servidor.
+- Reglas de pantalla de todo el sistema (registro 5.0): campos faltantes resaltados; tablas con botones visibles de guardar y quitar; sin candados por fecha; guardar nunca se bloquea; opciones sin valor por omisión cuando la Ley no lo fija; concordancia de número; Arial; PDF con la impresión del navegador (Nota de Cerebro, 22/11/2026: rige la impresión del navegador; ver el registro, sección 3.).
 - **Días hábiles para la aclaración (art. 13 del RIT):** los días laborables del centro de trabajo, según el turno de la persona (art. 5 del RIT), sin los días de descanso obligatorio. No se usa aquí el calendario del módulo 4.
 - Ninguna cifra que cambia por reforma se fija en código ni en textos: vive en `TE_LIMITES` y en `JORNADA_MAXIMA` (tabla global con vigencia y aprobación, mecánica del módulo 4, 5.3).
 - Montos en MXN con dos decimales; horas en minutos enteros internamente y en horas con dos decimales en pantalla.

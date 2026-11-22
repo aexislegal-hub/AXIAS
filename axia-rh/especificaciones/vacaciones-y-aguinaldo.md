@@ -67,7 +67,7 @@ Si la v1.3 ya se cargó, basta aplicar esta tabla. No cambia ningún cálculo ni
 - Formato:
   - Fechas largas; montos en MXN con dos decimales.
   - Arial en todos los documentos.
-  - PDF generado en el servidor, sin encabezado ni pie del navegador.
+  - PDF con la impresión del navegador, sin encabezado ni pie del navegador. (Nota de Cerebro, 22/11/2026: rige la impresión del navegador; ver el registro, sección 3.)
 - Reglas de pantalla del sistema (registro 5.0):
   - Se resaltan los campos faltantes.
   - Guardar nunca se bloquea; las validaciones solo impiden la versión definitiva o la activación.

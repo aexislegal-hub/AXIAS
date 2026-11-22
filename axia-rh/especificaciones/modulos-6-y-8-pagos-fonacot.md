@@ -32,7 +32,7 @@ Decisiones del usuario del 15/11/2026 (provisionales hasta la revisión final). 
 
 ## 0. Convenciones
 
-- Rigen las convenciones de la especificación de permisos v1.4 (sección 0) y de vacaciones v1.0: variables `{{MAYÚSCULAS}}`, condiciones `[SI …] … [FIN SI]` (sus marcas nunca se imprimen), términos fijos «la Empresa» y «la Persona Trabajadora», Arial, PDF generado en el servidor, fechas largas y montos en MXN con dos decimales.
+- Rigen las convenciones de la especificación de permisos v1.4 (sección 0) y de vacaciones v1.0: variables `{{MAYÚSCULAS}}`, condiciones `[SI …] … [FIN SI]` (sus marcas nunca se imprimen), términos fijos «la Empresa» y «la Persona Trabajadora», Arial, PDF con la impresión del navegador (Nota de Cerebro, 22/11/2026), fechas largas y montos en MXN con dos decimales.
 - Niveles de captura: **E** empresa · **O** organigrama · **A** alta · **V** evento (pantallas de estos módulos) · **S** calculada · **B** bitácora · **X** tabla global que administra AEXIS.
 - **Días hábiles:** calendario de días inhábiles del módulo 4.
 - Reglas de pantalla del registro 5.0: guardar nunca se bloquea; sin candados por fecha; los campos que dependen de una opción aparecen después de ella y sin valor por omisión si la Ley no lo fija.

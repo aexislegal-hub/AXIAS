@@ -1,6 +1,6 @@
 # Base común de la familia Axia
 
-Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 21 de noviembre de 2026 (cortes del kit de PTU, módulo 4, permisos y licencias, vacaciones y aguinaldo, módulo 9, módulos 6 y 8, paquete de contratación y firma electrónica; decisiones P1 a P10 del diccionario único)). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
+Generado automáticamente a partir de `axia-rh/registro-de-decisiones.md` (versión del 22 de noviembre de 2026 (impresión del navegador; texto completo del paquete en GitHub con P5 aplicado). Antes, 21 de noviembre de 2026 (cortes del kit de PTU, módulo 4, permisos y licencias, vacaciones y aguinaldo, módulo 9, módulos 6 y 8, paquete de contratación y firma electrónica; decisiones P1 a P10 del diccionario único)). **No se edita a mano**: cualquier cambio se hace en el registro de Axia RH y Cerebro vuelve a generar este archivo.
 
 Contiene la arquitectura del sistema (niveles de captura y atributos de puesto) y las convenciones de redacción que comparten todos los productos Axia. Un proyecto distinto de Axia RH que necesite una variable nueva de empresa, organigrama o alta la pide como encargo a Cerebro.
 
@@ -39,7 +39,7 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 - **P2. Ámbito federal o local.** Solo en COMPETENCIA; AUTORIDAD_INSPECCION guarda solo el nombre de la autoridad.
 - **P3. Zona de salario mínimo.** CENTRO_ZONA_SM (catálogo de centros) y CLIENTE_INSTALACION_ZONA_SM (instalaciones del cliente), General · Zona Libre de la Frontera Norte, obligatorias y sin valor por omisión. SALARIO_PERSONA se valida con la zona del lugar donde trabaja la persona.
 - **P4.** El salario base del puesto se llama PUESTO_SALARIO_BASE (organigrama); precarga SALARIO_PERSONA.
-- **P5. Propiedad intelectual.** La cláusula décima quinta del contrato se imprime con PI_ACTIVAR = Sí **y** PUESTO_PI con filas. El marcador del texto del contrato se ajusta en su próxima edición; mientras, rige el archivo de variables del paquete.
+- **P5. Propiedad intelectual.** La cláusula décima quinta del contrato se imprime con PI_ACTIVAR = Sí **y** PUESTO_PI con filas. Cerebro ajustó el marcador en el texto del contrato el 22/11/2026 («AEXIS - Paquete de contratación - VERSIÓN FINAL.txt», proyecto y GitHub).
 - **P6. MOD_PRUEBA** es pregunta de la configuración de la empresa («¿La Empresa usa periodo de prueba o capacitación inicial?»), sin valor por omisión, con alerta si un alta elige PRUEBA_OPCION ≠ No aplica y la empresa dijo No; cambiarla con el RIT depositado activa la alerta de depósito.
 - **P7. REPSE.** REPSE_EMPRESA es calculada (folio y vigencia); REPSE_APLICA («¿Es trabajador REPSE?») va en el alta y solo aparece con REPSE_EMPRESA = Sí.
 - **P8.** PORTAL_DESCARGA se captura una vez en la empresa, prellenado con la intranet.
@@ -100,7 +100,7 @@ Regla general: las condiciones de trabajo vienen preestablecidas por la empresa 
 - Lo operativo (reglas del registro de jornada, aclaraciones, tiempo extra) va en el RIT, no en el contrato.
 - La versión en texto plano para programación se genera solo cuando el modelo maestro esté terminado.
 - (13/11/2026, decisión del usuario) **Arial en todos los documentos de todos los módulos** (12 puntos en el cuerpo; títulos en negrita del mismo tamaño o uno mayor; papel carta). Única excepción: el ajuste del recibo de finiquito para que quepa en una hoja.
-- (13/11/2026, decisión del usuario) El PDF se genera en el servidor, sin encabezado ni pie del navegador, en todos los módulos.
+- (22/11/2026, decisión del usuario; sustituye la del 13/11/2026) **El PDF se genera con la impresión del navegador**, en todos los módulos, como lo decidió, programó y probó el programador. Lo que digan las especificaciones sobre generar el PDF en el servidor (RIT 0 «Impresión», permisos 0, módulo 5, vacaciones y aguinaldo, kit de PTU) queda sustituido por esta regla; el resultado debe seguir saliendo sin encabezado ni pie del navegador (fecha, título, URL o número de página).
 - (12/11/2026) Las cifras legales que cambian (UMA, tarifas del ISR, subsidio, salarios mínimos, cuotas del IMSS, exenciones, duraciones de permisos y vacaciones) viven en tablas globales con fecha de vigencia que administra AEXIS; se activan solo con aprobación humana y un monitor de fuentes oficiales alerta al administrador (módulo 4, 5.3). Ningún texto ni código las fija.
 
 ---

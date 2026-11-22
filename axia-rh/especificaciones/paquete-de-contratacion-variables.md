@@ -5,7 +5,7 @@ Actualizado: 21 de noviembre de 2026 · Versión final para programación. Alcan
 > **Nota de Cerebro (21/11/2026, decisiones P1 a P10 del diccionario único, aplicadas por Cerebro con autorización del usuario).** Este archivo ya refleja las decisiones; la conversación del paquete no debe revertirlas. Cambios:
 > - `PATRON_REG_PATRONAL` pasa a derivada: el registro patronal del centro de la persona o, en instalaciones del cliente, el que la Empresa asignó a la instalación (P1).
 > - `SALARIO_PERSONA` se precarga con `PUESTO_SALARIO_BASE` (P4) y se valida contra la zona de salario mínimo del centro o de la instalación del cliente (P3).
-> - La cláusula de propiedad intelectual se activa con `PI_ACTIVAR` = Sí **y** `PUESTO_PI` con filas (P5). El marcador `[SI …]` del texto del contrato se ajusta en su próxima edición; mientras, rige la columna «Activa» de este archivo.
+> - La cláusula de propiedad intelectual se activa con `PI_ACTIVAR` = Sí **y** `PUESTO_PI` con filas (P5). Cerebro ajustó el marcador `[SI …]` del texto del contrato el 22/11/2026 (`paquete-de-contratacion-version-final.txt`).
 > - `PRUEBA_OPCION` alerta si la Empresa contestó No a `MOD_PRUEBA`, pregunta nueva de la configuración de la empresa que no se imprime en el paquete (P6).
 > - `REPSE_APLICA` pasa al alta y solo aparece con `REPSE_EMPRESA` = Sí (P7).
 > - `PORTAL_DESCARGA` queda en la empresa, sin ⚑ (P8).

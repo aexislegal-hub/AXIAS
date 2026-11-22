@@ -460,7 +460,7 @@ El usuario aprobó las diez propuestas. Cerebro las aplicó directamente; las co
 | P2 | COMPETENCIA es la única fuente del ámbito federal o local; AUTORIDAD_INSPECCION guarda solo el nombre de la autoridad | Diccionario 1.1; PTU (D-03); permisos (INC-1) |
 | P3 | Zona de salario mínimo por centro (CENTRO_ZONA_SM) y por instalación del cliente (CLIENTE_INSTALACION_ZONA_SM), sin valor por omisión | Diccionario 2.1, 2.3 y 4.2; variables del paquete (SALARIO_PERSONA) |
 | P4 | El salario base del puesto se llama PUESTO_SALARIO_BASE | Diccionario 3; variables del paquete (SALARIO_PERSONA) |
-| P5 | La cláusula de propiedad intelectual se imprime con PI_ACTIVAR = Sí y PUESTO_PI con filas | Diccionario 1.5 y 3; variables del paquete (columna «Activa»). El marcador del texto del contrato se ajusta en su próxima edición; mientras, rige el archivo de variables |
+| P5 | La cláusula de propiedad intelectual se imprime con PI_ACTIVAR = Sí y PUESTO_PI con filas | Diccionario 1.5 y 3; variables del paquete (columna «Activa»). Texto completo del paquete (cláusula décima quinta), aplicado por Cerebro el 22/11/2026 |
 | P6 | MOD_PRUEBA es pregunta de la empresa, sin valor por omisión, con alerta frente a PRUEBA_OPCION | Diccionario 1.5; RIT; variables del paquete (PRUEBA_OPCION) |
 | P7 | REPSE_EMPRESA calculada (folio y vigencia); REPSE_APLICA se pregunta en el alta y solo aparece con REPSE_EMPRESA = Sí | Diccionario 1.2 y 4.2; variables del paquete |
 | P8 | PORTAL_DESCARGA se captura una vez en la empresa | Diccionario 1.3; firma electrónica (3.1); variables del paquete |

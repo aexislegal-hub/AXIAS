@@ -17,6 +17,7 @@ Este repositorio contiene el diseño de Axia RH: las decisiones, el estado de ca
 - **Versiones.** Cada especificación trae una tabla de cambios respecto de la versión anterior. Si una versión anterior ya está cargada en el software, basta aplicar esa tabla. Ante cualquier duda, rige el texto completo.
 - **Índice.** Si el índice indica que la versión vigente todavía no está copiada en el repositorio, hay que pedirla a AEXIS antes de programar ese módulo.
 - **Textos de los documentos.** Se programan tal como están: las marcas `{{…}}` y `[SI …]` nunca se imprimen, y no se corrige la redacción jurídica.
+- **PDF.** Los documentos se imprimen con la impresión del navegador, como ya está programado y probado (registro, sección 3, 22/11/2026). Donde una especificación diga que el PDF se genera en el servidor, rige esta regla.
 - **Cifras legales.** UMA, salarios mínimos, tarifas, jornada máxima y límites de tiempo extra viven en tablas con vigencia y aprobación humana. Nunca se escriben en el código ni en los textos.
 - **Partes provisionales.** Las secciones marcadas [DEPENDE STPS] o con pendientes que no bloquean se programan como están y se revisan después.
 - **Variables.** Cada dato se captura una sola vez, en su nivel, con el nombre canónico del diccionario. Si un módulo usa otro nombre, rige la tabla de equivalencias del diccionario (sección 7); si el nombre no está ahí, se reporta a AEXIS.

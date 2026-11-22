@@ -42,7 +42,7 @@ El módulo genera los 14 documentos del procedimiento (D-01 a D-14), calcula el 
 - Fechas: formato largo («30 de mayo de 2026»).
 - **Días hábiles:** calendario de días inhábiles del módulo 4 (fines de semana, descansos obligatorios y días que marque la empresa). El conteo empieza el día hábil siguiente al hecho.
 - Ningún texto ni código fija cifras que cambian (porcentaje de PTU, UMA, tarifas): viven en tablas X.
-- Formato de impresión: Arial 12, títulos en negrita del mismo tamaño o uno mayor, papel carta, PDF generado en el servidor sin encabezado ni pie del navegador.
+- Formato de impresión: Arial 12, títulos en negrita del mismo tamaño o uno mayor, papel carta, PDF con la impresión del navegador, sin encabezado ni pie del navegador. (Nota de Cerebro, 22/11/2026: rige la impresión del navegador; ver el registro, sección 3.)
 - Reglas de pantalla del registro 5.0: guardar nunca se bloquea; sin candados por fecha (solo se valida el orden entre fechas); los campos que dependen de una opción aparecen después de ella; la casilla «documento firmado» basta para avanzar (salvo el pago, que sigue el módulo 6); concordancia de número (con valor 1, singular; nunca «(s)»).
 - Los documentos generados para el cliente no llevan «AEXIS» ni «AXIARH».
 

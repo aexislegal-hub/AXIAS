@@ -49,7 +49,7 @@ Los cambios 12 a 17 se agregaron el 20/11/2026 y el 18 el 21/11/2026, cuando la 
 - Fechas: se imprimen en formato largo («10 de noviembre de 2026»).
 - **Días hábiles:** varios plazos se cuentan en días hábiles. Se necesita un calendario configurable de días inhábiles (fines de semana, días de descanso obligatorio y días que la empresa marque). El conteo empieza el día hábil siguiente al evento.
 - Ningún texto fija cifras que cambian por reforma (salario mínimo, jornada, porcentajes legales). Esas cifras viven en tablas del sistema.
-- **Formato de impresión:** todos los documentos del módulo (convenio, recibo, comunicados, constancias, acta, FON-1 y hoja interna) en Arial 12, incluidos títulos, tablas y bloques de firma. Los títulos van en negrita, del mismo tamaño. Única excepción: el ajuste del recibo para que quepa en una hoja (7.6). Tamaño de papel: carta. PDF generado en el servidor, sin encabezado ni pie del navegador.
+- **Formato de impresión:** todos los documentos del módulo (convenio, recibo, comunicados, constancias, acta, FON-1 y hoja interna) en Arial 12, incluidos títulos, tablas y bloques de firma. Los títulos van en negrita, del mismo tamaño. Única excepción: el ajuste del recibo para que quepa en una hoja (7.6). Tamaño de papel: carta. PDF con la impresión del navegador, sin encabezado ni pie del navegador. (Nota de Cerebro, 22/11/2026: rige la impresión del navegador; ver el registro, sección 3.)
 
 ---
 
