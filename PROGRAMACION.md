@@ -6,9 +6,10 @@ Este repositorio contiene el diseño de Axia RH: las decisiones, el estado de ca
 
 1. `base-comun/contexto.md`: qué es Axia y cómo se organiza.
 2. `base-comun/arquitectura-y-convenciones.md`: niveles de captura (empresa, organigrama, alta, evento), atributos de puesto y convenciones de los textos (`{{VARIABLES}}`, `[SI …] … [FIN SI]`).
-3. `axia-rh/especificaciones/README.md`: índice de especificaciones, con la versión vigente de cada módulo y su estado.
-4. La especificación del módulo que se vaya a programar.
-5. Para resolver dudas: `axia-rh/registro-de-decisiones.md` (decisiones vigentes, con fecha) y `axia-rh/mapa-del-pmv.md` (avance y pendientes por módulo).
+3. `base-comun/diccionario-variables.md`: nombre, nivel y validación de cada dato de empresa, organigrama y alta, y equivalencias de nombres entre módulos.
+4. `axia-rh/especificaciones/README.md`: índice de especificaciones, con la versión vigente de cada módulo y su estado.
+5. La especificación del módulo que se vaya a programar.
+6. Para resolver dudas: `axia-rh/registro-de-decisiones.md` (decisiones vigentes, con fecha) y `axia-rh/mapa-del-pmv.md` (avance y pendientes por módulo).
 
 ## Reglas de lectura
 
@@ -18,7 +19,7 @@ Este repositorio contiene el diseño de Axia RH: las decisiones, el estado de ca
 - **Textos de los documentos.** Se programan tal como están: las marcas `{{…}}` y `[SI …]` nunca se imprimen, y no se corrige la redacción jurídica.
 - **Cifras legales.** UMA, salarios mínimos, tarifas, jornada máxima y límites de tiempo extra viven en tablas con vigencia y aprobación humana. Nunca se escriben en el código ni en los textos.
 - **Partes provisionales.** Las secciones marcadas [DEPENDE STPS] o con pendientes que no bloquean se programan como están y se revisan después.
-- **Variables.** Cada dato se captura una sola vez, en su nivel. Si dos módulos usan nombres distintos para el mismo dato, se reporta a AEXIS.
+- **Variables.** Cada dato se captura una sola vez, en su nivel, con el nombre canónico del diccionario. Si un módulo usa otro nombre, rige la tabla de equivalencias del diccionario (sección 7); si el nombre no está ahí, se reporta a AEXIS.
 - **Datos personales.** Los datos sensibles (salud, detenciones, Declaración Especial de Ausencia, biometría) solo los ven los usuarios autorizados en `DATOS_SENSIBLES_ACCESO`.
 
 ## Cómo reportar
