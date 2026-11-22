@@ -4,9 +4,9 @@ Copia de la versión vigente de cada especificación. La fuente es el documento 
 
 | Archivo | Módulo | Versión | Fecha | Estado |
 |---|---|---|---|---|
-| `firma-electronica.md` | Firma electrónica (toda la familia Axia) | 1.5 | 21/11/2026 | Copiada el 21/11/2026 (sustituye a la v1.4). El sello visible (6.1) está pendiente de aprobación del usuario |
+| `firma-electronica.md` | Firma electrónica (toda la familia Axia) | 1.5 | 21/11/2026 | Copiada el 21/11/2026 (sustituye a la v1.4). Sello visible (6.1) aprobado por el usuario el 21/11/2026 |
 | `rit.md` | 2. RIT y formatos disciplinarios | 1.7 | 18/11/2026 | Copiada el 18/11/2026; sustituye a la v1.6 (maestro rev. 1388, formatos rev. 39; trae sus tablas de cambios desde la 1.0) |
-| `kit-de-ptu.md` | 3. PTU y su procedimiento (D-01 a D-14, reglas R-1 a R-5) | 1.2 | 21/11/2026 | Copiada el 21/11/2026 (sustituye a la v1.0; trae la tabla de cambios de la 1.1 y la 1.2; plantillas de la sección 9 sin cambio) |
+| `kit-de-ptu.md` | 3. PTU y su procedimiento (D-01 a D-14, reglas R-1 a R-5) | 1.2 | 21/11/2026 | Copiada el 21/11/2026 (sustituye a la v1.0; trae la tabla de cambios de la 1.1 y la 1.2; plantillas de la sección 9 sin cambio). Cerebro aplicó en esta copia el encargo 5 del mapa (nota al inicio del archivo) |
 | `modulo-4-terminacion.md` | 4. Terminación y finiquito | 1.5 | 17/11/2026, con agregados del 20 y 21/11/2026 | Copiada de nuevo el 21/11/2026 con los cambios 12 a 18 (la 1.4 está cargada en el software; la 1.5 trae su tabla de cambios) |
 | `modulo-5-modificaciones.md` | 5. Modificación de condiciones | 1.1 | 20/11/2026 | Copiada el 20/11/2026; sustituye a la v1.0 (trae su tabla de cambios) |
 | `modulos-6-y-8-pagos-fonacot.md` | 6. Validación de pagos y 8. Fonacot | 1.1 | 21/11/2026 | Copiada el 21/11/2026; sustituye a la v1.0 (trae su tabla de cambios) |

@@ -3,6 +3,8 @@
 Especificación para programación · Versión 1.2 · 21/11/2026
 Fuente: «Kit maestro – Procedimiento de PTU» (Claude Docs, rev. 87), «Corte - Kit de PTU» (20/11/2026), registro de decisiones (4.5, 4.7, 4.13 y 5.4) y encargos del mapa del PMV al kit (17/11/2026). Aprobaciones provisionales hasta la revisión final del usuario.
 
+> **Nota de Cerebro (21/11/2026, autorizada por el usuario).** En esta copia se aplicó el encargo 5 del mapa: el cambio 3 y el final de R-4 (5.2) ya no dicen que el módulo 9 descuenta el descanso proporcional en nómina (el módulo 9 v1.1 no lo descuenta). La regla de cálculo no cambia. La versión del proyecto se actualizará en la conversación del kit de PTU.
+
 ## Cambios respecto de las versiones 1.0 y 1.1
 
 Si la 1.0 ya se cargó, basta aplicar esta tabla (los cambios 5 a 7 son de la 1.2). Ante cualquier duda, rige el texto completo.
@@ -11,7 +13,7 @@ Si la 1.0 ya se cargó, basta aplicar esta tabla (los cambios 5 a 7 son de la 1.
 | --- | --- | --- | --- |
 | 1 | 5.2 (R-4, tabla `PTU_COMPUTA`) | La fila «Falta injustificada» se divide: **falta confirmada** del módulo 9 (no computa) y **falta por confirmar** (computa mientras RH no la confirme) | Encargo 4 del mapa (20/11/2026); registro 4.14 |
 | 2 | 5.2 (R-4, reglas) | Con faltas por confirmar al calcular, alerta a RH sin bloquear; confirmar o descartar una falta después de `CALCULO_CONFIRMADO` revierte la confirmación de esa persona; con D-08 B firme se atiende como observación (D-10) | Mismo encargo; gemelo de la regla de `AGUINALDO_VALIDADO` |
-| 3 | 5.2 y 5.4 | El descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT) no resta días computables; cada falta confirmada resta solo su día. `PTU_COMPUTA` y `AGUINALDO_COMPUTA` cambian juntas | Decisión del usuario (21/11/2026) |
+| 3 | 5.2 y 5.4 | Cada falta confirmada o día sin goce resta solo su propio día; ninguno resta el día de descanso. `PTU_COMPUTA` y `AGUINALDO_COMPUTA` cambian juntas | Decisión del usuario (21/11/2026) |
 | 4 | Anexo A.3 | Casos 17 y 18 | — |
 | 5 | 8 y 8.1 (nueva) | Los documentos de la Comisión se firman de forma electrónica o autógrafa con `FIRMA_COMISION`, por documento; sustituye el uso de `FIRMA_MODALIDAD` en esos documentos | Decisión del usuario (21/11/2026) |
 | 6 | 10.2, 11.3 | `FIRMA_COMISION` en el diccionario; se cierra el pendiente del nivel de firma | Ídem |
@@ -216,7 +218,7 @@ Tabla PTU_COMPUTA (17/11/2026). Indica, por tipo de evento del módulo de permis
 | Falta confirmada (módulo 9), suspensión disciplinaria y suspensión por fin de temporada | No | Registro 4.7 |
 | Falta por confirmar (módulo 9) | Sí, mientras RH no la confirme | Ausencia sin evento aún no calificada; solo la falta confirmada descuenta (registro 4.14) |
 
-Reglas: la tabla vive con los parámetros versionados y solo cambia con aprobación humana; un cambio no altera dictámenes firmes. Cada día tiene un solo evento (la incapacidad prevalece), por lo que ningún día se descuenta dos veces. Con VIA_CALCULO = Importación o Captura, la tabla no se aplica a los días que reporta el cliente, pero el sistema la usa para advertir si DIAS_TRABAJADOS no coincide con los eventos registrados. Los 60 días de las personas eventuales se cuentan con días computables. (21/11/2026, encargo 4 del mapa) Al calcular con VIA_CALCULO = Automático, si hay faltas por confirmar del ejercicio, el sistema alerta a RH para confirmarlas o descartarlas, sin bloquear; confirmar o descartar una falta después de CALCULO_CONFIRMADO revierte la confirmación de esa persona, y después de D-08 B firme se atiende como observación (D-10). Cada falta confirmada resta solo su propio día: el descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT) no resta días computables, igual que en AGUINALDO_COMPUTA (decisión del usuario, 21/11/2026; las dos tablas cambian juntas).
+Reglas: la tabla vive con los parámetros versionados y solo cambia con aprobación humana; un cambio no altera dictámenes firmes. Cada día tiene un solo evento (la incapacidad prevalece), por lo que ningún día se descuenta dos veces. Con VIA_CALCULO = Importación o Captura, la tabla no se aplica a los días que reporta el cliente, pero el sistema la usa para advertir si DIAS_TRABAJADOS no coincide con los eventos registrados. Los 60 días de las personas eventuales se cuentan con días computables. (21/11/2026, encargo 4 del mapa) Al calcular con VIA_CALCULO = Automático, si hay faltas por confirmar del ejercicio, el sistema alerta a RH para confirmarlas o descartarlas, sin bloquear; confirmar o descartar una falta después de CALCULO_CONFIRMADO revierte la confirmación de esa persona, y después de D-08 B firme se atiende como observación (D-10). Cada falta confirmada o día sin goce resta solo su propio día; ninguno resta el día de descanso, igual que en AGUINALDO_COMPUTA (decisión del usuario, 21/11/2026; las dos tablas cambian juntas).
 
 ### 5.3 Algoritmo del reparto
 
