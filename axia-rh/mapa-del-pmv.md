@@ -1,10 +1,10 @@
 # Axia RH — Mapa del PMV
 
-Actualizado: 21 de noviembre de 2026, después de los cortes del kit de PTU, del módulo 4, de permisos y licencias, de vacaciones y aguinaldo, del módulo 9, de los módulos 6 y 8, del paquete de contratación y de firma electrónica (21/11), de los cortes del paquete de contratación, del módulo 5 y del módulo 9 (20/11), de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
+Actualizado: 21 de noviembre de 2026, después de las decisiones P1 a P10 del diccionario único (aplicadas directamente por Cerebro), de los cortes del kit de PTU, del módulo 4, de permisos y licencias, de vacaciones y aguinaldo, del módulo 9, de los módulos 6 y 8, del paquete de contratación y de firma electrónica (21/11), de los cortes del paquete de contratación, del módulo 5 y del módulo 9 (20/11), de los cortes de firma electrónica y del RIT (18/11) y de permisos y licencias, vacaciones y aguinaldo, RIT y paquete de contratación (17/11) · Coordinación: «Cerebro»
 
 Este documento muestra qué necesita cada módulo del PMV, qué ya existe, qué falta, qué choca entre conversaciones y qué debe hacer cada una. Complementa al «AXIARH - Registro de decisiones», que guarda las decisiones.
 
-**Cómo se coordina:** cada conversación trabaja un documento y, al cerrar decisiones, hace un corte de estado. El corte se trae a Cerebro, que lo integra al registro, revisa que no choque con otros documentos y actualiza este mapa. Cerebro no ve las otras conversaciones: solo sabe lo que está en el registro, en este mapa y lo que se le trae.
+**Cómo se coordina:** cada conversación trabaja un documento y, al cerrar decisiones, hace un corte de estado. El corte se trae a Cerebro, que lo integra al registro, revisa que no choque con otros documentos y actualiza este mapa. Cerebro no ve las otras conversaciones: solo sabe lo que está en el registro, en este mapa y lo que se le trae. (21/11/2026, decisión del usuario) Cuando una decisión de Cerebro cambia otro documento, Cerebro la aplica directamente en la especificación (proyecto y GitHub) con una nota de Cerebro, en lugar de dejar un encargo; la conversación de ese documento la incorpora en su siguiente versión y no la revierte.
 
 Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspección · **B** = necesario para el PMV · **C** = puede esperar a la siguiente versión.
 
@@ -370,6 +370,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **RIT y CMRIT**
 - Cumplidos según el corte del 15/11/2026: encargos 1 a 11 (incluidos el acta de la CMRIT con el criterio común, días computables, art. 30, art. 16 y tabla II, y firma de FR-1).
+- (21/11, decisión P6 del diccionario; aplicada por Cerebro en la v1.7 del proyecto y de GitHub) MOD_PRUEBA es pregunta de la configuración de la empresa, no dato del paquete (8.1 y 10). El texto del art. 41 no cambia.
 12. **Cumplido (v1.5).** (15/11) El documento del Comité de Integridad y Disciplina se redacta en Axia Compliance; el RIT solo conserva la remisión del art. 79 y COMITE_INTEGRANTES como catálogo interno.
 13. **Cumplido (v1.5); ver el 15.** (17/11, encargo del usuario desde vacaciones) **Art. 36**: primer párrafo condicionado a los tres valores de VAC_PROGRAMACION_MODO (Calendario anual, texto vigente; Periodos de solicitud por antigüedad; A solicitud) y párrafo nuevo para todos los modos sobre días bloqueados y cupos, con la redacción propuesta en la sección 4 del «Corte - Módulo de vacaciones y aguinaldo». Conservar el disfrute continuo del periodo mínimo, la distribución del resto, la prohibición de compensar con dinero y la remisión al art. 30. Cambiar el modo con el RIT depositado exige nuevo depósito.
 14. **Cumplido (v1.5).** (17/11, del módulo 5) Especificación 2.6: el comunicado de horarios ajustados por reducción legal es MOD-2 «Ajuste legal de jornada» del módulo 5; el anexo de horarios lee la jornada de cada persona solo para el resumen.
@@ -382,12 +383,13 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 - Cumplidos según el corte del 20/11/2026: encargos 1, 2 y 5 (17/11), 3 (13/11), 4 (versión para programación regenerada el 20/11/2026) y **6 y 7 (20/11/2026, contrato rev. 506; versión para programación de 204 variables regenerada después de la decisión 32)**.
 8. **Cumplido (21/11, decisión 33; contrato rev. 507, 205 variables).** (20/11, del módulo 9) Agregar al diccionario del kit la variable del consentimiento biométrico del registro de jornada con el nombre **BIOMETRICO_JORNADA_CONSENT**.
 9. **Cancelado (21/11, decisión del usuario; registro 4.3 bis).** La casilla de biométricos del registro de jornada se imprime siempre; no hay nada que cambiar en el paquete.
+- (21/11, decisiones P1, P3 a P7, P9 y P10 del diccionario; aplicadas por Cerebro en «Paquete de contratación — Variables y dependencias», proyecto y GitHub) PATRON_REG_PATRONAL derivada del centro; SALARIO_PERSONA con PUESTO_SALARIO_BASE y la zona del centro o de la instalación; propiedad intelectual con PI_ACTIVAR = Sí y PUESTO_PI con filas; alerta de PRUEBA_OPCION frente a MOD_PRUEBA; REPSE_APLICA en el alta; PERIODICIDAD del puesto; edad y sexo de la CURP. **Única tarea para la conversación del paquete:** en la próxima edición del contrato, cambiar el marcador de la cláusula décima quinta a [SI PI_ACTIVAR = Sí Y PUESTO_PI tiene filas] y no revertir lo aplicado.
 
 **Comisión de capacitación:** (15/11/2026) sale de Axia RH y pasa al proyecto de Axia CYA, que hereda los encargos pendientes (criterio común de comisiones, corte pendiente desde el 26/10, SIRCE). Axia RH solo necesita que Axia CYA mantenga las variables F2_* que lee el módulo 4.
 
 **Kit de PTU**
 - Cumplidos 1 a 3 (modelo rev. 87 y especificación v1.0, 20/11/2026) y 4 (rev. 89 y especificación v1.1, 21/11/2026). La v1.2 (rev. 92, 21/11/2026) agrega FIRMA_COMISION.
-5. **Aplicado por Cerebro en la copia de GitHub (21/11, autorizado por el usuario); falta reflejarlo en la especificación del proyecto (siguiente versión).** (21/11, decisión del usuario; registro 4.10) Quitar la frase «el descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT)», que sigue en la tabla de cambios (cambio 3) y al final de R-4 (5.2), y la misma frase del corte. El módulo 9 v1.1 ya no descuenta el descanso. Redacción sugerida: «Cada falta confirmada o día sin goce resta solo su propio día; ninguno resta el día de descanso». La regla de PTU_COMPUTA no cambia.
+5. **Aplicado por Cerebro en GitHub y en la especificación del proyecto (21/11, autorizado por el usuario).** (21/11, decisión del usuario; registro 4.10) Quitar la frase «el descanso proporcional que el módulo 9 descuenta en nómina (art. 72 LFT)», que sigue en la tabla de cambios (cambio 3) y al final de R-4 (5.2), y la misma frase del corte. El módulo 9 v1.1 ya no descuenta el descanso. Redacción sugerida: «Cada falta confirmada o día sin goce resta solo su propio día; ninguno resta el día de descanso». La regla de PTU_COMPUTA no cambia.
 4. **Cumplido (v1.1, 21/11).** (20/11, del módulo 9) Con VIA_CALCULO = Automático, contar como no computables solo las faltas **confirmadas** del módulo 9; las «por confirmar» no descuentan días. Confirmar que R-4 ya lo dice o agregarlo en la tabla PTU_COMPUTA.
 1. (17/11, de los módulos 6 y 8) Regla R-3: «Pagada» = CFDI o dispersión cotejados en el módulo 6; la firma de D-14 deja de ser condición del estado (D14_FIRMADO, alerta sin revertir). D-14 toma UUID_CFDI, FECHA_PAGO, FORMA_PAGO y REFERENCIA_DISPERSION de la obligación en «Pagada»; con dispersión sin UUID se genera sin el folio fiscal y se versiona al cargarlo.
 2. (17/11) D-11, Parte 2: su Anexo 1 sale del módulo 6, sin cambio de texto.
@@ -413,6 +415,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Módulo 10 (permisos y licencias)**
 - Cumplidos 1 a 6 (especificaciones v1.7 y v1.8, 17/11/2026) y 7 y 8 (v1.9, 21/11/2026).
+- (21/11, aplicado por Cerebro en la v1.9 del proyecto y de GitHub) INC-1 usa SALARIO_PERSONA en lugar de SALARIO_DIARIO, y AUTORIDAD_INSPECCION guarda solo el nombre de la autoridad (decisión P2 del diccionario). Solo incorporarlo en la siguiente versión.
 7. **Cumplido (v1.9).** (20/11, del módulo 9) Recibir las ausencias sin evento como «falta por confirmar» y «falta confirmada»: las por confirmar solo alimentan las alertas preventivas y de patrón, etiquetadas; la alerta de cuarta falta (art. 47, fr. X) usa solo confirmadas. Una falta confirmada que después recibe evento justificado se borra (validación 1).
 8. **Cumplido (v1.9; DATOS_SENSIBLES_ACCESO).** (20/11, del paquete, decisión 32) Las constancias de detención o arresto y la Declaración Especial de Ausencia (D5) son **datos sensibles**: acceso solo para el personal de RH autorizado, sin mostrarlas a jefaturas ni en reportes generales. Revisar si la especificación las trata como datos laborales y corregirlo.
 
@@ -443,6 +446,7 @@ Cada conversación lee aquí lo que le toca cuando el usuario le dice «revisa e
 
 **Firma electrónica**
 - Cumplidos 1 a 7 (especificación v1.5, 21/11/2026). El sello visible (decisión 19 del corte) quedó **aprobado por el usuario el 21/11/2026**: anotarlo en el corte.
+- (21/11, decisión P8 del diccionario; aplicada por Cerebro en la v1.5 del proyecto y de GitHub) PORTAL_DESCARGA pasa de la tabla del alta (3.2) a la configuración de la empresa (3.1). Solo incorporarlo en la siguiente versión.
 8. (21/11, del kit de PTU; registro 4.7) **Varios firmantes por documento** para los documentos de la Comisión de PTU con FIRMA_COMISION = Electrónica: todos con usuario en la Plataforma, cada uno con su tipo de firma y su sello en la tabla de firmas; el documento queda «Firmado» cuando firman todos; si uno rechaza o falla la Plataforma, se regenera como Autógrafa con la misma fecha y contenido y la bitácora conserva la versión anterior. Quitar de la sección 11 «sus firmantes son varios y su modalidad está por confirmar» y del pendiente 12 la ampliación condicional. Proponer el orden de firma (simultáneo o secuencial) y qué firma por la Empresa en esos documentos (los propios integrantes de la representación de la Empresa, no FIRMA_EMPRESA_DOC).
 1. (12/11) Cumplido en la v1.2: firmante de RH designado.
 2. (13/11) **Cumplido en la v1.4 (18/11/2026).** Agregar a la lista de firma autógrafa obligatoria el RIT y el acta de la CMRIT (depósito), FD-1 a FD-5 y FR-2; confirmar que la FR-1 sigue FIRMA_MODALIDAD en sus tres momentos.
@@ -495,7 +499,7 @@ Pegar en cada conversación después de que el usuario resuelva las decisiones a
 - **A — Tabla de conservación de documentos:** unificar plazos; el RIT ya fija variables para expedientes disciplinarios y clínicos y la comisión de capacitación tiene la suya.
 - **B — Parámetros legales globales** (UMA, ISR, subsidio, salarios mínimos, cuotas, exenciones, duraciones legales): una sola tabla versionada con monitor y aprobación (módulo 4, 5.3), compartida por PTU, vacaciones y aguinaldo, permisos y jornada.
 - **B — Registro electrónico de jornada:** el contrato obliga a usar el sistema que designe la Empresa, pero la app del colaborador es fase 2.
-- **B — Diccionario de variables único: v1.0 entregado (21/11/2026)** («AXIARH - Diccionario único de variables»); faltan las decisiones P1 a P10. Historial: hay variables duplicadas con distinto nombre (SINDICATO en capacitación y PTU, CENTROS y TURNOS, N_REP y NUM_REP_TRAB, TIPO_PATRON y EMPRESA_TIPO_PERSONA). (12/11/2026) Además: PERSONA_JEFATURA es la jefatura inmediata y DIRECTOR_AREA (nueva) la dirección del área, ambas por puesto; JEFE_INMEDIATO se elimina; FIRMANTES_EMPRESA va en la configuración de la empresa; CENTRO_TRABAJO equivale a PERSONA_CENTRO del RIT; DIAS_EN_CASA_EMPRESA y DIAS_EN_CASA_ACTIVO son distintas. (18/11/2026) Además: INCAPACIDAD_PARCIAL e INCAPACIDAD_PARCIAL_FECHA son del evento C2 del módulo de permisos; SITUACION_PROTEGIDA_TIPO, derivada; SALARIO_PERSONA sustituye a SALARIO (contrato) y a SALARIO_DIARIO como base de cálculo; PUEDE_SALIR y TELE_APTO, eliminadas; pendientes de registrar del paquete: HERRAMIENTAS_SUSPENDIDAS, REP_EFIRMA_RFC, REP_EFIRMA_VIGENCIA y FIRMA_ENLACE_DIAS.
+- **B — Diccionario de variables único: v1.1 (21/11/2026)** («AXIARH - Diccionario único de variables»; en GitHub, `base-comun/diccionario-variables.md`), con las decisiones P1 a P10 aplicadas. Historial: hay variables duplicadas con distinto nombre (SINDICATO en capacitación y PTU, CENTROS y TURNOS, N_REP y NUM_REP_TRAB, TIPO_PATRON y EMPRESA_TIPO_PERSONA), resueltas con la tabla de equivalencias.
 
 ## Decisiones de alcance
 
@@ -511,10 +515,10 @@ Pendiente de confirmar: si las constancias DC-3 de la capacitación inicial entr
 
 ## Orden sugerido de trabajo (20/11/2026)
 
-1. Correr en el software: módulos 5 (v1.1), 6 y 8 (v1.1), 9 (v1.1), vacaciones (v1.4), permisos (v1.9), firma electrónica (v1.5), kit de PTU (v1.2), módulo 4 (v1.5) y la versión del 21/11 del paquete (205 variables). Todas están copiadas en GitHub (`axia-rh/especificaciones/`), salvo los archivos del paquete.
+1. Correr en el software: módulos 5 (v1.1), 6 y 8 (v1.1), 9 (v1.1), vacaciones (v1.4), permisos (v1.9), firma electrónica (v1.5), kit de PTU (v1.2), módulo 4 (v1.5) y la versión del 21/11 del paquete (205 variables). Todas están copiadas en GitHub (`axia-rh/especificaciones/`), incluido desde el 21/11 el archivo de variables del paquete (`paquete-de-contratacion-variables.md`).
 2. RIT: tercer corrido (especificación v1.7).
-3. Encargos menores pendientes (no detienen el corrido): kit de PTU (5, ya aplicado en GitHub; falta en el proyecto) y firma electrónica (8). Cumplidos el 21/11: módulo 9 (3, 4 y 5), vacaciones (4 y 5), módulo 6 (1), paquete (8), firma electrónica (6 y 7), permisos (7 y 8), kit de PTU (4) y módulo 4 (15).
-4. Cerebro: ~~diccionario único de variables~~ (v1.0 entregado el 21/11/2026; faltan las decisiones P1 a P10), tabla única de parámetros legales y tabla de conservación de documentos.
+3. Encargos menores pendientes (no detienen el corrido): firma electrónica (8) y el marcador de propiedad intelectual del contrato (P5). El 5 del kit de PTU quedó aplicado por Cerebro en GitHub y en el proyecto. Cumplidos el 21/11: módulo 9 (3, 4 y 5), vacaciones (4 y 5), módulo 6 (1), paquete (8), firma electrónica (6 y 7), permisos (7 y 8), kit de PTU (4) y módulo 4 (15).
+4. Cerebro: ~~diccionario único de variables~~ (v1.1, 21/11/2026, con P1 a P10 aplicadas), tabla única de parámetros legales y tabla de conservación de documentos.
 5. Revisión final y cierre de cada módulo por el usuario (hoy solo el módulo 4 está cerrado).
 
 Historial: el orden del 18/11 se cumplió en sus pasos 3 y 4 (paquete con encargos 6 y 7; módulo 9 con especificación). Historial: el orden del 26/10 se cumplió en sus pasos 1 a 5 y 7.

@@ -19,6 +19,7 @@ Fuente: «AXIARH — Módulo de permisos y licencias (diseño)» (https://claude
 | 1.7 | 17/11/2026 | Encargos del mapa del 17/11: situaciones protegidas como alerta crítica con doble confirmación, sin bloqueo (decisión 19); B3 no computa para el aguinaldo; lectura de `SUSP_VACACIONES_GENERA` confirmada con el módulo de vacaciones; «catálogo de conductas del RIT»; `INCAPACIDAD_PARCIAL` al cerrar C2; valor «Cupo completo» de `NEGATIVA_CAUSA` (solo vacaciones); la incapacidad interrumpe las vacaciones |
 | 1.8 | 17/11/2026 | D4 con reubicación aceptada (MOD-5) sustituye a la suspensión mientras dure (decisión del usuario) |
 | 1.9 | 21/11/2026 | Encargos 7 y 8 del mapa del 20/11: faltas «por confirmar» y «confirmadas» del módulo 9; D1 y D5 como datos sensibles (decisión 32) |
+| 1.9 (nota de Cerebro) | 21/11/2026 | INC-1 toma el salario de `SALARIO_PERSONA` (se elimina `SALARIO_DIARIO`) y `AUTORIDAD_INSPECCION` guarda solo el nombre de la autoridad (decisión P2 del diccionario único). Aplicado por Cerebro con autorización del usuario |
 
 ---
 
@@ -329,7 +330,7 @@ El aviso de privacidad para personas trabajadoras ya cubre estos datos: incapaci
 
 ### 14.1 Reutilizadas
 
-Del contrato y del kit: `PATRON_RAZON_SOCIAL`, `PATRON_DOMICILIO`, `REP_NOMBRE`, `REP_CARACTER`, `TRAB_NOMBRE`, `TRAB_CURP`, `TRAB_DOMICILIO`, `TRAB_EMAIL`, `PUESTO`, `AREA`, `LUGAR_FIRMA`, `FECHA_FIRMA`, `FIRMA_MODALIDAD`, `NEGATIVA_FIRMA`, `CLAUSULA_FIRMA_ELECTRONICA`, `BENEF_CONFIRMACION_FECHA`. Del RIT: `PERMISOS_EMPRESA`, `PERMISO_LEY_*`, `PAGO_DIAS_ESPERA`, `UBICACION_LACTARIO`, `LACTARIO_EQUIPAMIENTO`. De la especificación de firma electrónica: `TIPO_FIRMA`, `MEDIO_IDENTIFICACION`, `FES_CANAL_OTP`, `NOM151_SERVICIO`, `FIRMA_ENLACE_DIAS`, `FIRMA_EVIDENCIA`, `PORTAL_DESCARGA`. Catálogo de jornadas y calendario de días inhábiles.
+Del contrato y del kit: `PATRON_RAZON_SOCIAL`, `PATRON_DOMICILIO`, `REP_NOMBRE`, `REP_CARACTER`, `TRAB_NOMBRE`, `TRAB_CURP`, `TRAB_DOMICILIO`, `TRAB_EMAIL`, `PUESTO`, `SALARIO_PERSONA` (INC-1: el de la versión de condiciones de la persona en la fecha del accidente), `AREA`, `LUGAR_FIRMA`, `FECHA_FIRMA`, `FIRMA_MODALIDAD`, `NEGATIVA_FIRMA`, `CLAUSULA_FIRMA_ELECTRONICA`, `BENEF_CONFIRMACION_FECHA`. Del RIT: `PERMISOS_EMPRESA`, `PERMISO_LEY_*`, `PAGO_DIAS_ESPERA`, `UBICACION_LACTARIO`, `LACTARIO_EQUIPAMIENTO`. De la especificación de firma electrónica: `TIPO_FIRMA`, `MEDIO_IDENTIFICACION`, `FES_CANAL_OTP`, `NOM151_SERVICIO`, `FIRMA_ENLACE_DIAS`, `FIRMA_EVIDENCIA`, `PORTAL_DESCARGA`. Catálogo de jornadas y calendario de días inhábiles.
 
 Del RIT: `PERSONA_JEFATURA` (jefatura inmediata, tomada del organigrama; el registro, 5.1, no la captura en el alta). Por confirmar el nombre en el diccionario único: `CENTRO_TRABAJO` (equivale a `PERSONA_CENTRO` del RIT) y `DIRECTOR_AREA` (nueva).
 
@@ -344,10 +345,9 @@ Del RIT: `PERSONA_JEFATURA` (jefatura inmediata, tomada del organigrama; el regi
 | ALERTA_PATRON_FALTAS | E | Entero | Por omisión 6 | Sección 9 |
 | ALERTA_PATRON_RECURRENCIA | E | Entero | ≤ periodos de 30 días en la ventana; por omisión 4 | Sección 9 |
 | ALERTA_PATRON_ADYACENCIA_PCT | E | Porcentaje | 1 a 100; por omisión 50 | Sección 9 |
-| AUTORIDAD_INSPECCION | E | Texto | Ya pendiente en el alta de la empresa | INC-1 |
+| AUTORIDAD_INSPECCION | E | Texto (solo el nombre de la autoridad; el ámbito sale de `COMPETENCIA`) | Diccionario único, 1.1 (decisión P2); sin valor por omisión | INC-1 |
 | AGUINALDO_COMPUTA | E (global; la administra el módulo de vacaciones y aguinaldo) | Tabla: tipo de evento, Sí/No | Valores de la sección 10.1; B3 por omisión No | Aguinaldo |
 | PARAMETROS_LEGALES_PERMISOS | E (global) | Tabla con vigencia: días de paternidad, semanas de maternidad y adopción, meses de lactancia, plazo de suspensión por falta de documentos, plazo de comisión permanente | Solo se activan aprobados | Validaciones y alertas |
-| SALARIO_DIARIO | O | Moneda | Salario fijo del puesto | INC-1 |
 | EVENTO_FOLIO | S | Texto | Único por empresa | Todos |
 | EVENTO_TIPO | V | Lista A1 a D6 | Obligatoria | Todo el flujo |
 | EVENTO_FECHA_INICIO / EVENTO_FECHA_FIN / EVENTO_HORARIO | V | Fecha / fecha / hora | Sin traslape de día completo; horario solo en permisos por horas | Todos |
@@ -617,7 +617,7 @@ Se genera en el evento C2 cuando el riesgo es un accidente, y de inmediato si la
 | Dato | Información |
 | --- | --- |
 | a) Empresa y domicilio | {{PATRON_RAZON_SOCIAL}}, {{PATRON_DOMICILIO}} |
-| b) Persona trabajadora, domicilio, puesto y salario | {{TRAB_NOMBRE}}, {{TRAB_DOMICILIO}}; {{PUESTO}}; salario diario de {{SALARIO_DIARIO}} |
+| b) Persona trabajadora, domicilio, puesto y salario | {{TRAB_NOMBRE}}, {{TRAB_DOMICILIO}}; {{PUESTO}}; salario diario de {{SALARIO_PERSONA}} |
 | c) Lugar y hora del accidente, y hechos | {{RT_LUGAR}}, {{RT_FECHA_HORA}}. {{RT_HECHOS}} |
 | d) Testigos y domicilios | {{RT_TESTIGOS}} |
 | e) Lugar de atención médica | {{RT_ATENCION}} |
@@ -628,7 +628,7 @@ Este aviso se presenta para cumplir la obligación legal de informar. No implica
 
 {{LUGAR_FIRMA}}, a {{FECHA_FIRMA}}. — {{REP_NOMBRE}}, {{REP_CARACTER}}.
 
-**Notas para programación.** Plazo: 72 horas desde el accidente; alerta inmediata y crítica a las 48 horas. Con fallecimiento, el aviso se da en cuanto se conoce. RT_HECHOS debe ser sucinto y sin juicios sobre la culpa. RT_POSIBLES_BENEFICIARIOS se precarga de la designación de beneficiarios, editable, con la leyenda de que no prejuzga quién tiene derecho. AUTORIDAD_INSPECCION ya está pendiente en el alta de la empresa (registro, PTU); el Tribunal laboral competente va con texto fijo, sin variable (art. 504, fr. V LFT). El sistema guarda el acuse de cada autoridad.
+**Notas para programación.** Plazo: 72 horas desde el accidente; alerta inmediata y crítica a las 48 horas. Con fallecimiento, el aviso se da en cuanto se conoce. RT_HECHOS debe ser sucinto y sin juicios sobre la culpa. RT_POSIBLES_BENEFICIARIOS se precarga de la designación de beneficiarios, editable, con la leyenda de que no prejuzga quién tiene derecho. AUTORIDAD_INSPECCION es solo el nombre de la autoridad; el ámbito sale de COMPETENCIA (diccionario único, decisión P2); el Tribunal laboral competente va con texto fijo, sin variable (art. 504, fr. V LFT). El sistema guarda el acuse de cada autoridad.
 
 ### 17.7 INC-2. Solicitud de transferencia de semanas prenatales
 

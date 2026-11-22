@@ -3,7 +3,9 @@
 Especificación para programación · Versión 1.2 · 21/11/2026
 Fuente: «Kit maestro – Procedimiento de PTU» (Claude Docs, rev. 87), «Corte - Kit de PTU» (20/11/2026), registro de decisiones (4.5, 4.7, 4.13 y 5.4) y encargos del mapa del PMV al kit (17/11/2026). Aprobaciones provisionales hasta la revisión final del usuario.
 
-> **Nota de Cerebro (21/11/2026, autorizada por el usuario).** En esta copia se aplicó el encargo 5 del mapa: el cambio 3 y el final de R-4 (5.2) ya no dicen que el módulo 9 descuenta el descanso proporcional en nómina (el módulo 9 v1.1 no lo descuenta). La regla de cálculo no cambia. La versión del proyecto se actualizará en la conversación del kit de PTU.
+> **Nota de Cerebro (21/11/2026, autorizada por el usuario).** En esta copia se aplicó el encargo 5 del mapa: el cambio 3 y el final de R-4 (5.2) ya no dicen que el módulo 9 descuenta el descanso proporcional en nómina (el módulo 9 v1.1 no lo descuenta). La regla de cálculo no cambia. Cerebro aplicó el mismo cambio en la versión del proyecto el 21/11/2026.
+>
+> **Nota de Cerebro (21/11/2026, decisiones P1 a P10 del diccionario único, aplicadas por Cerebro con autorización del usuario).** `AUTORIDAD_INSPECCION` guarda solo el nombre de la autoridad; el ámbito federal o local sale de `COMPETENCIA` (decisión P2). `REGISTRO_PATRONAL` es el `CENTRO_REGISTRO_PATRONAL` del catálogo de centros (decisión P1). Los textos no cambian.
 
 ## Cambios respecto de las versiones 1.0 y 1.1
 
@@ -71,7 +73,7 @@ Reglas generales:
 
 ### 2.1 Configuración (nivel E)
 
-`SINDICATO`, `DESIGNACION_OBRERA` (solo con `SINDICATO` = No; Designación por omisión), `NUM_REPRESENTANTES_POR_PARTE` (mínimo 1; común con la CMRIT), `REPRESENTANTES_SUPLENTES` (Sí por omisión), `EMPRESA_TIPO_PERSONA`, `PTU_ISR_METODO` (Art. 174 RLISR por omisión), `PTU_AVISO_RECORDATORIO_DIAS` (60), `TRABAJO_HOGAR` (No), `AUTORIDAD_INSPECCION` (pendiente de alta en la pantalla de la empresa) y, del catálogo de centros, domicilio, municipio, registro patronal y lugares de publicación.
+`SINDICATO`, `DESIGNACION_OBRERA` (solo con `SINDICATO` = No; Designación por omisión), `NUM_REPRESENTANTES_POR_PARTE` (mínimo 1; común con la CMRIT), `REPRESENTANTES_SUPLENTES` (Sí por omisión), `EMPRESA_TIPO_PERSONA`, `PTU_ISR_METODO` (Art. 174 RLISR por omisión), `PTU_AVISO_RECORDATORIO_DIAS` (60), `TRABAJO_HOGAR` (No), `AUTORIDAD_INSPECCION` (solo el nombre de la autoridad; el ámbito sale de `COMPETENCIA`) y, del catálogo de centros, domicilio, municipio, registro patronal y lugares de publicación.
 
 ### 2.2 Pantalla «Comisión» (fase 0)
 
@@ -967,7 +969,7 @@ Extraídas del texto de D-01 a D-14 (incluye las que solo aparecen en condicione
 | ASISTENTES_EXTERNOS_LISTA | V | Texto | — | D-04 |
 | ASUNTO_EXTRAORDINARIO | V | Texto | — | D-04 |
 | ASUNTO_SESION | V | Texto | — | D-04 |
-| AUTORIDAD_INSPECCION | E | Texto (Federal / Local y nombre de la autoridad) | Pendiente de alta en la pantalla de la empresa (mapa, hallazgo 11) | D-03, art. 8 de los estatutos |
+| AUTORIDAD_INSPECCION | E | Texto (solo el nombre de la autoridad; el ámbito federal o local sale de `COMPETENCIA`) | Diccionario único, 1.1 (decisión P2). Sin valor por omisión; vacía, D-03 imprime el marcador visible | D-03, art. 8 de los estatutos |
 | CANDIDATURA | V | Texto | — | D-02 |
 | CANDIDATURAS_EMPATADAS | V | Texto | — | D-02 |
 | CARGO_VACANTE | V | Texto | — | D-13 |
@@ -1236,7 +1238,7 @@ Extraídas del texto de D-01 a D-14 (incluye las que solo aparecen en condicione
 
 ### 11.2 Pendientes que no bloquean la programación
 
-1. `AUTORIDAD_INSPECCION` en la pantalla de alta de la empresa (mapa, hallazgo 11). Mientras no exista, D-03 imprime el campo vacío como marcador visible.
+1. `AUTORIDAD_INSPECCION` definida en el diccionario único (solo el nombre; el ámbito sale de `COMPETENCIA`). Mientras la pantalla de la empresa no la tenga, D-03 imprime el campo vacío como marcador visible.
 2. Revisión final del usuario del modelo maestro (aprobaciones provisionales).
 
 ### 11.3 Decisiones resueltas en la v1.2

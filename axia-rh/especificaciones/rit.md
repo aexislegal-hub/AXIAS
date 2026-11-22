@@ -3,6 +3,8 @@
 Especificación para programación · Versión 1.7 · 18/11/2026
 Fuente: «Modelo maestro — Reglamento Interior de Trabajo» (pestaña principal, rev. 1388, y pestaña «Formatos», rev. 39), «Modelo maestro — Acta de integración de la CMRIT» (rev. 36), «AXIARH - Registro de decisiones» (actualizado al 02/11/2026), «Corte - RIT» y «Corte - Módulo de permisos y licencias» y «Corte - Firma electrónica» (12/11/2026), y encargos del mapa del 13/11/2026.
 
+> **Nota de Cerebro (21/11/2026, decisiones P1 a P10 del diccionario único, aplicadas por Cerebro con autorización del usuario).** `MOD_PRUEBA` es una pregunta de la configuración de la empresa, no un dato del paquete (decisión P6). `REGISTRO_PATRONAL` es el `CENTRO_REGISTRO_PATRONAL` del catálogo de centros (decisión P1). Los textos del RIT no cambian.
+
 ## Cambios respecto de la versión 1.6 (encargo 18 del mapa, 18/11/2026)
 
 Si la 1.6 ya se cargó, aplicar solo estos cambios.
@@ -1430,7 +1432,7 @@ Son ajustes de impresión, no de contenido. El maestro conserva su redacción.
 | REPSE_EMPRESA | S | Sí si la Empresa tiene folio REPSE vigente | Art. 9 |
 | PERIODICIDADES_PAGO_EMPRESA | S | Periodicidades de los puestos del organigrama | Art. 24 |
 | PUESTOS_CRITICOS_SEGURIDAD, AREAS_RESTRINGIDAS_EMBARAZO_LACTANCIA, AREAS_RESTRINGIDAS_MENORES | S | Puestos con el atributo correspondiente del organigrama | Arts. 60, 65 y 67; conducta 25 |
-| MOD_PRUEBA | E | Paquete de contratación | Art. 41 |
+| MOD_PRUEBA | E | Configuración de la empresa: «¿La Empresa usa periodo de prueba o capacitación inicial?», Sí/No, sin valor por omisión (diccionario único, decisión P6). Cambiarla con el RIT depositado activa la alerta de depósito | Art. 41 |
 | FIRMA_MODALIDAD | A | Paquete de contratación | Solo FR-1; los demás documentos del módulo son autógrafos |
 | FIRMANTES_EMPRESA, FIRMA_EMPRESA_NOMBRE, FIRMA_EMPRESA_CARGO | E / S | Especificación de firma electrónica | Firma por la Empresa en FR-1 |
 | PLANTILLA_NUM | S | Personas activas a la fecha | FR-2 |
@@ -1606,7 +1608,7 @@ Para las conductas 23 y 44, el sistema solo marca la posible rescisión si el hi
 
 | Módulo | Qué necesita este módulo | Qué le da este módulo |
 | --- | --- | --- |
-| Paquete de contratación (módulo 1) | MOD_PRUEBA, FIRMA_MODALIDAD, correo personal, resguardo o carta responsiva con valor de reposición | FR-1 en cada alta |
+| Paquete de contratación (módulo 1) | FIRMA_MODALIDAD, correo personal, resguardo o carta responsiva con valor de reposición | FR-1 en cada alta |
 | Organigrama | Atributos de puesto: crítico para la seguridad, riesgo para embarazo o lactancia, vedado a menores, clasificación | — |
 | Catálogo de jornadas | Turnos para el anexo de horarios y días laborables para los plazos | Alerta de depósito al cambiar un turno |
 | Acta de la CMRIT (6.9) | FECHA_ACTA_INTEGRACION y representantes | — |

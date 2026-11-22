@@ -1,6 +1,8 @@
 # AXIA RH — Diccionario único de variables
 
-Versión 1.0 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las variables de empresa, organigrama y alta). Aprobaciones provisionales hasta la revisión final del usuario.
+Versión 1.1 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las variables de empresa, organigrama y alta). Aprobaciones provisionales hasta la revisión final del usuario.
+
+**Cambios de la v1.1:** el usuario aprobó las diez propuestas P1 a P10 (sección 8). Cerebro las aplicó directamente en este diccionario, en el archivo de variables del paquete de contratación y en las especificaciones de firma electrónica, kit de PTU, permisos y licencias y RIT (notas de Cerebro en cada una). Variables nuevas: CLIENTE_INSTALACION_REG_PATRONAL y CLIENTE_INSTALACION_ZONA_SM (sección 10).
 
 **Fuentes:** «Paquete de contratación — Variables y dependencias» (versión final, 21/11/2026, 205 variables; contrato rev. 507, biblioteca rev. 91), registro de decisiones (21/11/2026) y especificaciones vigentes: RIT v1.7, kit de PTU v1.2, módulo 4 v1.5, módulo 5 v1.1, módulos 6 y 8 v1.1, módulo 9 v1.1, permisos y licencias v1.9, vacaciones y aguinaldo v1.4 y firma electrónica v1.5.
 
@@ -11,7 +13,7 @@ Versión 1.0 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las var
 - **Alcance.** Este diccionario fija el nombre, el nivel, el tipo y la validación de cada dato que se captura en la **configuración de la empresa** (con sus catálogos), en el **organigrama** (con el catálogo de jornadas) y en el **alta** (con el expediente de la persona), y de las **tablas globales**. Las variables de evento y las calculadas de un solo módulo viven en la especificación de ese módulo; aquí solo se listan las que leen varios módulos (sección 6).
 - **Un dato, un campo.** El sistema guarda un solo campo por dato, con el **nombre canónico** de este diccionario. Si una especificación o una plantilla usa otro nombre, la sección 7 da la equivalencia y el motor de plantillas lo resuelve al canónico. No hace falta renombrar las especificaciones ya entregadas.
 - **Texto que activa.** El detalle de en qué cláusula o documento se imprime cada variable del paquete de contratación está en su archivo de variables (columnas «Documento y apartado» y «Activa»). Aquí solo se indica qué módulos la usan.
-- **Marcas.** ⚑ nivel inferido de una regla, por confirmar. ◆ propuesta de Cerebro que espera decisión del usuario (sección 8). Las variables nuevas de este diccionario se listan en la sección 10, «Impacto en el sistema».
+- **Marcas.** ⚑ nivel inferido de una regla, por confirmar. «P1» a «P10» remiten a las decisiones del usuario de la sección 8. Las variables nuevas de este diccionario se listan en la sección 10, «Impacto en el sistema».
 - **Claves de módulo.** PAQ paquete de contratación (contrato, biblioteca y kit) · RIT · PTU (módulo 3) · M4 terminación · M5 modificación · M6 validación de pagos · M8 Fonacot · M9 análisis de jornada · PER permisos y licencias · VAC vacaciones y aguinaldo · FIR firma electrónica · CMR acta de la CMRIT · NOM Axia NOMs · CYA Axia CYA.
 
 ---
@@ -24,17 +26,17 @@ Versión 1.0 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las var
 |---|---|---|---|
 | PATRON_TIPO_PERSONA | Moral · Física | Obligatoria; con Física se muestran nacionalidad, edad, sexo, estado civil y CURP | PAQ, PTU (como EMPRESA_TIPO_PERSONA), M6 |
 | PATRON_RAZON_SOCIAL | Texto | Obligatoria | Todos |
-| PATRON_NOMBRE_COMERCIAL ◆ | Texto | Opcional | RIT (como NOMBRE_COMERCIAL) |
+| PATRON_NOMBRE_COMERCIAL | Texto | Opcional | RIT (como NOMBRE_COMERCIAL) |
 | PATRON_RFC | Texto | 12 caracteres (moral) o 13 (física) | PAQ, RIT, PTU, M4, M6 |
 | PATRON_DOMICILIO | Texto por campos | Obligatoria; domicilio fiscal | PAQ, RIT, PER, M4 |
 | PATRON_ACTIVIDAD | Texto | Obligatoria | PAQ, RIT |
-| PATRON_REG_PATRONAL | Texto | ◆ P1: pasa a derivada del centro de la persona | PAQ |
+| PATRON_REG_PATRONAL | Derivada (no se captura) | P1: CENTRO_REGISTRO_PATRONAL del centro de la persona (CT_DOMICILIO); con REPSE_LUGAR_TIPO = Cliente, CLIENTE_INSTALACION_REG_PATRONAL de la instalación | PAQ |
 | PATRON_NACIONALIDAD, PATRON_EDAD, PATRON_SEXO, PATRON_ESTADO_CIVIL, PATRON_CURP | Texto / número | Solo persona física; mayor de edad; formato CURP | PAQ |
 | REP_NOMBRE | Texto | Obligatoria; puede haber más de un representante | Todos |
 | REP_CARACTER | Texto | Obligatoria | PAQ, PER, M4, M5 |
 | REP_EFIRMA_RFC, REP_EFIRMA_VIGENCIA | Texto / fecha | Se leen del certificado (.cer) del representante; alerta 30 días antes del vencimiento | FIR |
-| COMPETENCIA | Federal · Local | Obligatoria; según la actividad de la Empresa. ◆ P2: única fuente del ámbito federal o local | PAQ, PTU, PER |
-| AUTORIDAD_INSPECCION | Texto | Confirmada el 21/11/2026; ◆ P2: solo el nombre de la autoridad, prellenado según COMPETENCIA | PTU (D-03), PER (INC-1) |
+| COMPETENCIA | Federal · Local | Obligatoria; según la actividad de la Empresa. P2: única fuente del ámbito federal o local | PAQ, PTU, PER |
+| AUTORIDAD_INSPECCION | Texto | P2: solo el nombre de la autoridad de inspección; sin valor por omisión; la pantalla muestra COMPETENCIA junto al campo para que el nombre corresponda al ámbito; vacía, D-03 e INC-1 imprimen el marcador visible | PTU (D-03), PER (INC-1) |
 | RH_RESPONSABLE_NOMBRE | Texto | — | RIT (FD-1, FR-2) |
 | RESCISION_RESPONSABLE | Puesto | No se imprime | RIT |
 
@@ -42,12 +44,11 @@ Versión 1.0 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las var
 
 | Variable | Tipo | Validación u omisión | La usan |
 |---|---|---|---|
-| REPSE_FOLIO | Texto | Obligatoria si la Empresa presta servicios especializados | PAQ, RIT, M5 |
+| REPSE_FOLIO | Texto | Obligatoria si la Empresa presta servicios especializados; con REPSE_VIGENCIA vigente activa REPSE_EMPRESA | PAQ, RIT, M5 |
 | REPSE_VIGENCIA | Fecha | Alertas a 90, 60 y 30 días; bloqueo del módulo R al vencer | PAQ |
 | REPSE_ACTIVIDADES (REPSE_ACT_NUMERO, REPSE_ACT_DESCRIPCION) | Lista | Cada actividad con su número y descripción del registro | PAQ |
 | ASIGNACION_AVISO_DIAS | Entero | Solo si el catálogo de clientes tiene instalaciones | PAQ, M5 |
-| REPSE_EMPRESA | Sí/No calculada | Sí con REPSE_FOLIO y REPSE_VIGENCIA vigentes. ◆ P7 | RIT (art. 9), M9 |
-| REPSE_APLICA ⚑ | Sí/No | ◆ P7: el paquete la ubica en la empresa; el registro 5.1 la pregunta en el alta | PAQ |
+| REPSE_EMPRESA | Sí/No calculada | P7: Sí con REPSE_FOLIO y REPSE_VIGENCIA vigentes; no se captura. Con Sí, el alta ofrece REPSE_APLICA | RIT (art. 9), M9, PAQ |
 
 ### 1.3 Registro de jornada y firma electrónica
 
@@ -59,7 +60,7 @@ Versión 1.0 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las var
 | REGISTRO_BIOMETRICO | Sí/No | Con Sí exige SISTEMA_REGISTRO_ALTERNO; la casilla del aviso se imprime siempre (decisión del 21/11/2026) | PAQ, M9 |
 | SISTEMA_REGISTRO_ALTERNO ⚑ | Texto | Obligatoria con REGISTRO_BIOMETRICO = Sí; solo PIN o tarjeta | PAQ, M9 |
 | PLATAFORMA_FIRMA ⚑ | Texto | Obligatoria si algún alta usa firma electrónica | PAQ, FIR |
-| PORTAL_DESCARGA ⚑ | Texto | ◆ P8: en la empresa, prellenado con la intranet | PAQ, FIR |
+| PORTAL_DESCARGA | Texto | P8: una sola captura en la empresa, prellenado con la intranet; obligatoria si algún alta usa firma electrónica; no se captura en el alta | PAQ, FIR |
 | FES_CANAL_OTP | Correo · Correo y SMS | Por omisión Correo y SMS | PAQ, FIR |
 | NOM151_SERVICIO | Sí/No | Por omisión No | PAQ, FIR |
 | IDV_SERVICIO | Sí/No | Por omisión No; se cobra aparte | PAQ, FIR |
@@ -88,14 +89,14 @@ Versión 1.0 · 21/11/2026 · Responsable: Cerebro de Axia RH (dueño de las var
 |---|---|---|---|
 | PERFIL_AVISO_DIAS | Entero | 15; > 0 | PAQ, M5 |
 | PERFIL_ORIGEN | Empresa · Sistema | Solo con PERFIL_MODALIDAD = Perfil de puesto; con Sistema exige aprobación | PAQ |
-| PI_ACTIVAR | Sí/No | ◆ P5 (nivel); validar con especialista | PAQ |
+| PI_ACTIVAR | Sí/No | P5: la Empresa usa la cláusula de propiedad intelectual; la cláusula se imprime solo con PI_ACTIVAR = Sí y PUESTO_PI con filas. Validar con especialista antes de activarla | PAQ |
 | PI_CATALOGO | Tabla | Opcional; alimenta PUESTO_PI | PAQ |
 | CONV_PENA | Sí/No | No | PAQ |
 | CONV_PENA_MONTO, CONV_PENA_DIAS | Moneda / entero | > 0; obligatorias con CONV_PENA = Sí | PAQ |
 | CONF_CLAUSULA_BASE | Texto del sistema | No editable | PAQ |
 | MODULO_REVISION_MESES | Entero | — | PAQ |
 | ACTUALIZACION_ANUAL_MES | Mes | Obligatoria | M5 |
-| MOD_PRUEBA ◆ | Sí/No | ◆ P6: hoy no la define ningún documento | RIT (art. 41), comisión de capacitación (CYA) |
+| MOD_PRUEBA | Sí/No | P6: «¿La Empresa usa periodo de prueba o capacitación inicial?»; sin valor por omisión. Alerta si un alta elige PRUEBA_OPCION ≠ No aplica con MOD_PRUEBA = No. Cambiarla con el RIT depositado activa la alerta de depósito | RIT (art. 41), comisión de capacitación (CYA), PAQ (alerta) |
 
 ### 1.6 Teletrabajo y trabajo híbrido
 
@@ -211,8 +212,8 @@ CONFORMIDAD_FIRMAS no es dato de empresa: se decide en cada acta (dato del event
 | CENTRO_NOMBRE | Texto | Obligatoria; único | Todos (sustituye a CENTRO_TRABAJO_NOMBRE) |
 | CENTRO_DOMICILIO | Calle, número, colonia, código postal, municipio | Obligatoria | PAQ (CT_DOMICILIO), RIT, PTU, M4, M5 |
 | CENTRO_ESTADO | Entidad federativa | Obligatoria | RIT, PTU |
-| CENTRO_REGISTRO_PATRONAL | Texto | Obligatoria. ◆ P1: fuente única del registro patronal | RIT, PTU, PAQ |
-| CENTRO_ZONA_SM ◆ | General · Zona Libre de la Frontera Norte | ◆ P3: sin valor por omisión | Validación de salario mínimo (PAQ, M5), SALARIO_TOPADO (M4) |
+| CENTRO_REGISTRO_PATRONAL | Texto | Obligatoria. P1: fuente única del registro patronal | RIT, PTU, PAQ |
+| CENTRO_ZONA_SM | General · Zona Libre de la Frontera Norte | P3: obligatoria, sin valor por omisión | Validación de salario mínimo (PAQ, M5), SALARIO_TOPADO (M4) |
 | CENTRO_ZONA_HORARIA | Lista | Obligatoria | M9, FIR |
 | CENTRO_FONACOT | Sí · No · No aplica | Sin valor por omisión | M8 |
 | LUGARES_PUBLICACION | Texto | Por centro; se precarga en los documentos de las comisiones | PTU, CMR |
@@ -243,6 +244,8 @@ Derivadas del catálogo: NUM_CENTROS_TRABAJO, CENTRO_MUNICIPIO_ESTADO (municipio
 | CLIENTE_RAZON_SOCIAL | Texto | Obligatoria | PAQ, M5 |
 | CLIENTE_RFC | Texto | Formato RFC | PAQ |
 | CLIENTE_INSTALACION_DOMICILIO | Texto | Por instalación | PAQ, M4, M5 |
+| CLIENTE_INSTALACION_ZONA_SM | General · Zona Libre de la Frontera Norte | P3: por instalación; obligatoria, sin valor por omisión. Rige el salario mínimo de quien trabaja en esa instalación | PAQ, M5, M4 |
+| CLIENTE_INSTALACION_REG_PATRONAL | Selección de los CENTRO_REGISTRO_PATRONAL de la Empresa | P1: por instalación; obligatoria. Es el registro patronal de quien trabaja en esa instalación; la Empresa lo elige con su asesoría de seguridad social | PAQ |
 | SERVICIO_CONTRATO_FECHA | Texto | Fecha y número del contrato de servicios | PAQ |
 | CLIENTE_ACTIVIDAD_REPSE | Texto | Actividad registrada que se presta | PAQ |
 | CLIENTE_DECLARACION_FECHA | Fecha | — | PAQ |
@@ -259,8 +262,8 @@ Derivadas del catálogo: NUM_CENTROS_TRABAJO, CENTRO_MUNICIPIO_ESTADO (municipio
 | FUNCIONES_CONFIANZA | Texto largo | Obligatoria con Confianza | PAQ |
 | PUESTO_DIRECCION_TECNICO | Sí/No | Lo captura consultoría; independiente de la clasificación | PAQ, M5 |
 | TRABAJO_MATERIAL | Sí/No | Con Sí, periodicidad solo semanal | PAQ |
-| PERIODICIDAD | Semanal · Quincenal | ◆ P9: atributo del puesto (registro, sección 2), no derivada | PAQ, RIT, PER, M9 |
-| PUESTO_SALARIO_BASE ◆ | Moneda | ≥ mínimo de la zona; precarga SALARIO_PERSONA en el alta | PAQ, M5 |
+| PERIODICIDAD | Semanal · Quincenal | P9: atributo del puesto, no derivada ni capturada en el alta; con TRABAJO_MATERIAL = Sí solo Semanal (bloqueo de Quincenal) | PAQ, RIT, PER, M9 |
+| PUESTO_SALARIO_BASE | Moneda | P4: ≥ salario mínimo de la zona de los centros donde se usa el puesto; precarga SALARIO_PERSONA en el alta | PAQ, M5 |
 | ESTRUCTURA_SALARIO | Salario fijo · Base + comisión · Comisión | Las dos últimas activan el módulo C | PAQ |
 | COMISION_BASE, COMISION_DEVENGO, COMISION_PERIODICIDAD, COMISION_PLAZO_DIAS, COMISION_OBJECION_DIAS, COMISION_RESPUESTA_DIAS, PLAN_AVISO_DIAS, SISTEMA_REGISTRO_CAMPO ⚑ | Varios | Solo con módulo C | PAQ |
 | SALARIO_OTROS ⚑ | Texto | «Ninguna» si no hay | PAQ |
@@ -268,16 +271,16 @@ Derivadas del catálogo: NUM_CENTROS_TRABAJO, CENTRO_MUNICIPIO_ESTADO (municipio
 | NIVEL_ACCESO_INFO | General · Calificado | Obligatoria | PAQ, M4 |
 | PUESTO_SISTEMAS | Tabla | Opcional; con filas activa la carta responsiva | PAQ, M4 |
 | PUESTO_INFO_CATEGORIAS | Texto largo | Obligatoria con Calificado | PAQ |
-| PUESTO_PI | Selección de PI_CATALOGO | — | PAQ |
+| PUESTO_PI | Selección de PI_CATALOGO | P5: con PI_ACTIVAR = Sí y filas, activa la cláusula de propiedad intelectual del contrato | PAQ |
 | PERFIL_CLAVE, PERFIL_FECHA, PERFIL_OBJETIVO, PERFIL_FUNCIONES, PERFIL_CONEXAS, PERFIL_REQUISITOS, PERFIL_INDICADORES, PERFIL_RIESGOS, PERFIL_CAPACITACION | Varios | Lineamientos de perfiles; sin criterios discriminatorios | PAQ |
 | PERFIL_APROBADO_POR / PERFIL_APROBADO_FECHA | Texto / fecha | Obligatorias con PERFIL_ORIGEN = Sistema | PAQ |
 | ACTIVIDADES_PRINCIPALES (lista del puesto) | Lista | 5 a 10; precarga del alta | PAQ |
 | PERSONA_JEFATURA | Puesto | Jefatura inmediata; sustituye a JEFE_INMEDIATO | RIT, PER, VAC, M9 |
 | DIRECTOR_AREA | Puesto | Opcional | PER, VAC |
 | PTU_EXCLUIDO | Sí/No | Independiente del atributo de dirección | PTU |
-| PUESTO_CRITICO_SEGURIDAD ◆ (nombre) | Sí/No | — | RIT (art. 60) |
-| PUESTO_RIESGO_EMBARAZO_LACTANCIA ◆ (nombre) | Sí/No | — | RIT (art. 65), PER (INC-2) |
-| PUESTO_VEDADO_MENORES ◆ (nombre) | Sí/No | — | RIT (art. 67) |
+| PUESTO_CRITICO_SEGURIDAD | Sí/No | — | RIT (art. 60) |
+| PUESTO_RIESGO_EMBARAZO_LACTANCIA | Sí/No | — | RIT (art. 65), PER (INC-2) |
+| PUESTO_VEDADO_MENORES | Sí/No | — | RIT (art. 67) |
 | PUESTO_TIPO_NOM035 | Operativo · Supervisor · Profesional o técnico · Gerente | — | NOM |
 | PUESTO_VERSION, PERFIL_VERSION, PRESTACIONES_VERSION | Identificador | Versionado (M5) | M4, M5, M9, VAC |
 
@@ -293,7 +296,7 @@ Derivadas del catálogo: NUM_CENTROS_TRABAJO, CENTRO_MUNICIPIO_ESTADO (municipio
 | TRAB_CURP | Texto | 18 caracteres con dígito verificador | Todos |
 | TRAB_RFC | Texto | Prellenado con la CURP más la homoclave; 13 caracteres | PAQ, M4, M6 |
 | TRAB_NSS | Texto | 11 dígitos; necesaria para la baja, no bloquea el contrato | PAQ, M4 |
-| TRAB_EDAD, TRAB_SEXO | Número / texto | ◆ P10: derivadas de la CURP (registro 5.1) | PAQ, M9 (menores), VAC |
+| TRAB_EDAD, TRAB_SEXO | Derivadas (número / texto) | P10: se toman de TRAB_CURP (edad cumplida a FECHA_FIRMA; sexo de la CURP); editables solo si la CURP no permite derivarlas | PAQ, M9 (menores), VAC |
 | TRAB_NACIONALIDAD | Texto | Obligatoria | PAQ |
 | TRAB_ESTADO_CIVIL | Texto | La captura la persona; se guarda en el expediente | PAQ, NOM |
 | TRAB_ESCOLARIDAD, TRAB_EXPERIENCIA_LABORAL | Texto | Los captura la persona; precarga en la siguiente captura | NOM |
@@ -316,9 +319,10 @@ Derivadas del catálogo: NUM_CENTROS_TRABAJO, CENTRO_MUNICIPIO_ESTADO (municipio
 | ACTIVIDADES_PRINCIPALES | Lista | 5 a 10; obligatoria con Lista de actividades | PAQ |
 | CT_DOMICILIO ⚑ | Selección del catálogo de centros | El centro de la persona; con REPSE_LUGAR_TIPO = Cliente no aplica | PAQ, todos (centro de la persona) |
 | CT_AMBITO, CT_OTROS ⚑ | Selección de centros | — | PAQ, M5 |
+| REPSE_APLICA | Sí/No | P7: «¿Es trabajador REPSE?»; visible solo con REPSE_EMPRESA = Sí. Activa el módulo R, el oficio de asignación (con Cliente) y la fila REPSE del Anexo 3 | PAQ, M5 |
 | REPSE_LUGAR_TIPO | Empresa · Cliente | Empresa; Cliente solo con instalaciones en el catálogo | PAQ, M5 |
 | ASIGNACION_INICIO | Fecha | Solo con Cliente | PAQ, M5 |
-| SALARIO_PERSONA | Moneda | Precarga de PUESTO_SALARIO_BASE; ≥ mínimo de CENTRO_ZONA_SM; menor que el vigente solo por MOD-1 | Todos |
+| SALARIO_PERSONA | Moneda | Precarga de PUESTO_SALARIO_BASE; ≥ mínimo de CENTRO_ZONA_SM del centro de la persona (con REPSE_LUGAR_TIPO = Cliente, de CLIENTE_INSTALACION_ZONA_SM); menor que el vigente solo por MOD-1 | Todos |
 | FORMA_PAGO | Efectivo · Depósito o transferencia | Obligatoria | PAQ |
 | BANCO, CLABE | Texto | Obligatorias si no es efectivo; CLABE de 18 dígitos | PAQ |
 | TELETRABAJO | Sí/No | «¿Trabaja días en casa?» | PAQ, M5 |
@@ -400,7 +404,7 @@ Derivadas del catálogo: NUM_CENTROS_TRABAJO, CENTRO_MUNICIPIO_ESTADO (municipio
 
 ## 7. Equivalencias (nombre en un documento → nombre canónico)
 
-El motor de plantillas resuelve el nombre de la izquierda al campo de la derecha. Las especificaciones no se reescriben por esto; se ajustan cuando su conversación emita otra versión.
+El motor de plantillas resuelve el nombre de la izquierda al campo de la derecha. Las especificaciones no se reescriben por esto.
 
 | Nombre usado | Dónde | Canónico |
 |---|---|---|
@@ -408,8 +412,8 @@ El motor de plantillas resuelve el nombre de la izquierda al campo de la derecha
 | RFC | RIT, PTU | PATRON_RFC |
 | DOMICILIO_FISCAL | RIT | PATRON_DOMICILIO |
 | ACTIVIDAD_ECONOMICA | RIT | PATRON_ACTIVIDAD |
-| NOMBRE_COMERCIAL | RIT | PATRON_NOMBRE_COMERCIAL ◆ |
-| REGISTRO_PATRONAL | RIT, PTU | CENTRO_REGISTRO_PATRONAL (◆ P1) |
+| NOMBRE_COMERCIAL | RIT | PATRON_NOMBRE_COMERCIAL |
+| REGISTRO_PATRONAL | RIT, PTU | CENTRO_REGISTRO_PATRONAL (P1) |
 | EMPRESA_TIPO_PERSONA, TIPO_PATRON | PTU, comisiones | PATRON_TIPO_PERSONA |
 | REPRESENTANTE_LEGAL, REPRESENTANTE_LEGAL_NOMBRE | PTU, CMR | REP_NOMBRE |
 | NOMBRE_PERSONA, PERSONA_NOMBRE | PTU, RIT | TRAB_NOMBRE |
@@ -433,7 +437,7 @@ El motor de plantillas resuelve el nombre de la izquierda al campo de la derecha
 | TURNO_HORAS_SEMANA | RIT | HORAS_SEMANA |
 | PUESTOS_CRITICOS_SEGURIDAD, AREAS_RESTRINGIDAS_EMBARAZO_LACTANCIA, AREAS_RESTRINGIDAS_MENORES | RIT (listas calculadas) | Puestos con PUESTO_CRITICO_SEGURIDAD, PUESTO_RIESGO_EMBARAZO_LACTANCIA o PUESTO_VEDADO_MENORES = Sí |
 | PRESTACIONES_SUPERIORES | M4 | PRESTACIONES_EXTRA |
-| SALARIO_DIARIO | PER (INC-1) | SALARIO_PERSONA (en el layout de importación de PTU, SALARIO_DIARIO solo es el nombre de la columna de cotejo) |
+| SALARIO_DIARIO | Versiones anteriores (INC-1 ya usa SALARIO_PERSONA desde el 21/11/2026) | SALARIO_PERSONA (en el layout de importación de PTU, SALARIO_DIARIO solo es el nombre de la columna de cotejo) |
 | JEFE_INMEDIATO | Versiones anteriores | PERSONA_JEFATURA |
 | PRESTACION_SEGURO_VIDA | Versiones anteriores | SEGURO_VIDA |
 | TRAB_EMAIL_INSTITUCIONAL | Versiones anteriores | CORREO_INSTITUCIONAL |
@@ -446,20 +450,24 @@ Nombres que el módulo 4 pidió verificar: TRAB_RFC (confirmado, 4.1), PRIMA_VAC
 
 ---
 
-## 8. Decisiones pendientes del usuario (propuestas de Cerebro)
+## 8. Decisiones del usuario (21/11/2026)
 
-| # | Hallazgo | Propuesta | Efecto |
-|---|---|---|---|
-| P1 | El contrato pide un registro patronal de la empresa (PATRON_REG_PATRONAL), pero el RIT y la PTU lo leen por centro, y la revisión de pantallas (hallazgo 11) pide varios registros patronales | Fuente única: CENTRO_REGISTRO_PATRONAL. PATRON_REG_PATRONAL pasa a derivada: el registro del centro de la persona (CT_DOMICILIO). Con REPSE en instalaciones del cliente queda por definir de qué centro de la Empresa se toma | Sin cambio de texto en el contrato; cambia el origen del dato |
-| P2 | COMPETENCIA (Federal · Local, contrato) y AUTORIDAD_INSPECCION («Federal / Local y nombre», PTU y permisos) capturan dos veces el ámbito | COMPETENCIA es la única fuente del ámbito; AUTORIDAD_INSPECCION guarda solo el nombre de la autoridad, prellenado según COMPETENCIA y editable | Un dato menos; evita contradicciones entre el contrato y D-03 o INC-1 |
-| P3 | Todos los módulos validan «salario mínimo de la zona del centro», pero ningún documento define la zona del centro | Nueva CENTRO_ZONA_SM en el catálogo de centros (General · Zona Libre de la Frontera Norte), sin valor por omisión. Si el software ya la tiene, se usa su nombre | Validaciones de PAQ, M5 y SALARIO_TOPADO de M4 |
-| P4 | El salario base del puesto se usa para precargar SALARIO_PERSONA, pero no tiene nombre | PUESTO_SALARIO_BASE (organigrama, moneda, ≥ mínimo de la zona) | Solo nombre |
-| P5 | PI_ACTIVAR está en la configuración de la empresa (paquete), pero el registro (sección 2) dice que la propiedad intelectual es atributo del puesto | La cláusula de propiedad intelectual se activa con PI_ACTIVAR = Sí (la empresa la usa) y el puesto con PUESTO_PI no vacío; sin variable nueva | Encargo al paquete: ajustar la condición de la cláusula décima quinta |
-| P6 | El RIT (art. 41) y la comisión de capacitación leen MOD_PRUEBA como «dato del paquete», pero el paquete no la define | MOD_PRUEBA como pregunta de la empresa («¿La Empresa usa periodo de prueba o capacitación inicial?»), sin valor por omisión, con alerta si un alta elige PRUEBA_OPCION ≠ No aplica y aquí dice No. Mismo criterio de DIAS_EN_CASA_EMPRESA: derivarla de las altas cambiaría el RIT sin que nadie lo decida | Variable nueva de empresa; cambiarla con el RIT depositado activa la alerta de depósito |
-| P7 | REPSE_APLICA está en la empresa (paquete), pero el registro 5.1 pregunta «Trabajador REPSE» en el alta; el RIT y el M9 usan REPSE_EMPRESA | REPSE_EMPRESA (calculada: folio y vigencia) para la Empresa; REPSE_APLICA en el alta (la persona es trabajadora REPSE), visible solo si REPSE_EMPRESA = Sí | Encargo al paquete: confirmar el nivel en su diccionario |
-| P8 | PORTAL_DESCARGA: el paquete la infiere en la empresa (⚑) y la especificación de firma la pone en el alta | En la empresa, prellenada con la intranet | Una sola captura |
-| P9 | El paquete calcula PERIODICIDAD (semanal si hay trabajo material; quincenal en los demás casos), pero el registro (sección 2) dice que la define el puesto y que solo el trabajo material obliga a semanal | Atributo del puesto (Semanal · Quincenal) con bloqueo de quincenal si TRABAJO_MATERIAL = Sí | Encargo al paquete: corregir la regla, sin cambio de texto |
-| P10 | El paquete captura TRAB_EDAD y TRAB_SEXO; el registro 5.1 dice que se toman de la CURP | Derivadas de la CURP, editables solo si la CURP no los da | Encargo al paquete: anotar el origen |
+El usuario aprobó las diez propuestas. Cerebro las aplicó directamente; las conversaciones de cada documento no deben revertirlas.
+
+| # | Decisión | Dónde quedó aplicada |
+|---|---|---|
+| P1 | Registro patronal por centro: CENTRO_REGISTRO_PATRONAL es la fuente única. PATRON_REG_PATRONAL (carátula del contrato) es derivada: el registro del centro de la persona; con REPSE_LUGAR_TIPO = Cliente, el que la Empresa asignó a la instalación (CLIENTE_INSTALACION_REG_PATRONAL) | Diccionario 1.1, 2.1 y 2.3; variables del paquete; notas en PTU y RIT |
+| P2 | COMPETENCIA es la única fuente del ámbito federal o local; AUTORIDAD_INSPECCION guarda solo el nombre de la autoridad | Diccionario 1.1; PTU (D-03); permisos (INC-1) |
+| P3 | Zona de salario mínimo por centro (CENTRO_ZONA_SM) y por instalación del cliente (CLIENTE_INSTALACION_ZONA_SM), sin valor por omisión | Diccionario 2.1, 2.3 y 4.2; variables del paquete (SALARIO_PERSONA) |
+| P4 | El salario base del puesto se llama PUESTO_SALARIO_BASE | Diccionario 3; variables del paquete (SALARIO_PERSONA) |
+| P5 | La cláusula de propiedad intelectual se imprime con PI_ACTIVAR = Sí y PUESTO_PI con filas | Diccionario 1.5 y 3; variables del paquete (columna «Activa»). El marcador del texto del contrato se ajusta en su próxima edición; mientras, rige el archivo de variables |
+| P6 | MOD_PRUEBA es pregunta de la empresa, sin valor por omisión, con alerta frente a PRUEBA_OPCION | Diccionario 1.5; RIT; variables del paquete (PRUEBA_OPCION) |
+| P7 | REPSE_EMPRESA calculada (folio y vigencia); REPSE_APLICA se pregunta en el alta y solo aparece con REPSE_EMPRESA = Sí | Diccionario 1.2 y 4.2; variables del paquete |
+| P8 | PORTAL_DESCARGA se captura una vez en la empresa | Diccionario 1.3; firma electrónica (3.1); variables del paquete |
+| P9 | PERIODICIDAD es atributo del puesto, con bloqueo de Quincenal si TRABAJO_MATERIAL = Sí | Diccionario 3; variables del paquete |
+| P10 | TRAB_EDAD y TRAB_SEXO se toman de la CURP; editables solo si la CURP no permite derivarlas | Diccionario 4.1; variables del paquete |
+
+Además, INC-1 (permisos) usa SALARIO_PERSONA en lugar de SALARIO_DIARIO.
 
 ---
 
@@ -473,11 +481,19 @@ SALARIO, SALARIO_LETRA, CENTAVOS y SALARIO_DIARIO como base de cálculo (sustitu
 
 | Variable | Nivel | Tipo | Validación | Qué activa |
 |---|---|---|---|---|
-| PATRON_NOMBRE_COMERCIAL (nueva, nombre canónico del NOMBRE_COMERCIAL del RIT) | Empresa | Texto | Opcional | Dictamen y art. 1 del RIT |
-| CENTRO_ZONA_SM (◆ P3) | Catálogo de centros | General · Zona Libre de la Frontera Norte | Sin valor por omisión; obligatoria | Validación del salario mínimo; SALARIO_TOPADO |
-| PUESTO_SALARIO_BASE (◆ P4) | Organigrama | Moneda | ≥ salario mínimo de la zona | Precarga de SALARIO_PERSONA |
-| MOD_PRUEBA (◆ P6) | Empresa | Sí/No | Sin valor por omisión; alerta con PRUEBA_OPCION ≠ No aplica y MOD_PRUEBA = No | Art. 41 del RIT; activación de la comisión de capacitación |
+| PATRON_NOMBRE_COMERCIAL (nombre canónico del NOMBRE_COMERCIAL del RIT) | Empresa | Texto | Opcional | Dictamen y art. 1 del RIT |
+| PATRON_REG_PATRONAL (P1; cambia de capturada a derivada) | Derivada | Texto | Del centro de la persona o de la instalación del cliente | Carátula del contrato |
+| CLIENTE_INSTALACION_REG_PATRONAL (P1; nueva) | Catálogo de clientes REPSE, por instalación | Selección de los registros patronales de los centros de la Empresa | Obligatoria | PATRON_REG_PATRONAL de quien trabaja en la instalación |
+| AUTORIDAD_INSPECCION (P2; cambia el contenido) | Empresa | Texto | Solo el nombre; sin valor por omisión | D-03 (PTU) e INC-1 (permisos) |
+| CENTRO_ZONA_SM (P3; nueva) | Catálogo de centros | General · Zona Libre de la Frontera Norte | Obligatoria, sin valor por omisión | Validación del salario mínimo; SALARIO_TOPADO |
+| CLIENTE_INSTALACION_ZONA_SM (P3; nueva) | Catálogo de clientes REPSE, por instalación | General · Zona Libre de la Frontera Norte | Obligatoria, sin valor por omisión | Validación del salario mínimo de quien trabaja en la instalación |
+| PUESTO_SALARIO_BASE (P4; nombre nuevo de un dato existente) | Organigrama | Moneda | ≥ salario mínimo de la zona | Precarga de SALARIO_PERSONA |
+| PI_ACTIVAR + PUESTO_PI (P5; cambia la condición) | Empresa + organigrama | Sí/No + tabla | — | Cláusula de propiedad intelectual: [SI PI_ACTIVAR = Sí Y PUESTO_PI tiene filas] |
+| MOD_PRUEBA (P6; nueva) | Empresa | Sí/No | Sin valor por omisión; alerta con PRUEBA_OPCION ≠ No aplica y MOD_PRUEBA = No | Art. 41 del RIT; activación de la comisión de capacitación |
+| REPSE_APLICA (P7; cambia de empresa a alta) | Alta | Sí/No | Visible solo con REPSE_EMPRESA = Sí | Módulo R, oficio de asignación y fila REPSE del Anexo 3 |
+| PORTAL_DESCARGA (P8; se confirma en empresa) | Empresa | Texto | Prellenado con la intranet | Cláusula de formalización por medios electrónicos; envío del PDF firmado |
+| PERIODICIDAD (P9; cambia de derivada a organigrama) | Organigrama | Semanal · Quincenal | Quincenal bloqueada con TRABAJO_MATERIAL = Sí | Carátula (periodicidad y DIA_PAGO) |
+| TRAB_EDAD, TRAB_SEXO (P10; cambian de capturadas a derivadas) | Alta, derivadas de TRAB_CURP | Número / texto | Editables solo si la CURP no permite derivarlas | Carátula del contrato |
 | PUESTO_CRITICO_SEGURIDAD, PUESTO_RIESGO_EMBARAZO_LACTANCIA, PUESTO_VEDADO_MENORES (nombres) | Organigrama | Sí/No | — | Arts. 60, 65 y 67 del RIT; INC-2 |
 | PENSION_ALIMENTICIA, PENSION_AUTORIDAD, PENSION_EXPEDIENTE, PENSION_PORCENTAJE, PENSION_INCLUYE_PTU, PENSION_BASE_PTU (alta formal; las pedían M4 y PTU) | Alta | Sección 4.4 | Sección 4.4 | Deducción en el finiquito, la PTU y la prenómina |
 | CENTRO_MUNICIPIO_ESTADO | Derivada | Texto | Del catálogo de centros | Documentos de PTU |
-| PATRON_REG_PATRONAL (◆ P1) | Pasa a derivada | Texto | Del centro de la persona | Carátula del contrato |

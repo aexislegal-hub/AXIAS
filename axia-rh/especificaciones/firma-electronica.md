@@ -13,6 +13,8 @@ Cambios de la v1.5 (encargos 6 y 7 del mapa y armonización con el registro del 
 - D-14: solo firma la Persona Trabajadora, con FIRMA_D14 (sección 11; registro 4.7).
 - El acceso al video y a los resultados de la verificación con INE se restringe a DATOS_SENSIBLES_ACCESO (secciones 5.9 y 8; registro 4.9).
 
+> **Nota de Cerebro (21/11/2026, decisiones P1 a P10 del diccionario único, aplicadas por Cerebro con autorización del usuario).** PORTAL_DESCARGA pasa de la tabla del alta (3.2) a la configuración de la empresa (3.1), decisión P8. Nada más cambia.
+
 Este documento dice **qué** debe hacer el sistema: pantallas, estados, validaciones y bloqueos. **Cómo** se implementa (librerías, proveedores de correo, SMS y verificación de identidad, conexión con el SAT y con el INE, almacenamiento) lo decide el programador; sus decisiones están listadas en la sección 10.
 
 ---
@@ -67,6 +69,7 @@ Reglas absolutas:
 | NOM151_SERVICIO | Sí / No | Por omisión No |
 | IDV_SERVICIO | Sí / No | Por omisión No. Con Sí, el alta ofrece la verificación con INE y video. Se cobra aparte por el costo del proveedor |
 | FIRMA_ENLACE_DIAS | Entero | Por omisión 5; mínimo 1, máximo 30 |
+| PORTAL_DESCARGA | Texto | Se captura una sola vez en la empresa, prellenado con la intranet; obligatoria si algún alta usa firma electrónica. No se captura en el alta |
 | Registro del representante con e.firma | Carga del .cer únicamente | Se validan con el SAT: vigencia, no revocación y que el RFC coincida con el del representante registrado. Se guardan REP_EFIRMA_RFC y REP_EFIRMA_VIGENCIA |
 | FIRMANTES_EMPRESA | Tabla: persona trabajadora, puesto, correo institucional, celular (obligatorio con Correo y SMS), fecha de inicio, fecha de fin (opcional), folio de designación | Solo personas trabajadoras activas de la Empresa, en puestos con clasificación Confianza. El correo debe ser del dominio institucional de la empresa. Cada fila nace de una designación firmada por el representante (5.6). Si no hay ninguno vigente, ver la sección 11 |
 | FIRMA_EMPRESA_DOC | Por tipo de documento y momento (Alta / Posterior): Representante / RH designado / Sin firma de la Empresa | Valores fijos de la sección 11. Todo documento con momento Alta es «Representante» sin excepción. La empresa puede subir un documento posterior de «RH designado» a «Representante», nunca al revés |
@@ -84,7 +87,6 @@ Puede haber más de un representante y más de un firmante de RH; la empresa eli
 | BIOMETRICO_FIRMA_CONSENT | Sí / No, con fecha y hora | Lo otorga la propia persona en la pantalla de consentimiento (5.9, paso 1); RH no lo captura. Sin «Sí», no se habilita la verificación con INE y video |
 | TRAB_EMAIL | Correo | Existente; obligatorio |
 | TRAB_TELEFONO | Celular, 10 dígitos | Existente; obligatorio con FES y FES_CANAL_OTP = Correo y SMS |
-| PORTAL_DESCARGA | Texto | Existente; prellenado con la intranet |
 
 ### 3.3 Datos que se imprimen del firmante de la Empresa
 
