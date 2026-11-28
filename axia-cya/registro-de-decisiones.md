@@ -79,6 +79,7 @@ Fuente: registro de Axia RH, 4.6 y 4.5 (corte de la comisión del 26/10/2026 y c
 - (26/10/2026, idea del usuario) Etapas: primero DNC, comisión mixta, plan y programa, gestión de capacitaciones y exportación para SIRCE; a futuro, tomar los cursos en la plataforma.
 - (26/10/2026) La capacitación inicial es solo una cláusula del contrato (Axia RH), no un contrato autónomo.
 - (27/11/2026) Proyecto de claude.ai «AXIA CAPACITACIÓN» y su Cerebro configurados por el Cerebro de Axia RH (instrucciones en `instrucciones-del-proyecto.md`).
+- (27/11/2026) El Cerebro de Axia CYA asume este registro y el mapa. Copias en el conocimiento del proyecto («AXIA CYA - Registro de decisiones» y «AXIA CYA - Mapa»), con el mismo contenido que estos archivos.
 
 ---
 

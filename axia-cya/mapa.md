@@ -28,7 +28,7 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 | 6 | Productividad | Base 3.11 y Base 17 de la comisión | Provisional | C |
 | 7 | Cursos en la plataforma | — | Etapa futura | C |
 
-**Dónde están los documentos de la comisión:** se redactaron en la conversación de la comisión de capacitación del proyecto de Axia RH; su último corte es del 26/10/2026 y no está en el conocimiento de ese proyecto. Hay que traer el modelo maestro y su corte a este proyecto (paso 1 del orden de trabajo).
+**Dónde están los documentos de la comisión:** se redactaron en la conversación de la comisión de capacitación del proyecto de Axia RH; su último corte es del 26/10/2026 y no está en el conocimiento de ese proyecto. Hay que traer el modelo maestro y su corte a este proyecto (paso 1 del orden de trabajo). (27/11/2026, revisión del Cerebro de Axia CYA) Todavía no están en el conocimiento del proyecto, ni `LFT.pdf`.
 
 ---
 
@@ -52,11 +52,13 @@ Prioridad: **A** = sin esto el módulo no funciona o queda expuesto en una inspe
 
 | # | Asunto | Propuesta del Cerebro de Axia RH |
 |---|---|---|
-| 1 | **PERIODICIDAD.** Los pendientes de la comisión usan PERIODICIDAD (sesiones de la comisión); en Axia RH, PERIODICIDAD es la periodicidad de pago, atributo del puesto (decisión P9 del 21/11/2026) | Renombrar en esta línea (por ejemplo, CMCAP_SESIONES_PERIODICIDAD). Revisar igual PERIODO_CARGO, ANOS_CONSERVACION, DIAS_OBJECION y DIAS_RESOLUCION contra el diccionario único antes de darlas de alta |
+| 1 | **PERIODICIDAD.** Los pendientes de la comisión usan PERIODICIDAD (sesiones de la comisión); en Axia RH, PERIODICIDAD es la periodicidad de pago, atributo del puesto (decisión P9 del 21/11/2026) | Renombrar en esta línea (por ejemplo, CMCAP_SESIONES_PERIODICIDAD). Revisar igual PERIODO_CARGO, ANOS_CONSERVACION, DIAS_OBJECION y DIAS_RESOLUCION contra el diccionario único antes de darlas de alta. (27/11/2026, Cerebro de Axia CYA) Propuesta concreta: prefijo CMCAP_, paralelo al CMRIT_ de la comisión del RIT (diccionario 1.8): CMCAP_SESIONES_PERIODICIDAD, CMCAP_DURACION_CARGO_ANIOS, CMCAP_ANIOS_CONSERVACION, CMCAP_DIAS_OBJECION, CMCAP_DIAS_RESOLUCION. No usar el prefijo COMISION_: en el diccionario es de las comisiones por ventas (módulo C; COMISION_OBJECION_DIAS ya existe) |
 | 2 | **SIRCE y DC-1.** Pasaron a esta línea «por omisión» el 15/11/2026, sin confirmación expresa | Confirmar que quedan en Axia CYA |
-| 3 | **DC-3 de la capacitación inicial.** Axia RH la exige como evidencia, pero no la genera | Que esta línea la genere cuando la capacitación inicial la imparta la Empresa, y que admita cargar constancias externas |
+| 3 | **DC-3 de la capacitación inicial.** Axia RH la exige como evidencia, pero no la genera | Que esta línea la genere cuando la capacitación inicial la imparta la Empresa, y que admita cargar constancias externas. (27/11/2026, Cerebro de Axia CYA) Matiz: la DC-3 acredita competencias o habilidades adquiridas (por verificar en el acuerdo vigente); en el caso que importa a Axia RH, la terminación porque la persona no las adquirió, no habría DC-3. La evidencia que debe entregar esta línea es el expediente de la capacitación impartida (programa, asistencia, evaluación con su resultado y DC-3 solo si aprobó) |
 | 4 | **Configuración propia de la línea** | Aprobar el mismo criterio que Axia NOMs: configuración por empresa y por centro, ligada a Axia RH, sin duplicar sus datos |
 | 5 | **Normalización de los documentos de la comisión** (términos, marcas y referencia a la «Cláusula Cuarta») | Aplicarla al traer el modelo, en la misma conversación de la comisión |
+| 6 | (27/11/2026, Cerebro de Axia CYA) **Autentificación de la DC-3 con 50 personas o menos.** El registro (sección 3) dice que con plantilla de 50 o menos la autentifica la Empresa, pero la comisión también se integra con MOD_PRUEBA = Sí aunque la plantilla sea menor. No está dicho quién autentifica en ese caso | Que autentifique la comisión siempre que exista; la Empresa solo cuando no haya comisión. Resolver en «Constancias y SIRCE» después de verificar el acuerdo vigente |
+| 7 | (27/11/2026, Cerebro de Axia CYA) **Plantilla que cruza el umbral de 50.** La comisión se activa con PLANTILLA_NUM > 50, que es calculada y cambia | Definir en la conversación de la comisión qué pasa al subir de 50 (alerta y plazo para integrarla) y al bajar (la comisión integrada no se disuelve sola) |
 
 ---
 
